@@ -1,0 +1,36 @@
+PODS:
+  - Bolts/Tasks (1.8.4)
+  - CRToast (0.0.9)
+  - MBProgressHUD (1.0.0)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
+  - ParseTwitterUtils (1.11.0):
+    - Bolts/Tasks (~> 1.7)
+    - Parse (~> 1.13)
+  - pop (1.0.9)
+
+DEPENDENCIES:
+  - CRToast
+  - MBProgressHUD
+  - Parse
+  - ParseTwitterUtils
+  - pop (from `https://github.com/facebook/pop.git`)
+
+EXTERNAL SOURCES:
+  pop:
+    :git: https://github.com/facebook/pop.git
+
+CHECKOUT OPTIONS:
+  pop:
+    :commit: 92b2c5b7bcad64f7507da34f921492c71ff1d330
+    :git: https://github.com/facebook/pop.git
+
+SPEC CHECKSUMS:
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  ParseTwitterUtils: 0dde9689565e7012d83f892c64aed2ebe69f2ea9
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+
+COCOAPODS: 0.39.0
