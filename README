@@ -1,0 +1,82 @@
+*Updated*
+
+Note: Everything under steps to to test out QNect should still be followed and still use the workspace. A couple new features have been updated.
+
+* You should delete any existing application of QNect on simulator or device before running this new updated one because user defaults have been updated
+
+* New Features
+
+1.) Updated to use push notifications. This might be hard to test with simulator and iPhone, but I can easily demonstrate this you during the review
+
+2.) Can now scan any type of QRCode not just a QNect code. This means if it is a QRCode that just has text the text will be displayed, if it has a url in it, it will present a Safari View Controller with that address.
+
+3.) Changed some user settings in the settings view controller
+
+  3a) Users can now use quick add which adds a visual (Augmented Reality type) image/display on the QNectcode of the person you are adding instead of presenting a view controller
+
+  3b) If scanning a QRCode with a url you can choose to automatically open the controller or alert the user to show what the webpage is before opening it.
+
+4) Added a tutorial for new users.
+
+
+Other: For the review on Monday, if you could have the app running on a iPhone that would be great! Im gonna also bring an old one i have that doesn’t work that great but just incase it would be good to have another one running it!
+
+Included are other qrcodes (jpg files) to test functionality of application.
+
+Never had the time to incorporate Spotify API, but spent ample amount of time on this new augmented reality idea.
+
+
+
+
+
+
+
+
+Steps to Testing Out QNect Application
+
+
+
+1) When running the application, use the workspace instead of the project to run it
+
+2) In order to show functionality you are going to want to have two instances of the app running at the same time. One using the simulator and one using a a physical device in order to be able to use features such as camera, iMessage, phone, address, and address book.  (Note that this application is designed for iPhones only)
+
+3) Running on iPhone
+
+	3a) When running on the iPhone you will be presented with a login screen. We will treat this instance as testing the app as if you are a new user. 
+
+	3b) Signup through the application by hitting the signup button and enter information (All info can be made up do not need to use actual info)
+
+	3c) After signing up you will be presented into the main application which consists of three screens. The center one which is your scanner screen, the one to the left which displays your Qnectcode based on the info you have filled out and the screen to the right which is all the connections that you have saved.
+
+	3d) At the scanner screen you will notice a "Q" in the left corner. This will direct you to a view controller where you can change your info in order to update your qnectcode. You can link to twitter and change your profile picture as well.
+
+	3e) At this point there is not much functionality left to show. Now we want to startup the app on the simulator.
+
+
+4) Running on Simulator
+
+	4a) Running on the simulator will act as if you met another person that also has the same application. Because two people have the application, one user can scan the others Qnectcode and will be presented with that users contact info in which they can immediately message them, call them, follow them on twitter(not currently implemented), add the contact to address book, or save the connection within the application.
+
+	4b) For the simulator do not signup as a new user just login with 
+		username: testuser
+		password: password
+
+	4c) Swipe the screen to the right in order to display the qrcode. 
+
+
+At this point we can now connect between the two users. On the physical device go to the scanner screen which will display the camera and just point it at the qrcode on the simulator.
+
+Without hitting any buttons this should trigger a new view controller on the physical device displaying the contact info of the user you just scanned. From here you can see all their info.
+
+You can call the user by pressing the phone button, message them by pressing the message button, add the new connection directly to your address book by pressing the plus button next to their info. 
+
+In the top right hand corner you can save the connection directly in the app to view later.
+
+Eventually save the contact pressing the save button in top right. The controller will dismiss and we will be brought back to scanner view. Now swipe to the left to the view controller that displays added connections. You should see your recently added connection. 
+
+	If you select the cell of the connection the same view controller with all of the users info will appear like earlier.
+
+	If you do a short hold on the cell then a small alert will appear with the users name and qrcode. This is to allow other users to share their saved connections with other users. Also you can delete the connection as well.
+
+
+That should be a pretty good rundown of how things are supposed to work for now. Later on I want to implement push notifications, implementing the follow button to work and hooking up to the Twitter API and manage more with the connections. This is the basic funcationaily I desired but feel that alot more features can be included to make it even better!
