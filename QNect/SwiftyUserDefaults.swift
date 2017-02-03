@@ -421,8 +421,8 @@ extension UserDefaults {
 extension UserDefaults {
     // TODO: Can we simplify this and ensure that T is NSCoding compliant?
     
-    public func archive<T>(_ key: DefaultsKey<T>, _ value: T) {
-        if let value: AnyObject = value as? AnyObject {
+    public func archive<T>(_ key: DefaultsKey<T>, _ value: T?) {
+        if let value = value{
             set(key, NSKeyedArchiver.archivedData(withRootObject: value))
         } else {
             assertionFailure("Invalid value type")
@@ -430,7 +430,7 @@ extension UserDefaults {
     }
     
     public func archive<T>(_ key: DefaultsKey<T?>, _ value: T?) {
-        if let value: AnyObject = value as? AnyObject {
+        if let value = value {
             set(key, NSKeyedArchiver.archivedData(withRootObject: value))
         } else if value == nil {
             remove(key)
@@ -450,10 +450,9 @@ extension UserDefaults {
 
 // MARK: - Deprecations
 
-infix operator ?= {
-    associativity right
-    precedence 90
-}
+
+
+infix operator  ?= : AssignmentPrecedence
 
 /// If key doesn't exist, sets its value to `expr`
 /// Note: This isn't the same as `Defaults.registerDefaults`. This method saves the new value to disk, whereas `registerDefaults` only modifies the defaults in memory.

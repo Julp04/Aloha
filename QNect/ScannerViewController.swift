@@ -635,8 +635,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         case MessageComposeResult.sent:
             print("Message was sent")
             self.dismiss(animated: true, completion: nil)
-        default:
-            break;
         }
         
         scannedContact = 0
