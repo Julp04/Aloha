@@ -304,7 +304,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         push.setQuery(pushQuery as! PFQuery<PFInstallation>?) // Set our Installation query
         push.sendInBackground(block: { (success, error) -> Void in
             if error != nil {
-                print(error)
+                
             }
         })
     }
@@ -315,7 +315,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             
             QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
                 if error == nil {
-                    print(json)
                     DispatchQueue.main.async(execute: {
                         if requestErrorMessage != nil {
                             CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
@@ -427,8 +426,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         case MessageComposeResult.sent:
             print("Message was sent")
             self.dismiss(animated: true, completion: nil)
-        default:
-            break;
         }
     }
     

@@ -23,8 +23,6 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
-        
-        self.pageViewController.viewControllers
      
         
        

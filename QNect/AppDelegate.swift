@@ -159,20 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func sendPushNotification(_ username:String)
     {
-        let pushQuery = PFInstallation.query()
-        pushQuery!.whereKey("username", equalTo: username)
-        print(username)
         
-        // Send push notification to query
-        let push = PFPush()
-        let data =   ["alert" : "\(User.current()!.firstName) \(User.current()!.lastName) has saved you as a connection!","name" : "\(User.current()!.firstName) \(User.current()!.lastName)", "username":User.current()!.username!]
-        push.setData(data)
-        push.setQuery(pushQuery as! PFQuery<PFInstallation>?) // Set our Installation query
-        push.sendInBackground(block: { ( success, error) -> Void in
-            if error != nil {
-                print(error)
-            }
-        })
     }
     
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
@@ -190,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     QnUtilitiy.retrieveUserByUsername(username, completion: { (user) in
                         QnUtilitiy.saveConnection(user, completion: { (error) in
                             if error != nil {
-                                print(error)
+                                
                             }
                         })
                     })

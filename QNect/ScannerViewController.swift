@@ -143,7 +143,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         push.setQuery(pushQuery as! PFQuery<PFInstallation>?) // Set our Installation query
         push.sendInBackground(block: { (success, error) -> Void in
             if error != nil {
-                print(error)
+                
             }
         })
     }
@@ -154,7 +154,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
                 if error == nil {
-                    print(json)
+                    
                     DispatchQueue.main.async(execute: {
                         if requestErrorMessage != nil {
                             CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
@@ -166,7 +166,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         }
                     })
                 }else {
-                    print(error)
+                    
                     DispatchQueue.main.async(execute: {
                         self.showInternetError()
                     })
@@ -668,13 +668,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func pauseVideo()
     {
-        self.videoView?.stringByEvaluatingJavaScript(from: "player.pauseVideo()")
+       
+        _ = self.videoView?.stringByEvaluatingJavaScript(from: "player.pauseVideo()")
         playerPaused = 1
     }
     
     func resumeVideo()
     {
-        self.videoView?.stringByEvaluatingJavaScript(from: "player.playVideo()")
+        _ = self.videoView?.stringByEvaluatingJavaScript(from: "player.playVideo()")
         playerPaused = 0
     }
     

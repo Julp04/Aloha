@@ -265,7 +265,7 @@ open class SCLAlertView: UIViewController {
         return txt
     }
     
-    open func addButton(_ title:String, action:@escaping ()->Void)->SCLButton {
+    @discardableResult open func addButton(_ title:String, action:@escaping ()->Void)->SCLButton {
         let btn = addButton(title)
         btn.actionType = SCLActionType.closure
         btn.action = action
@@ -275,7 +275,7 @@ open class SCLAlertView: UIViewController {
         return btn
     }
     
-    open func addButton(_ title:String, target:AnyObject, selector:Selector)->SCLButton {
+    @discardableResult open func addButton(_ title:String, target:AnyObject, selector:Selector)->SCLButton {
         let btn = addButton(title)
         btn.actionType = SCLActionType.selector
         btn.target = target
@@ -365,7 +365,7 @@ open class SCLAlertView: UIViewController {
     }
     
     // showSuccess(view, title, subTitle)
-    open func showSuccesss(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x22B573, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+   @discardableResult open func showSuccesss(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x22B573, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, image: nil, duration: duration, completeText:closeButtonTitle, style: .success, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
     
@@ -385,7 +385,7 @@ open class SCLAlertView: UIViewController {
     }
     
     // showInfo(view, title, subTitle)
-    open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+    @discardableResult open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, image: nil, duration: duration, completeText:closeButtonTitle, style: .info, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
     
@@ -403,7 +403,7 @@ open class SCLAlertView: UIViewController {
         return showTitle(title, subTitle: subTitle, image: nil, duration:duration, completeText:closeButtonTitle, style: style, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
     
-    open func showCustom(_ title:String, subTitle:String, image:UIImage ,style:SCLAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x22B573, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder
+    @discardableResult open func showCustom(_ title:String, subTitle:String, image:UIImage ,style:SCLAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0x22B573, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder
     {
         return showTitle(title, subTitle: subTitle, image: image, duration: nil, completeText: closeButtonTitle, style: .custom, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }

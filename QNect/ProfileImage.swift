@@ -57,7 +57,6 @@ class ProfileImage
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        view
         
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()

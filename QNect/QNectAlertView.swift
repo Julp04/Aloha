@@ -274,7 +274,7 @@ open class QNectAlertView: UIViewController {
         }
     }
     
-    open func addTextField(_ title:String?=nil)->UITextField {
+   @discardableResult open func addTextField(_ title:String?=nil)->UITextField {
         // Update view height
         kWindowHeight += kTextFieldHeight
         // Add text field
@@ -293,7 +293,7 @@ open class QNectAlertView: UIViewController {
         return txt
     }
     
-    open func addButton(_ title:String, action:@escaping ()->Void)->SCLButton {
+   @discardableResult open func addButton(_ title:String, action:@escaping ()->Void)->SCLButton {
         let btn = addButton(title)
         btn.actionType = SCLActionType.closure
         btn.action = action
@@ -303,7 +303,7 @@ open class QNectAlertView: UIViewController {
         return btn
     }
     
-    open func addButton(_ title:String, target:AnyObject, selector:Selector)->SCLButton {
+   @discardableResult open func addButton(_ title:String, target:AnyObject, selector:Selector)->SCLButton {
         let btn = addButton(title)
         btn.actionType = SCLActionType.selector
         btn.target = target
@@ -427,17 +427,17 @@ open class QNectAlertView: UIViewController {
     }
     
     // showTitle(view, title, subTitle, style)
-    open func showTitle(_ title: String, subTitle: String, style: QNectAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt?, colorTextButton: UInt=0xFFFFFF) -> QNectAlertViewResponder {
+   @discardableResult open func showTitle(_ title: String, subTitle: String, style: QNectAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt?, colorTextButton: UInt=0xFFFFFF) -> QNectAlertViewResponder {
         return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, colorStyle: colorStyle, colorTextButton: colorTextButton, contactImage: nil)
     }
     
-    open func showQNect(_ title: String, subTitle: String, style: QNectAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt?, colorTextButton: UInt=0xFFFFFF) -> QNectAlertViewResponder {
+   @discardableResult open func showQNect(_ title: String, subTitle: String, style: QNectAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt?, colorTextButton: UInt=0xFFFFFF) -> QNectAlertViewResponder {
         return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, colorStyle: colorStyle, colorTextButton: colorTextButton, contactImage: nil)
     }
 
     
     // showTitle(view, title, subTitle, duration, style)
-    open func showTitle(_ title: String, subTitle: String, duration: TimeInterval?, completeText: String?, style: QNectAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, contactImage:UIImage?) -> QNectAlertViewResponder {
+   @discardableResult open func showTitle(_ title: String, subTitle: String, duration: TimeInterval?, completeText: String?, style: QNectAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, contactImage:UIImage?) -> QNectAlertViewResponder {
         selfReference = self
         view.alpha = 0
         let rv = UIApplication.shared.keyWindow! as UIWindow
