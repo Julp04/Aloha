@@ -12,6 +12,9 @@ import MBProgressHUD
 import CRToast
 import ParseTwitterUtils
 import ReachabilitySwift
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -20,8 +23,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     var isLinkingWithTwitter = false
     
+    var ref: FIRDatabaseReference!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference()
 
         
     }
@@ -48,6 +57,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if Reachability.isConnectedToInternet() {
             
             showHud("Logging in...")
+            
+            FIRAuth.auth()?.signIn(withEmail: usernameField.text!, password: passwordField.text!, completion: { (user, error) in
+                if error == nil {
+                    self.segueToMainApp()
+                }else {
+                    print(error!)
+                }
+            })
+            
+            
         }
     }
     
@@ -90,12 +109,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func segueToMainApp()
     {
-        self.performSegue(withIdentifier: SegueIdentifiers.Login, sender: self)
+        let user = FIRAuth.auth()?.currentUser
         
-        let installation = PFInstallation.current()!
-        installation["user"] = User.current()
-        installation["username"] = User.current()!.username!
-        installation.saveInBackground()
+    
+        
+        self.ref.child("users").child((user?.uid)!).setValue(["username": "poop"])
+        self.performSegue(withIdentifier: SegueIdentifiers.Login, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

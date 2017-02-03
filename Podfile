@@ -10,6 +10,10 @@ target 'QNect' do
     pod 'SwiftyJSON', '3.0.0'
     pod 'Cartography', :git => 'https://github.com/mluisbrown/Cartography.git', :branch => 'swift3'
     pod 'ReachabilitySwift'
+
+	pod 'Firebase/Core'
+	pod 'Firebase/Auth'
+    pod 'Firebase/Database'
     
 end
 
