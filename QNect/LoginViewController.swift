@@ -11,6 +11,7 @@ import Parse
 import MBProgressHUD
 import CRToast
 import ParseTwitterUtils
+import ReachabilitySwift
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -47,22 +48,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if Reachability.isConnectedToInternet() {
             
             showHud("Logging in...")
-            User.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user, error) -> Void in
-                if user != nil {
-                    self.segueToMainApp()
-                }else {
-                    if let code = error?.code {
-                        if code == PFErrorCode.errorObjectNotFound.rawValue {
-                            self.incorrectParameters()
-                            self.hideHud()
-                        }
-                    }
-                    self.hideHud()
-                }
-            }
-        }else {
-            self.hideHud()
-            showConnectionAlert()
         }
     }
     
@@ -70,22 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     {
         if Reachability.isConnectedToInternet()
         {
-            self.showHud("Logging in...")
-            PFTwitterUtils.logIn {
-                (user: PFUser?, error: NSError?) -> Void in
-                if let user = user {
-                    if user.isNew {
-                        self.isLinkingWithTwitter = true
-                        self.segueToLinkUser()
-                    } else {
-                        self.hideHud()
-                        self.segueToMainApp()
-                    }
-                }else{
-                    print("Twitter cancelled")
-                    self.hideHud()
-                }
-            }
+        
         }
         else {
             self.hideHud()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate {
 

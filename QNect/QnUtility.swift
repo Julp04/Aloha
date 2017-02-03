@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 import ParseTwitterUtils
-
+import SwiftyJSON
 class QnUtilitiy {
     
     
@@ -226,7 +226,7 @@ class QnUtilitiy {
                     }
                 }
             } else {
-                print(error)
+                print(error!)
             }
         })
     }

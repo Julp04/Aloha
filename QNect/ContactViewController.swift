@@ -11,6 +11,8 @@ import ParseTwitterUtils
 import CRToast
 import Parse
 import MessageUI
+import Cartography
+import ReachabilitySwift
 
 
 
@@ -313,7 +315,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             
             QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
                 if error == nil {
-                    print(json ?? <#default value#>)
+                    print(json)
                     DispatchQueue.main.async(execute: {
                         if requestErrorMessage != nil {
                             CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in

@@ -361,16 +361,16 @@ open class QNectAlertView: UIViewController {
     func keyboardWillShow(_ notification: Notification) {
         keyboardHasBeenShown = true
         if let userInfo = notification.userInfo {
-            if let beginKeyBoardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue.origin.y {
-                if let endKeyBoardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.origin.y {
+            let beginKeyBoardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue.origin.y
+                let endKeyBoardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.origin.y 
                     tmpContentViewFrameOrigin = self.contentView.frame.origin
                     tmpCircleViewFrameOrigin = self.circleBG.frame.origin
                     let newContentViewFrameY = beginKeyBoardFrame - endKeyBoardFrame - self.contentView.frame.origin.y
                     let newBallViewFrameY = self.circleBG.frame.origin.y - newContentViewFrameY
                     self.contentView.frame.origin.y -= newContentViewFrameY
                     self.circleBG.frame.origin.y = newBallViewFrameY
-                }
-            }
+                
+            
         }
     }
     

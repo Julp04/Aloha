@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.8.4)
+  - Cartography (0.5.0)
   - CRToast (0.0.9)
   - MBProgressHUD (1.0.0)
   - Parse (1.14.2):
@@ -8,29 +9,45 @@ PODS:
     - Bolts/Tasks (~> 1.7)
     - Parse (~> 1.13)
   - pop (1.0.9)
+  - ReachabilitySwift (3)
+  - SwiftyJSON (3.0.0)
 
 DEPENDENCIES:
+  - Cartography (from `https://github.com/mluisbrown/Cartography.git`, branch `swift3`)
   - CRToast
   - MBProgressHUD
   - Parse
   - ParseTwitterUtils
   - pop (from `https://github.com/facebook/pop.git`)
+  - ReachabilitySwift
+  - SwiftyJSON (= 3.0.0)
 
 EXTERNAL SOURCES:
+  Cartography:
+    :branch: swift3
+    :git: https://github.com/mluisbrown/Cartography.git
   pop:
     :git: https://github.com/facebook/pop.git
 
 CHECKOUT OPTIONS:
+  Cartography:
+    :commit: e2d907667af391d881c733783a86ffff915189a0
+    :git: https://github.com/mluisbrown/Cartography.git
   pop:
     :commit: 92b2c5b7bcad64f7507da34f921492c71ff1d330
     :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Cartography: de3e85d2fc2d7288a2e7c89e1ac6cad08599d75e
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseTwitterUtils: 0dde9689565e7012d83f892c64aed2ebe69f2ea9
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: a22dd4d1beb4b5ba83e3227814197442754d02ea
+
+COCOAPODS: 1.2.0

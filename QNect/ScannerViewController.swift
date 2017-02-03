@@ -12,6 +12,7 @@ import Parse
 import SafariServices
 import CRToast
 import MessageUI
+import ReachabilitySwift
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, SphereMenuDelegate, MFMessageComposeViewControllerDelegate, UIWebViewDelegate {
     
