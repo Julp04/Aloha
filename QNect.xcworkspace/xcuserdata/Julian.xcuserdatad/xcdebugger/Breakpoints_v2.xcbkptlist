@@ -294,31 +294,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect.AppDelegate.application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, forRemoteNotification : Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;, completionHandler : () -&gt; ()) -&gt; ()"
+                  symbolName = "QNect.AppDelegate.(application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, forRemoteNotification : Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Julian/Desktop/jrp5502/QNect/QNect/AppDelegate.swift"
-                  timestampString = "502772018.941328"
+                  urlString = "file:///Users/Julian/Documents/Qnect3/QNect/AppDelegate.swift"
+                  timestampString = "508020762.813209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
                   endingLineNumber = "180"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "660">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect.AppDelegate.application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, forRemoteNotification : Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;, completionHandler : () -&gt; ()) -&gt; ()"
+                  symbolName = "QNect.AppDelegate.(application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, forRemoteNotification : Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completionHandler : () -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Julian/Desktop/jrp5502/QNect/QNect/AppDelegate.swift"
-                  timestampString = "502772018.941464"
+                  urlString = "file:///Users/Julian/Documents/Qnect3/QNect/AppDelegate.swift"
+                  timestampString = "508020762.815548"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
-                  offsetFromSymbolStart = "496">
+                  startingLineNumber = "181"
+                  endingLineNumber = "181"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -489,13 +489,13 @@
                   symbolName = "QNect.ScannerViewController.sendMessage () -&gt; ()"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Julian/Desktop/jrp5502/QNect/QNect/ScannerViewController.swift"
-                  timestampString = "502772018.945629"
+                  urlString = "file:///Users/Julian/Documents/Qnect3/QNect/ScannerViewController.swift"
+                  timestampString = "508020762.842205"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -504,13 +504,13 @@
                   symbolName = "QNect.ScannerViewController.sendMessage () -&gt; ()"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Julian/Desktop/jrp5502/QNect/QNect/ScannerViewController.swift"
-                  timestampString = "502772018.945774"
+                  urlString = "file:///Users/Julian/Documents/Qnect3/QNect/ScannerViewController.swift"
+                  timestampString = "508020762.844288"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "396">
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "358">
                </Location>
             </Locations>
          </BreakpointContent>
