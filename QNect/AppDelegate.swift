@@ -12,7 +12,7 @@ import Parse
 import ParseTwitterUtils
 import Firebase
 
-//Testing git
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
