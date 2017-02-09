@@ -39,6 +39,17 @@ class QnUtilitiy {
         
         usersRef.child(user.uid).setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "qnectEmail":user.email])
     }
+    
+    
+    static func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
+    {
+        let ref = FIRDatabase.database().reference()
+        let usersRef = ref.child("users")
+        
+        let currentUser = FIRAuth.auth()?.currentUser!
+        
+        usersRef.child((currentUser?.uid)!).updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
+    }
  
     
     

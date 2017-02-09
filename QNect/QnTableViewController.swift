@@ -8,8 +8,9 @@
 
 import UIKit
 import CRToast
-import Parse
-import ParseTwitterUtils
+import FirebaseAuth
+import FirebaseDatabase
+
 
 class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -102,26 +103,30 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func populateFields()
     {
-        let user = QnUtilitiy.sharedInstance.currentUser
         
-        
-        firstNameField.text = user.firstName
-        lastNameField.text = user.lastName
-        
-        
-        if let socialEmail = user.socialEmail {
-            socialEmailField.text = socialEmail
+        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+            
+            self.firstNameField.text = user.firstName
+            self.lastNameField.text = user.lastName
+            
+            
+            if let socialEmail = user.socialEmail {
+                self.socialEmailField.text = socialEmail
+            }
+            if let socialPhone = user.socialPhone {
+                self.socialPhoneField.text = socialPhone
+            }
+            if let twitterScreenName = user.twitterScreenName {
+               self.twitterLabel.text = "Twitter: \(twitterScreenName)"
+                self.twitterButton.setImage(self.twitterAddedImage, for: UIControlState())
+            }else{
+                self.twitterLabel.text = "Add Twitter Account"
+                self.twitterButton.setImage(self.addTwitterImage, for: UIControlState())
+            }
         }
-        if let socialPhone = user.socialPhone {
-            socialPhoneField.text = socialPhone
-        }
-        if let twitterScreenName = user.twitterScreenName {
-            twitterLabel.text = "Twitter: \(twitterScreenName)"
-            twitterButton.setImage(twitterAddedImage, for: UIControlState())
-        }else{
-            self.twitterLabel.text = "Add Twitter Account"
-            self.twitterButton.setImage(self.addTwitterImage, for: UIControlState())
-        }
+        
+        
+       
         
     }
     
@@ -204,7 +209,9 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func saveUser()
     {
-       
+       QnUtilitiy.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     /**
