@@ -137,33 +137,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func followContactOnTwitter()
     {
-//        if User.current()!.twitterScreenName != nil{
-//            
-//            QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
-//                if error == nil {
-//                    
-//                    DispatchQueue.main.async(execute: {
-//                        if requestErrorMessage != nil {
-//                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
-//                            })
-//                            
-//                    
-//                        } else {
-//                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("You are now following \(self.contact!.twitterScreenName!)!", withColor: UIColor.twitterColor())) {}
-//                        }
-//                    })
-//                }else {
-//                    
-//                    DispatchQueue.main.async(execute: {
-//                        self.showInternetError()
-//                    })
-//                }
-//                
-//            })
-//            
-//        }else {
-//            showTwitterNotLinkedAlert()
-//        }
     }
     
     func sendMessage()

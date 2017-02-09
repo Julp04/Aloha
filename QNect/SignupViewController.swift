@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import ParseTwitterUtils
 
 import AddressBook
 import ReachabilitySwift
@@ -289,14 +288,14 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             }
         }
         if textField == firstNameField{
-            if textField.text!.utf8.count <= 1 || textField.text!.isEmpty{
+            if textField.text!.utf8.count <= 0 || textField.text!.isEmpty{
                 firstNameImageView.image = errorImage
             } else {
                 firstNameImageView.image = checkImage
             }
         }
         if textField == lastNameField {
-            if textField.text!.utf8.count <= 1 || textField.text!.isEmpty {
+            if textField.text!.utf8.count <= 0 || textField.text!.isEmpty {
                 lastNameImageView.image = errorImage
             }else {
                 lastNameImageView.image = checkImage
@@ -329,20 +328,20 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                 FIRAuth.auth()?.createUser(withEmail: qnectEmailField.text!, password: passwordField.text!, completion: { (user, error) in
                     if error != nil {
                         
-                        RKDropdownAlert.title("Oops", message: "A user with that email already exists!", backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
+                        RKDropdownAlert.title("Signup failed", message: error!.localizedDescription, backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
                         
                     }else {
                         
                         
                         FIRAuth.auth()?.signIn(withEmail: self.qnectEmailField.text!, password:self.passwordField.text! , completion: { (user, error) in
                             if error != nil {
-                                
+                                RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
                                 
                             }else {
                                 QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)
                                 
                                 
-                                self.saveProfileImage()
+                                QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
 
                                 self.segueToMainApp()
                             }
@@ -363,25 +362,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     func saveProfileImage()
     {
         
-        // Get a reference to the storage service using the default Firebase App
-        let storageRef = FIRStorage.storage().reference()
-        
-        // Create a storage reference from our storage service
-        let userStorageRef = storageRef.child("users")
-        let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.email)!)
-        let profileImageRef = userRef.child("profileImage")
-        
-        
-        
-        let profileImage = self.profileImageView.image
-        let imageData = UIImageJPEGRepresentation(profileImage!, 0.5)
-//        let metaData = FIRStorageMetadata()
-        
-        profileImageRef.put(imageData!, metadata: nil) { (metaData, error) in
-            guard let metaData = metaData else { return }
-            
-            let downloadURL = metaData.downloadURL()?.absoluteString
-        }
+    
         
         
         

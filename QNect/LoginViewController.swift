@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import Parse
 import MBProgressHUD
-
 import ReachabilitySwift
 import Firebase
 import FirebaseAuth
@@ -62,7 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
                     
-                   RKDropdownAlert.title("Login failed", message: "You have entered the wrong email or password", backgroundColor: UIColor.qnOrangeColor(), textColor: UIColor.white)
+                   RKDropdownAlert.title("Login failed", message: error!.localizedDescription, backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
                 }else {
                     self.segueToMainApp()
                 }

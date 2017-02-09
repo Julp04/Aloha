@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Bolts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Cartography.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,16 +20,6 @@
 			<false/>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Parse.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ParseTwitterUtils.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,27 +52,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F93CA2718D32395419C6B91631A1CCD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2010161C426ABE9B84E06E879D576A37</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2069448C6C61C449CAA0CBCD884B91DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>415897E334328A8DD12C47FFA45E78A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4ECCEF70EAEB550FEAC26E4650E864FC</key>
+		<key>491977C0C274BC570AEB67F56DDFC11D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51CB0AF616C6306147B99C320EB6D3ED</key>
+		<key>77A8EBD30961CE522DA4C3D1A5BB59A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A29C3A3AEEE96BA2624B352304AADF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F22ADC8E898D678CB0CFC8830A5108FD</key>
+		<key>F220616D81C6464CAB809F146A7AC0DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F957EABCA56BD8F5B626798CC7B344D3</key>
+		<key>F89D67FE52D42A3A8964C040A3A3E753</key>
 		<dict>
 			<key>primary</key>
 			<true/>

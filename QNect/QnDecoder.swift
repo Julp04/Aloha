@@ -8,9 +8,6 @@
 
 import Foundation
 
-import Foundation
-import Parse
-
 struct QnDecoder
 {
     fileprivate static var qnString = "qn:"

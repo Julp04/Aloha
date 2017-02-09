@@ -93,6 +93,8 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         createPhotoActionSheet()
         
         populateFields()
+        
+        
 
     }
     
@@ -210,7 +212,8 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func saveUser()
     {
-       QnUtilitiy.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
+        QnUtilitiy.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
+        QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
         
         self.dismiss(animated: true, completion: nil)
     }
