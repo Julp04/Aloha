@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import CRToast
 import FirebaseAuth
 import FirebaseDatabase
+import RKDropdownAlert
+
 
 
 class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -261,8 +262,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func showAccountAlreadyLinkedError()
     {
-        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage("Twitter user is already linked", withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
-        })
+        
     }
     
     //MARK: Keyboard Functions

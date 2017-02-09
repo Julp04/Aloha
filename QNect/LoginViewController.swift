@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 import MBProgressHUD
-import CRToast
+
 import ReachabilitySwift
 import Firebase
 import FirebaseAuth
@@ -62,8 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
                     
-                    CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("Wrong email or password", withColor: UIColor.gray), completionBlock: {
-                    })
+                   RKDropdownAlert.title("Login failed", message: "You have entered the wrong email or password", backgroundColor: UIColor.qnOrangeColor(), textColor: UIColor.white)
                 }else {
                     self.segueToMainApp()
                 }
@@ -92,18 +91,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func showConnectionAlert()
     {
-        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.Internet, withColor: nil), completionBlock: { () -> Void in
-        })
+        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRedColor(), textColor: UIColor.white)
     }
     
-    /**
-     Handles what happens when username or password that is entered is invalid
-     */
-    fileprivate func incorrectParameters()
-    {
-        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.IncorrectParams, withColor: UIColor.gray), completionBlock: { () -> Void in
-        })
-    }
     
     //MARK:Segues
     

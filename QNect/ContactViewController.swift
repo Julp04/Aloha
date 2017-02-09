@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import ParseTwitterUtils
-import CRToast
-import Parse
 import MessageUI
 import Cartography
 import ReachabilitySwift
+import RKDropdownAlert
 
 
 
@@ -253,7 +251,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             showCantAddContactAlert()
         } else if contactManager.addressBookStatus() == .authorized {
             contactManager.addContact(contact!, image:contactImage)
-            showContactAddedToast()
+            showContactAddedAlert()
             animateToSuccessButton(addContactButton)
         } else {
             contactManager.promptForAddressBookRequestAccess()
@@ -325,14 +323,12 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         self.present(cantAddContactAlert, animated: true, completion: nil)
     }
     
-    func showInternetError()
-    {
-        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.Internet, withColor: nil), completionBlock: { () -> Void in })
-    }
     
-    func showContactAddedToast()
+    
+    func showContactAddedAlert()
     {
-         CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("Saved \(contact!.firstName) \(contact!.lastName) to contacts", withColor: UIColor.qnTealColor())){}
+        
+        RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName) \(contact!.lastName) to your contacts!", backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
     }
     
     func showTwitterNotLinkedAlert()

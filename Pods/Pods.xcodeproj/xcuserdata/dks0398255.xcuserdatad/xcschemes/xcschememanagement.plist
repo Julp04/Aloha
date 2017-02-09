@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CRToast.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Cartography.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,22 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18633EB30A7C79FDF4FDE72958BECC0E</key>
+		<key>2010161C426ABE9B84E06E879D576A37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C430CF119580E813F1600FF0D8EE2A3</key>
+		<key>2069448C6C61C449CAA0CBCD884B91DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37ACC2DFB6BA0A913954CE7FA18C6BE8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3C7D0E902C3CA79FBF857FEC94E0C2D8</key>
+		<key>415897E334328A8DD12C47FFA45E78A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4ECCEF70EAEB550FEAC26E4650E864FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>51CB0AF616C6306147B99C320EB6D3ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>58768307DD8842D59AC3E8136CD49EFF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>59CBA859A1ABC3C9CAE75886969B9592</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -128,6 +113,11 @@
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F22ADC8E898D678CB0CFC8830A5108FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

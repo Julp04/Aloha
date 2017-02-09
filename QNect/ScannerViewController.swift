@@ -8,15 +8,15 @@
 
 import UIKit
 import AVFoundation
-import Parse
 import SafariServices
-import CRToast
 import MessageUI
 import ReachabilitySwift
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, SphereMenuDelegate, MFMessageComposeViewControllerDelegate, UIWebViewDelegate {
     
     //MARK: Strings
+    
+    
     
     let kDismissString = "Dismiss"
     let kPinchVelocity = 8.0
@@ -575,12 +575,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func showInternetError()
     {
-        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.Internet, withColor: nil), completionBlock: { () -> Void in })
+        AlertUtility.showConnectionAlert()
     }
     
     func showContactAddedToast()
     {
-        CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("Saved \(contact!.firstName) \(contact!.lastName) to contacts", withColor: UIColor.qnTealColor())){}
+        
     }
     
     func showTwitterNotLinkedAlert()

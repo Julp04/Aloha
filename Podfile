@@ -4,7 +4,7 @@ target 'QNect' do
     
     pod 'Parse'
     pod 'MBProgressHUD'
-    pod 'CRToast'
+    
     pod 'ParseTwitterUtils'
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
     pod 'SwiftyJSON', '3.0.0'

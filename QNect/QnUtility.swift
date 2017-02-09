@@ -15,21 +15,6 @@ import FirebaseDatabase
 
 class QnUtilitiy {
     
-    static let sharedInstance = QnUtilitiy()
-    
-    
-    var ref : FIRDatabaseReference!
-    var usersRef : FIRDatabaseReference!
-    var currentUserRef:FIRUser!
-    var currentUser:User
-    
-    init() {
-        
-        currentUserRef = FIRAuth.auth()?.currentUser
-        
-        currentUser = User(authData: currentUserRef)
-    }
-    
     
     static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
     {

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import ParseTwitterUtils
-import CRToast
+
 import AddressBook
 import ReachabilitySwift
 import FirebaseAuth
@@ -329,14 +329,15 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                 FIRAuth.auth()?.createUser(withEmail: qnectEmailField.text!, password: passwordField.text!, completion: { (user, error) in
                     if error != nil {
                         
-                        self.alertUserWith(message: error!.localizedDescription)
+                        RKDropdownAlert.title("Oops", message: "A user with that email already exists!", backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
                         
                     }else {
                         
                         
                         FIRAuth.auth()?.signIn(withEmail: self.qnectEmailField.text!, password:self.passwordField.text! , completion: { (user, error) in
                             if error != nil {
-                                self.alertUserWith(message: error!.localizedDescription)
+                                
+                                
                             }else {
                                 QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)
                                 
@@ -354,7 +355,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             }
         } else {
             
-            self.alertUserWith(message: AlertMessages.Internet)
+            
         }
         
     }
@@ -435,14 +436,5 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             self.tableView.contentInset = UIEdgeInsets.zero;
             self.tableView.scrollIndicatorInsets = UIEdgeInsets.zero;
         })
-    }
-    
-    func alertUserWith(message:String)
-    {
-        CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(message, withColor: UIColor.gray)) { 
-            
-        }
-        
-        
     }
 }
