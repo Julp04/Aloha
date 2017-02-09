@@ -44,9 +44,9 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
-        QnUtilitiy.retrieveAddedUserConnectionsFromServer { (connections) in
-            self.addedUserConnectionsModel = ConnectionsModel(connections: connections)
-        }
+//        QnUtilitiy.retrieveAddedUserConnectionsFromServer { (connections) in
+//            self.addedUserConnectionsModel = ConnectionsModel(connections: connections)
+//        }
 
     }
     
@@ -78,10 +78,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        QnUtilitiy.retrieveSavedConnectionsOffline { (connections) in
-            self.userAddedConnectionsModel = ConnectionsModel(connections: connections)
-            self.reloadData()
-        }
+       
     }
     
    
@@ -142,14 +139,14 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let firstName = connection.firstName
                 let lastName = connection.lastName
                 
-                cell.nameLabel.text = firstName + " " + lastName
+                cell.nameLabel.text = firstName! + " " + lastName!
                 
-                connection.profileImage?.getDataInBackground(block: { (data, error) in
-                    if error == nil {
-                        let image = UIImage(data: data!)
-                        cell.profileImageView.image = image
-                    }
-                })
+//                connection.profileImage?.getDataInBackground(block: { (data, error) in
+//                    if error == nil {
+//                        let image = UIImage(data: data!)
+//                        cell.profileImageView.image = image
+//                    }
+//                })
             }
         }else {
             if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0{
@@ -161,14 +158,10 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let firstName = connection.firstName
                 let lastName = connection.lastName
                 
-                cell.nameLabel.text = firstName + " " + lastName
+                cell.nameLabel.text = firstName! + " " + lastName!
                 
-                connection.profileImage?.getDataInBackground(block: { (data, error) in
-                    if error == nil {
-                        let image = UIImage(data: data!)
-                        cell.profileImageView.image = image
-                    }
-                })
+                
+                
             }
         }
 
@@ -239,27 +232,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func refresh()
     {
         
-        if segmentControl.selectedSegmentIndex == 0 {
-        
-            if Reachability.isConnectedToInternet() {
-               QnUtilitiy.retreiveSavedConnectionsFromServer({ (connections) in
-                self.userAddedConnectionsModel = ConnectionsModel(connections: connections)
-                self.reloadData()
-               })
-            }else {
-                QnUtilitiy.retrieveSavedConnectionsOffline({ (connections) in
-                    self.userAddedConnectionsModel = ConnectionsModel(connections: connections)
-                    self.reloadData()
-                })
-            }
-        }else {
-            if Reachability.isConnectedToInternet() {
-                QnUtilitiy.retrieveAddedUserConnectionsFromServer({ (connections) in
-                    self.addedUserConnectionsModel = ConnectionsModel(connections: connections)
-                    self.reloadData()
-                })
-            }
-        }
+      
     }
     
     func reloadData()
@@ -274,30 +247,8 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         
-        let point = gestureRecognizer.location(in: self.tableView)
-        let indexPath = self.tableView.indexPathForRow(at: point)
-        
-        if segmentControl.selectedSegmentIndex == 0 {
-        
-            if userAddedConnectionsModel?.numberOfConnections() != 0 {
-                    let connection = userAddedConnectionsModel?.connectionAtIndexPath(indexPath!)
-                    let message = QnEncoder(user: connection!).encodeSocialCode()
-                    let qrImage = QNectCode(message: message).image
-                    let name = "\(connection!.firstName) \(connection!.lastName)"
-                    
-                    let alert = QNectAlertView()
-                    alert.addButton("Delete Connection", action: { 
-                        QnUtilitiy.removeSavedConnection(connection!, completion: { (error) in
-                            self.refresh()
-                            })
-                        })
-                    alert.showTitle(name, subTitle: "\(connection!.username!)", duration: 0.0, completeText: nil, style: .contact, colorStyle: 0xA429FF, colorTextButton: 0xFFFFFF, contactImage: qrImage)
-                
-            }
-        }else {
-            
-        }
         return true
+     
     }
     
     //MARK: - Toolbar Delegate

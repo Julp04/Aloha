@@ -63,11 +63,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         saveUser()
     }
     @IBAction func addTwitter(_ sender: AnyObject) {
-        if User.current()?.twitterScreenName == nil {
-            linkTwitterUser()
-        }else {
-            unlinkTwitterUser()
-        }
+     
         
     }
     
@@ -106,25 +102,20 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func populateFields()
     {
-        let user = User.current()
+        let user = QnUtilitiy.sharedInstance.currentUser
         
-        firstNameField.text = user?.firstName
-        lastNameField.text = user?.lastName
         
-        let imageFile = user?.object(forKey: "profileImage") as! PFFile
-        imageFile.getDataInBackground { (data, error) -> Void in
-            if error == nil {
-                self.profileImageView.image = UIImage(data: data!)
-            }
-        }
+        firstNameField.text = user.firstName
+        lastNameField.text = user.lastName
         
-        if let socialEmail = user?.socialEmail {
+        
+        if let socialEmail = user.socialEmail {
             socialEmailField.text = socialEmail
         }
-        if let socialPhone = user?.socialPhone {
+        if let socialPhone = user.socialPhone {
             socialPhoneField.text = socialPhone
         }
-        if let twitterScreenName = user?.twitterScreenName {
+        if let twitterScreenName = user.twitterScreenName {
             twitterLabel.text = "Twitter: \(twitterScreenName)"
             twitterButton.setImage(twitterAddedImage, for: UIControlState())
         }else{
@@ -213,17 +204,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func saveUser()
     {
-        let user = createUser(User.current()!)
-        
-        let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.5)
-        let imageFile = PFFile(name: "profileImage", data: imageData!)
-        
-        user.profileImage = imageFile
-        user.saveInBackground()
-        
-        
-        self.resignFirstResponder()
-        self.dismiss(animated: true, completion: nil)
+       
     }
     
     /**
@@ -252,30 +233,12 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func linkTwitterUser()
     {
-        let user = User.current()!
-        QnUtilitiy.linkTwitterUserInBackground(user) { (error) in
-            if error == nil {
-                self.populateFields()
-            }else {
-                if var _ = error?.userInfo["error"] as? String {
-                    self.showAccountAlreadyLinkedError()
-                }
-            }
-        }
+      
     }
     
     fileprivate func unlinkTwitterUser()
     {
-        let alert = UIAlertController(title: nil, message: "Unlink Twitter Account from profile?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Unlink", style: .default, handler: { (action) in
-            QnUtilitiy.unlinkTwitterUser({ (error) in
-                if error == nil {
-                    self.populateFields()
-                }
-            })
-        }))
-        self.present(alert, animated: true, completion: nil)
+        
     }
     
     
@@ -368,7 +331,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func setProfileImage()
     {
-        profileImageView.image = ProfileImage.createProfileImage((User.current()?.firstName)!, last: User.current()?.lastName)
+        
     }    
     
 }

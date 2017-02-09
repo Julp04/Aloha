@@ -115,68 +115,55 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func saveConnection()
     {
-        QnUtilitiy.saveConnection(self.contact!) { (error) in
-            if error == nil{
-                self.sendPushNotification()
-                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved as a QNection!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-                })
-                
-                
-                
-            }else {
-                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-                })
-            }
-        }
+//        QnUtilitiy.saveConnection(self.contact!) { (error) in
+//            if error == nil{
+//                self.sendPushNotification()
+//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved as a QNection!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
+//                })
+//                
+//                
+//                
+//            }else {
+//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
+//                })
+//            }
+//        }
     }
     
     func sendPushNotification()
     {
-        let pushQuery = PFInstallation.query()
-        pushQuery!.whereKey("username", equalTo: self.contact!.username!)
-        print(self.contact!.username!)
-        
-        // Send push notification to query
-        let push = PFPush()
-        let data =   ["alert" : "\(User.current()!.firstName) \(User.current()!.lastName) has saved you as a connection!","name" : "\(User.current()!.firstName) \(User.current()!.lastName)", "username":User.current()!.username!, "category" : "cat"]
-        push.setData(data)
-        push.setQuery(pushQuery as! PFQuery<PFInstallation>?) // Set our Installation query
-        push.sendInBackground(block: { (success, error) -> Void in
-            if error != nil {
-                
-            }
-        })
     }
+    
     
     func followContactOnTwitter()
     {
-        if User.current()!.twitterScreenName != nil{
-            
-            QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
-                if error == nil {
-                    
-                    DispatchQueue.main.async(execute: {
-                        if requestErrorMessage != nil {
-                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
-                            })
-                            
-                    
-                        } else {
-                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("You are now following \(self.contact!.twitterScreenName!)!", withColor: UIColor.twitterColor())) {}
-                        }
-                    })
-                }else {
-                    
-                    DispatchQueue.main.async(execute: {
-                        self.showInternetError()
-                    })
-                }
-                
-            })
-            
-        }else {
-            showTwitterNotLinkedAlert()
-        }
+//        if User.current()!.twitterScreenName != nil{
+//            
+//            QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
+//                if error == nil {
+//                    
+//                    DispatchQueue.main.async(execute: {
+//                        if requestErrorMessage != nil {
+//                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
+//                            })
+//                            
+//                    
+//                        } else {
+//                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("You are now following \(self.contact!.twitterScreenName!)!", withColor: UIColor.twitterColor())) {}
+//                        }
+//                    })
+//                }else {
+//                    
+//                    DispatchQueue.main.async(execute: {
+//                        self.showInternetError()
+//                    })
+//                }
+//                
+//            })
+//            
+//        }else {
+//            showTwitterNotLinkedAlert()
+//        }
     }
     
     func sendMessage()
@@ -233,9 +220,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
+  
     
     override func viewWillAppear(_ animated: Bool) {
         startCaptureSession()
@@ -249,7 +234,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     //MARK: Capture Session Functions
     
-    fileprivate func createCaptureSession()
+    func createCaptureSession()
     {
         
         var error:NSError?
@@ -280,12 +265,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    fileprivate func startCaptureSession()
+    func startCaptureSession()
     {
         captureSession?.startRunning()
     }
     
-    fileprivate func stopCaptureSession()
+    func stopCaptureSession()
     {
         captureSession?.stopRunning()
     }
@@ -428,20 +413,20 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 self.scannedContact = 1
                 
                 
-                if Reachability.isConnectedToInternet() {
-                    QnUtilitiy.retrieveContactProfileImageData(contact!, completion: { (data) in
-                        
-                        let image = UIImage(data: data)
-                        self.contactImage = image
-                        
-                        self.menu?.start?.image = image
-                        
-                    })
-                }else {
-                    let image = ProfileImage.createProfileImage(contact!.firstName, last: contact!.lastName)
-                    self.contactImage = image
-                    self.menu?.start?.image = image
-                }
+//                if Reachability.isConnectedToInternet() {
+//                    QnUtilitiy.retrieveContactProfileImageData(contact!, completion: { (data) in
+//                        
+//                        let image = UIImage(data: data)
+//                        self.contactImage = image
+//                        
+//                        self.menu?.start?.image = image
+//                        
+//                    })
+//                }else {
+//                    let image = ProfileImage.createProfileImage(contact!.firstName, last: contact!.lastName)
+//                    self.contactImage = image
+//                    self.menu?.start?.image = image
+//                }
               
             }
             
@@ -557,7 +542,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     //MARK: Segue
     
-    fileprivate func segueToContactViewController()
+    func segueToContactViewController()
     {
         performSegue(withIdentifier: SegueIdentifiers.Contact, sender: self)
     }
@@ -601,19 +586,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func showTwitterNotLinkedAlert()
     {
         
-        let twitterAlert = SCLAlertView()
-        twitterAlert.addButton("Link With Twitter") {
-            QnUtilitiy.linkTwitterUserInBackground(User.current()!, completion: { (error) in
-                if error != nil {
-                    print("Error linking with Twitter")
-                }else {
-                    let twitterSuccess = SCLAlertView()
-                    twitterSuccess.showCustom("Success!", subTitle: "Your are now linked with Twitter!", image: UIImage(named: "twitter_circle")!, style: .custom)
-                }
-            })
-        }
-        
-        twitterAlert.showCustom("", subTitle: "You must be linked with Twitter to follow user", image: UIImage(named:"twitter_circle")! , style: .custom)
         
     }
     

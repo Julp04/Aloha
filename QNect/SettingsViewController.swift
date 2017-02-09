@@ -83,7 +83,7 @@ class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
-            User.logOut()
+//            User.logOut()
             
             self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
             

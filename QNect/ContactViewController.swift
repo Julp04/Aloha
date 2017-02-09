@@ -157,7 +157,8 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
+        switch section
+        {
         case 0:
             
             let view  = tableView.dequeueReusableCell(withIdentifier: "ContactHeaderCell") as! ContactHeaderCell
@@ -166,22 +167,10 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             view.profileImageView.layer.masksToBounds = true
             view.profileImageView.layer.borderWidth = kProfileImageBorderWidth
             
-            if Reachability.isConnectedToInternet() {
-                view.headerCellSpinner.isHidden = false
-                view.headerCellSpinner.startAnimating()
-                QnUtilitiy.retrieveContactProfileImageData(self.contact!, completion: { (data) in
-                    let image = ProfileImage.imageFromData(data)
-                    view.profileImageView.image = image
-                    self.contactImage = image
-                    view.headerCellSpinner.stopAnimating()
-                })
-            }else {
-                let profileImage = ProfileImage.createProfileImage((contact?.firstName)!, last: contact?.lastName)
-                view.profileImageView.image = profileImage
-            }
-        return view
+            return view
         default:
             return nil
+            
         }
     }
     
@@ -190,12 +179,12 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         if indexPath.section == 2 {
             switch indexPath.row {
-            case 0:
-                if let screenName = contact?.twitterScreenName {
-                    let url = URL(string: "twitter://user?screen_name=\(screenName)")
-                    UIApplication.shared.openURL(url!)
-                   
-                }
+            case 0: break
+//                if let screenName = contact?.twitterScreenName {
+//                    let url = URL(string: "twitter://user?screen_name=\(screenName)")
+//                    UIApplication.shared.openURL(url!)
+                
+//                }
             case 1:
                 break
             default:
@@ -273,71 +262,29 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func saveConnection()
     {
-        QnUtilitiy.saveConnection(self.contact!) { (error) in
-            if error == nil{
-                self.sendPushNotification()
-                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-                    
-                    
-                    self.dismiss(animated: true, completion: nil)
-                })
-                
-                
-                
-            }else {
-                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-                })
-            }
-        }
+//        QnUtilitiy.saveConnection(self.contact!) { (error) in
+//            if error == nil{
+//                self.sendPushNotification()
+//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
+//                    
+//                    
+//                    self.dismiss(animated: true, completion: nil)
+//                })
+//                
+//                
+//                
+//            }else {
+//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
+//                })
+//            }
+//        }
     }
     
-    func sendPushNotification()
-    {
-        let pushQuery = PFInstallation.query()
-        pushQuery!.whereKey("username", equalTo: self.contact!.username!)
-        print(self.contact!.username!)
-        
-        // Send push notification to query
-        let push = PFPush()
-        let data =   ["alert" : "\(User.current()!.firstName) \(User.current()!.lastName) has saved you as a connection!","name" : "\(User.current()!.firstName) \(User.current()!.lastName)", "username":User.current()!.username!, "category" : "cat"]
-        push.setData(data)
-        push.setQuery(pushQuery as! PFQuery<PFInstallation>?) // Set our Installation query
-        push.sendInBackground(block: { (success, error) -> Void in
-            if error != nil {
-                
-            }
-        })
-    }
+  
     
     func followContactOnTwitter()
     {
-        if User.current()!.twitterScreenName != nil{
-            
-            QnUtilitiy.followContactOnTwitter(self.contact!, completion: { (json, requestErrorMessage, error) in
-                if error == nil {
-                    DispatchQueue.main.async(execute: {
-                        if requestErrorMessage != nil {
-                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(requestErrorMessage!, withColor: UIColor.qnRedColor()), completionBlock: { () -> Void in
-                            })
-                            
-                            self.animateToDeniedButton(self.addTwitterButton)
-                        } else {
-                            CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("You are now following \(self.contact!.twitterScreenName!)!", withColor: UIColor.twitterColor())) {}
-                            self.animateToSuccessButton(self.addTwitterButton)
-                        }
-                    })
-                }else {
-                    print(error!)
-                    DispatchQueue.main.async(execute: {
-                        self.showInternetError()
-                    })
-                }
-
-            })
-            
-        }else {
-            showTwitterNotLinkedAlert()
-        }
+       
     }
     
     func sendMessage()
@@ -391,19 +338,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func showTwitterNotLinkedAlert()
     {
         
-        let twitterAlert = SCLAlertView()
-        twitterAlert.addButton("Link With Twitter") { 
-            QnUtilitiy.linkTwitterUserInBackground(User.current()!, completion: { (error) in
-                if error != nil {
-                    print("Error linking with Twitter")
-                }else {
-                    let twitterSuccess = SCLAlertView()
-                    twitterSuccess.showCustom("Success!", subTitle: "Your are now linked with Twitter!", image: UIImage(named: "twitter_circle")!, style: .custom)
-                }
-            })
-        }
         
-        twitterAlert.showCustom("Oops!", subTitle: "You must be linked with Twitter to follow user", image: UIImage(named:"twitter_circle")! , style: .custom)
         
     }
 

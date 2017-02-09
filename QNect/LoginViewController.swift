@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import MBProgressHUD
 import CRToast
-import ParseTwitterUtils
 import ReachabilitySwift
 import Firebase
 import FirebaseAuth
@@ -18,9 +17,10 @@ import FirebaseDatabase
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var usernameField: UITextField!
+    
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
     var isLinkingWithTwitter = false
     
     var ref: FIRDatabaseReference!
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
-        setUpTextField(usernameField)
+        setUpTextField(emailField)
         setUpTextField(passwordField)
     }
     
@@ -58,12 +58,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             showHud("Logging in...")
             
-            FIRAuth.auth()?.signIn(withEmail: usernameField.text!, password: passwordField.text!, completion: { (user, error) in
-                if error == nil {
-                    self.segueToMainApp()
-                }else {
+            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
+                if error != nil {
                     print(error!)
+                    CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(error!.localizedDescription, withColor: UIColor.gray), completionBlock: {
+                    })
+                }else {
+                    self.segueToMainApp()
                 }
+                
+                self.hideHud()
             })
             
             
@@ -109,11 +113,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func segueToMainApp()
     {
-        let user = FIRAuth.auth()?.currentUser
-        
-    
-        
-        self.ref.child("users").child((user?.uid)!).setValue(["username": "poop"])
         self.performSegue(withIdentifier: SegueIdentifiers.Login, sender: self)
     }
     
@@ -163,7 +162,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: TextField Delegates
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == usernameField {
+        if textField == emailField {
             passwordField.becomeFirstResponder()
         }else {
             loginUser()

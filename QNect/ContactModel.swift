@@ -17,13 +17,9 @@ class ContactModel
     {
         self.contact = contact
         
-        if contact.twitterScreenName != "" {
-            socialAccounts[AccountsKey.Twitter] = contact.twitterScreenName
-        }
-        
-        if contact.spotifyName != "" {
-            socialAccounts[AccountsKey.Spotify] = contact.spotifyName
-        }
+//        if contact.twitterScreenName != "" {
+//            socialAccounts[AccountsKey.Twitter] = contact.twitterScreenName
+//        }
     }
     
 

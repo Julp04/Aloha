@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ParseTwitterUtils
 
 
 
@@ -24,7 +23,7 @@ class QnEncoder {
     func encodeSocialCode() -> String
     {
         
-        let socialProperties = [user?.username, user?.firstName, user?.lastName, user?.socialEmail, user?.socialPhone, user?.twitterScreenName]
+        let socialProperties = [user?.username, user?.firstName, user?.lastName, user?.socialEmail, user?.socialPhone, user.uid]
         
         for property in socialProperties {
             if let property = property {
@@ -33,6 +32,8 @@ class QnEncoder {
                 qnString += ":"
             }
         }
+        
+        print(qnString)
         
         //encode once
         let data = (qnString as NSString).data(using: String.Encoding.utf8.rawValue)

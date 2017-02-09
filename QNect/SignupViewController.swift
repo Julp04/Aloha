@@ -12,6 +12,8 @@ import ParseTwitterUtils
 import CRToast
 import AddressBook
 import ReachabilitySwift
+import FirebaseAuth
+import FirebaseDatabase
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -278,45 +280,8 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     
     fileprivate func queryForTextFields(_ textField:UITextField)
     {
-        if textField == usernameField {
-            if textField.text?.isEmpty == true{
-                self.usernameImageView.image = self.errorImage
-            }else {
-                let query = User.query()
-                query?.whereKey("username", equalTo: textField.text!)
-                query?.getFirstObjectInBackground(block: { (object, error) -> Void in
-                    if object == nil {
-                        self.usernameImageView.image = self.checkImage
-                    } else {
-                        self.usernameImageView.image = self.errorImage
-                        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage("Username already exists", withColor: UIColor.red), completionBlock: { () -> Void in
-                        })
-                        self.usernameImageView.image = self.errorImage
-                    }
-                })
-            }
-        }
         
-        if textField == qnectEmailField {
-            if textField.text?.isEmpty == true {
-                self.emailImageView.image = self.errorImage
-            }else {
-                let query = User.query()
-                query?.whereKey("email", equalTo: textField.text!)
-                query?.getFirstObjectInBackground(block: { (object, error) -> Void in
-                    if object == nil {
-                        self.emailImageView.image = self.checkImage
-                    } else {
-                        self.emailImageView.image = self.errorImage
-                        CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage("Email already exists", withColor: UIColor.red), completionBlock: { () -> Void in
-                        })
-                        self.emailImageView.image = self.errorImage
-                    }
-                    
-                    self.checkTextFields(textField)
-                })
-            }
-        }
+       
     }
     
     fileprivate func checkTextFields(_ textField:UITextField)
@@ -372,29 +337,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     
     fileprivate func linkTwitterUser()
     {
-        let user = User.current()!
-        
-        user.username = usernameField.text
-        user.email = qnectEmailField.text
-        user.password = passwordField.text
-        user.firstName = firstNameField.text!
-        user.lastName = lastNameField.text!
-        user.socialEmail = socialEmailField.text
-        user.socialPhone = socialPhoneField.text
-        
-        user.twitterScreenName = PFTwitterUtils.twitter()?.screenName
-        
-        
-        let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.5)
-        let imageFile = PFFile(name: "profileImage", data: imageData!)
-        
-        
-            user.profileImage = imageFile
-            user.saveInBackground(block: { (success, error) -> Void in
-                if error == nil {
-                    self.segueToMainApp()
-                }
-            })
+     
     }
     
     fileprivate func signUpUser()
@@ -403,19 +346,28 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             if isLinkingFromTwitter == true {
                 linkTwitterUser()
             } else {
-                let user = createUser()
-                
-                let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 50)
-                let imageFile = PFFile(name: "profileImage", data: imageData!)
-                
-        
-                    user.profileImage = imageFile
-                    user.signUpInBackground(block: { (success, error) -> Void in
-                        if error == nil {
-                            self.segueToMainApp()
-                        }
+               
+                FIRAuth.auth()?.createUser(withEmail: qnectEmailField.text!, password: passwordField.text!, completion: { (user, error) in
+                    if error != nil {
+                        
+                    }else {
+                        
+                        //Profile image stuff
+                        
+                        FIRAuth.auth()?.signIn(withEmail: self.qnectEmailField.text!, password:self.passwordField.text! , completion: { (user, error) in
+                            if error != nil {
+                                print(error!)
+                            }else {
+                                QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)
+
+                                self.segueToMainApp()
+                            }
+                        })
+                        
+                        
+                    }
                 })
-                
+
             }
         } else {
             CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.Internet, withColor: nil), completionBlock: { () -> Void in
@@ -424,23 +376,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         
     }
     
-    func createUser() -> User
-    {
-        let user = User()
-        user.username = usernameField.text
-        user.email = qnectEmailField.text
-        
-        user.password = passwordField.text
-        
-        user.firstName = firstNameField.text!
-        user.lastName = lastNameField.text!
-        
-        user.socialEmail = socialEmailField.text
-        user.socialPhone = socialPhoneField.text
-        
-        
-        return user
-    }
+    
     
     //MARK:Segue
     
@@ -449,11 +385,6 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         self.performSegue(withIdentifier: SegueIdentifiers.Signedup, sender: self)
         let authorizationStatus = ABAddressBookGetAuthorizationStatus()
         
-        
-        let installation = PFInstallation.current()!
-        installation["user"] = User.current()
-        installation["username"] = User.current()!.username!
-        installation.saveInBackground()
         
         switch authorizationStatus {
         case .denied, .restricted:
