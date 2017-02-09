@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RKDropdownAlert.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E2940ABD6B149B73F3947D2C0E47EE0</key>
+		<key>18633EB30A7C79FDF4FDE72958BECC0E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C430CF119580E813F1600FF0D8EE2A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37ACC2DFB6BA0A913954CE7FA18C6BE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C7D0E902C3CA79FBF857FEC94E0C2D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,27 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>58768307DD8842D59AC3E8136CD49EFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>59CBA859A1ABC3C9CAE75886969B9592</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86BAB8C19D52AD48D27F229C9321D94A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A7C2A2F39B9E6476D7B5F7A9BAF47224</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A94278958614869723C33036DD5CF32E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BC6483B128FFBB42AF94955718169267</key>
 		<dict>
 			<key>primary</key>
 			<true/>

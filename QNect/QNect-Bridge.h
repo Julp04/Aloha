@@ -11,3 +11,4 @@
 #import "VBFDoubleSegment.h"
 #import <Parse/PFConstants.h>
 #import <Parse/PFObject+Subclass.h>
+#import "RKDropdownAlert.h"

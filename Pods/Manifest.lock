@@ -11,6 +11,9 @@ PODS:
   - Firebase/Database (3.12.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.1)
+  - Firebase/Storage (3.12.0):
+    - Firebase/Core
+    - FirebaseStorage (= 1.0.5)
   - FirebaseAnalytics (3.6.0):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
@@ -28,6 +31,9 @@ PODS:
   - FirebaseDatabase (3.1.1):
     - FirebaseAnalytics (~> 3.5)
   - FirebaseInstanceID (1.0.8)
+  - FirebaseStorage (1.0.5):
+    - FirebaseAnalytics (~> 3.5)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
@@ -50,6 +56,7 @@ PODS:
     - Parse (~> 1.13)
   - pop (1.0.9)
   - ReachabilitySwift (3)
+  - RKDropdownAlert (0.3.0)
   - SwiftyJSON (3.0.0)
 
 DEPENDENCIES:
@@ -58,11 +65,13 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Storage
   - MBProgressHUD
   - Parse
   - ParseTwitterUtils
   - pop (from `https://github.com/facebook/pop.git`)
   - ReachabilitySwift
+  - RKDropdownAlert
   - SwiftyJSON (= 3.0.0)
 
 EXTERNAL SOURCES:
@@ -77,7 +86,7 @@ CHECKOUT OPTIONS:
     :commit: e2d907667af391d881c733783a86ffff915189a0
     :git: https://github.com/mluisbrown/Cartography.git
   pop:
-    :commit: 92b2c5b7bcad64f7507da34f921492c71ff1d330
+    :commit: 68796e3b2dfcabf1c395e4dccaf1f91b06018b30
     :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
@@ -90,6 +99,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
   FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
@@ -99,8 +109,9 @@ SPEC CHECKSUMS:
   ParseTwitterUtils: 0dde9689565e7012d83f892c64aed2ebe69f2ea9
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
 
-PODFILE CHECKSUM: 9701752f7e2197c9f6c51691ac59bead004d77d4
+PODFILE CHECKSUM: 58b9cd33df6dfaa0f6edfce18ec643283f52e38e
 
 COCOAPODS: 1.2.0

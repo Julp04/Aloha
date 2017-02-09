@@ -14,30 +14,8 @@ import AddressBook
 import ReachabilitySwift
 import FirebaseAuth
 import FirebaseDatabase
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
+import FirebaseStorage
+import RKDropdownAlert
 
 
 class SignupViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
@@ -128,6 +106,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     {
         super.viewDidLoad()
         
+        
         if isLinkingFromTwitter == true {
             self.navigationItem.setHidesBackButton(true, animated: false)
         }
@@ -205,7 +184,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     {
         if !didChooseProfileImage {
             if let firstName = firstNameField.text {
-                if firstName.characters.count > 0 && lastNameField.text?.characters.count > 0{
+                if firstName.characters.count > 0 && (lastNameField.text?.characters.count)! > 0{
                     profileImageView.image = ProfileImage.createProfileImage(firstName, last: lastNameField.text)
                 }
             }
@@ -350,15 +329,19 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                 FIRAuth.auth()?.createUser(withEmail: qnectEmailField.text!, password: passwordField.text!, completion: { (user, error) in
                     if error != nil {
                         
+                        self.alertUserWith(message: error!.localizedDescription)
+                        
                     }else {
                         
-                        //Profile image stuff
                         
                         FIRAuth.auth()?.signIn(withEmail: self.qnectEmailField.text!, password:self.passwordField.text! , completion: { (user, error) in
                             if error != nil {
-                                print(error!)
+                                self.alertUserWith(message: error!.localizedDescription)
                             }else {
                                 QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)
+                                
+                                
+                                self.saveProfileImage()
 
                                 self.segueToMainApp()
                             }
@@ -370,12 +353,39 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
 
             }
         } else {
-            CRToastManager.showNotification(options: AlertOptions.statusBarOptionsWithMessage(AlertMessages.Internet, withColor: nil), completionBlock: { () -> Void in
-            })
+            
+            self.alertUserWith(message: AlertMessages.Internet)
         }
         
     }
     
+    func saveProfileImage()
+    {
+        
+        // Get a reference to the storage service using the default Firebase App
+        let storageRef = FIRStorage.storage().reference()
+        
+        // Create a storage reference from our storage service
+        let userStorageRef = storageRef.child("users")
+        let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.email)!)
+        let profileImageRef = userRef.child("profileImage")
+        
+        
+        
+        let profileImage = self.profileImageView.image
+        let imageData = UIImageJPEGRepresentation(profileImage!, 0.5)
+//        let metaData = FIRStorageMetadata()
+        
+        profileImageRef.put(imageData!, metadata: nil) { (metaData, error) in
+            guard let metaData = metaData else { return }
+            
+            let downloadURL = metaData.downloadURL()?.absoluteString
+        }
+        
+        
+        
+        
+    }
     
     
     //MARK:Segue
@@ -425,5 +435,14 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             self.tableView.contentInset = UIEdgeInsets.zero;
             self.tableView.scrollIndicatorInsets = UIEdgeInsets.zero;
         })
+    }
+    
+    func alertUserWith(message:String)
+    {
+        CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(message, withColor: UIColor.gray)) { 
+            
+        }
+        
+        
     }
 }

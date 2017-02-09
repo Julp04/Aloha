@@ -14,6 +14,7 @@ import ReachabilitySwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import RKDropdownAlert
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -31,7 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-
+        
         
     }
     
@@ -60,8 +61,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
-                    print(error!)
-                    CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage(error!.localizedDescription, withColor: UIColor.gray), completionBlock: {
+                    
+                    CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("Wrong email or password", withColor: UIColor.gray), completionBlock: {
                     })
                 }else {
                     self.segueToMainApp()
