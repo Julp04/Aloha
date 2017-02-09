@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseTwitterUtils
+import FirebaseAuth
 
 class SettingsViewController: UITableViewController {
 
@@ -83,7 +84,8 @@ class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
-//            User.logOut()
+
+            try! FIRAuth.auth()?.signOut()
             
             self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
             

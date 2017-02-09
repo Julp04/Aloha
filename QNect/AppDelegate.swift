@@ -61,7 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate func checkForCurrentUser()
     {
-       
+        if FIRAuth.auth()?.currentUser != nil {
+            let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+            self.window?.rootViewController = mainVC
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
