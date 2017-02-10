@@ -67,16 +67,26 @@ class QnUtilitiy {
         let profileImageRef = userRef.child("profileImage")
         
 
-        
-        profileImageRef.downloadURL { (url, error) in
+        profileImageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
             if error != nil {
                 completion(nil, error! as Error?)
             }
-            let data = NSData(contentsOf: url!)
-            let image = UIImage(data: data as! Data)
+//            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data!)
             
             completion(image, nil)
         }
+        
+        
+//        profileImageRef.downloadURL { (url, error) in
+//            if error != nil {
+//                completion(nil, error! as Error?)
+//            }
+//            let data = NSData(contentsOf: url!)
+//            let image = UIImage(data: data as! Data)
+//            
+//            completion(image, nil)
+//        }
     }
  
     
