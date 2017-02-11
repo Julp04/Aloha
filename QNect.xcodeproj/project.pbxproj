@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		142E4C201E450FE300F73905 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 142E4C1F1E450FE300F73905 /* GoogleService-Info.plist */; };
+		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
@@ -64,7 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		142E4C1F1E450FE300F73905 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
 		4E052AF780C1A7562E24533A /* Pods_QNect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QNect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +197,7 @@
 		B964AE851DBA74B400A0162E /* QNect */ = {
 			isa = PBXGroup;
 			children = (
-				142E4C1F1E450FE300F73905 /* GoogleService-Info.plist */,
+				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
 				B964AE861DBA74B400A0162E /* AppDelegate.swift */,
 				B964AE8A1DBA74B400A0162E /* Main.storyboard */,
 				B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */,
@@ -387,7 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */,
-				142E4C201E450FE300F73905 /* GoogleService-Info.plist in Resources */,
+				142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */,
 				B964AE911DBA74B400A0162E /* Images.xcassets in Resources */,
 				B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */,
 			);
@@ -630,7 +630,7 @@
 				INFOPLIST_FILE = QNect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect2;
+				PRODUCT_BUNDLE_IDENTIFIER = io.QNect.QNect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";
@@ -648,7 +648,7 @@
 				INFOPLIST_FILE = QNect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect2;
+				PRODUCT_BUNDLE_IDENTIFIER = io.QNect.QNect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";

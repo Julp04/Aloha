@@ -77,7 +77,7 @@ class ContactModel
     
     func nameForContact() -> String
     {
-        return "\(contact.firstName) \(contact.lastName)"
+        return "\(contact.firstName!) \(contact.lastName!)"
     }
     
 }

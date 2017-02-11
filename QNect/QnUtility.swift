@@ -38,24 +38,38 @@ class QnUtilitiy {
     
     static func setProfileImage(image:UIImage)
     {
-        // Get a reference to the storage service using the default Firebase App
-        let storageRef = FIRStorage.storage().reference()
-        
-        // Create a storage reference from our storage service
-        let userStorageRef = storageRef.child("users")
-        let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.email)!)
-        let profileImageRef = userRef.child("profileImage")
-        
-        
-        
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
-        
-        profileImageRef.put(imageData!, metadata: nil) { (metaData, error) in
-            guard let metaData = metaData else { print(error!); return }
+        do {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsURL.appendingPathComponent("profileImage")
+            if let pngImageData = UIImagePNGRepresentation(image) {
+                try pngImageData.write(to: fileURL, options: .atomic)
+            }
             
-            let downloadURL = metaData.downloadURL()?.absoluteString
-        }
+            
+            
+            // Get a reference to the storage service using the default Firebase App
+            let storageRef = FIRStorage.storage().reference()
+            
+            // Create a storage reference from our storage service
+            let userStorageRef = storageRef.child("users")
+            let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.email)!)
+            let profileImageRef = userRef.child("profileImage")
+            
+            
+            // Create a reference to the file you want to uplo
+            
+            // Upload the file to the path "images/rivers.jpg"
+            _ = profileImageRef.putFile(fileURL, metadata: nil) { metadata, error in
+                if let error = error {
+                    print(error)
+                } else {
+                    // Metadata contains file metadata such as size, content-type, and download URL.
+                    _ = metadata!.downloadURL()
+                }
+            }
+        } catch { }
     }
+    
     
     static func getProfileImageForUser(user:User, completion:@escaping (UIImage?, Error?) ->Void)
     {
@@ -66,27 +80,28 @@ class QnUtilitiy {
         let userRef = userStorageRef.child(user.qnectEmail)
         let profileImageRef = userRef.child("profileImage")
         
-
-        profileImageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
+        
+        profileImageRef.downloadURL { (url, error) in
             if error != nil {
                 completion(nil, error! as Error?)
             }
-//            let data = NSData(contentsOf: url!)
-            let image = UIImage(data: data!)
+            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data as! Data)
             
             completion(image, nil)
         }
+    }
+    
+    static func getProfileImageForCurrentUser() -> UIImage?
+    {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
-        
-//        profileImageRef.downloadURL { (url, error) in
-//            if error != nil {
-//                completion(nil, error! as Error?)
-//            }
-//            let data = NSData(contentsOf: url!)
-//            let image = UIImage(data: data as! Data)
-//            
-//            completion(image, nil)
-//        }
+        let filePath = documentsURL.appendingPathComponent("profileImage").path
+        if FileManager.default.fileExists(atPath: filePath) {
+            return UIImage(contentsOfFile: filePath)!
+        }else {
+            return nil
+        }
     }
  
     

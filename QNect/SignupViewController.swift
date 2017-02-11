@@ -354,6 +354,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             }
         } else {
             
+            AlertUtility.showConnectionAlert()
             
         }
         

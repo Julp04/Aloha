@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import RKDropdownAlert
 import FirebaseStorage
+import ReachabilitySwift
 
 
 
@@ -95,15 +96,10 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         
         populateFields()
         
-        let currentUser = User(authData: (FIRAuth.auth()?.currentUser)!)
         
-        QnUtilitiy.getProfileImageForUser(user: currentUser) { (profileImage, error) in
-            if error != nil {
-                print(error!)
-            }else {
-                self.profileImageView.image = profileImage
-            }
-        }
+      
+        
+        self.profileImageView.image = QnUtilitiy.getProfileImageForCurrentUser()
         
         
 
