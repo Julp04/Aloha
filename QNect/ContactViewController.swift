@@ -290,22 +290,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func saveConnection()
     {
-//        QnUtilitiy.saveConnection(self.contact!) { (error) in
-//            if error == nil{
-//                self.sendPushNotification()
-//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-//                    
-//                    
-//                    self.dismiss(animated: true, completion: nil)
-//                })
-//                
-//                
-//                
-//            }else {
-//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-//                })
-//            }
-//        }
+        QnUtilitiy.saveContact(contact: contact!)
     }
     
   

@@ -53,7 +53,6 @@ class User
         self.socialPhone = ""
         self.socialEmail = ""
 
-        
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
         
@@ -70,9 +69,22 @@ class User
             self.socialPhone = value?["socialPhone"] as? String ?? ""
 
         })
-        
+    }
+    
+    
+    init(snapshot:FIRDataSnapshot)
+    {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        self.firstName = snapshotValue["firstName"] as! String
+        self.lastName = snapshotValue["lastName"] as! String
+        self.socialEmail = snapshotValue["socialEmail"] as? String
+        self.socialPhone = snapshotValue["socialPhone"] as? String
+        self.username = snapshotValue["username"] as! String
+        self.uid = snapshotValue["uid"] as! String
+        self.qnectEmail = snapshotValue["qnectEmail"] as! String
         
     }
+
     
     static func currentUser(userData:FIRUser, completion: @escaping (User) -> Void)
     {

@@ -8,6 +8,9 @@
 
 import UIKit
 import ReachabilitySwift
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate {
 
@@ -44,12 +47,46 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
-//        QnUtilitiy.retrieveAddedUserConnectionsFromServer { (connections) in
-//            self.addedUserConnectionsModel = ConnectionsModel(connections: connections)
-//        }
-
+        
+        
+        let ref = FIRDatabase.database().reference()
+        
+        let userAddedContactsRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("userAddedContacts")
+        
+        userAddedContactsRef.observe(.value, with: { (snapshot) in
+            var addedUsers = [User]()
+            
+            
+            
+            for item in snapshot.children {
+                let user = User(snapshot: item as! FIRDataSnapshot)
+                addedUsers.append(user)
+            }
+            
+            self.userAddedConnectionsModel = ConnectionsModel(connections: addedUsers)
+            self.tableView.reloadData()
+            
+        })
+        
+        
+        
+        let contactsAddedUserRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("contactsAddedUser")
+        
+        contactsAddedUserRef.observe(.value, with: { (snapshot) in
+            var contactsAdded = [User]()
+            
+            for item in snapshot.children {
+              
+                let contact = User(snapshot: item as! FIRDataSnapshot)
+                contactsAdded.append(contact)
+                
+            }
+        
+            self.addedUserConnectionsModel = ConnectionsModel(connections: contactsAdded)
+            self.tableView.reloadData()
+        })
     }
-    
+
     func createTitleView()
     {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 55))
@@ -140,13 +177,15 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let lastName = connection.lastName
                 
                 cell.nameLabel.text = firstName! + " " + lastName!
+                cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
                 
-//                connection.profileImage?.getDataInBackground(block: { (data, error) in
-//                    if error == nil {
-//                        let image = UIImage(data: data!)
-//                        cell.profileImageView.image = image
-//                    }
-//                })
+                QnUtilitiy.getProfileImageForUser(user: connection, completion: { (image, error) in
+                    if error != nil {
+                        print(error!)
+                    }else {
+                        cell.profileImageView.image = image
+                    }
+                })
             }
         }else {
             if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0{
@@ -159,8 +198,15 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let lastName = connection.lastName
                 
                 cell.nameLabel.text = firstName! + " " + lastName!
+                cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
                 
-                
+                QnUtilitiy.getProfileImageForUser(user: connection, completion: { (image, error) in
+                    if error != nil {
+                        print(error!)
+                    }else {
+                        cell.profileImageView.image = image
+                    }
+                })
                 
             }
         }

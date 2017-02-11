@@ -99,7 +99,20 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         
       
         
-        self.profileImageView.image = QnUtilitiy.getProfileImageForCurrentUser()
+        
+        
+        if let profileImage = QnUtilitiy.getProfileImageForCurrentUser() {
+            self.profileImageView.image = profileImage
+        }else {
+            User.currentUser(userData: (FIRAuth.auth()?.currentUser)!, completion: { (user) in
+    
+                QnUtilitiy.getProfileImageForUser(user: user, completion: { (image, error) in
+                    self.profileImageView.image = image
+                })
+            })
+        }
+        
+        
         
         
 

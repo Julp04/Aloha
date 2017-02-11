@@ -103,6 +103,30 @@ class QnUtilitiy {
             return nil
         }
     }
+    
+    
+    static func saveContact(contact:User)
+    {
+        
+        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+            
+            let ref = FIRDatabase.database().reference()
+            
+ 
+            let userAddedContactsRef = ref.child("users").child((user.uid)).child("userAddedContacts").child(contact.uid)
+            userAddedContactsRef.setValue(["firstName":contact.firstName, "lastName":contact.lastName, "socialPhone":contact.socialPhone, "socialEmail":contact.socialEmail, "username":contact.username, "qnectEmail":contact.qnectEmail, "uid":contact.uid])
+            
+            
+            let contactsAddedUserRef = ref.child("users").child(contact.uid).child("contactsAddedUser").child(user.uid)
+            contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhpne":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
+            
+            
+        }
+        
+        
+    
+    }
+    
  
     
     

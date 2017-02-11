@@ -12,7 +12,6 @@ import FirebaseDatabase
 
 class QnectCodeViewController: UIViewController {
     
-    var userRef:FIRDatabaseReference!
 
     @IBOutlet weak var qnCodeImageView: UIImageView!
     
@@ -21,14 +20,17 @@ class QnectCodeViewController: UIViewController {
         
         super.viewDidLoad()
         
-        userRef = FIRDatabase.database().reference(withPath: "users")
         
         
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         self.view.backgroundColor = UIColor.white
+    
+        
 
+        
+        
 
     }
     
@@ -46,8 +48,6 @@ class QnectCodeViewController: UIViewController {
         User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
             let encoder = QnEncoder(user: user)
             let qrCode = QNectCode(message: encoder.encodeSocialCode())
-            
-            print(encoder.encodeSocialCode())
             
             qrCode.color = UIColor.qnPurpleColor()
             qrCode.backgroundColor = UIColor.white

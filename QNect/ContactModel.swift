@@ -59,7 +59,7 @@ class ContactModel
     
     func phoneNumberForContact() -> String
     {
-        if contact.socialPhone != "" {
+        if contact.socialPhone != nil {
             let mutableString = NSMutableString(string: contact.socialPhone!)
             mutableString.insert("(", at: 0)
             mutableString.insert(")-", at: 4)
