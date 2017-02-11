@@ -6,64 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnTableViewController.swift"
-            timestampString = "508520402.445569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "populateFields()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect.QnTableViewController.(populateFields in _4DC1255D3C91643912CEDB38C1E2E8A4) () -&gt; ()"
-                  moduleName = "QNect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnTableViewController.swift"
-                  timestampString = "508465298.446932"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "134"
-                  endingLineNumber = "134"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect.QnTableViewController.((populateFields in _4DC1255D3C91643912CEDB38C1E2E8A4) () -&gt; ()).(closure #1)"
-                  moduleName = "QNect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnTableViewController.swift"
-                  timestampString = "508465298.448547"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "136"
-                  endingLineNumber = "136"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/QnUtility.swift"
-            timestampString = "508520202.863549"
+            timestampString = "508523614.17736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "setProfileImage(image:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getProfileImageForUser(user:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/QnUtility.swift"
-            timestampString = "508520265.592886"
+            filePath = "QNect/QnDecoder.swift"
+            timestampString = "508523818.542063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "setProfileImage(image:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnUtility.swift"
-            timestampString = "508520321.465036"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "setProfileImage(image:)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "decodeSocialCode(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

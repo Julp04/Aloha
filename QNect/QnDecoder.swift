@@ -44,9 +44,10 @@ struct QnDecoder
         let socialEmail = components[4]
         let socialPhone = components[5]
         let uid = components[6]
+        let qnectEmail = components[7]
 
         
-        let user = User(username: username, firstName: firstName, lastName: lastName, socialPhone: socialPhone, socialEmail: socialEmail, uid: uid, qnectEmail:"")
+        let user = User(username: username, firstName: firstName, lastName: lastName, socialPhone: socialPhone, socialEmail: socialEmail, uid: uid, qnectEmail:qnectEmail)
         
         return user
         

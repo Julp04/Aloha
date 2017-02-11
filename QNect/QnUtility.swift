@@ -77,19 +77,19 @@ class QnUtilitiy {
         
         
         let userStorageRef = storageRef.child("users")
-        let userRef = userStorageRef.child(user.qnectEmail)
-        let profileImageRef = userRef.child("profileImage")
+        let userRef = userStorageRef.child(user.qnectEmail).child("profileImage")
         
         
-        profileImageRef.downloadURL { (url, error) in
-            if error != nil {
-                completion(nil, error! as Error?)
-            }
-            let data = NSData(contentsOf: url!)
-            let image = UIImage(data: data as! Data)
+        userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
             
-            completion(image, nil)
+            if error != nil {
+                completion(nil, error)
+            }else {
+                let image = UIImage(data: data!)
+                completion(image, nil)
+            }
         }
+        
     }
     
     static func getProfileImageForCurrentUser() -> UIImage?

@@ -64,6 +64,8 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
         
+        
+        
   
         headerCell = tableView.dequeueReusableCell(withIdentifier: "ContactHeaderCell") as? ContactHeaderCell
         headerCell!.callButton.isHidden = true
@@ -76,6 +78,17 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
         addContactButton = createAddButton(forAction: #selector(ContactViewController.addContact))
         addTwitterButton = createAddButton(forAction: #selector(ContactViewController.followContactOnTwitter))
+        
+        if Reachability.isConnectedToInternet() {
+            QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                if error != nil {
+                    print(error!)
+                    
+                }else {
+                    self.headerCell?.profileImageView.image = profileImage
+                }
+            })
+        }
         
         
         tableView.reloadData()
@@ -164,6 +177,23 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             view.profileImageView.layer.borderColor = UIColor.white.cgColor
             view.profileImageView.layer.masksToBounds = true
             view.profileImageView.layer.borderWidth = kProfileImageBorderWidth
+            
+            
+            if Reachability.isConnectedToInternet() {
+                QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                    if error != nil {
+                        print(error!)
+                        view.profileImageView.image = ProfileImage.createProfileImage((self.contact?.firstName)!, last: self.contact?.lastName)
+                    }else {
+                        view.profileImageView.image = profileImage
+                    }
+                })
+            }else {
+                view.profileImageView.image = ProfileImage.createProfileImage((contact?.firstName)!, last: contact?.lastName)
+            }
+            
+            
+            
             
             return view
         default:
@@ -328,7 +358,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func showContactAddedAlert()
     {
         
-        RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName) \(contact!.lastName) to your contacts!", backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
+        RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName!) \(contact!.lastName!) to your contacts!", backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
     }
     
     func showTwitterNotLinkedAlert()

@@ -63,14 +63,4 @@ class ProfileImage
         
         return image
     }
-    
-    class func dataFromImage(_ image:UIImage) -> Data
-    {
-        return UIImageJPEGRepresentation(image, 0.5)!
-    }
-    
-    class func imageFromData(_ data:Data) -> UIImage
-    {
-        return UIImage(data: data)!
-    }
 }
