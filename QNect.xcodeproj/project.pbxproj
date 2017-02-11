@@ -630,7 +630,7 @@
 				INFOPLIST_FILE = QNect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";
@@ -648,7 +648,7 @@
 				INFOPLIST_FILE = QNect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QNect.QNect2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";

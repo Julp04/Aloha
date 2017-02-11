@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         
+        FIRDatabase.database().persistenceEnabled = true
+        
+        
         let currentCountStr = UIApplication.shared.applicationIconBadgeNumber
         let currentCount = currentCountStr
         if(currentCount > 0) {
