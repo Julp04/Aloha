@@ -293,6 +293,38 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         
+        let point = gestureRecognizer.location(in: self.tableView)
+        let indexPath = self.tableView.indexPathForRow(at: point)
+        
+        
+      
+        
+        if segmentControl.selectedSegmentIndex == 0 {
+           
+            
+            if userAddedConnectionsModel != nil || userAddedConnectionsModel?.numberOfConnections() != 0 {
+            
+                let connection = userAddedConnectionsModel?.connectionAtIndexPath(indexPath!)
+                let name = (connection?.firstName)! + " " + (connection?.lastName)!
+                let message = QnEncoder(user: connection!).encodeSocialCode()
+                let qrImage = QNectCode(message: message).image
+                
+                let qnectAlertView = QNectAlertView()
+                
+                qnectAlertView.addButton("Delete Connection") {
+                    QnUtilitiy.removeConnection(connection: connection!)
+                }
+                
+                qnectAlertView.showTitle(name, subTitle: "\(connection!.username!)", duration: 0.0, completeText: nil, style: .contact, colorStyle: 0xA429FF, colorTextButton: 0xFFFFFF, contactImage: qrImage)
+                
+            }
+           
+        }else {
+           
+        }
+        
+       
+        
         return true
      
     }

@@ -118,13 +118,35 @@ class QnUtilitiy {
             
             
             let contactsAddedUserRef = ref.child("users").child(contact.uid).child("contactsAddedUser").child(user.uid)
-            contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhpne":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
+            contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhone":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
             
             
         }
         
         
     
+    }
+    
+    static func removeConnection(connection:User)
+    {
+        
+        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+        
+            let ref = FIRDatabase.database().reference()
+            let userAddedContactsRef = ref.child("users").child((user.uid)).child("userAddedContacts").child(connection.uid)
+        
+            userAddedContactsRef.removeValue()
+            
+            let contactsAddedUserRef = ref.child("users").child(connection.uid).child("contactsAddedUser").child(user.uid)
+           
+            contactsAddedUserRef.removeValue()
+            
+            
+            
+        }
+        
+        
+        
     }
     
  

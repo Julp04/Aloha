@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import RKDropdownAlert
 
 class QnectCodeViewController: UIViewController {
     
@@ -27,8 +28,6 @@ class QnectCodeViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.white
     
-        
-
         
         
 
