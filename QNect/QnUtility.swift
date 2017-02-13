@@ -113,11 +113,11 @@ class QnUtilitiy {
             let ref = FIRDatabase.database().reference()
             
  
-            let userAddedContactsRef = ref.child("users").child((user.uid)).child("userAddedContacts").child(contact.uid)
+            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(contact.uid)
             userAddedContactsRef.setValue(["firstName":contact.firstName, "lastName":contact.lastName, "socialPhone":contact.socialPhone, "socialEmail":contact.socialEmail, "username":contact.username, "qnectEmail":contact.qnectEmail, "uid":contact.uid])
             
             
-            let contactsAddedUserRef = ref.child("users").child(contact.uid).child("contactsAddedUser").child(user.uid)
+            let contactsAddedUserRef = ref.child("users").child(contact.uid).child("connectionsAddedUser").child(user.uid)
             contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhone":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
             
             
