@@ -43,7 +43,7 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool){
         self.navigationItem.title = "Settings"
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
     }
     
     //MARK: Table View Delegate Methods

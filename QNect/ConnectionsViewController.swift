@@ -33,14 +33,14 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.refreshControl?.addTarget(self, action: #selector(ConnectionsViewController.refresh), for: UIControlEvents.valueChanged)
         
-        self.refreshControl?.tintColor = UIColor.qnPurpleColor()
+        self.refreshControl?.tintColor = UIColor.qnPurple
         
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
@@ -51,9 +51,9 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         let ref = FIRDatabase.database().reference()
         
-        let userAddedContactsRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("userAddedContacts")
+        let userAddedConnectionsRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("connectionsUserAdded")
         
-        userAddedContactsRef.observe(.value, with: { (snapshot) in
+        userAddedConnectionsRef.observe(.value, with: { (snapshot) in
             var addedUsers = [User]()
             
             
@@ -70,9 +70,9 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         
         
-        let contactsAddedUserRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("contactsAddedUser")
+        let connectionsAddedUser = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("connectionsAddedUser")
         
-        contactsAddedUserRef.observe(.value, with: { (snapshot) in
+        connectionsAddedUser.observe(.value, with: { (snapshot) in
             var contactsAdded = [User]()
             
             for item in snapshot.children {
@@ -242,7 +242,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         let cell = cell as! ConnectionCell
         cell.profileImageView.layer.cornerRadius = (cell.profileImageView.frame.size.width) / 2
         cell.profileImageView.layer.borderWidth = kProfileBorderWidth
-        cell.profileImageView.layer.borderColor = UIColor.qnPurpleColor().cgColor
+        cell.profileImageView.layer.borderColor = UIColor.qnPurple.cgColor
         
         cell.profileImageView.clipsToBounds = true
         

@@ -60,7 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
                     
-                   RKDropdownAlert.title("Login failed", message: error!.localizedDescription, backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
+                   RKDropdownAlert.title("Login failed", message: error!.localizedDescription, backgroundColor: UIColor.qnTeal, textColor: UIColor.white)
                 }else {
                     self.segueToMainApp()
                 }
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func showConnectionAlert()
     {
-        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRedColor(), textColor: UIColor.white)
+        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
     }
     
     

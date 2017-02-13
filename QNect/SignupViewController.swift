@@ -126,7 +126,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         
@@ -196,7 +196,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        imagePicker.navigationBar.barTintColor = UIColor.qnBlueColor()
+        imagePicker.navigationBar.barTintColor = UIColor.qnBlue
         imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         imagePicker.navigationBar.tintColor = UIColor.white
         present(imagePicker, animated: true, completion:nil)
@@ -328,14 +328,14 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                 FIRAuth.auth()?.createUser(withEmail: qnectEmailField.text!, password: passwordField.text!, completion: { (user, error) in
                     if error != nil {
                         
-                        RKDropdownAlert.title("Signup failed", message: error!.localizedDescription, backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
+                        RKDropdownAlert.title("Signup failed", message: error!.localizedDescription, backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
                         
                     }else {
                         
                         
                         FIRAuth.auth()?.signIn(withEmail: self.qnectEmailField.text!, password:self.passwordField.text! , completion: { (user, error) in
                             if error != nil {
-                                RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnBlueColor(), textColor: UIColor.white)
+                                RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
                                 
                             }else {
                                 QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)

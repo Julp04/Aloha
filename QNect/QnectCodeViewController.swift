@@ -23,7 +23,7 @@ class QnectCodeViewController: UIViewController {
         
         
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         self.view.backgroundColor = UIColor.white
@@ -48,7 +48,7 @@ class QnectCodeViewController: UIViewController {
             let encoder = QnEncoder(user: user)
             let qrCode = QNectCode(message: encoder.encodeSocialCode())
             
-            qrCode.color = UIColor.qnPurpleColor()
+            qrCode.color = UIColor.qnPurple
             qrCode.backgroundColor = UIColor.white
             self.qnCodeImageView.image = qrCode.image
         }

@@ -62,7 +62,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         tableView.separatorStyle = .none
         
         UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         
         
         
@@ -241,7 +241,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         let button = VBFPopFlatButton(frame: CGRect(x: 0, y: 0, width: kAddButtonWidth, height: kAddButtonWidth), buttonType: .buttonAddType, buttonStyle: .buttonRoundedStyle, animateToInitialState: false)
         
-        button?.roundBackgroundColor = UIColor.qnPurpleColor()
+        button?.roundBackgroundColor = UIColor.qnPurple
         button?.lineThickness = 2.5
         button?.lineRadius = 2
         button?.addTarget(self, action: action, for: .touchUpInside)
@@ -259,14 +259,14 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func animateToSuccessButton(_ button:VBFPopFlatButton)
     {
-        button.roundBackgroundColor = UIColor.qnGreenTealColor()
+        button.roundBackgroundColor = UIColor.qnGreenTeal
         button.animate(to: .buttonOkType)
         button.isEnabled = false
     }
     
     func animateToDeniedButton(_ button:VBFPopFlatButton)
     {
-        button.roundBackgroundColor = UIColor.qnRedColor()
+        button.roundBackgroundColor = UIColor.qnRed
         button.animate(to: .buttonCloseType)
         button.isEnabled = false
     }
@@ -343,7 +343,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func showContactAddedAlert()
     {
         
-        RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName!) \(contact!.lastName!) to your contacts!", backgroundColor: UIColor.qnTealColor(), textColor: UIColor.white)
+        RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName!) \(contact!.lastName!) to your contacts!", backgroundColor: UIColor.qnTeal, textColor: UIColor.white)
     }
     
     func showTwitterNotLinkedAlert()

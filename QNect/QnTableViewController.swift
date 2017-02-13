@@ -82,7 +82,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurpleColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         NotificationCenter.default.addObserver(self, selector: #selector(QnTableViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -316,7 +316,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     {
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        imagePicker.navigationBar.barTintColor = UIColor.qnBlueColor()
+        imagePicker.navigationBar.barTintColor = UIColor.qnBlue
         imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         imagePicker.navigationBar.tintColor = UIColor.white
         present(imagePicker, animated: true, completion: {UIApplication.shared.statusBarStyle = .lightContent})

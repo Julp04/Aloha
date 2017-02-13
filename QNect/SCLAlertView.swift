@@ -451,7 +451,7 @@ open class SCLAlertView: UIViewController {
             viewColor = UIColorFromRGB(colorStyle!)
             
         case .custom:
-            viewColor = UIColor.twitterColor()
+            viewColor = UIColor.twitter
             iconImage = image
         }
         

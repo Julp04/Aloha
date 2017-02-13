@@ -74,7 +74,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         videoView?.delegate = self
         
         indicator = UIActivityIndicatorView(frame: CGRect(x: 100, y: 75, width: 10, height: 10))
-        indicator?.tintColor = UIColor.qnPurpleColor()
+        indicator?.tintColor = UIColor.qnPurple
         videoView?.addSubview(indicator!)
         
         

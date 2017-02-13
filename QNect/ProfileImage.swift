@@ -44,7 +44,7 @@ class ProfileImage
         
         let view = UIView(frame: rect)
         
-        view.backgroundColor = UIColor.qnPurpleColor()
+        view.backgroundColor = UIColor.qnPurple
         view.addSubview(firstInitial)
         firstInitial.center = (firstInitial.superview?.center)!
         

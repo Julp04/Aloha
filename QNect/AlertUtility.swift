@@ -15,6 +15,6 @@ class AlertUtility {
     
     static func showConnectionAlert()
     {
-        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRedColor(), textColor: UIColor.white)
+        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
     }
 }
