@@ -13,6 +13,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import RKDropdownAlert
+import FCAlertView
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -36,6 +37,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func twitterLoginAction(_ sender: AnyObject) {
         loginWithTwitter()
+    }
+    @IBAction func forgotPasswordAction(_ sender: Any) {
+        
+        var hitReset = 0
+        
+        
+        var email = ""
+        let alert = FCAlertView()
+    
+        alert.addTextField(withPlaceholder: "Email") { (string) in
+            email  = string!
+            
+            if hitReset == 1 {
+                    if email != "" {
+                        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+                            if error != nil {
+                                RKDropdownAlert.title("\(email) is not a registered user", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                            }else {
+                                RKDropdownAlert.title("Password Reset Email Sent!", message: "Check your inbox for a link to reset", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
+                            }
+                        })
+                    }else {
+                        RKDropdownAlert.title("Email cannot be blank", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                }
+            
+            }
+            
+            
+        }
+        
+        alert.addButton("Reset Password", withActionBlock: {
+            hitReset = 1
+        })
+        
+        alert.colorScheme = UIColor.qnPurple
+        
+        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Cancel", andButtons: nil)
+        
     }
     override func viewDidAppear(_ animated: Bool) {
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)

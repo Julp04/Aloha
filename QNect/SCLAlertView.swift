@@ -246,7 +246,7 @@ open class SCLAlertView: UIViewController {
         }
     }
     
-    open func addTextField(_ title:String?=nil)->UITextField {
+   @discardableResult open func addTextField(_ title:String?=nil)->UITextField {
         // Update view height
         kWindowHeight += kTextFieldHeight
         // Add text field
@@ -380,7 +380,7 @@ open class SCLAlertView: UIViewController {
     }
     
     // showWarning(view, title, subTitle)
-    open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0xFFD110, colorTextButton: UInt=0x000000) -> SCLAlertViewResponder {
+    @discardableResult open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0, colorStyle: UInt=0xFFD110, colorTextButton: UInt=0x000000) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, image: nil, duration: duration, completeText:closeButtonTitle, style: .warning, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
     

@@ -1,5 +1,6 @@
 PODS:
   - Cartography (0.5.0)
+  - FCAlertView (1.2.9)
   - Firebase/Auth (3.12.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.0)
@@ -54,6 +55,7 @@ PODS:
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/mluisbrown/Cartography.git`, branch `swift3`)
+  - FCAlertView
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -81,6 +83,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Cartography: de3e85d2fc2d7288a2e7c89e1ac6cad08599d75e
+  FCAlertView: 60a6e16609d1458e16752f1918c2c43644c390ea
   Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -98,6 +101,6 @@ SPEC CHECKSUMS:
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
 
-PODFILE CHECKSUM: 35ee2f9be9f6ac1eab5ebb6483ba7e88735ba0c3
+PODFILE CHECKSUM: 1c012c46f9cae0fad198509c7f786e266f6c07e2
 
 COCOAPODS: 1.2.0

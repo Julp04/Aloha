@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FCAlertView-FCAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FCAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +67,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1613271357771814C71601D90B787D94</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>298B36393D6949523EAAD781BC935B96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2FF95AD0C37FCFB5F780487E5205175D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>397D3B0D3EC3AEA3DE845F533A592CD4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AED0B76B7BF16A288EF078201E2FEA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>491977C0C274BC570AEB67F56DDFC11D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>77A8EBD30961CE522DA4C3D1A5BB59A4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9A29C3A3AEEE96BA2624B352304AADF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BD57BB58D939310DA0C39A36AAB68F6D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F220616D81C6464CAB809F146A7AC0DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F89D67FE52D42A3A8964C040A3A3E753</key>
+		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -13,6 +13,7 @@ target 'QNect' do
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
     pod 'RKDropdownAlert'
+    pod 'FCAlertView'
     
 end
 
