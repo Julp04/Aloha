@@ -83,7 +83,9 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
 
-            try! FIRAuth.auth()?.signOut()
+           QnUtilitiy.signOut()
+            
+            
             
             self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
             

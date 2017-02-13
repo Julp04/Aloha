@@ -145,6 +145,17 @@ class QnUtilitiy {
             
         }
         
+
+    }
+    
+    static func signOut()
+    {
+        try! FIRAuth.auth()?.signOut()
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent("profileImage")
+
+        try! FileManager().removeItem(at: fileURL)
         
         
     }
