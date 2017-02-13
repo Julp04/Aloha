@@ -67,13 +67,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         }
         
-        alert.addButton("Reset Password", withActionBlock: {
-            hitReset = 1
+        alert.addButton("Cancel", withActionBlock: {
+            hitReset = 0
         })
+        
+        alert.doneActionBlock { 
+            hitReset = 1
+        }
         
         alert.colorScheme = UIColor.qnPurple
         
-        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Cancel", andButtons: nil)
+        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
         
     }
     override func viewDidAppear(_ animated: Bool) {
