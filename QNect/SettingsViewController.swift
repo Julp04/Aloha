@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import FCAlertView
+import RKDropdownAlert
 
 class SettingsViewController: UITableViewController {
 
@@ -54,7 +56,7 @@ class SettingsViewController: UITableViewController {
         case 0:
             switch indexPath.row {
             case 0:showLogoutAlert()
-            case 1:break
+            case 1:resetPassword()
             default: break
             }
         case 1:
@@ -91,6 +93,40 @@ class SettingsViewController: UITableViewController {
             
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func resetPassword()
+    {
+        
+        
+        
+        
+      
+        let alert = FCAlertView()
+        
+      
+        
+        alert.addButton("Cancel", withActionBlock: {
+          
+        })
+        
+        alert.doneActionBlock {
+            let email = FIRAuth.auth()?.currentUser?.email
+            FIRAuth.auth()?.sendPasswordReset(withEmail: email!, completion: { (error) in
+                if error != nil {
+                    RKDropdownAlert.title("Something went wrong", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                }else {
+                    RKDropdownAlert.title("Password Reset Email Sent!", message: "Check your inbox for a link to reset", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
+                }
+            })
+
+        }
+        
+        alert.colorScheme = UIColor.qnPurple
+        
+        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "We'll send you a link to your email to reset your password", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
+        
+
     }
     
 
