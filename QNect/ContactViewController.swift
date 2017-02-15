@@ -79,16 +79,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         addContactButton = createAddButton(forAction: #selector(ContactViewController.addContact))
         addTwitterButton = createAddButton(forAction: #selector(ContactViewController.followContactOnTwitter))
         
-        if Reachability.isConnectedToInternet() {
-            QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
-                if error != nil {
-                    print(error!)
-                    
-                }else {
-                    self.headerCell?.profileImageView.image = profileImage
-                }
-            })
-        }
+        
         
         
         tableView.reloadData()
@@ -179,17 +170,18 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             view.profileImageView.layer.borderWidth = kProfileImageBorderWidth
             
             
-            if Reachability.isConnectedToInternet() {
-                QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
-                    if error != nil {
-                        print(error!)
-                        view.profileImageView.image = ProfileImage.createProfileImage((self.contact?.firstName)!, last: self.contact?.lastName)
-                    }else {
-                        view.profileImageView.image = profileImage
-                    }
-                })
+            if contact?.profileImage == nil {
+                if Reachability.isConnectedToInternet() {
+                    QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                        if error != nil {
+                            print(error!)
+                        }else {
+                            view.profileImageView.image = profileImage
+                        }
+                    })
+                }
             }else {
-                view.profileImageView.image = ProfileImage.createProfileImage((contact?.firstName)!, last: contact?.lastName)
+               view.profileImageView.image = contact?.profileImage
             }
             
             

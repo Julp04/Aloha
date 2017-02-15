@@ -15,6 +15,7 @@ class ConnectionsModel
     fileprivate var connections = [User]()
     var dictionary = [String: [User]]()
     var allKeys = [String]()
+    var profileImages = [UIImage]()
     
     init(connections:[User])
     {
@@ -73,6 +74,17 @@ class ConnectionsModel
         }
     }
     
+    func imageForConnectionAt(indexPath:IndexPath) -> UIImage? {
+        
+        let letter = allKeys[indexPath.section]
+        let connections = dictionary[letter]
+        let connection = connections?[indexPath.row]
+        let profileImage = connection?.profileImage
+        
+        return profileImage
+        
+        
+    }
 }
 
 

@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 
-class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate {
+class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate, ImageDownloaderDelegate {
 
     
     var userAddedConnectionsModel:ConnectionsModel?
@@ -61,6 +61,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
             for item in snapshot.children {
                 let user = User(snapshot: item as! FIRDataSnapshot)
                 addedUsers.append(user)
+                user.delegate = self
             }
             
             self.userAddedConnectionsModel = ConnectionsModel(connections: addedUsers)
@@ -177,15 +178,16 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let lastName = connection.lastName
                 
                 cell.nameLabel.text = firstName! + " " + lastName!
-                cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
                 
-                QnUtilitiy.getProfileImageForUser(user: connection, completion: { (image, error) in
-                    if error != nil {
-                        print(error!)
-                    }else {
-                        cell.profileImageView.image = image
-                    }
-                })
+                
+               let profileImage = userAddedConnectionsModel?.imageForConnectionAt(indexPath: indexPath)
+                if profileImage != nil {
+                    cell.profileImageView.image = profileImage
+                }else {
+                    cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
+                }
+               
+                
             }
         }else {
             if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0{
@@ -198,20 +200,19 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let lastName = connection.lastName
                 
                 cell.nameLabel.text = firstName! + " " + lastName!
-                cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
                 
-                QnUtilitiy.getProfileImageForUser(user: connection, completion: { (image, error) in
-                    if error != nil {
-                        print(error!)
-                    }else {
-                        cell.profileImageView.image = image
-                    }
-                })
+                
+                
+                let profileImage = addedUserConnectionsModel?.imageForConnectionAt(indexPath: indexPath)
+                
+                if profileImage != nil {
+                    cell.profileImageView.image = profileImage
+                }else {
+                    cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
+                }
                 
             }
         }
-
-        
 
         return cell
     }
@@ -333,6 +334,10 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     
     func positionForBar(_ bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.topAttached
+    }
+    
+    func imageDownloaded(image: UIImage?) {
+        self.tableView.reloadData()
     }
 
 

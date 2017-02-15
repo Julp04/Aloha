@@ -89,8 +89,9 @@ class QnUtilitiy {
                 completion(image, nil)
             }
         }
-        
     }
+    
+    
     
     static func getProfileImageForCurrentUser() -> UIImage?
     {
@@ -133,11 +134,11 @@ class QnUtilitiy {
         User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
         
             let ref = FIRDatabase.database().reference()
-            let userAddedContactsRef = ref.child("users").child((user.uid)).child("userAddedContacts").child(connection.uid)
+            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(connection.uid)
         
             userAddedContactsRef.removeValue()
             
-            let contactsAddedUserRef = ref.child("users").child(connection.uid).child("contactsAddedUser").child(user.uid)
+            let contactsAddedUserRef = ref.child("users").child(connection.uid).child("connectionsAddedUser").child(user.uid)
            
             contactsAddedUserRef.removeValue()
             

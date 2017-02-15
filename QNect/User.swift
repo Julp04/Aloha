@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 
 class User
@@ -27,6 +28,9 @@ class User
     
     
     var socialAccounts = [String:String]()
+    var profileImage:UIImage?
+    
+    weak var delegate:ImageDownloaderDelegate?
     
   
     
@@ -82,6 +86,29 @@ class User
         self.username = snapshotValue["username"] as! String
         self.uid = snapshotValue["uid"] as! String
         self.qnectEmail = snapshotValue["qnectEmail"] as! String
+        
+        
+        
+        
+        let storageRef = FIRStorage.storage().reference()
+        
+        
+        let userStorageRef = storageRef.child("users")
+        let userRef = userStorageRef.child(qnectEmail).child("profileImage")
+        
+        
+        userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
+            
+            if error != nil {
+                print(error!)
+            }else {
+                let image = UIImage(data: data!)
+                self.profileImage = image
+                self.delegate?.imageDownloaded(image: image!)
+                
+            }
+        }
+
         
     }
 

@@ -111,10 +111,6 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
                 })
             })
         }
-        
-        
-        
-        
 
     }
     
