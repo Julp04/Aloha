@@ -11,6 +11,7 @@ import ReachabilitySwift
 import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
+import RKDropdownAlert
 
 class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate, ImageDownloaderDelegate {
 
@@ -314,6 +315,9 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 
                 qnectAlertView.addButton("Delete Connection") {
                     QnUtilitiy.removeConnection(connection: connection!)
+                    
+                    RKDropdownAlert.title("You have deleted \(connection!.firstName!) \(connection!.lastName!) as a connection", backgroundColor: UIColor.gray, textColor: UIColor.white)
+                    
                 }
                 
                 qnectAlertView.showTitle(name, subTitle: "\(connection!.username!)", duration: 0.0, completeText: nil, style: .contact, colorStyle: 0xA429FF, colorTextButton: 0xFFFFFF, contactImage: qrImage)
@@ -323,8 +327,6 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         }else {
            
         }
-        
-       
         
         return true
      

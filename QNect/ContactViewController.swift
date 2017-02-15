@@ -283,6 +283,12 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func saveConnection()
     {
         QnUtilitiy.saveContact(contact: contact!)
+        
+        RKDropdownAlert.title("Woo!", message: "You have added \(contact!.firstName!) \(contact!.lastName!) as a connection!", backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
     }
     
   
