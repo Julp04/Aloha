@@ -59,10 +59,11 @@ class User
 
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
+        let uidRef = usersRef.child(uid)
+        let userInfoRef = uidRef.child("userInfo")
         
-        let uid = authData.uid
         
-        usersRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
         
             
@@ -105,7 +106,6 @@ class User
                 let image = UIImage(data: data!)
                 self.profileImage = image
                 self.delegate?.imageDownloaded(image: image!)
-                
             }
         }
 
@@ -119,10 +119,10 @@ class User
         
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
+        let uidRef = usersRef.child(userData.uid)
+        let userInfoRef = uidRef.child("userInfo")
         
-        let uid = userData.uid
-        
-        usersRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+       userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             

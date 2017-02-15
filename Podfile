@@ -14,6 +14,8 @@ target 'QNect' do
     pod 'Firebase/Storage'
     pod 'RKDropdownAlert'
     pod 'FCAlertView'
+    pod 'Fabric'
+    pod 'TwitterKit'
     
 end
 

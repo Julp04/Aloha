@@ -67,7 +67,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         saveUser()
     }
     @IBAction func addTwitter(_ sender: AnyObject) {
-     
+     linkTwitterUser()
         
     }
     
@@ -260,6 +260,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func linkTwitterUser()
     {
+        QnUtilitiy.followUserOnTwitter(twitterUsername: "hey")
       
     }
     

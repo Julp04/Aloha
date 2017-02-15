@@ -12,17 +12,21 @@ import SwiftyJSON
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import Fabric
+import TwitterKit
 
 class QnUtilitiy {
     
     
-    static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
+    static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
     {
         
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
+        let uidRef = usersRef.child(user.uid)
+        let userInfoRef = uidRef.child("userInfo")
         
-        usersRef.child(user.uid).setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "qnectEmail":user.email])
+        userInfoRef.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "qnectEmail":user.email, "twitter":twitter])
     }
     
     
@@ -32,8 +36,10 @@ class QnUtilitiy {
         let usersRef = ref.child("users")
         
         let currentUser = FIRAuth.auth()?.currentUser!
+        let uidRef = usersRef.child((currentUser?.uid)!)
+        let userInfoRef = uidRef.child("userInfo")
         
-        usersRef.child((currentUser?.uid)!).updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
+        userInfoRef.updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
     }
     
     static func setProfileImage(image:UIImage)
@@ -156,11 +162,64 @@ class QnUtilitiy {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent("profileImage")
 
-        try! FileManager().removeItem(at: fileURL)
+//        try! FileManager().removeItem(at: fileURL)
         
         
     }
     
+    static func doesTwitterUserExistsWith(session:TWTRSession, completion:@escaping (Bool) -> Void)
+    {
+        
+        let ref = FIRDatabase.database().reference()
+        
+
+        
+        let usersRef = ref.child("users")
+        let uidRef = usersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
+        let userInfoRef = uidRef.child("userInfo")
+        
+        userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if !snapshot.exists() {
+                completion(false)
+            }else {
+            
+                let snapshotValue = snapshot.value as! [String: AnyObject]
+                let twitterUsername = snapshotValue["twitter"] as? String
+                
+                if twitterUsername == session.userName {
+                    completion(true)
+                }else {
+                    completion(false)
+                }
+            }
+        })
+        
+        
+    }
+    
+    static func followUserOnTwitter(twitterUsername:String)
+    {
+        let client = TWTRAPIClient()
+        let statusesShowEndpoint = "https://api.twitter.com/1.1/friendships/create.json"
+        let params = ["user_id": "1401881", "follow":"true"]
+        var clientError : NSError?
+        
+        let request = client.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
+        
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+            if connectionError != nil {
+                print("Error: \(connectionError)")
+            }
+            
+            if data == nil {
+                print("No data")
+            }else {
+                let json = JSON(data!)
+                print(json)
+            }
+        }
+    }
  
     
     

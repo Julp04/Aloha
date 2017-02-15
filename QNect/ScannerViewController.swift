@@ -11,6 +11,7 @@ import AVFoundation
 import SafariServices
 import MessageUI
 import ReachabilitySwift
+import FCAlertView
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, SphereMenuDelegate, MFMessageComposeViewControllerDelegate, UIWebViewDelegate {
     
@@ -307,12 +308,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     }else {
                         
                         if showURLAlert == 0 {
-                        let alert = SCLAlertView()
-                        alert.addButton("Open webpage", action: { 
+                        let alert = FCAlertView()
+                        alert.addButton("Open webpage", withActionBlock: { 
                             UIApplication.shared.openURL(URL(string: url)!)
                         })
+                            
+                            alert.colorScheme = UIColor.qnBlue
                         
-                            alert.showInfo(url, subTitle: "")
+                            alert.showAlert(withTitle: url, withSubtitle: "", withCustomImage: nil, withDoneButtonTitle: "Close", andButtons: nil)
                             showURLAlert = 1
                         }
                     }

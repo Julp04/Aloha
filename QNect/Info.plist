@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>46e648d9c6b95833b9ab4f6be200ffb599ae7bce</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict>
+                    <key>consumerKey</key>
+                    <string>m9VCFFsoERuNegQQygfBRXIuB</string>
+                    <key>consumerSecret</key>
+                    <string>e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq</string>
+                </dict>
+                <key>KitName</key>
+                <string>Twitter</string>
+            </dict>
+        </array>
+    </dict>
 	<key>NSContactsUsageDescription</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

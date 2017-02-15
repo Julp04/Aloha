@@ -14,13 +14,21 @@ import FirebaseAuth
 import FirebaseDatabase
 import RKDropdownAlert
 import FCAlertView
+import Fabric
+import TwitterKit
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var twitterView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var signupButton: UIButton! {
+        didSet {
+            self.signupButton.layer.cornerRadius = 2.0
+        }
+    }
     var isLinkingWithTwitter = false
     
     var ref: FIRDatabaseReference!
@@ -32,16 +40,46 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         ref = FIRDatabase.database().reference()
         
+        // Swift
+        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+            if let session = session {
+                print("signed in as \(session.userName)");
+                let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
+                print(session.authToken)
+                
+                
+                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                    // ...
+                    if let error = error {
+                         print(error)
+                        return
+                    }else {
+                        
+
+                        QnUtilitiy.doesTwitterUserExistsWith(session: session, completion: { (exists) in
+                            if exists == true {
+                                self.segueToMainApp()
+                            }else {
+                                self.isLinkingWithTwitter = true
+                                self.performSegue(withIdentifier: "SignupSegue", sender: session)
+                            }
+
+                        })
+                    }
+                }
+            }else {
+                print("error: \(error!.localizedDescription)");
+            }
+        })
+//        logInButton.center = self.twitterView.center
+        self.twitterView.addSubview(logInButton)
+        
         
     }
     
-    @IBAction func twitterLoginAction(_ sender: AnyObject) {
-        loginWithTwitter()
-    }
     @IBAction func forgotPasswordAction(_ sender: Any) {
         
         var hitReset = 0
-        
         
         var email = ""
         let alert = FCAlertView()
@@ -152,7 +190,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == SegueIdentifiers.Signup {
             if let signupVC = segue.destination as? SignupViewController {
                 if isLinkingWithTwitter == true {
-                    signupVC.configureViewController(isLinkingWithTwitter)
+                    let session = sender as! TWTRSession
+                    signupVC.configureViewController(isLinkingWithTwitter, twitterSession: session)
                 }
             }
         }

@@ -15,6 +15,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import RKDropdownAlert
+import Fabric
+import TwitterKit
 
 
 class SignupViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
@@ -30,6 +32,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     let kProfileImageBorderWidth:CGFloat = 2.0
     
     var didChooseProfileImage = false
+    var twitterSession:TWTRSession?
     
     //MARK: Properties
     
@@ -92,9 +95,11 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         present(actionSheet, animated: true, completion: nil)
     }
     
-    func configureViewController(_ isLinkingFromTwitter:Bool)
+    func configureViewController(_ isLinkingFromTwitter:Bool, twitterSession:TWTRSession)
     {
         self.isLinkingFromTwitter = isLinkingFromTwitter
+        
+        self.twitterSession = twitterSession
     }
     
     
@@ -108,6 +113,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         
         if isLinkingFromTwitter == true {
             self.navigationItem.setHidesBackButton(true, animated: false)
+            self.usernameField.text = self.twitterSession?.userName
         }
         
         
@@ -315,7 +321,18 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     
     fileprivate func linkTwitterUser()
     {
-     
+        FIRAuth.auth()?.currentUser?.updateEmail(qnectEmailField.text!, completion: { (error) in
+            if let error = error {
+                print(error)
+            }else {
+                QnUtilitiy.setUserInfoFor(user: (FIRAuth.auth()?.currentUser)!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: self.twitterSession?.userName )
+                
+                QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
+                
+                self.segueToMainApp()
+                
+            }
+        })
     }
     
     fileprivate func signUpUser()
@@ -338,7 +355,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                                 RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
                                 
                             }else {
-                                QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text)
+                                QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: nil)
                                 
                                 
                                 QnUtilitiy.setProfileImage(image: self.profileImageView.image!)

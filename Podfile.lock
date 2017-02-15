@@ -1,5 +1,6 @@
 PODS:
   - Cartography (0.5.0)
+  - Fabric (1.6.11)
   - FCAlertView (1.2.9)
   - Firebase/Auth (3.12.0):
     - Firebase/Core
@@ -52,9 +53,14 @@ PODS:
   - ReachabilitySwift (3)
   - RKDropdownAlert (0.3.0)
   - SwiftyJSON (3.0.0)
+  - TwitterCore (2.8.0):
+    - Fabric
+  - TwitterKit (2.8.0):
+    - TwitterCore (= 2.8.0)
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/mluisbrown/Cartography.git`, branch `swift3`)
+  - Fabric
   - FCAlertView
   - Firebase/Auth
   - Firebase/Core
@@ -65,6 +71,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - RKDropdownAlert
   - SwiftyJSON (= 3.0.0)
+  - TwitterKit
 
 EXTERNAL SOURCES:
   Cartography:
@@ -83,6 +90,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Cartography: de3e85d2fc2d7288a2e7c89e1ac6cad08599d75e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FCAlertView: 60a6e16609d1458e16752f1918c2c43644c390ea
   Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
@@ -100,7 +108,9 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
+  TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: 1c012c46f9cae0fad198509c7f786e266f6c07e2
+PODFILE CHECKSUM: b81b92bb2cdde5f6a0e41c14c65f4684c5fcb702
 
 COCOAPODS: 1.2.0
