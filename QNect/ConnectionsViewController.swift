@@ -295,13 +295,13 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         
+        
+        
         let point = gestureRecognizer.location(in: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at: point)
         
         
-      
-        
-        if segmentControl.selectedSegmentIndex == 0 {
+        if segmentControl.selectedSegmentIndex == 0 && userAddedConnectionsModel?.numberOfConnections() != 0{
            
             
             if userAddedConnectionsModel != nil || userAddedConnectionsModel?.numberOfConnections() != 0 {
