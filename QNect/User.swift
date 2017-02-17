@@ -12,6 +12,27 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
+
+
+
+class Account {
+    
+    var screenName:String?
+    
+    init(screenName:String?)
+    {
+        self.screenName = screenName
+    }
+    
+    
+}
+
+class TwitterAccount: Account {
+    
+    
+}
+
+
 class User
 {
     var uid:String
@@ -24,7 +45,8 @@ class User
     
     var socialPhone: String?
     var socialEmail: String?
-    var twitterScreenName: String?
+    
+    var accounts = [String:Account]()
     
     
     var socialAccounts = [String:String]()
@@ -34,7 +56,7 @@ class User
     
   
     
-    init(username:String, firstName:String, lastName:String, socialPhone:String?, socialEmail:String?, uid:String, qnectEmail:String)
+    init(username:String, firstName:String, lastName:String, socialPhone:String?, socialEmail:String?, uid:String, qnectEmail:String, twitterScreenName:String?)
     {
         self.uid = uid
         self.username = username
@@ -44,8 +66,27 @@ class User
         self.socialEmail = socialEmail
         
         self.qnectEmail = qnectEmail
+        
+        let twitterAccount = TwitterAccount(screenName: twitterScreenName)
+        self.accounts["twitter"] = twitterAccount
+        
 
     }
+    
+    init(username:String, firstName:String, lastName:String, socialPhone:String?, socialEmail:String?, uid:String, qnectEmail:String, accounts:[String:Account])
+    {
+        self.uid = uid
+        self.username = username
+        self.firstName = firstName
+        self.lastName = lastName
+        self.socialPhone = socialPhone
+        self.socialEmail = socialEmail
+        
+        self.qnectEmail = qnectEmail
+        self.accounts = accounts
+        
+    }
+    
     
     
     init(authData: FIRUser) {
@@ -113,16 +154,18 @@ class User
     }
 
     
-    static func currentUser(userData:FIRUser, completion: @escaping (User) -> Void)
+    static func currentUser(completion: @escaping (User) -> Void)
     {
         
+        let userData = FIRAuth.auth()!.currentUser!
+        var accounts = [String:Account]()
         
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
         let uidRef = usersRef.child(userData.uid)
         let userInfoRef = uidRef.child("userInfo")
         
-       userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
+       userInfoRef.observe(.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             
@@ -133,13 +176,32 @@ class User
             let socialPhone = value?["socialPhone"] as? String ?? ""
             let uid = userData.uid
             let qnectEmail = userData.email!
-            
-            let user = User(username: username, firstName: firstName, lastName: lastName, socialPhone: socialPhone, socialEmail: socialEmail, uid: uid, qnectEmail:qnectEmail)
-            
-            
-            
-            completion(user)
-            
+        
+        
+            let accountsRef = uidRef.child("accounts")
+        
+            accountsRef.observe(.value, with: { (snapshot) in
+                if snapshot.exists() {
+                    for child in snapshot.children {
+                        let child = child as! FIRDataSnapshot
+                        let values = child.value as! [String:Any?]
+                        
+                        let screenName = values["screenName"] as! String
+                        let accountType = child.key
+                        let account = Account(screenName: screenName)
+                        accounts[accountType] = account
+                        
+                    }
+                }
+                
+                let twitterScreenName = accounts["twitter"]?.screenName
+                
+                let user = User(username: username, firstName: firstName, lastName: lastName, socialPhone: socialPhone, socialEmail: socialEmail, uid: uid, qnectEmail:qnectEmail, twitterScreenName:twitterScreenName)
+                
+ 
+                completion(user)
+                
+            })
         })
         
         

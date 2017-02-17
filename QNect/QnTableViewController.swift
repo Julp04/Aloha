@@ -39,7 +39,11 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     @IBOutlet var firstNameImageView: UIImageView!
     @IBOutlet var lastNameImageView: UIImageView!
     @IBOutlet var twitterLabel: UILabel!
-    @IBOutlet var twitterButton: UIButton!
+    @IBOutlet var twitterButton: UIButton! {
+        didSet {
+            self.twitterButton.tag = 0
+        }
+    }
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -67,7 +71,12 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         saveUser()
     }
     @IBAction func addTwitter(_ sender: AnyObject) {
-     linkTwitterUser()
+        
+        if self.twitterButton.tag == 0 {
+                linkTwitterUser()
+        }else {
+                unlinkTwitterUser()
+            }
         
     }
     
@@ -94,20 +103,19 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         imagePicker.delegate = self
         createPhotoActionSheet()
         
-        populateFields()
+        self.populateFields()
         
-        
-      
-        
-        
-        
+
         if let profileImage = QnUtilitiy.getProfileImageForCurrentUser() {
             self.profileImageView.image = profileImage
         }else {
-            User.currentUser(userData: (FIRAuth.auth()?.currentUser)!, completion: { (user) in
+            User.currentUser(completion: { (user) in
     
                 QnUtilitiy.getProfileImageForUser(user: user, completion: { (image, error) in
                     self.profileImageView.image = image
+                    
+                    
+                    QnUtilitiy.setProfileImage(image: image!)
                 })
             })
         }
@@ -115,15 +123,15 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+
     }
     
     //MARK: UI Methods
     
-    fileprivate func populateFields()
+    func populateFields()
     {
         
-        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+        User.currentUser( completion: { (user) in
             
             self.firstNameField.text = user.firstName
             self.lastNameField.text = user.lastName
@@ -135,14 +143,16 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
             if let socialPhone = user.socialPhone {
                 self.socialPhoneField.text = socialPhone
             }
-            if let twitterScreenName = user.twitterScreenName {
+            if let twitterScreenName = user.accounts["twitter"]?.screenName {
                self.twitterLabel.text = "Twitter: \(twitterScreenName)"
+                self.twitterButton.tag = 1
                 self.twitterButton.setImage(self.twitterAddedImage, for: UIControlState())
             }else{
                 self.twitterLabel.text = "Add Twitter Account"
                 self.twitterButton.setImage(self.addTwitterImage, for: UIControlState())
+                self.twitterButton.tag = 0
             }
-        }
+        })
         
         
        
@@ -260,13 +270,21 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func linkTwitterUser()
     {
-        QnUtilitiy.followUserOnTwitter(twitterUsername: "hey")
+        TwitterUtility().linkTwitterIn(viewController: self) { (error) in
+            if error != nil {
+                print(error!)
+            }else {
+                self.populateFields()
+            }
+        }
       
     }
     
     fileprivate func unlinkTwitterUser()
     {
-        
+        TwitterUtility().unlinkTwitter {
+            self.populateFields()
+        }
     }
     
     

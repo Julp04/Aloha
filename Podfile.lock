@@ -49,6 +49,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
   - MBProgressHUD (1.0.0)
+  - OAuthSwift (1.1.0)
   - pop (1.0.9)
   - ReachabilitySwift (3)
   - RKDropdownAlert (0.3.0)
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - MBProgressHUD
+  - OAuthSwift (~> 1.1.0)
   - pop (from `https://github.com/facebook/pop.git`)
   - ReachabilitySwift
   - RKDropdownAlert
@@ -104,6 +106,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
@@ -111,6 +114,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: b81b92bb2cdde5f6a0e41c14c65f4684c5fcb702
+PODFILE CHECKSUM: b8724a75f740dfa114e3cd7cef9858c2a6256893
 
 COCOAPODS: 1.2.0

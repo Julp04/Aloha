@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>OAuthSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QNect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,22 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>298B36393D6949523EAAD781BC935B96</key>
+		<key>17930F3F0E9CE092C3D05C113C965266</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2FF95AD0C37FCFB5F780487E5205175D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>397D3B0D3EC3AEA3DE845F533A592CD4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3AED0B76B7BF16A288EF078201E2FEA2</key>
+		<key>2CC07AC26545FE80254CD570C9165438</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4E9CB5FA53E7C59108A3E80AA40371DE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C6F3C1F78412373741D82636971D071</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7C2A2F39B9E6476D7B5F7A9BAF47224</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD57BB58D939310DA0C39A36AAB68F6D</key>
+		<key>BEEB4532C8A0E650EDB5252769349C87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,6 +118,11 @@
 			<true/>
 		</dict>
 		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F344DCB37FD2220B8126F5D76E5BBA47</key>
 		<dict>
 			<key>primary</key>
 			<true/>

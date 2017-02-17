@@ -61,7 +61,11 @@ class SettingsViewController: UITableViewController {
             }
         case 1:
             switch indexPath.row {
-            case 0: break
+            case 0: TwitterUtility().followUserWith(screenName: "qnect_app", completion: { (error) in
+                if error != nil {
+                    print(error!)
+                }
+            })
             default:break
             }
             

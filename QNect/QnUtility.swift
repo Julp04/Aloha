@@ -14,6 +14,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Fabric
 import TwitterKit
+import OAuthSwift
 
 class QnUtilitiy {
     
@@ -115,7 +116,7 @@ class QnUtilitiy {
     static func saveContact(contact:User)
     {
         
-        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+        User.currentUser(completion: { (user) in
             
             let ref = FIRDatabase.database().reference()
             
@@ -128,7 +129,7 @@ class QnUtilitiy {
             contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhone":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
             
             
-        }
+        })
         
         
     
@@ -137,7 +138,7 @@ class QnUtilitiy {
     static func removeConnection(connection:User)
     {
         
-        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+        User.currentUser(completion: { (user) in
         
             let ref = FIRDatabase.database().reference()
             let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(connection.uid)
@@ -150,7 +151,7 @@ class QnUtilitiy {
             
             
             
-        }
+        })
         
 
     }
@@ -162,7 +163,7 @@ class QnUtilitiy {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent("profileImage")
 
-//        try! FileManager().removeItem(at: fileURL)
+        try! FileManager().removeItem(at: fileURL)
         
         
     }
@@ -201,6 +202,7 @@ class QnUtilitiy {
     static func followUserOnTwitter(twitterUsername:String)
     {
         let client = TWTRAPIClient()
+        
         let statusesShowEndpoint = "https://api.twitter.com/1.1/friendships/create.json"
         let params = ["user_id": "1401881", "follow":"true"]
         var clientError : NSError?
@@ -220,6 +222,9 @@ class QnUtilitiy {
             }
         }
     }
+    
+    
+    
  
     
     

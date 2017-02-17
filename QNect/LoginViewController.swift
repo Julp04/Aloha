@@ -44,6 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let logInButton = TWTRLogInButton(logInCompletion: { session, error in
             if let session = session {
                 print("signed in as \(session.userName)");
+                
                 let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
                 print(session.authToken)
                 

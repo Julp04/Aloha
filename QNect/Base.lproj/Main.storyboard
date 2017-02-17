@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -265,27 +264,27 @@
                                 <exclude reference="YRq-WE-Q0t"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="StP-V0-tQs"/>
-                                <exclude reference="bh1-Gw-J36"/>
-                                <exclude reference="cU3-GE-5Uu"/>
-                                <exclude reference="v7b-8U-GRO"/>
-                                <exclude reference="8JY-gj-St5"/>
-                                <exclude reference="YaJ-h7-3Tx"/>
-                                <exclude reference="eCP-Bc-mAq"/>
+                                <exclude reference="ZYP-ca-Ncm"/>
+                                <exclude reference="gsO-Uj-V7V"/>
                                 <exclude reference="24o-k0-2qh"/>
                                 <exclude reference="QL0-Bc-k6Z"/>
                                 <exclude reference="Wd4-kF-0xq"/>
                                 <exclude reference="XJ4-Ex-EBs"/>
+                                <exclude reference="8JY-gj-St5"/>
+                                <exclude reference="YaJ-h7-3Tx"/>
+                                <exclude reference="eCP-Bc-mAq"/>
                                 <exclude reference="A3p-jx-JZr"/>
                                 <exclude reference="EV0-Fw-8xy"/>
                                 <exclude reference="bEA-Ta-uRV"/>
                                 <exclude reference="tsX-Kv-14g"/>
-                                <exclude reference="gsO-Uj-V7V"/>
                                 <exclude reference="LYR-lW-n4b"/>
                                 <exclude reference="vbg-5j-4B6"/>
                                 <exclude reference="kwH-xi-CVr"/>
                                 <exclude reference="uNs-jk-wmo"/>
-                                <exclude reference="ZYP-ca-Ncm"/>
+                                <exclude reference="StP-V0-tQs"/>
+                                <exclude reference="bh1-Gw-J36"/>
+                                <exclude reference="cU3-GE-5Uu"/>
+                                <exclude reference="v7b-8U-GRO"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -298,27 +297,27 @@
                                 <include reference="YRq-WE-Q0t"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="StP-V0-tQs"/>
-                                <include reference="bh1-Gw-J36"/>
-                                <include reference="cU3-GE-5Uu"/>
-                                <include reference="v7b-8U-GRO"/>
-                                <include reference="8JY-gj-St5"/>
-                                <include reference="YaJ-h7-3Tx"/>
-                                <include reference="eCP-Bc-mAq"/>
+                                <include reference="ZYP-ca-Ncm"/>
+                                <include reference="gsO-Uj-V7V"/>
                                 <include reference="24o-k0-2qh"/>
                                 <include reference="QL0-Bc-k6Z"/>
                                 <include reference="Wd4-kF-0xq"/>
                                 <include reference="XJ4-Ex-EBs"/>
+                                <include reference="8JY-gj-St5"/>
+                                <include reference="YaJ-h7-3Tx"/>
+                                <include reference="eCP-Bc-mAq"/>
                                 <include reference="A3p-jx-JZr"/>
                                 <include reference="EV0-Fw-8xy"/>
                                 <include reference="bEA-Ta-uRV"/>
                                 <include reference="tsX-Kv-14g"/>
-                                <include reference="gsO-Uj-V7V"/>
                                 <include reference="LYR-lW-n4b"/>
                                 <include reference="vbg-5j-4B6"/>
                                 <include reference="kwH-xi-CVr"/>
                                 <include reference="uNs-jk-wmo"/>
-                                <include reference="ZYP-ca-Ncm"/>
+                                <include reference="StP-V0-tQs"/>
+                                <include reference="bh1-Gw-J36"/>
+                                <include reference="cU3-GE-5Uu"/>
+                                <include reference="v7b-8U-GRO"/>
                             </mask>
                         </variation>
                     </view>
@@ -3044,8 +3043,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hAa-E6-CTJ"/>
-        <segue reference="tH7-3A-ylf"/>
         <segue reference="Met-8y-vVE"/>
+        <segue reference="5IN-uJ-NIi"/>
         <segue reference="GBK-1Z-kXS"/>
     </inferredMetricsTieBreakers>
 </document>

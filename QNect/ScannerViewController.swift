@@ -376,9 +376,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     phoneAvailable = 1
                 }
                 
-                if contact!.twitterScreenName != "" {
-                    images.append(twitterImage!)
-                }
+//                if contact!.twitterScreenName != "" {
+//                    images.append(twitterImage!)
+//                }
                 
                 
                 menu = SphereMenu(startPoint: CGPoint(x: 100, y: 100), startImage: start!, submenuImages:images, tapToDismiss:true)

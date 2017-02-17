@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141852181E55F2E200471E59 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* Social.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141852171E55F2E200471E59 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
@@ -164,15 +166,16 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
-				B9570E031DCF8AA000685718 /* Constants.swift */,
-				B90968CF1DCFC1FB00B73662 /* QnUtility.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
-				B9570E111DCF9A3A00685718 /* ProfileImage.swift */,
 				B9570E0B1DCF8E1000685718 /* Colors.swift */,
-				B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */,
+				B9570E031DCF8AA000685718 /* Constants.swift */,
+				14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */,
+				B9570E111DCF9A3A00685718 /* ProfileImage.swift */,
 				B92418051DCFB4BD007C0B3B /* QnDecoder.swift */,
 				B92418071DCFB4CA007C0B3B /* QnEncoder.swift */,
-				14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */,
+				B90968CF1DCFC1FB00B73662 /* QnUtility.swift */,
+				141852171E55F2E200471E59 /* Social.swift */,
+				B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */,
 			);
 			name = Utitilities;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */,
 				B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */,
 				B92418041DCFAFDF007C0B3B /* SettingsViewController.swift in Sources */,
+				141852181E55F2E200471E59 /* Social.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +651,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = QNect/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.QNect.QNect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -666,7 +670,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = QNect/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.QNect.QNect;
 				PRODUCT_NAME = "$(TARGET_NAME)";

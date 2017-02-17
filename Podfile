@@ -16,6 +16,7 @@ target 'QNect' do
     pod 'FCAlertView'
     pod 'Fabric'
     pod 'TwitterKit'
+    pod 'OAuthSwift', '~> 1.1.0'
     
 end
 

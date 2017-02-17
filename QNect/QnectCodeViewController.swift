@@ -44,14 +44,14 @@ class QnectCodeViewController: UIViewController {
     fileprivate func createQRCode()
     {
         
-        User.currentUser(userData: (FIRAuth.auth()?.currentUser)!) { (user) in
+        User.currentUser(completion: { (user) in
             let encoder = QnEncoder(user: user)
             let qrCode = QNectCode(message: encoder.encodeSocialCode())
             
             qrCode.color = UIColor.qnPurple
             qrCode.backgroundColor = UIColor.white
             self.qnCodeImageView.image = qrCode.image
-        }
+        })
 
        
     }
