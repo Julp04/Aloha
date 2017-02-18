@@ -60,13 +60,16 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
             
             
             for item in snapshot.children {
-                let user = User(snapshot: item as! FIRDataSnapshot)
-                addedUsers.append(user)
-                user.delegate = self
+                let item = item as! FIRDataSnapshot
+                User.userFromSnapshot(snapshot: item, completion: { (user) in
+                    addedUsers.append(user)
+                    self.userAddedConnectionsModel = ConnectionsModel(connections: addedUsers)
+                    self.tableView.reloadData()
+                })
+                
             }
             
-            self.userAddedConnectionsModel = ConnectionsModel(connections: addedUsers)
-            self.tableView.reloadData()
+           
             
         })
         
@@ -75,17 +78,19 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         let connectionsAddedUser = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("connectionsAddedUser")
         
         connectionsAddedUser.observe(.value, with: { (snapshot) in
-            var contactsAdded = [User]()
+            var connectionsAdded = [User]()
             
             for item in snapshot.children {
-              
-                let contact = User(snapshot: item as! FIRDataSnapshot)
-                contactsAdded.append(contact)
+                let item = item as! FIRDataSnapshot
+                User.userFromSnapshot(snapshot: item, completion: { (user) in
+                    connectionsAdded.append(user)
+                    self.addedUserConnectionsModel = ConnectionsModel(connections: connectionsAdded)
+                    self.tableView.reloadData()
+                })
+
                 
             }
-        
-            self.addedUserConnectionsModel = ConnectionsModel(connections: contactsAdded)
-            self.tableView.reloadData()
+
         })
     }
 

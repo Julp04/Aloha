@@ -121,18 +121,43 @@ class User
     }
     
     
-    init(snapshot:FIRDataSnapshot)
+    static func userFromSnapshot(snapshot:FIRDataSnapshot, completion: @escaping (User) -> Void)
     {
+        var accounts = [String:Account]()
+        
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.firstName = snapshotValue["firstName"] as! String
-        self.lastName = snapshotValue["lastName"] as! String
-        self.socialEmail = snapshotValue["socialEmail"] as? String
-        self.socialPhone = snapshotValue["socialPhone"] as? String
-        self.username = snapshotValue["username"] as! String
-        self.uid = snapshotValue["uid"] as! String
-        self.qnectEmail = snapshotValue["qnectEmail"] as! String
+        let firstName = snapshotValue["firstName"] as! String
+        let lastName = snapshotValue["lastName"] as! String
+        let socialEmail = snapshotValue["socialEmail"] as? String
+        let socialPhone = snapshotValue["socialPhone"] as? String
+        let username = snapshotValue["username"] as! String
+        let uid = snapshotValue["uid"] as! String
+        let qnectEmail = snapshotValue["qnectEmail"] as! String
         
+        let ref = FIRDatabase.database().reference()
+        let usersRef = ref.child("users")
+        let uidRef = usersRef.child(uid)
         
+        let accountsRef = uidRef.child("accounts")
+        
+        accountsRef.observe(.value, with: { (snapshot) in
+            if snapshot.exists() {
+                for child in snapshot.children {
+                    let child = child as! FIRDataSnapshot
+                    let values = child.value as! [String:Any?]
+                    
+                    let screenName = values["screenName"] as! String
+                    let accountType = child.key
+                    let account = Account(screenName: screenName)
+                    accounts[accountType] = account
+                    
+                }
+            }
+            
+            let twitterScreenName = accounts["twitter"]?.screenName
+            
+            let user = User(username: username, firstName: firstName, lastName: lastName, socialPhone: socialPhone, socialEmail: socialEmail, uid: uid, qnectEmail:qnectEmail, twitterScreenName:twitterScreenName)
+            
         
         
         let storageRef = FIRStorage.storage().reference()
@@ -148,15 +173,14 @@ class User
                 print(error!)
             }else {
                 let image = UIImage(data: data!)
-                self.profileImage = image
-                self.delegate?.imageDownloaded(image: image!)
+                user.profileImage = image
+//                user.delegate?.imageDownloaded(image: image!)
+                completion(user)
             }
-        }
-
-        
+            }
+        })
     }
 
-    
     static func currentUser(completion: @escaping (User) -> Void)
     {
         
