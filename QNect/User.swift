@@ -49,7 +49,6 @@ class User
     var accounts = [String:Account]()
     
     
-    var socialAccounts = [String:String]()
     var profileImage:UIImage?
     
     weak var delegate:ImageDownloaderDelegate?
@@ -67,8 +66,12 @@ class User
         
         self.qnectEmail = qnectEmail
         
-        let twitterAccount = TwitterAccount(screenName: twitterScreenName)
-        self.accounts["twitter"] = twitterAccount
+        if twitterScreenName == "" || twitterScreenName == nil {
+            
+        }else {
+            let twitterAccount = TwitterAccount(screenName: twitterScreenName)
+            self.accounts["twitter"] = twitterAccount
+        }
         
 
     }

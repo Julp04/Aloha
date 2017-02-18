@@ -11,39 +11,37 @@ import Foundation
 class ContactModel
 {
     var contact:User
-    var socialAccounts = [String:String]()
     
     init(contact:User)
     {
         self.contact = contact
-        
-//        if contact.twitterScreenName != "" {
-//            socialAccounts[AccountsKey.Twitter] = contact.twitterScreenName
-//        }
     }
     
 
     
     func numberOfSocialAccounts() -> Int
     {
-        return socialAccounts.count
+        return contact.accounts.count
     }
     
     func socialAccountAtIndex(_ index:Int) -> String
     {
-        let accountNames = [String](socialAccounts.values)
-        return accountNames[index]
+        let accounts = [Account] (contact.accounts.values)
+        let screenName = accounts[index].screenName!
+        
+        return screenName
+        
     }
     
     func socialAccountTypeAtIndex(_ index:Int) -> String
     {
-        let keys = [String](socialAccounts.keys)
+        let keys = [String](contact.accounts.keys)
         return keys[index]
     }
     
     func imageForSocialAccountAtIndex(_ index:Int) -> UIImage?
     {
-        let services = [String](socialAccounts.keys)
+        let services = [String](contact.accounts.keys)
         let service = services[index]
         
         switch service
@@ -59,7 +57,7 @@ class ContactModel
     
     func phoneNumberForContact() -> String
     {
-        if contact.socialPhone != nil {
+        if contact.socialPhone != "" {
             let mutableString = NSMutableString(string: contact.socialPhone!)
             mutableString.insert("(", at: 0)
             mutableString.insert(")-", at: 4)

@@ -66,21 +66,20 @@ class TwitterUtility {
                     if userExists {
                         let error = NSError(domain: "", code: 409, userInfo: [NSLocalizedDescriptionKey:"This Twitter account is already linked with another user"])
                         completion(error)
-                        return
+                        
+                    }else {
+                        let ref = FIRDatabase.database().reference()
+                        let usersRef = ref.child("users")
+                        
+                        let currentUser = FIRAuth.auth()?.currentUser!
+                        let uidRef = usersRef.child((currentUser?.uid)!)
+                        let accountsRef = uidRef.child("accounts")
+                        let twitterRef = accountsRef.child("twitter")
+                        
+                        twitterRef.setValue(["screenName":screenName,"token":token, "tokenSecret":tokenSecret])
                     }
                 })
                 
-                
-                
-                let ref = FIRDatabase.database().reference()
-                let usersRef = ref.child("users")
-                
-                let currentUser = FIRAuth.auth()?.currentUser!
-                let uidRef = usersRef.child((currentUser?.uid)!)
-                let accountsRef = uidRef.child("accounts")
-                let twitterRef = accountsRef.child("twitter")
-                
-                twitterRef.setValue(["screenName":screenName,"token":token, "tokenSecret":tokenSecret])
                 
         },
             failure: { error in

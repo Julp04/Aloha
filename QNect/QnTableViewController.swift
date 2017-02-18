@@ -272,8 +272,11 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     {
         TwitterUtility().linkTwitterIn(viewController: self) { (error) in
             if error != nil {
-                print(error!)
+                
+                RKDropdownAlert.title("Sorry!", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
             }else {
+                //User succesfully linked with Twitter
+                
                 self.populateFields()
             }
         }
@@ -296,12 +299,6 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         return kHeaderHeight
     }
     
-    //MARK: Alert Functions
-    
-    fileprivate func showAccountAlreadyLinkedError()
-    {
-        
-    }
     
     //MARK: Keyboard Functions
     
