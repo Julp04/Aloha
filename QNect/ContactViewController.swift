@@ -269,14 +269,20 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func addContact()
     {
         let contactManager = ContactManager()
-        if contactManager.addressBookStatus() == .denied {
+        if contactManager.contactStoreStatus() == .denied {
             showCantAddContactAlert()
-        } else if contactManager.addressBookStatus() == .authorized {
-            contactManager.addContact(contact!, image:contactImage)
-            showContactAddedAlert()
-            animateToSuccessButton(addContactButton)
+        } else if contactManager.contactStoreStatus() == .authorized {
+            contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
+                if success {
+                    showContactAddedAlert()
+                    animateToSuccessButton(addContactButton)
+                }else {
+                    RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
+                }
+            })
+            
         } else {
-            contactManager.promptForAddressBookRequestAccess()
+            contactManager.requestAccessToContacts()
         }
     }
     

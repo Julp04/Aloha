@@ -9,25 +9,33 @@
 import UIKit
 import Foundation
 import AddressBook
+import Contacts
 
 
 class ContactManager
 {
-    var addressBookRef: ABAddressBook?
+    var store = CNContactStore()
     
     init()
     {
-        if addressBookStatus() == .denied {
-            promptForAddressBookRequestAccess()
+        if contactStoreStatus() == .denied {
+            requestAccessToContacts()
         } else {
-            addressBookRef = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
         }
     }
     
-    func promptForAddressBookRequestAccess() {
-        
-        ABAddressBookRequestAccessWithCompletion(addressBookRef, { (success, error) -> Void in
-        })
+    func requestAccessToContacts()
+    {
+        switch CNContactStore.authorizationStatus(for: .contacts){
+        case .authorized: break
+            
+        case .notDetermined:
+            store.requestAccess(for: .contacts){succeeded, errror in
+                
+            }
+        default:
+            print("Not handled")
+        }
     }
     
     func openSettings() {
@@ -35,58 +43,66 @@ class ContactManager
         UIApplication.shared.openURL(url!)
     }
     
-    func addContact(_ contact: User, image:UIImage?) {
-        
-        let contactRecord: ABRecord = ABPersonCreate().takeRetainedValue()
-        ABRecordSetValue(contactRecord, kABPersonFirstNameProperty, contact.firstName as CFTypeRef!, nil)
-        ABRecordSetValue(contactRecord, kABPersonLastNameProperty, contact.lastName as CFTypeRef!, nil)
-        
-        if let image = image {
-            let imageData = UIImageJPEGRepresentation(image, 0.5)!
-            let data = CFDataCreate(nil, (imageData as NSData).bytes.bindMemory(to: UInt8.self, capacity: imageData.count), imageData.count)
-            ABPersonSetImageData(contactRecord, data, nil)
-            
-        }
-        
-        ABRecordSetValue(contactRecord, kABPersonNoteProperty, "Added from QNect" as CFTypeRef!, nil)
-        
-        
-        let phoneNumbers: ABMutableMultiValue =
-        ABMultiValueCreateMutable(ABPropertyType(kABMultiStringPropertyType)).takeRetainedValue()
-        ABMultiValueAddValueAndLabel(phoneNumbers, contact.socialPhone as CFTypeRef!, kABPersonPhoneMobileLabel, nil)
-        ABRecordSetValue(contactRecord, kABPersonPhoneProperty, phoneNumbers, nil)
-        
-        
-        let email: ABMutableMultiValue =
-            ABMultiValueCreateMutable(ABPropertyType(kABMultiStringPropertyType)).takeRetainedValue()
-         ABMultiValueAddValueAndLabel(email, contact.socialEmail! as CFTypeRef!, kABOtherLabel, nil)
-        ABRecordSetValue(contactRecord, kABPersonEmailProperty, email, nil)
-        
-        ABAddressBookAddRecord(addressBookRef, contactRecord, nil)
-        saveAddressBookChanges()
-        
-    }
-    
-    
-    fileprivate func saveAddressBookChanges() {
-        if ABAddressBookHasUnsavedChanges(addressBookRef){
-            var err: Unmanaged<CFError>? = nil
-            let savedToAddressBook = ABAddressBookSave(addressBookRef, &err)
-            if savedToAddressBook {
-                print("Successully saved changes.")
-            } else {
-                print("Couldn't save changes.")
-            }
-        } else {
-            print("No changes occurred.")
-        }
-    }
-    
-    func addressBookStatus() -> ABAuthorizationStatus
+    func addContact(_ connection: User, image: UIImage?, completion:(Bool) -> Void)
     {
-        let authorizationStatus = ABAddressBookGetAuthorizationStatus()
+        let contact = CNMutableContact()
+        contact.givenName = connection.firstName
+        contact.familyName = connection.lastName
         
-        switch authorizationStatus {
+        
+        //Phone numbers
+        if let phoneNumber = connection.socialPhone {
+            let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber))
+            contact.phoneNumbers = [homePhone]
+        }
+        
+        
+        //Email
+        if let email = connection.socialEmail {
+            let homeEmail = CNLabeledValue(label: CNLabelHome, value: email as NSString)
+            contact.emailAddresses = [homeEmail]
+        }
+        
+        //Social Accounts
+        if let twitterScreenName = connection.accounts["twitter"]?.screenName {
+            let twitterProfile = CNLabeledValue(label: "Twitter", value:
+                CNSocialProfile(urlString: nil, username: twitterScreenName,
+                                userIdentifier: nil, service: CNSocialProfileServiceTwitter))
+            contact.socialProfiles = [twitterProfile]
+        }
+        
+        //Image
+        if let image = image {
+            let data = UIImagePNGRepresentation(image)
+            contact.imageData = data
+        }
+        
+        
+        //birthday
+//        let birthday = NSDateComponents()
+//        birthday.year = 1980
+//        birthday.month = 9
+//        birthday.day = 27
+//        fooBar.birthday = birthday
+        
+        //Save Contact
+        let request = CNSaveRequest()
+        request.add(contact, toContainerWithIdentifier: nil)
+        do{
+            try store.execute(request)
+            completion(true)
+        } catch {
+            completion(false)
+        }
+
+    }
+ 
+    
+    func contactStoreStatus() -> CNAuthorizationStatus
+    {
+        let status = CNContactStore.authorizationStatus(for: .contacts)
+        
+        switch status {
         case .denied, .restricted:
             return .denied
         case .authorized:

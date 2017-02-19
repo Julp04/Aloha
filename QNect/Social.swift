@@ -76,7 +76,9 @@ class TwitterUtility {
                         let accountsRef = uidRef.child("accounts")
                         let twitterRef = accountsRef.child("twitter")
                         
+                        twitterRef.keepSynced(true)
                         twitterRef.setValue(["screenName":screenName,"token":token, "tokenSecret":tokenSecret])
+                        
                     }
                 })
                 
@@ -95,12 +97,14 @@ class TwitterUtility {
         let screenNameRef = twitterRef.child(screenName)
         
         
-        
-        screenNameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        screenNameRef.keepSynced(true)
+        twitterRef.keepSynced(true)
+        screenNameRef.observeSingleEvent(of:.value, with: { (snapshot) in
             
             if snapshot.exists() {
                 completion(true)
             }else {
+                twitterRef.keepSynced(true)
                 twitterRef.setValue([screenName:FIRAuth.auth()?.currentUser?.email])
                 completion(false)
             }
@@ -121,24 +125,26 @@ class TwitterUtility {
             let accountsRef = uidRef.child("accounts")
             let twitterAccountRef = accountsRef.child("twitter")
             
+            twitterAccountRef.keepSynced(true)
             twitterAccountRef.removeValue()
+            
+        
             
             let twitterRef = ref.child("twitter")
             let screenNameRef = twitterRef.child((user.accounts["twitter"]?.screenName)!)
             
+            
+            screenNameRef.keepSynced(true)
             screenNameRef.removeValue()
             
+
             
             user.accounts.removeValue(forKey: "twitter")
+            
             
             completion()
             
         }
-        
-        
-        
-        
-        
     }
     
     
@@ -152,8 +158,9 @@ class TwitterUtility {
         let uidRef = usersRef.child((currentUser?.uid)!)
         let accountsRef = uidRef.child("accounts")
         let twitterRef = accountsRef.child("twitter")
+        twitterRef.keepSynced(true)
         
-        twitterRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        twitterRef.observeSingleEvent(of:.value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {
@@ -173,6 +180,7 @@ class TwitterUtility {
         let uidRef = usersRef.child((currentUser?.uid)!)
         let accountsRef = uidRef.child("accounts")
         let twitterRef = accountsRef.child("twitter")
+        twitterRef.keepSynced(true)
         
         twitterRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -193,22 +201,6 @@ class TwitterUtility {
         })
     }
     
-    func testTwitter(_ oauthswift: OAuth1Swift) {
-        
-        let _ = oauthswift.client.post(
-            "https://api.twitter.com/1.1/friendships/create.json", parameters: ["screen_name":"qnect_app"],
-            success: { response in
-                let jsonDict = try? response.jsonObject()
-                print(jsonDict as Any)
-        }, failure: { error in
-            print(error)
-        }
-        )
-        
-        
-        
-        
-    }
     
     static func accessTwitter(){
         let accountStore = ACAccountStore()

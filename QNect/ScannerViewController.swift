@@ -12,6 +12,7 @@ import SafariServices
 import MessageUI
 import ReachabilitySwift
 import FCAlertView
+import RKDropdownAlert
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, SphereMenuDelegate, MFMessageComposeViewControllerDelegate, UIWebViewDelegate {
     
@@ -104,13 +105,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func addContact()
     {
         let contactManager = ContactManager()
-        if contactManager.addressBookStatus() == .denied {
+        if contactManager.contactStoreStatus() == .denied {
             showCantAddContactAlert()
-        } else if contactManager.addressBookStatus() == .authorized {
-            contactManager.addContact(contact!, image:contactImage)
-            showContactAddedToast()
+        } else if contactManager.contactStoreStatus() == .authorized {
+            contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
+                if success {
+                    showContactAddedToast()
+                }else {
+                    RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
+                }
+            })
+            
         } else {
-            contactManager.promptForAddressBookRequestAccess()
+            contactManager.requestAccessToContacts()
         }
     }
     
