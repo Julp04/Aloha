@@ -14,53 +14,55 @@ public extension UIColor {
   }
     
     
-    class var qnTeal: UIColor {
+   @nonobjc class var qnTeal: UIColor {
         get{
             return UIColor(r: 59, g: 199, b: 216, a: 1)
         }
     }
   
-    class var qnGreenTeal: UIColor {
+   @nonobjc class var qnGreenTeal: UIColor {
         get {
             return UIColor(r: 77, g: 197, b: 198, a: 1)
         }
     }
     
-    class var qnBlue:UIColor {
+   @nonobjc class var qnBlue:UIColor {
         get {
             return UIColor(r: 54, g: 145, b: 204, a: 1)
         }
     }
 
 
-    class var  qnPurple:UIColor {
+   @nonobjc class var  qnPurple:UIColor {
         get {
             return UIColor(r: 81, g: 80, b: 190, a: 1)
         }
     }
     
-    class var qnRed:UIColor {
+   @nonobjc class var qnRed:UIColor {
         get {
             return UIColor(r: 175, g: 12, b: 12, a: 1)
         }
     }
   
-    class var qnOrange:UIColor {
+   @nonobjc class var qnOrange:UIColor {
         get {
             return UIColor(r: 255, g: 128, b: 0, a: 1)
         }
     }
   
-    class var qnGreen:UIColor{
+   @nonobjc class var qnGreen:UIColor{
         get {
             return UIColor(r: 44, g: 158, b: 43, a: 1)
         }
     }
   
-    class var twitter:UIColor{
+   @nonobjc class var twitter:UIColor{
         get{
             return UIColor(r: 47, g: 119, b: 230, a: 1)
         }
     }
+    
+   
     
 }

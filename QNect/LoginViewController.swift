@@ -127,7 +127,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -248,6 +248,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func loginUser(_ sender: AnyObject) {
         loginUser()
+    }
+    
+    //MARK: - Status Bar
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
     
 }

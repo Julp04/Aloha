@@ -3042,9 +3042,9 @@
         <image name="twitter_circle" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hAa-E6-CTJ"/>
-        <segue reference="Met-8y-vVE"/>
         <segue reference="5IN-uJ-NIi"/>
+        <segue reference="B0h-I9-3fT"/>
+        <segue reference="NVW-6j-lTO"/>
         <segue reference="GBK-1Z-kXS"/>
     </inferredMetricsTieBreakers>
 </document>
