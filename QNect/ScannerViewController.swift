@@ -110,7 +110,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         } else if contactManager.contactStoreStatus() == .authorized {
             contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
                 if success {
-                    showContactAddedToast()
+                    
                 }else {
                     RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
                 }
@@ -561,16 +561,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         AlertUtility.showConnectionAlert()
     }
     
-    func showContactAddedToast()
-    {
-        
-    }
-    
-    func showTwitterNotLinkedAlert()
-    {
-        
-        
-    }
+   
     
     func openSettings() {
         let url = URL(string: UIApplicationOpenSettingsURLString)
