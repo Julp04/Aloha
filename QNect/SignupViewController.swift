@@ -136,7 +136,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         
-        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -393,20 +393,8 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
     func segueToMainApp()
     {
         self.performSegue(withIdentifier: SegueIdentifiers.Signedup, sender: self)
-        let authorizationStatus = ABAddressBookGetAuthorizationStatus()
         
-        
-        switch authorizationStatus {
-        case .denied, .restricted:
-            //1
-            print("Denied")
-        case .authorized:
-            //2
-            print("Authorized")
-        case .notDetermined:
-            //3
-            print("Not Determined")
-        }
+
     }
     
     
@@ -435,5 +423,12 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             self.tableView.contentInset = UIEdgeInsets.zero;
             self.tableView.scrollIndicatorInsets = UIEdgeInsets.zero;
         })
+    }
+    
+    
+    //MARK: Status Bar
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
 }

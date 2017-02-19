@@ -61,7 +61,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         tableView.separatorStyle = .none
         
-        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         
         
@@ -298,9 +297,17 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     
   
-    
+    //Todo:Follow contact on twitter implementation
     func followContactOnTwitter()
     {
+        let screenName = contact!.accounts["twitter"]!.screenName!
+        
+        TwitterUtility().followUserWith(screenName: screenName) { (error) in
+            if error != nil {
+                RKDropdownAlert.title("You are now following \(screenName) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
+            }
+        }
+        
        
     }
     
@@ -377,6 +384,13 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             print("Message was sent")
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    
+    //MARK: Status Bar
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
     
     
