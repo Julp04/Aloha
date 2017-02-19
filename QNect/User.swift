@@ -91,36 +91,6 @@ class User
     }
     
     
-    
-    init(authData: FIRUser) {
-        self.uid = authData.uid
-        self.qnectEmail = authData.email!
-        self.username = ""
-        self.firstName = ""
-        self.lastName = ""
-        self.socialPhone = ""
-        self.socialEmail = ""
-
-        let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
-        let uidRef = usersRef.child(uid)
-        let userInfoRef = uidRef.child("userInfo")
-        
-        
-        userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-        
-            
-            self.username = value?["username"] as? String ?? ""
-            self.firstName = value? ["firstName"] as? String ?? ""
-            self.lastName = value?["lastName"] as? String ?? ""
-            self.socialEmail = value?["socialEmail"] as? String ?? ""
-            self.socialPhone = value?["socialPhone"] as? String ?? ""
-
-        })
-    }
-    
-    
     static func userFromSnapshot(snapshot:FIRDataSnapshot, completion: @escaping (User) -> Void)
     {
         var accounts = [String:Account]()
@@ -174,7 +144,6 @@ class User
             }else {
                 let image = UIImage(data: data!)
                 user.profileImage = image
-//                user.delegate?.imageDownloaded(image: image!)
                 completion(user)
             }
             }
