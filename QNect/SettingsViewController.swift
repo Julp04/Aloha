@@ -14,11 +14,7 @@ import RKDropdownAlert
 class SettingsViewController: UITableViewController {
 
     
-    @IBOutlet weak var quickAddSwitch: UISwitch! {
-        didSet {
-            quickAddSwitch.isOn = Defaults["QuickScan"].bool!
-        }
-    }
+    
     @IBOutlet weak var webpageSwitch: UISwitch! {
         didSet {
             webpageSwitch.isOn = Defaults["AutomaticURLOpen"].bool!
@@ -32,12 +28,6 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func webPageSwitchAction(_ sender: UISwitch) {
         Defaults["AutomaticURLOpen"] = sender.isOn
-        Defaults.synchronize()
-    }
-    @IBAction func quickAddSwitchAction(_ sender: AnyObject) {
-       
-        let switchControl = sender as! UISwitch
-        Defaults["QuickScan"] = switchControl.isOn
         Defaults.synchronize()
     }
     //MARK: LifeCycle Methods
@@ -61,11 +51,7 @@ class SettingsViewController: UITableViewController {
             }
         case 1:
             switch indexPath.row {
-            case 0: TwitterUtility().followUserWith(screenName: "qnect_app", completion: { (error) in
-                if error != nil {
-                    print(error!)
-                }
-            })
+            case 0: break
             default:break
             }
             
@@ -102,14 +88,9 @@ class SettingsViewController: UITableViewController {
     func resetPassword()
     {
         
-        
-        
-        
-      
         let alert = FCAlertView()
         
       
-        
         alert.addButton("Cancel", withActionBlock: {
           
         })

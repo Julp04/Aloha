@@ -15,7 +15,7 @@ class TutorialContainerViewController: UIViewController, UIPageViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIApplication.shared.setStatusBarHidden(true, with: .none)
+        
         
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
@@ -57,6 +57,10 @@ class TutorialContainerViewController: UIViewController, UIPageViewControllerDel
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return 3
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
 }

@@ -14,7 +14,7 @@ import ReachabilitySwift
 import FCAlertView
 import RKDropdownAlert
 
-class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, SphereMenuDelegate, MFMessageComposeViewControllerDelegate, UIWebViewDelegate {
+class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UIWebViewDelegate {
     
     //MARK: Strings
     
@@ -23,19 +23,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     let kDismissString = "Dismiss"
     let kPinchVelocity = 8.0
     var scannedContact = 0
-    var gotVideo = 0
     var contactImage:UIImage?
-    var phoneAvailable = 0
-    var twitterAvailable = 0
-    var oldContactString = ""
-    var oldVideoString = ""
-    var playerPaused = 0
-    var pinVideo = 0
     var showURLAlert = 0
-    var showingContact = 0
-    var lookingAtVideo = 0
     
-    let youTubeVideoHTML = "<!DOCTYPE html><html><head><style>body{margin:0px 0px 0px 0px;}</style></head> <body> <div id=\"player\"></div> <script> var tag = document.createElement('script'); tag.src = \"http://www.youtube.com/player_api\"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; function onYouTubePlayerAPIReady() { player = new YT.Player('player',{ width:'%0.0f', height:'%0.0f', videoId:'%@', playerVars:{playsinline:1}, events: { 'onReady': onPlayerReady, } }); } function onPlayerReady(event) { event.target.playVideo(); } </script> </body> </html>"
+    //If the item has just been recently picked or removed, then the background is selected so that the user knows which item they are currently working on
+    // Set picked item back to false so other rows do not become selected when scrolling through list, because this method is called as rows reload.
+    
     
     
     //MARK: Properties
@@ -45,39 +38,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         handleGesture(sender)
     }
     
-    let screenWidth = UIScreen.main.bounds.size.width
+    
     let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var message:String?
     var contact:User?
     var qrCodeFrameView = UIImageView()
-    var menu:SphereMenu?
-    var images = [UIImage]()
-    var containerView = UIView()
-    var videoView:UIWebView?
-    var indicator: UIActivityIndicatorView?
     
     //MARK: LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        containerView.frame = CGRect(x: 40, y: 40, width: 200, height: 200)
-        containerView.isHidden = true
-        
-        videoView = UIWebView(frame: CGRect(x: 40, y: 40, width: 350, height: 150))
-        videoView?.allowsInlineMediaPlayback = true
-        videoView?.mediaPlaybackRequiresUserAction = false
-        videoView?.isHidden = true
-        videoView?.transform = CGAffineTransform(scaleX: 0, y: 0)
-        
-        videoView?.delegate = self
-        
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 100, y: 75, width: 10, height: 10))
-        indicator?.tintColor = UIColor.qnPurple
-        videoView?.addSubview(indicator!)
         
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -87,127 +60,17 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         createCaptureSession()
         
         
-        qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
-        qrCodeFrameView.layer.borderWidth = 2
-        view.addSubview(qrCodeFrameView)
-        view.bringSubview(toFront: qrCodeFrameView)
-        
-        view.addSubview(containerView)
-        view.bringSubview(toFront: containerView)
-        
-        self.view.addSubview(videoView!)
-        view.bringSubview(toFront: videoView!)
-        
-        
         
     }
     
-    func addContact()
-    {
-        let contactManager = ContactManager()
-        if contactManager.contactStoreStatus() == .denied {
-            showCantAddContactAlert()
-        } else if contactManager.contactStoreStatus() == .authorized {
-            contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
-                if success {
-                    
-                }else {
-                    RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
-                }
-            })
-            
-        } else {
-            contactManager.requestAccessToContacts()
-        }
-    }
+
     
-    func saveConnection()
-    {
-//        QnUtilitiy.saveConnection(self.contact!) { (error) in
-//            if error == nil{
-//                self.sendPushNotification()
-//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage("\(self.contact!.firstName) \(self.contact!.lastName) has been saved as a QNection!", withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-//                })
-//                
-//                
-//                
-//            }else {
-//                CRToastManager.showNotification(options: AlertOptions.navBarOptionsWithMessage((error?.localizedDescription)!, withColor: UIColor.qnOrangeColor()), completionBlock: { () -> Void in
-//                })
-//            }
-//        }
-    }
-    
-    func sendPushNotification()
-    {
-    }
-    
-    
-    func followContactOnTwitter()
-    {
-    }
-    
-    func sendMessage()
-    {
-        if let phoneNumber = contact?.socialPhone {
-            let messageVC = MFMessageComposeViewController()
-            
-            messageVC.recipients = ["\(phoneNumber)"]
-            messageVC.messageComposeDelegate = self
-            
-            self.present(messageVC, animated: false, completion: nil)
-        }
-        
-        
-    }
-    
-    func makeCall()
-    {
-        if let phoneNumber = contact?.socialPhone {
-            let phone = "tel://\(phoneNumber)";
-            let url = URL(string:phone)!;
-            UIApplication.shared.openURL(url);
-        }
-        
-    }
-    
-    func sphereDidSelected(_ index: Int) {
-        
-        switch index {
-        case 0:
-            //add contact to phone
-            
-            addContact()
-        case 1:
-            //save connection to app
-             saveConnection()
-        case 2:
-            if phoneAvailable == 1 {
-                makeCall()
-            }else {
-                //follow on twitter
-                followContactOnTwitter()
-            }
-        case 3:
-           //text message
-          sendMessage()
-        case 4:
-            //follow on twitter
-          followContactOnTwitter()
-        default:
-            break
-        }
-        
-    }
-    
-    
+
   
     
     override func viewWillAppear(_ animated: Bool) {
         startCaptureSession()
-        containerView.isHidden = true
-        scannedContact = 0
-        menu?.removeFromSuperview()
+
     }
     
     //MARK: UI Methods
@@ -271,20 +134,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         if metadataObjects == nil || metadataObjects.count == 0 {
     
-            containerView.isHidden = true
             
-            showingContact = 0
-            lookingAtVideo = 0
-            
-          
-            if pinVideo == 1 {
-                self.videoView?.isHidden = false
-                
-            }else {
-                self.videoView?.isHidden = true
-                pauseVideo()
-                self.videoView?.transform = CGAffineTransform(scaleX: 0, y: 0)
-            }
             
             showURLAlert = 0
 
@@ -327,14 +177,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         }
                     }
                 
-                    
-    
-                    
-                }else if metadataObj.stringValue.range(of: "youtube:") != nil && metadataObj.stringValue.range(of: ".com") == nil {
-                    
-                    lookingAtVideo = 1
-                    handleYoutubeVideo(metadataObj, barCodeObject: barCodeObject)
-             
                 }
                 
                 
@@ -352,141 +194,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
         
-        showingContact = 1
-        
-         //Basically checking if its a different QNectcode or not, if it is we have to remove the sphere menu, because it will be different next time we scan it
-        if oldContactString != metadataObj.stringValue {
-            oldContactString = metadataObj.stringValue
-            scannedContact = 0
-            menu?.removeFromSuperview()
-        }
-        
-        
     
-        if Defaults["QuickScan"].bool == true {
-            
-            if scannedContact == 0 {
-                let start = UIImage(named: "scanner_image")
-                
-                let callImage = UIImage(named: "call_button")
-                let messageImage = UIImage(named: "message_button")
-                let twitterImage = UIImage(named: "twitter_circle")
-                let contactImage = UIImage(named: "contact_circle")
-                let qnectImage = UIImage(named: "qnect_circle")
-                
-                var images = [contactImage!, qnectImage!]
-                
-                
-                if contact!.socialPhone != "" {
-                    images.append(callImage!)
-                    images.append(messageImage!)
-                    phoneAvailable = 1
-                }
-                
-//                if contact!.twitterScreenName != "" {
-//                    images.append(twitterImage!)
-//                }
-                
-                
-                menu = SphereMenu(startPoint: CGPoint(x: 100, y: 100), startImage: start!, submenuImages:images, tapToDismiss:true)
-                menu!.delegate = self
-                
-                self.containerView.addSubview(menu!)
-                self.containerView.isHidden = false
-                self.scannedContact = 1
-                
-                
-//                if Reachability.isConnectedToInternet() {
-//                    QnUtilitiy.retrieveContactProfileImageData(contact!, completion: { (data) in
-//                        
-//                        let image = UIImage(data: data)
-//                        self.contactImage = image
-//                        
-//                        self.menu?.start?.image = image
-//                        
-//                    })
-//                }else {
-//                    let image = ProfileImage.createProfileImage(contact!.firstName, last: contact!.lastName)
-//                    self.contactImage = image
-//                    self.menu?.start?.image = image
-//                }
-              
-            }
-            
-            let center = centerForBarcodeObject(barCodeObject)
-            
-            containerView.center = center
-            containerView.isHidden = false
-            containerView.isUserInteractionEnabled = true
-        }else {
-            self.stopCaptureSession()
-            segueToContactViewController()
-        }
-
+        self.stopCaptureSession()
+        segueToContactViewController()
+    
         
     }
-    
-    
-    //MARK : Youtube Handler Functions
-    func playVideoWithId(_ videoId: String) {
-        let html: String = String(format: youTubeVideoHTML, self.videoView!.frame.size.width, self.videoView!.frame.size.height, videoId)
-        
-        videoView!.loadHTMLString(html, baseURL: Bundle.main.resourceURL)
-        indicator?.startAnimating()
-        
-    }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        indicator?.stopAnimating()
-    }
-    
-    func handleYoutubeVideo(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
-    {
-        if oldVideoString != metadataObj.stringValue{
-            oldVideoString = metadataObj.stringValue
-            gotVideo = 0
-        }
-        
-        videoView?.isHidden = false
-        
-        
-        if playerPaused == 1 {
-            resumeVideo()
-        }
-        
-        let center = centerForBarcodeObject(barCodeObject)
-    
-        if pinVideo == 0 {
-            //Show youtube video on screen
-            
-            videoView?.center = center
-            
-        }else {
-            videoView?.center = (videoView?.center)!
-        }
-        
-        if gotVideo == 0 {
-            
-            UIView.animate(withDuration: 0.5
-                , animations: {
-                    self.videoView?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                }, completion: nil)
-            
-            gotVideo = 1
-            
-            let message = metadataObj.stringValue
-            let components = message?.components(separatedBy: ":")
-            
-            let videoID = components?[1]
-            
-            playVideoWithId(videoID!)
-            
-        }else {
-            self.videoView?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        }
-        
-    }
-    
     
     
     
@@ -539,92 +252,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    
-    
-    //MARK: - Alerts
-    
-    func showCantAddContactAlert() {
-        let cantAddContactAlert = UIAlertController(title: "Cannot Add Contact",
-                                                    message: "You must give the app permission to add the contact first.",
-                                                    preferredStyle: .alert)
-        cantAddContactAlert.addAction(UIAlertAction(title: "Change Settings",
-            style: .default,
-            handler: { action in
-                self.openSettings()
-        }))
-        cantAddContactAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(cantAddContactAlert, animated: true, completion: nil)
-    }
-    
-    func showInternetError()
-    {
-        AlertUtility.showConnectionAlert()
-    }
-    
-   
-    
-    func openSettings() {
-        let url = URL(string: UIApplicationOpenSettingsURLString)
-        UIApplication.shared.openURL(url!)
-    }
-    
-    //MARK:Message Delegates
-    
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        switch (result) {
-        case MessageComposeResult.cancelled:
-            print("Message was cancelled")
-            self.dismiss(animated: true, completion: nil)
-        case MessageComposeResult.failed:
-            print("Message failed")
-            self.dismiss(animated: true, completion: nil)
-        case MessageComposeResult.sent:
-            print("Message was sent")
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        scannedContact = 0
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-        if (showingContact == 0 && lookingAtVideo == 1) || pinVideo == 1{
-            handlePinningOfVideo()
-        }
-    }
-    
-    func handlePinningOfVideo()
-    {
-        if pinVideo == 0{
-            pinVideo = 1
-            lookingAtVideo = 0
-        }else {
-            pinVideo = 0
-            UIView.animate(withDuration: 0.5, animations: {
-                self.videoView?.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.pauseVideo()
-                }, completion: { (bool) in
-                    
-            })
-        }
-    }
-    
-    
-    func pauseVideo()
-    {
-       
-        _ = self.videoView?.stringByEvaluatingJavaScript(from: "player.pauseVideo()")
-        playerPaused = 1
-    }
-    
-    func resumeVideo()
-    {
-        _ = self.videoView?.stringByEvaluatingJavaScript(from: "player.playVideo()")
-        playerPaused = 0
-    }
-    
-   
-    
+
   
     
     
