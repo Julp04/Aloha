@@ -114,37 +114,37 @@ class TwitterUtility {
     func unlinkTwitter(completion: @escaping (Void) -> Void)
     {
         
-        User.currentUser { (user) in
-            
-            
-            let ref = FIRDatabase.database().reference()
-            let usersRef = ref.child("users")
-            
-            let currentUser = FIRAuth.auth()?.currentUser!
-            let uidRef = usersRef.child((currentUser?.uid)!)
-            let accountsRef = uidRef.child("accounts")
-            let twitterAccountRef = accountsRef.child("twitter")
-            
-            twitterAccountRef.keepSynced(true)
-            twitterAccountRef.removeValue()
-            
-        
-            
-            let twitterRef = ref.child("twitter")
-            let screenNameRef = twitterRef.child((user.accounts["twitter"]?.screenName)!)
-            
-            
-            screenNameRef.keepSynced(true)
-            screenNameRef.removeValue()
-            
-
-            
-            user.accounts.removeValue(forKey: "twitter")
-            
-            
-            completion()
-            
-        }
+//        User.currentUser { (user) in
+//            
+//            
+//            let ref = FIRDatabase.database().reference()
+//            let usersRef = ref.child("users")
+//            
+//            let currentUser = FIRAuth.auth()?.currentUser!
+//            let uidRef = usersRef.child((currentUser?.uid)!)
+//            let accountsRef = uidRef.child("accounts")
+//            let twitterAccountRef = accountsRef.child("twitter")
+//            
+//            twitterAccountRef.keepSynced(true)
+//            twitterAccountRef.removeValue()
+//            
+//        
+//            
+//            let twitterRef = ref.child("twitter")
+//            let screenNameRef = twitterRef.child((user.accounts["twitter"]?.screenName)!)
+//            
+//            
+//            screenNameRef.keepSynced(true)
+//            screenNameRef.removeValue()
+//            
+//
+//            
+//            user.accounts.removeValue(forKey: "twitter")
+//            
+//            
+//            completion()
+//            
+//        }
     }
     
     

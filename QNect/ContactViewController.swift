@@ -11,7 +11,7 @@ import MessageUI
 import Cartography
 import ReachabilitySwift
 import RKDropdownAlert
-
+import Firebase
 
 
 class ContactViewController: UITableViewController,MFMessageComposeViewControllerDelegate {
@@ -35,6 +35,15 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     var contactImage:UIImage?
     
+    var databaseRef: FIRDatabaseReference! {
+        return FIRDatabase.database().reference()
+    }
+    
+    var storageRef: FIRStorage!{
+        return FIRStorage.storage()
+    }
+    
+  
     
     
     @IBAction func cancel(_ sender: AnyObject) {
@@ -42,7 +51,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     @IBAction func saveConnectionAction(_ sender: AnyObject)
     {
-        saveConnection()
+        followUser()
         
     }
     @IBAction func sendMessageToContact(_ sender: AnyObject)
@@ -198,12 +207,12 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         if indexPath.section == 2 {
             switch indexPath.row {
-            case 0: break
-//                if let screenName = contact?.twitterScreenName {
-//                    let url = URL(string: "twitter://user?screen_name=\(screenName)")
-//                    UIApplication.shared.openURL(url!)
+            case 0:
+                if let screenName = contact?.twitterScreenName {
+                    let url = URL(string: "twitter://user?screen_name=\(screenName)")
+                    UIApplication.shared.openURL(url!)
                 
-//                }
+                }
             case 1:
                 break
             default:
@@ -285,11 +294,26 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         }
     }
     
-    func saveConnection()
+    func followUser()
     {
-        QnUtilitiy.saveContact(contact: contact!)
         
-        RKDropdownAlert.title("Woo!", message: "You have added \(contact!.firstName!) \(contact!.lastName!) as a connection!", backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
+        
+       
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
+            
+            
+            self.databaseRef.child("following").child(user.uid).child(self.contact!.uid).setValue(["firstName":self.contact!.firstName, "lastName":self.contact!.lastName])
+            
+            
+            self.databaseRef.child("followers").child(self.contact!.uid).child(currentUser.uid).setValue(["firstName":user.firstName, "lastName": user.lastName])
+        })
+       
+        
+        
+        RKDropdownAlert.title("Woo!", message: "You are now following \(contact!.firstName!) \(contact!.lastName!)", backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
         
         self.dismiss(animated: true, completion: nil)
         
@@ -300,9 +324,9 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     //Todo:Follow contact on twitter implementation
     func followContactOnTwitter()
     {
-        let screenName = contact!.accounts["twitter"]!.screenName!
+        let screenName = contact!.twitterScreenName
         
-        TwitterUtility().followUserWith(screenName: screenName) { (error) in
+        TwitterUtility().followUserWith(screenName: screenName!) { (error) in
             if error != nil {
                 RKDropdownAlert.title("You are now following \(screenName) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
             }

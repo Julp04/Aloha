@@ -21,28 +21,30 @@ class ContactModel
     
     func numberOfSocialAccounts() -> Int
     {
-        return contact.accounts.count
+        return 0
     }
     
     func socialAccountAtIndex(_ index:Int) -> String
     {
-        let accounts = [Account] (contact.accounts.values)
-        let screenName = accounts[index].screenName!
+//        let accounts = [Account] (contact.accounts.values)
+//        let screenName = accounts[index].screenName!
         
-        return screenName
+        return ""
         
     }
     
     func socialAccountTypeAtIndex(_ index:Int) -> String
     {
-        let keys = [String](contact.accounts.keys)
-        return keys[index]
+//        let keys = [String](contact.accounts.keys)
+//        return keys[index]
+        
+        return ""
     }
     
     func imageForSocialAccountAtIndex(_ index:Int) -> UIImage?
     {
-        let services = [String](contact.accounts.keys)
-        let service = services[index]
+//        let services = [String](contact.accounts.keys)
+        let service = "twitter"
         
         switch service
         {

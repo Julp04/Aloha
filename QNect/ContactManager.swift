@@ -64,7 +64,7 @@ class ContactManager
         }
         
         //Social Accounts
-        if let twitterScreenName = connection.accounts["twitter"]?.screenName {
+        if let twitterScreenName = connection.twitterScreenName {
             let twitterProfile = CNLabeledValue(label: "Twitter", value:
                 CNSocialProfile(urlString: nil, username: twitterScreenName,
                                 userIdentifier: nil, service: CNSocialProfileServiceTwitter))

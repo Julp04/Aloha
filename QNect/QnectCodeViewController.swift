@@ -16,6 +16,10 @@ class QnectCodeViewController: UIViewController {
 
     @IBOutlet weak var qnCodeImageView: UIImageView!
     
+    var databaseRef: FIRDatabaseReference! {
+        return FIRDatabase.database().reference()
+    }
+    
     override func viewDidLoad() {
         
         
@@ -43,8 +47,10 @@ class QnectCodeViewController: UIViewController {
      */
     fileprivate func createQRCode()
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
         
-        User.currentUser(completion: { (user) in
+        databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
             let encoder = QnEncoder(user: user)
             let qrCode = QNectCode(message: encoder.encodeSocialCode())
             

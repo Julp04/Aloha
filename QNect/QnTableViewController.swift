@@ -26,6 +26,15 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     let kProfileImageRadius:CGFloat = 60
     let kHeaderHeight:CGFloat = 40.0
     
+    var databaseRef: FIRDatabaseReference! {
+        return FIRDatabase.database().reference()
+    }
+    
+    var storageRef: FIRStorage!{
+        return FIRStorage.storage()
+    }
+    
+    
     @IBOutlet weak var firstNameField: UITextField! {
         didSet{self.firstNameField.delegate = self}
     }
@@ -109,15 +118,15 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         if let profileImage = QnUtilitiy.getProfileImageForCurrentUser() {
             self.profileImageView.image = profileImage
         }else {
-            User.currentUser(completion: { (user) in
-    
-                QnUtilitiy.getProfileImageForUser(user: user, completion: { (image, error) in
-                    self.profileImageView.image = image
-                    
-                    
-                    QnUtilitiy.setProfileImage(image: image!)
-                })
-            })
+//            User.currentUser(completion: { (user) in
+//    
+//                QnUtilitiy.getProfileImageForUser(user: user, completion: { (image, error) in
+//                    self.profileImageView.image = image
+//                    
+//                    
+//                    QnUtilitiy.setProfileImage(image: image!)
+//                })
+//            })
         }
         
         
@@ -133,11 +142,13 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     func populateFields()
     {
         
-        User.currentUser( completion: { (user) in
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
             
             self.firstNameField.text = user.firstName
             self.lastNameField.text = user.lastName
-            
             
             if let socialEmail = user.socialEmail {
                 self.socialEmailField.text = socialEmail
@@ -145,8 +156,8 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
             if let socialPhone = user.socialPhone {
                 self.socialPhoneField.text = socialPhone
             }
-            if let twitterScreenName = user.accounts["twitter"]?.screenName {
-               self.twitterLabel.text = "Twitter: \(twitterScreenName)"
+            if let twitterScreenName = user.twitterScreenName {
+                self.twitterLabel.text = "Twitter: \(twitterScreenName)"
                 self.twitterButton.tag = 1
                 self.twitterButton.setImage(self.twitterAddedImage, for: UIControlState())
             }else{
