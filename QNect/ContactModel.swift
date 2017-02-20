@@ -11,23 +11,29 @@ import Foundation
 class ContactModel
 {
     var contact:User
+    var socialAccounts = [String:String]()
     
     init(contact:User)
     {
         self.contact = contact
+        
+        if let twitterScreenName = contact.twitterScreenName {
+            socialAccounts["twitter"] = twitterScreenName
+        }
     }
     
 
     
     func numberOfSocialAccounts() -> Int
     {
-        return contact.accounts.count
+        return socialAccounts.count
     }
     
     func socialAccountAtIndex(_ index:Int) -> String
     {
-        let accounts = [Account] (contact.accounts.values)
-        let screenName = accounts[index].screenName!
+        
+        let accounts = [String] (socialAccounts.values)
+        let screenName = accounts[index]
         
         return screenName
         
@@ -35,21 +41,21 @@ class ContactModel
     
     func socialAccountTypeAtIndex(_ index:Int) -> String
     {
-        let keys = [String](contact.accounts.keys)
+        let keys = [String] (socialAccounts.keys)
         return keys[index]
     }
     
     func imageForSocialAccountAtIndex(_ index:Int) -> UIImage?
     {
-        let services = [String](contact.accounts.keys)
+        
+        
+        let services = [String] (socialAccounts.keys)
         let service = services[index]
         
         switch service
         {
         case AccountsKey.Twitter:
             return UIImage(named: "twitter_circle")!
-        case AccountsKey.Spotify:
-            return UIImage(named: "spotify_circle")!
         default:
             return nil
         }

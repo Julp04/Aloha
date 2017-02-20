@@ -23,11 +23,10 @@ class QnUtilitiy {
     {
         
         let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
-        let uidRef = usersRef.child(user.uid)
-        let userInfoRef = uidRef.child("userInfo")
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
         
-        userInfoRef.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "qnectEmail":user.email, "twitter":twitter])
+        currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
     }
     
     
@@ -36,11 +35,10 @@ class QnUtilitiy {
         let ref = FIRDatabase.database().reference()
         let usersRef = ref.child("users")
         
-        let currentUser = FIRAuth.auth()?.currentUser!
-        let uidRef = usersRef.child((currentUser?.uid)!)
-        let userInfoRef = uidRef.child("userInfo")
+        let currentUser = FIRAuth.auth()!.currentUser!
+        let uidRef = usersRef.child(currentUser.uid)
         
-        userInfoRef.updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
+        uidRef.updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
     }
     
     static func setProfileImage(image:UIImage)
@@ -84,7 +82,7 @@ class QnUtilitiy {
         
         
         let userStorageRef = storageRef.child("users")
-        let userRef = userStorageRef.child(user.qnectEmail).child("profileImage")
+        let userRef = userStorageRef.child(user.email).child("profileImage")
         
         
         userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
@@ -113,47 +111,17 @@ class QnUtilitiy {
     }
     
     
-    static func saveContact(contact:User)
-    {
+    static func followUser(user:User)
+    { 
         
-        User.currentUser(completion: { (user) in
-            
-            let ref = FIRDatabase.database().reference()
-            
- 
-            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(contact.uid)
-            userAddedContactsRef.setValue(["firstName":contact.firstName, "lastName":contact.lastName, "socialPhone":contact.socialPhone, "socialEmail":contact.socialEmail, "username":contact.username, "qnectEmail":contact.qnectEmail, "uid":contact.uid])
-            
-            
-            let contactsAddedUserRef = ref.child("users").child(contact.uid).child("connectionsAddedUser").child(user.uid)
-            contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhone":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
-            
-            
-        })
         
         
     
     }
     
-    static func removeConnection(connection:User)
+    static func unfollowUser(connection:User)
     {
         
-        User.currentUser(completion: { (user) in
-        
-            let ref = FIRDatabase.database().reference()
-            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(connection.uid)
-        
-            userAddedContactsRef.removeValue()
-            
-            let contactsAddedUserRef = ref.child("users").child(connection.uid).child("connectionsAddedUser").child(user.uid)
-           
-            contactsAddedUserRef.removeValue()
-            
-            
-            
-        })
-        
-
     }
     
     static func signOut()

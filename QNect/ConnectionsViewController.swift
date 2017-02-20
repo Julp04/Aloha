@@ -16,14 +16,23 @@ import RKDropdownAlert
 class ConnectionsViewController: UITableViewController, UIGestureRecognizerDelegate, ImageDownloaderDelegate {
 
     
-    var userAddedConnectionsModel:ConnectionsModel?
-    var addedUserConnectionsModel:ConnectionsModel?
+    var following:ConnectionsModel?
+    var followers:ConnectionsModel?
     let kCellHeight:CGFloat = 70.0
     let kProfileBorderWidth:CGFloat = 2.0
     let kPressDuration = 0.35
     var selectedConnection:User?
     
-    var  segmentControl = UISegmentedControl(items: ["I added", "Added Me"])
+    var  segmentControl = UISegmentedControl(items: ["Following", "Followers"])
+    
+    var databaseRef: FIRDatabaseReference! {
+        return FIRDatabase.database().reference()
+    }
+    
+    var storageRef: FIRStorage!{
+        return FIRStorage.storage()
+    }
+    
     
     
     override func viewDidLoad() {
@@ -39,58 +48,70 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        self.refreshControl?.addTarget(self, action: #selector(ConnectionsViewController.refresh), for: UIControlEvents.valueChanged)
-        
-        self.refreshControl?.tintColor = UIColor.qnPurple
+    
         
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
+
+        fetchFromDatabase()
         
+    }
+    
+    func fetchFromDatabase()
+    {
+         let currentUser = FIRAuth.auth()!.currentUser!
         
-        let ref = FIRDatabase.database().reference()
-        
-        let userAddedConnectionsRef = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("connectionsUserAdded")
-        
-        userAddedConnectionsRef.observe(.value, with: { (snapshot) in
-            var addedUsers = [User]()
+        databaseRef.child("following").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            var following = [User]()
             
+            self.following = ConnectionsModel(connections: following)
+            self.tableView.reloadData()
             
             
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
-                User.userFromSnapshot(snapshot: item, completion: { (user) in
-                    addedUsers.append(user)
-                    self.userAddedConnectionsModel = ConnectionsModel(connections: addedUsers)
+                self.databaseRef.child("users").child(item.key).observe(.value, with: { (userSnapshot) in
+                    
+                    let uid = userSnapshot.key
+                    let user = User(snapshot: userSnapshot)
+                    
+                    following = following.filter(){$0.uid != uid}
+                    
+                    following.append(user)
+                    self.following = ConnectionsModel(connections: following)
                     self.tableView.reloadData()
+                    
                 })
                 
             }
             
-           
+            
             
         })
         
         
-        
-        let connectionsAddedUser = ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("connectionsAddedUser")
-        
-        connectionsAddedUser.observe(.value, with: { (snapshot) in
-            var connectionsAdded = [User]()
+        databaseRef.child("followers").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            var followers = [User]()
+            
             
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
-                User.userFromSnapshot(snapshot: item, completion: { (user) in
-                    connectionsAdded.append(user)
-                    self.addedUserConnectionsModel = ConnectionsModel(connections: connectionsAdded)
+                self.databaseRef.child("users").child(item.key).observe(.value, with: { (userSnapshot) in
+                    
+                    
+                    let uid = userSnapshot.key
+                    let user = User(snapshot: userSnapshot)
+                    
+                    followers = followers.filter() {$0.uid != uid}
+                    followers.append(user)
+                    self.followers = ConnectionsModel(connections: followers)
                     self.tableView.reloadData()
                 })
-
                 
             }
-
         })
     }
 
@@ -118,7 +139,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     
     func segmentControlSwitched(_ sender:UISegmentedControl)
     {
-        reloadData()
+       self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,16 +155,16 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         if segmentControl.selectedSegmentIndex == 0 {
         
-            if userAddedConnectionsModel == nil || userAddedConnectionsModel?.numberOfConnections() == 0{
+            if following == nil || following?.numberOfConnections() == 0{
                 return 1
             }else {
-                return userAddedConnectionsModel!.numberOfConnectionSections()
+                return following!.numberOfConnectionSections()
             }
         }else {
-            if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0 {
+            if followers == nil || followers?.numberOfConnections() == 0 {
                 return 1
             }else {
-                return addedUserConnectionsModel!.numberOfConnectionSections()
+                return followers!.numberOfConnectionSections()
             }
         }
     }
@@ -152,16 +173,16 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         if segmentControl.selectedSegmentIndex == 0 {
         
-            if userAddedConnectionsModel == nil || userAddedConnectionsModel?.numberOfConnections() == 0{
+            if following == nil || following?.numberOfConnections() == 0{
                 return 1
             }else {
-                return userAddedConnectionsModel!.numberOfConnectionsInSection(section)
+                return following!.numberOfConnectionsInSection(section)
             }
         }else {
-            if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0 {
+            if followers == nil || followers?.numberOfConnections() == 0 {
                 return 1
             }else {
-                return (addedUserConnectionsModel?.numberOfConnectionsInSection(section))!
+                return (followers?.numberOfConnectionsInSection(section))!
             }
         }
     }
@@ -174,19 +195,19 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         if segmentControl.selectedSegmentIndex == 0 {
         
-            if userAddedConnectionsModel == nil || userAddedConnectionsModel?.numberOfConnections() == 0{
+            if following == nil || following?.numberOfConnections() == 0{
                 cell.nameLabel.text = "No connections to display"
                 cell.profileImageView.image = nil
             }else {
                 
-                let connection = userAddedConnectionsModel!.connectionAtIndexPath(indexPath)
+                let connection = following!.connectionAtIndexPath(indexPath)
                 let firstName = connection.firstName
                 let lastName = connection.lastName
                 
                 cell.nameLabel.text = firstName! + " " + lastName!
                 
                 
-               let profileImage = userAddedConnectionsModel?.imageForConnectionAt(indexPath: indexPath)
+               let profileImage = following?.imageForConnectionAt(indexPath: indexPath)
                 if profileImage != nil {
                     cell.profileImageView.image = profileImage
                 }else {
@@ -196,12 +217,12 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 
             }
         }else {
-            if addedUserConnectionsModel == nil || addedUserConnectionsModel?.numberOfConnections() == 0{
+            if followers == nil || followers?.numberOfConnections() == 0{
                 cell.nameLabel.text = "No connections to display"
                 cell.profileImageView.image = nil
             }else {
                 
-                let connection = addedUserConnectionsModel!.connectionAtIndexPath(indexPath)
+                let connection = followers!.connectionAtIndexPath(indexPath)
                 let firstName = connection.firstName
                 let lastName = connection.lastName
                 
@@ -209,7 +230,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 
                 
                 
-                let profileImage = addedUserConnectionsModel?.imageForConnectionAt(indexPath: indexPath)
+                let profileImage = followers?.imageForConnectionAt(indexPath: indexPath)
                 
                 if profileImage != nil {
                     cell.profileImageView.image = profileImage
@@ -226,17 +247,17 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if segmentControl.selectedSegmentIndex == 0 {
-            return userAddedConnectionsModel?.titleForSection(section)
+            return following?.titleForSection(section)
         }else {
-            return addedUserConnectionsModel?.titleForSection(section)
+            return followers?.titleForSection(section)
         }
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if segmentControl.selectedSegmentIndex == 0 {
-            return userAddedConnectionsModel?.indexTitle()
+            return following?.indexTitle()
         }else {
-            return addedUserConnectionsModel?.indexTitle()
+            return followers?.indexTitle()
         }
     }
     
@@ -259,14 +280,14 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
         if segmentControl.selectedSegmentIndex == 0 {
         
-            if userAddedConnectionsModel?.numberOfConnections() != 0 {
-                selectedConnection = userAddedConnectionsModel?.connectionAtIndexPath(indexPath)
+            if following?.numberOfConnections() != 0 {
+                selectedConnection = following?.connectionAtIndexPath(indexPath)
                 
                 self.performSegue(withIdentifier: "ContactSegue", sender: self)
             }
         }else {
-            if addedUserConnectionsModel?.numberOfConnections() != 0 {
-                selectedConnection = addedUserConnectionsModel?.connectionAtIndexPath(indexPath)
+            if followers?.numberOfConnections() != 0 {
+                selectedConnection = followers?.connectionAtIndexPath(indexPath)
                 self.performSegue(withIdentifier: "ContactSegue", sender: self)
             }
         }
@@ -280,21 +301,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         }
     }
     
-    
-    
-    func refresh()
-    {
-        
-      
-    }
-    
-    func reloadData()
-    {
-        self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-    }
-    
-    
+
     //MARK: - Gesture Delegate
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool
@@ -306,12 +313,12 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         let indexPath = self.tableView.indexPathForRow(at: point)
         
         
-        if segmentControl.selectedSegmentIndex == 0 && userAddedConnectionsModel?.numberOfConnections() != 0{
+        if segmentControl.selectedSegmentIndex == 0 && following?.numberOfConnections() != 0{
            
             
-            if userAddedConnectionsModel != nil || userAddedConnectionsModel?.numberOfConnections() != 0 {
+            if following != nil || following?.numberOfConnections() != 0 {
             
-                let connection = userAddedConnectionsModel?.connectionAtIndexPath(indexPath!)
+                let connection = following?.connectionAtIndexPath(indexPath!)
                 let name = (connection?.firstName)! + " " + (connection?.lastName)!
                 let message = QnEncoder(user: connection!).encodeSocialCode()
                 let qrImage = QNectCode(message: message).image
@@ -319,9 +326,13 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let qnectAlertView = QNectAlertView()
                 
                 qnectAlertView.addButton("Delete Connection") {
-                    QnUtilitiy.removeConnection(connection: connection!)
+
                     
-                    RKDropdownAlert.title("You have deleted \(connection!.firstName!) \(connection!.lastName!) as a connection", backgroundColor: UIColor.gray, textColor: UIColor.white)
+                let currentUser = FIRAuth.auth()!.currentUser!
+                    
+                self.databaseRef.child("following").child(currentUser.uid).child(connection!.uid).removeValue()
+                    
+                RKDropdownAlert.title("You have deleted \(connection!.firstName!) \(connection!.lastName!) as a connection", backgroundColor: UIColor.gray, textColor: UIColor.white)
                     
                 }
                 
@@ -346,6 +357,8 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func imageDownloaded(image: UIImage?) {
         self.tableView.reloadData()
     }
+    
+
 
 
 }

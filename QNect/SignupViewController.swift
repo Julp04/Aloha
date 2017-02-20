@@ -355,6 +355,7 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                                 RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnBlue, textColor: UIColor.white)
                                 
                             }else {
+                                
                                 QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: nil)
                                 
                                 
