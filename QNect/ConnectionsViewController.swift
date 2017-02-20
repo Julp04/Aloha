@@ -55,11 +55,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
-        
-        
-       
-        
-        
+
         fetchFromDatabase()
         
     }

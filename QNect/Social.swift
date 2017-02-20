@@ -69,15 +69,13 @@ class TwitterUtility {
                         
                     }else {
                         let ref = FIRDatabase.database().reference()
-                        let usersRef = ref.child("users")
+                        ref.keepSynced(true)
+                    
                         
-                        let currentUser = FIRAuth.auth()?.currentUser!
-                        let uidRef = usersRef.child((currentUser?.uid)!)
-                        let accountsRef = uidRef.child("accounts")
-                        let twitterRef = accountsRef.child("twitter")
-                        
-                        twitterRef.keepSynced(true)
-                        twitterRef.setValue(["screenName":screenName,"token":token, "tokenSecret":tokenSecret])
+                        let currentUser = FIRAuth.auth()!.currentUser!
+    
+                        ref.child("accounts").child("twitter").child(screenName).setValue(["token":token, "tokenSecret":tokenSecret])
+                        ref.child("users").child(currentUser.uid).updateChildValues(["twitterScreenName":screenName])
                         
                     }
                 })
@@ -93,58 +91,44 @@ class TwitterUtility {
     private func doesUserExist(screenName:String, completion:@escaping (Bool) ->Void)
     {
         let ref = FIRDatabase.database().reference()
-        let twitterRef = ref.child("twitter")
-        let screenNameRef = twitterRef.child(screenName)
         
+        ref.keepSynced(true)
         
-        screenNameRef.keepSynced(true)
-        twitterRef.keepSynced(true)
-        screenNameRef.observeSingleEvent(of:.value, with: { (snapshot) in
+        ref.child("accounts").child("twitter").child(screenName).observeSingleEvent(of:.value, with: { (snapshot) in
             
             if snapshot.exists() {
                 completion(true)
             }else {
-                twitterRef.keepSynced(true)
-                twitterRef.setValue([screenName:FIRAuth.auth()?.currentUser?.email])
                 completion(false)
             }
         })
     }
     
-    func unlinkTwitter(completion: @escaping (Void) -> Void)
+    func unlinkTwitter(completion: @escaping ErrorCompletion)
     {
+    
+        let ref = FIRDatabase.database().reference()
+        let currentUser = FIRAuth.auth()!.currentUser!
         
-//        User.currentUser { (user) in
-//            
-//            
-//            let ref = FIRDatabase.database().reference()
-//            let usersRef = ref.child("users")
-//            
-//            let currentUser = FIRAuth.auth()?.currentUser!
-//            let uidRef = usersRef.child((currentUser?.uid)!)
-//            let accountsRef = uidRef.child("accounts")
-//            let twitterAccountRef = accountsRef.child("twitter")
-//            
-//            twitterAccountRef.keepSynced(true)
-//            twitterAccountRef.removeValue()
-//            
-//        
-//            
-//            let twitterRef = ref.child("twitter")
-//            let screenNameRef = twitterRef.child((user.accounts["twitter"]?.screenName)!)
-//            
-//            
-//            screenNameRef.keepSynced(true)
-//            screenNameRef.removeValue()
-//            
-//
-//            
-//            user.accounts.removeValue(forKey: "twitter")
-//            
-//            
-//            completion()
-//            
-//        }
+        ref.child("users").child(currentUser.uid).observeSingleEvent(of:.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
+            if let screenName = user.twitterScreenName {
+            ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
+                if error != nil {
+                    completion(error)
+                }else {
+                    ref.child("users").child(currentUser.uid).child("twitterScreenName").removeValue(completionBlock: { (error, ref) in
+                        if error != nil {
+                            completion(error)
+                        }
+                    })
+                }
+            })
+            }
+        })
+       
+        
+        
     }
     
     

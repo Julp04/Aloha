@@ -114,26 +114,6 @@ class QnUtilitiy {
     static func followUser(user:User)
     { 
         
-//        User.currentUser(completion: { (user) in
-//            
-//            let ref = FIRDatabase.database().reference()
-//            
-// 
-//            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(contact.uid)
-//            userAddedContactsRef.setValue(["firstName":contact.firstName, "lastName":contact.lastName, "socialPhone":contact.socialPhone, "socialEmail":contact.socialEmail, "username":contact.username, "qnectEmail":contact.qnectEmail, "uid":contact.uid])
-//            
-//            
-//            let contactsAddedUserRef = ref.child("users").child(contact.uid).child("connectionsAddedUser").child(user.uid)
-//            contactsAddedUserRef.setValue(["firstName":user.firstName, "lastName":user.lastName, "socialPhone":user.socialPhone, "socialEmail":user.socialEmail, "username":user.username, "qnectEmail":user.qnectEmail, "uid":user.uid])
-//            
-//            
-//        })
-//        
-//        
-//        
-//        let currentUser = FIRAuth.auth()!.currentUser!
-//        
-//        d
         
         
     
@@ -142,22 +122,6 @@ class QnUtilitiy {
     static func unfollowUser(connection:User)
     {
         
-//        User.currentUser(completion: { (user) in
-//        
-//            let ref = FIRDatabase.database().reference()
-//            let userAddedContactsRef = ref.child("users").child((user.uid)).child("connectionsUserAdded").child(connection.uid)
-//        
-//            userAddedContactsRef.removeValue()
-//            
-//            let contactsAddedUserRef = ref.child("users").child(connection.uid).child("connectionsAddedUser").child(user.uid)
-//           
-//            contactsAddedUserRef.removeValue()
-//            
-//            
-//            
-//        })
-        
-
     }
     
     static func signOut()

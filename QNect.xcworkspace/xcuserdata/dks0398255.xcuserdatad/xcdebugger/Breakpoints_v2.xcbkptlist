@@ -6,95 +6,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313155.582362"
+            filePath = "QNect/Social.swift"
+            timestampString = "509316713.184602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnUtility.swift"
-            timestampString = "509308150.192787"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "setProfileImage(image:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnUtility.swift"
-            timestampString = "509308150.192787"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "setProfileImage(image:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313155.582362"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "unlinkTwitter(completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect.ConnectionsViewController.viewDidLoad () -&gt; ()"
+                  symbolName = "QNect.TwitterUtility.(unlinkTwitter (completion : (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsViewController.swift"
-                  timestampString = "509308263.821035"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
+                  timestampString = "509316977.768696"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "2112">
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "212">
                </Location>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect.ConnectionsViewController.(viewDidLoad () -&gt; ()).(closure #1)"
+                  symbolName = "QNect.TwitterUtility.(unlinkTwitter (completion : (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1)"
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsViewController.swift"
-                  timestampString = "509308263.822187"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
+                  timestampString = "509316977.769837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "76">
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -105,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313283.846475"
+            filePath = "QNect/Social.swift"
+            timestampString = "509316713.184602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
-            landmarkName = "gestureRecognizerShouldBegin(_:)"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "unlinkTwitter(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,61 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313367.360446"
+            filePath = "QNect/Social.swift"
+            timestampString = "509316781.413059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "fetchFromDatabase()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect.ConnectionsViewController.(fetchFromDatabase () -&gt; ()).(closure #1)"
-                  moduleName = "QNect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsViewController.swift"
-                  timestampString = "509313367.579805"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect.ConnectionsViewController.(fetchFromDatabase () -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "QNect"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsViewController.swift"
-                  timestampString = "509313367.581441"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313369.11622"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "fetchFromDatabase()"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "doesUserExist(screenName:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,13 +89,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "509313400.055098"
+            filePath = "QNect/Social.swift"
+            timestampString = "509316814.771114"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "fetchFromDatabase()"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "doesUserExist(screenName:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/Social.swift"
+            timestampString = "509316822.117532"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "linkTwitterIn(viewController:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

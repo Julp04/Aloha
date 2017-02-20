@@ -298,8 +298,10 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func unlinkTwitterUser()
     {
-        TwitterUtility().unlinkTwitter {
-            self.populateFields()
+      TwitterUtility().unlinkTwitter { (error) in
+        if error  != nil {
+            RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+            }
         }
     }
     

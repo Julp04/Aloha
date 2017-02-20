@@ -50,8 +50,6 @@ class ContactModel
         {
         case AccountsKey.Twitter:
             return UIImage(named: "twitter_circle")!
-        case AccountsKey.Spotify:
-            return UIImage(named: "spotify_circle")!
         default:
             return nil
         }
