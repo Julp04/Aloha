@@ -326,12 +326,11 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 let qnectAlertView = QNectAlertView()
                 
                 qnectAlertView.addButton("Delete Connection") {
-//                    QnUtilitiy.removeConnection(connection: connection!)
+
                     
                 let currentUser = FIRAuth.auth()!.currentUser!
                     
                 self.databaseRef.child("following").child(currentUser.uid).child(connection!.uid).removeValue()
-//                self.fetchFromDatabase()
                     
                 RKDropdownAlert.title("You have deleted \(connection!.firstName!) \(connection!.lastName!) as a connection", backgroundColor: UIColor.gray, textColor: UIColor.white)
                     

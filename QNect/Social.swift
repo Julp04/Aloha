@@ -158,31 +158,37 @@ class TwitterUtility {
     func followUserWith(screenName:String, completion:@escaping ErrorCompletion) {
         
         let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
+        ref.keepSynced(true)
         
-        let currentUser = FIRAuth.auth()?.currentUser!
-        let uidRef = usersRef.child((currentUser?.uid)!)
-        let accountsRef = uidRef.child("accounts")
-        let twitterRef = accountsRef.child("twitter")
-        twitterRef.keepSynced(true)
+        let currentUser = FIRAuth.auth()!.currentUser!
+       
         
-        twitterRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let snapshotValue = snapshot.value as! [String: AnyObject]
+        
+        ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
             
-            let token = snapshotValue["token"] as! String
-            let tokenSecret = snapshotValue["tokenSecret"] as! String
-            
-            let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
-            
-            _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
-                let json = try? response.jsonObject()
-                print(json!)
+            ref.child("accounts").child("twitter").child(user.twitterScreenName!).observeSingleEvent(of: .value, with: { (twitterSnap) in
                 
-                completion(nil)
-            }, failure: { (error) in
-                completion(error)
+                let snapshotValue = twitterSnap.value as! [String: AnyObject]
+                
+                let token = snapshotValue["token"] as! String
+                let tokenSecret = snapshotValue["tokenSecret"] as! String
+                
+                let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+                
+                _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
+                    let json = try? response.jsonObject()
+                    print(json!)
+                    
+                    completion(nil)
+                }, failure: { (error) in
+                    completion(error)
+                })
+                
             })
+            
         })
+        
     }
     
     

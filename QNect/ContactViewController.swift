@@ -297,8 +297,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     func followUser()
     {
         
-        
-       
+
         let currentUser = FIRAuth.auth()!.currentUser!
         
         databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
@@ -321,14 +320,16 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     
   
-    //Todo:Follow contact on twitter implementation
     func followContactOnTwitter()
     {
         let screenName = contact!.twitterScreenName
         
         TwitterUtility().followUserWith(screenName: screenName!) { (error) in
             if error != nil {
-                RKDropdownAlert.title("You are now following \(screenName) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
+                RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+            }else {
+                RKDropdownAlert.title("You are now following \(screenName!) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
+                self.animateToSuccessButton(self.addTwitterButton)
             }
         }
         
