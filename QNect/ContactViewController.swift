@@ -320,18 +320,28 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     
   
+    
     func followContactOnTwitter()
     {
         let screenName = contact!.twitterScreenName
         
-        TwitterUtility().followUserWith(screenName: screenName!) { (error) in
-            if error != nil {
-                RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+        
+        TwitterUtility().isUserLinkedWithTwitter { (isLinked) in
+            if isLinked {
+                TwitterUtility().followUserWith(screenName: screenName!) { (error) in
+                    if error != nil {
+                        RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                    }else {
+                        RKDropdownAlert.title("You are now following \(screenName!) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
+                        self.animateToSuccessButton(self.addTwitterButton)
+                    }
+                }
             }else {
-                RKDropdownAlert.title("You are now following \(screenName!) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
-                self.animateToSuccessButton(self.addTwitterButton)
+                //Todo: Prompt user to link with Twitter if they are not already
             }
         }
+        
+       
         
        
     }

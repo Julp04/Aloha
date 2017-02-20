@@ -132,26 +132,19 @@ class TwitterUtility {
     }
     
     
-    func isUserLinkedWithTwitter(completion:@escaping (Bool?) -> Void)
+    func isUserLinkedWithTwitter(completion:@escaping (Bool) -> Void)
     {
      
         let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
         
-        let currentUser = FIRAuth.auth()?.currentUser!
-        let uidRef = usersRef.child((currentUser?.uid)!)
-        let accountsRef = uidRef.child("accounts")
-        let twitterRef = accountsRef.child("twitter")
-        twitterRef.keepSynced(true)
-        
-        twitterRef.observeSingleEvent(of:.value, with: { (snapshot) in
+        let currentUser = FIRAuth.auth()!.currentUser!
+        ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {
                 completion(false)
             }
         })
-
     }
     
     

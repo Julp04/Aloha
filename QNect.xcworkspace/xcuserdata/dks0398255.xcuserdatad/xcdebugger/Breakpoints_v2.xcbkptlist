@@ -26,7 +26,7 @@
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
-                  timestampString = "509316977.768696"
+                  timestampString = "509318842.804084"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "120"
@@ -41,7 +41,7 @@
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
-                  timestampString = "509316977.769837"
+                  timestampString = "509318842.80581"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
@@ -112,6 +112,70 @@
             startingLineNumber = "66"
             endingLineNumber = "66"
             landmarkName = "linkTwitterIn(viewController:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/ContactViewController.swift"
+            timestampString = "509318693.902166"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "followContactOnTwitter()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect.ContactViewController.followContactOnTwitter () -&gt; ()"
+                  moduleName = "QNect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactViewController.swift"
+                  timestampString = "509318842.818931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect.ContactViewController.(followContactOnTwitter () -&gt; ()).(closure #1)"
+                  moduleName = "QNect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactViewController.swift"
+                  timestampString = "509318842.820187"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "330"
+                  endingLineNumber = "330"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/ContactViewController.swift"
+            timestampString = "509318698.053605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "followContactOnTwitter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
