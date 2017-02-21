@@ -15,21 +15,14 @@ class SettingsViewController: UITableViewController {
 
     
     
-    @IBOutlet weak var webpageSwitch: UISwitch! {
-        didSet {
-            webpageSwitch.isOn = Defaults["AutomaticURLOpen"].bool!
-        }
-    }
+ 
     //MARK: IBActions
     
     @IBAction func dismissViewController(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func webPageSwitchAction(_ sender: UISwitch) {
-        Defaults["AutomaticURLOpen"] = sender.isOn
-        Defaults.synchronize()
-    }
+  
     //MARK: LifeCycle Methods
     
     override func viewWillAppear(_ animated: Bool){

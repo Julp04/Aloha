@@ -161,9 +161,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         url = "http://\(metadataObj.stringValue)"
                     }else {url = metadataObj.stringValue}
                     
-                    if Defaults["AutomaticURLOpen"].bool == true {
-                        
-                        
                         
                         let popupvc = PTPopupWebViewController()
                         popupvc.popupView.URL(string: url)
@@ -186,24 +183,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         popupvc.popupView.addButton(closeButton)
                         popupvc.show()
                         self.stopCaptureSession()
-                            
-                        
-                        
-                        
-                    }else {
-                        
-                        if showURLAlert == 0 {
-                        let alert = FCAlertView()
-                        alert.addButton("Open webpage", withActionBlock: { 
-                            UIApplication.shared.openURL(URL(string: url)!)
-                        })
-                            
-                            alert.colorScheme = UIColor.qnBlue
-                        
-                            alert.showAlert(withTitle: url, withSubtitle: "", withCustomImage: nil, withDoneButtonTitle: "Close", andButtons: nil)
-                            showURLAlert = 1
-                        }
-                    }
+
                 
                 }
                 

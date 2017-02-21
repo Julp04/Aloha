@@ -46,8 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
             Defaults["HasLaunchedOnce"] = true
-            Defaults["QuickScan"] = false
-            Defaults["AutomaticURLOpen"] = false
             Defaults.synchronize()
             
             
