@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PTPopupWebView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QNect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17930F3F0E9CE092C3D05C113C965266</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2CC07AC26545FE80254CD570C9165438</key>
+		<key>310DD2A9346516432429687B493FCDB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C6F3C1F78412373741D82636971D071</key>
+		<key>55F3F38729C53D8B42AD8830125567EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8766E2A49286D713F3250D9D4017071B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEEB4532C8A0E650EDB5252769349C87</key>
+		<key>ACD91BA31BA5D2EF809EABE16CD6B093</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3AB1A06A21C34CC8D7D8818433C20F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,12 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
+		<key>D5B4FCF003DC7F5B87DA306F6B2B31E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F344DCB37FD2220B8126F5D76E5BBA47</key>
+		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

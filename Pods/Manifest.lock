@@ -51,6 +51,7 @@ PODS:
   - MBProgressHUD (1.0.0)
   - OAuthSwift (1.1.0)
   - pop (1.0.9)
+  - PTPopupWebView (0.4.0)
   - ReachabilitySwift (3)
   - RKDropdownAlert (0.3.0)
   - SwiftyJSON (3.0.0)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - OAuthSwift (~> 1.1.0)
   - pop (from `https://github.com/facebook/pop.git`)
+  - PTPopupWebView
   - ReachabilitySwift
   - RKDropdownAlert
   - SwiftyJSON (= 3.0.0)
@@ -108,12 +110,13 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: b8724a75f740dfa114e3cd7cef9858c2a6256893
+PODFILE CHECKSUM: a0e8995c1c4646512db562a260aebb49bba6888e
 
 COCOAPODS: 1.2.0

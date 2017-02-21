@@ -17,6 +17,7 @@ target 'QNect' do
     pod 'Fabric'
     pod 'TwitterKit'
     pod 'OAuthSwift', '~> 1.1.0'
+    pod 'PTPopupWebView'
     
 end
 

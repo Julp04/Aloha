@@ -13,6 +13,7 @@ import MessageUI
 import ReachabilitySwift
 import FCAlertView
 import RKDropdownAlert
+import PTPopupWebView
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UIWebViewDelegate {
     
@@ -70,7 +71,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     override func viewWillAppear(_ animated: Bool) {
         startCaptureSession()
-
     }
     
     //MARK: UI Methods
@@ -161,7 +161,27 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     }else {url = metadataObj.stringValue}
                     
                     if Defaults["AutomaticURLOpen"].bool == true {
-                        UIApplication.shared.openURL(URL(string: url)!)
+                        
+                        let popupvc = PTPopupWebViewController()
+                        popupvc.popupView.URL(string: url)
+                        let closeButton = PTPopupWebViewButton(type: .close).title("Close").foregroundColor(UIColor.qnBlue)
+                        closeButton.handler({ 
+                            self.startCaptureSession()
+                        })
+                       
+            
+                        
+                        let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)
+                        safariButton.title("Open in Safari")
+                        safariButton.handler({ 
+                            UIApplication.shared.openURL(URL(string: url)!)
+                        })
+                        
+                        
+                        popupvc.popupView.addButton(safariButton)
+                        popupvc.popupView.addButton(closeButton)
+                        popupvc.show()
+                        self.stopCaptureSession()
                     }else {
                         
                         if showURLAlert == 0 {
