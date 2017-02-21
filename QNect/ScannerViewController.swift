@@ -27,6 +27,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var contactImage:UIImage?
     var showURLAlert = 0
     
+    
     //If the item has just been recently picked or removed, then the background is selected so that the user knows which item they are currently working on
     // Set picked item back to false so other rows do not become selected when scrolling through list, because this method is called as rows reload.
     
@@ -162,11 +163,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     
                     if Defaults["AutomaticURLOpen"].bool == true {
                         
+                        
+                        
                         let popupvc = PTPopupWebViewController()
                         popupvc.popupView.URL(string: url)
-                        let closeButton = PTPopupWebViewButton(type: .close).title("Close").foregroundColor(UIColor.qnBlue)
+                        let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
                         closeButton.handler({ 
                             self.startCaptureSession()
+                            popupvc.close()
                         })
                        
             
@@ -182,6 +186,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                         popupvc.popupView.addButton(closeButton)
                         popupvc.show()
                         self.stopCaptureSession()
+                            
+                        
+                        
+                        
                     }else {
                         
                         if showURLAlert == 0 {
