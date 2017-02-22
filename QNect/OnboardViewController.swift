@@ -20,8 +20,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     let kTitleYOffsetLength:CGFloat = 90
     let kTitleHeight:CGFloat = 30
     
-    let kSubtitleFontSize:CGFloat = 18
-    let kSubtitleHeight:CGFloat = 80
+    let kSubtitleFontSize:CGFloat = 17
+    let kSubtitleHeight:CGFloat = 110
     let kSubtitleYOffsetLength:CGFloat = 30
     
     @IBOutlet weak var pageControl: UIPageControl!
@@ -30,21 +30,26 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     
  
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    //Todo: When screen first loads takes a second for video to appear.
     override func viewDidLoad() {
         
        
         
         super.viewDidLoad()
      
-        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "login2.mp4") // Passing self and video name with extension
-        backgroundPlayer?.setUpBackground()
+        
         
         configureScrollView()
         self.pageControl.numberOfPages = horizontalPageCount
         
 
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
+        backgroundPlayer?.setUpBackground()
+        
     }
     
     func configureScrollView()
