@@ -36,20 +36,23 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
        
         
         super.viewDidLoad()
+        
+        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
+        backgroundPlayer?.setUpBackground()
      
         
         
         configureScrollView()
         self.pageControl.numberOfPages = horizontalPageCount
         
-
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
-        backgroundPlayer?.setUpBackground()
         
+        
+         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func configureScrollView()
@@ -115,6 +118,11 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         let fractionalPage = self.scrollView.contentOffset.x / pageWidth
         let page = lround(Double(fractionalPage));
         self.pageControl.currentPage = page;
+        
+        
+        if scrollView.contentOffset.y < 0 {
+            scrollView.contentOffset.y = 0
+        }
     }
 
     override func didReceiveMemoryWarning() {

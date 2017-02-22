@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1B00EE48FDACF89E405F21853FD30092</key>
+		<key>2CA99D1AA1A3451DEB634D886B833898</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25703585BBEE4346E949DDE07E68B166</key>
+		<key>37BB1CD087DD31AC8CDEEA71249A86EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50013A5F71F1031EB5EF6F727E183153</key>
+		<key>62F7A676A99642BF05CB7F1BCEA134B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5602A9E808D0FC8B3D0A3EDF3DB42F43</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7774D166929452737FA66049489D294B</key>
+		<key>77979430716929ED71E6E262A9F9A184</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,17 +137,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9A24700026A0ED9D9781C8C192474EEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D7B64B3802D76B1F3F4732489B59E68</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7C2A2F39B9E6476D7B5F7A9BAF47224</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A8A9412CD2EA3B90FAF4E4693777E5B4</key>
+		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<key>C4DB25C68D733E9B078ADD8581E09E17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C74D47B051BF84CA30E0723F127F42AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D089D9A55D0D00AFECE297835450324F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

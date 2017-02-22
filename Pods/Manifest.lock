@@ -30,6 +30,7 @@ PODS:
   - FirebaseStorage (1.0.6):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FontAwesome.swift (1.0.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -48,6 +49,7 @@ PODS:
   - PTPopupWebView (0.4.0)
   - ReachabilitySwift (3)
   - RKDropdownAlert (0.3.0)
+  - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.0.0)
   - TwitterCore (2.8.0):
     - Fabric
@@ -62,6 +64,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - FontAwesome.swift
   - MBProgressHUD
   - OAuthSwift (~> 1.1.0)
   - Onboard
@@ -69,6 +72,7 @@ DEPENDENCIES:
   - PTPopupWebView
   - ReachabilitySwift
   - RKDropdownAlert
+  - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON (= 3.0.0)
   - TwitterKit
 
@@ -98,6 +102,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseStorage: 63628572a5fde258f8e933b5fb42697468da0158
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -107,10 +112,11 @@ SPEC CHECKSUMS:
   PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
+  SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: 657541cb518b7f5757e2bfd14e9d689961abd15c
+PODFILE CHECKSUM: 38087c6ea105b79f8fd5cef93e5146cb0b08ad43
 
 COCOAPODS: 1.2.0

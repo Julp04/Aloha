@@ -16,21 +16,20 @@ import RKDropdownAlert
 import FCAlertView
 import Fabric
 import TwitterKit
+import SkyFloatingLabelTextField
+import FontAwesome_swift
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var twitterView: UIView!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
     
-    @IBOutlet weak var signupButton: UIButton! {
-        didSet {
-            self.signupButton.layer.cornerRadius = 2.0
-        }
+    @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon!
+    @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon!
+    
+    @IBAction func loginAction(_ sender: Any) {
+        loginUser()
     }
-    var isLinkingWithTwitter = false
-    
+    @IBOutlet weak var loginButton: UIButton!
     var ref: FIRDatabaseReference!
     
     
@@ -39,43 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-        
-        // Swift
-        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-            if let session = session {
-                print("signed in as \(session.userName)");
-                
-                let credential = FIRTwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
-                print(session.authToken)
-                
-                
-                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-                    // ...
-                    if let error = error {
-                         print(error)
-                        return
-                    }else {
-                        
 
-                        QnUtilitiy.doesTwitterUserExistsWith(session: session, completion: { (exists) in
-                            if exists == true {
-                                self.segueToMainApp()
-                            }else {
-                                self.isLinkingWithTwitter = true
-                                self.performSegue(withIdentifier: "SignupSegue", sender: session)
-                            }
-
-                        })
-                    }
-                }
-            }else {
-                print("error: \(error!.localizedDescription)");
-            }
-        })
-//        logInButton.center = self.twitterView.center
-        self.twitterView.addSubview(logInButton)
-        
-        
     }
     
     @IBAction func forgotPasswordAction(_ sender: Any) {
@@ -122,15 +85,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
-        setUpTextField(emailField)
-        setUpTextField(passwordField)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        setUpTextField(emailField)
+        setUpTextField(passwordField)
+        
+        self.loginButton.layer.cornerRadius = 5.0
     }
     
     func loginUser()
@@ -142,7 +112,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
                     
-                   RKDropdownAlert.title("Login failed", message: error!.localizedDescription, backgroundColor: UIColor.qnTeal, textColor: UIColor.white)
+                    if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
+                        self.emailField.errorMessage = "Invalid Email"
+                    }else {
+                        self.passwordField.errorMessage = "Invalid Password"
+                    }
                 }else {
                     self.segueToMainApp()
                 }
@@ -154,19 +128,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func loginWithTwitter()
-    {
-        if Reachability.isConnectedToInternet()
-        {
-        
-        }
-        else {
-            self.hideHud()
-            showConnectionAlert()
-        }
-    }
-    
-    
     //MARK: Alerts
     
     fileprivate func showConnectionAlert()
@@ -175,27 +136,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //MARK:Segues
-    
-    fileprivate func segueToLinkUser()
-    {
-        self.performSegue(withIdentifier: SegueIdentifiers.Signup, sender: self)
-    }
-    
     fileprivate func segueToMainApp()
     {
         self.performSegue(withIdentifier: SegueIdentifiers.Login, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifiers.Signup {
-            if let signupVC = segue.destination as? SignupViewController {
-                if isLinkingWithTwitter == true {
-                    let session = sender as! TWTRSession
-                    signupVC.configureViewController(isLinkingWithTwitter, twitterSession: session)
-                }
-            }
-        }
     }
     
     
@@ -215,12 +158,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - UI Setup
     
-    func setUpTextField(_ textField:UITextField) {
-        if let placeholder = textField.placeholder {
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSForegroundColorAttributeName:UIColor.white])
+    func setUpTextField(_ textField:SkyFloatingLabelTextFieldWithIcon) {
+        textField.delegate = self
+        
+        
+        if textField == emailField {
+            emailField.iconFont = UIFont.fontAwesome(ofSize: 15)
+            emailField.iconText = "\u{f007}"
+        }else {
+            passwordField.iconFont = UIFont.fontAwesome(ofSize: 15)
+            passwordField.iconText = "\u{f023}"
         }
         
-        textField.delegate = self
+        textField.selectedIconColor = UIColor.white
+        textField.iconMarginBottom = -2.0
+        
     }
     
     //MARK: - Delegates
@@ -242,13 +194,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
-    //MARK: - Actions
-    
-
-    @IBAction func loginUser(_ sender: AnyObject) {
-        loginUser()
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == passwordField {
+            passwordField.errorMessage = ""
+        }
+        
+        if textField == emailField {
+            emailField.errorMessage = ""
+        }
+        
+        return true
     }
+
     
     //MARK: - Status Bar
     
