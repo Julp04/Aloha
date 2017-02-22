@@ -102,6 +102,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
             subtitleTextView.backgroundColor = UIColor.clear
             subtitleTextView.textColor = UIColor.white
             subtitleTextView.isScrollEnabled = false
+            subtitleTextView.isEditable = false
+            subtitleTextView.isUserInteractionEnabled = false
             
             
             

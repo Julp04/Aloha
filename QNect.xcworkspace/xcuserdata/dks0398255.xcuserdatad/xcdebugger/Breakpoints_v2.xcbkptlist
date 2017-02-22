@@ -17,6 +17,38 @@
             endingLineNumber = "120"
             landmarkName = "unlinkTwitter(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect.TwitterUtility.(unlinkTwitter (completion : (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "QNect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
+                  timestampString = "509482314.72416"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect.TwitterUtility.(unlinkTwitter (completion : (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "QNect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/Social.swift"
+                  timestampString = "509482314.725809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,7 +138,7 @@
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactViewController.swift"
-                  timestampString = "509479937.248482"
+                  timestampString = "509482314.738357"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "329"
@@ -121,12 +153,12 @@
                   moduleName = "QNect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactViewController.swift"
-                  timestampString = "509479937.249636"
+                  timestampString = "509482314.739589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
                   endingLineNumber = "330"
-                  offsetFromSymbolStart = "66">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -170,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/OnboardViewController.swift"
-            timestampString = "509471132.884135"
+            timestampString = "509481556.335349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/OnboardViewController.swift"
-            timestampString = "509471132.884135"
+            timestampString = "509481556.335349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "7">
          </BreakpointContent>

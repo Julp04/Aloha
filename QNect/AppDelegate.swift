@@ -43,20 +43,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-//        
-//        if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
-//            Defaults["HasLaunchedOnce"] = true
-//            Defaults.synchronize()
-//            
-//            
-//            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialVC")
-//            
-//            self.window!.rootViewController = tutorialVC
-//            
-//        }
-//        else {
-////            checkForCurrentUser()
-//        }
+        
+        if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
+            Defaults["HasLaunchedOnce"] = true
+            Defaults.synchronize()
+            
+            
+            let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
+            
+            self.window!.rootViewController? = onboardNav
+            
+        }
+        else {
+            checkForCurrentUser()
+        }
     
         return true
     }
@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
             self.window?.rootViewController = mainVC
         }else {
-            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialVC")
+            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC")
             
             self.window!.rootViewController = tutorialVC
         }
