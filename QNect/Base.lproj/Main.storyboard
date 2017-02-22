@@ -1028,7 +1028,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2p-Bq-Wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="330" y="-466"/>
+            <point key="canvasLocation" x="328" y="-586"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -2577,7 +2577,7 @@
         <image name="twitter_circle" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Met-8y-vVE"/>
+        <segue reference="NVW-6j-lTO"/>
         <segue reference="fe4-3V-Y95"/>
     </inferredMetricsTieBreakers>
 </document>

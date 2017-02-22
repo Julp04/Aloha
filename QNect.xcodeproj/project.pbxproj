@@ -46,10 +46,6 @@
 		B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
 		B964AE9F1DBA74B400A0162E /* QNectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE9E1DBA74B400A0162E /* QNectTests.swift */; };
 		B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
-		B9A2B5731DEB790300172823 /* ConnectTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2B56F1DEB790300172823 /* ConnectTutorialVC.swift */; };
-		B9A2B5741DEB790300172823 /* ScanTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2B5701DEB790300172823 /* ScanTutorialVC.swift */; };
-		B9A2B5751DEB790300172823 /* InfoTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2B5711DEB790300172823 /* InfoTutorialVC.swift */; };
-		B9A2B5761DEB790300172823 /* TutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2B5721DEB790300172823 /* TutorialContainerViewController.swift */; };
 		B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */; };
 		B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
 		B9C3A8001DD8E66F00CE9D06 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
@@ -117,10 +113,6 @@
 		B964AEA01DBA74B400A0162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9669A641DDCF9D200D7C5C7 /* QNect-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QNect-Bridge.h"; sourceTree = "<group>"; };
 		B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
-		B9A2B56F1DEB790300172823 /* ConnectTutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectTutorialVC.swift; sourceTree = "<group>"; };
-		B9A2B5701DEB790300172823 /* ScanTutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanTutorialVC.swift; sourceTree = "<group>"; };
-		B9A2B5711DEB790300172823 /* InfoTutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTutorialVC.swift; sourceTree = "<group>"; };
-		B9A2B5721DEB790300172823 /* TutorialContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContainerViewController.swift; sourceTree = "<group>"; };
 		B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
@@ -214,7 +206,6 @@
 				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
 				B964AE861DBA74B400A0162E /* AppDelegate.swift */,
 				B964AE8A1DBA74B400A0162E /* Main.storyboard */,
-				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */,
 				B964AEAC1DBA74E800A0162E /* Controllers */,
 				B949FA3E1DBA9AA80071CBD6 /* Utitilities */,
@@ -264,9 +255,9 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B9A2B5771DEB790900172823 /* Tutorial */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
 				B90968D31DCFC79500B73662 /* ContactViewController.swift */,
+				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
 				B9570E0F1DCF93A800685718 /* ScannerViewController.swift */,
@@ -276,17 +267,6 @@
 				B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		B9A2B5771DEB790900172823 /* Tutorial */ = {
-			isa = PBXGroup;
-			children = (
-				B9A2B56F1DEB790300172823 /* ConnectTutorialVC.swift */,
-				B9A2B5701DEB790300172823 /* ScanTutorialVC.swift */,
-				B9A2B5711DEB790300172823 /* InfoTutorialVC.swift */,
-				B9A2B5721DEB790300172823 /* TutorialContainerViewController.swift */,
-			);
-			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		B9EF94731DBA78540091D596 /* SupportingFiles */ = {
@@ -515,7 +495,6 @@
 				B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */,
 				B9570E0E1DCF92EB00685718 /* ContainerViewController.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
-				B9A2B5731DEB790300172823 /* ConnectTutorialVC.swift in Sources */,
 				B9570E081DCF8CE900685718 /* SignupViewController.swift in Sources */,
 				B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
@@ -523,13 +502,10 @@
 				B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */,
 				B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */,
 				B90968DA1DCFC83200B73662 /* SocialMediaCell.swift in Sources */,
-				B9A2B5761DEB790300172823 /* TutorialContainerViewController.swift in Sources */,
 				B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */,
-				B9A2B5741DEB790300172823 /* ScanTutorialVC.swift in Sources */,
 				B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */,
 				B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */,
 				B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */,
-				B9A2B5751DEB790300172823 /* InfoTutorialVC.swift in Sources */,
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
