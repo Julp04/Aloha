@@ -12,6 +12,7 @@ import Firebase
 import Fabric
 import TwitterKit
 import OAuthSwift
+import RevealingSplashView
 
 
 
@@ -44,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
+        
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
             Defaults["HasLaunchedOnce"] = true
             Defaults.synchronize()
@@ -53,9 +55,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window!.rootViewController? = onboardNav
             
+            
+            
+           
+            
         }
         else {
             checkForCurrentUser()
+        }
+        
+        let q = UIImage(named: "qnect_logo_white")!
+        let qSize = CGSize(width: 240.0, height: 128.0)
+        
+        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+        splashView.iconColor = UIColor.white
+        splashView.duration = 1.5
+        splashView.animationType = .twitter
+        
+        self.window?.rootViewController?.view.addSubview(splashView)
+        
+        splashView.startAnimation {
+            print("completed")
         }
     
         return true

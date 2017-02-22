@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import RevealingSplashView
 
 
 class OnboardViewController: UIViewController, UIScrollViewDelegate {
@@ -39,7 +40,21 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         
         backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
         backgroundPlayer?.setUpBackground()
-     
+        
+        
+//        let q = UIImage(named: "qnect_logo_white")!
+//        let qSize = CGSize(width: 240.0, height: 128.0)
+//        
+//        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+//        splashView.iconColor = UIColor.white
+//        splashView.duration = 1.5
+//        splashView.animationType = .twitter
+//        
+//        self.view.addSubview(splashView)
+//        
+//        splashView.startAnimation { 
+//            print("completed")
+//        }
         
         
         configureScrollView()

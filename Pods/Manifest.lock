@@ -48,6 +48,7 @@ PODS:
   - pop (1.0.9)
   - PTPopupWebView (0.4.0)
   - ReachabilitySwift (3)
+  - RevealingSplashView (0.1.0)
   - RKDropdownAlert (0.3.0)
   - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.0.0)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - pop (from `https://github.com/facebook/pop.git`)
   - PTPopupWebView
   - ReachabilitySwift
+  - RevealingSplashView
   - RKDropdownAlert
   - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON (= 3.0.0)
@@ -111,12 +113,13 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  RevealingSplashView: 501dd03d975ba2c4165dd463ea1c7c407fb9d13e
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: 38087c6ea105b79f8fd5cef93e5146cb0b08ad43
+PODFILE CHECKSUM: 4b42dc0ed269c50eee37ad6e5851617d9bb2e9fb
 
 COCOAPODS: 1.2.0

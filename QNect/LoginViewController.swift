@@ -112,11 +112,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
                 if error != nil {
                     
-                    if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
-                        self.emailField.errorMessage = "Invalid Email"
+                    if error!.localizedDescription.contains("Network") {
+                        RKDropdownAlert.title("Network Error", message: "Check your network settings and try again", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
                     }else {
-                        self.passwordField.errorMessage = "Invalid Password"
+                        if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
+                            self.emailField.errorMessage = "Invalid Email"
+                        }else {
+                            self.passwordField.errorMessage = "Invalid Password"
+                        }
                     }
+                    
+        
                 }else {
                     self.segueToMainApp()
                 }

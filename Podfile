@@ -21,6 +21,7 @@ target 'QNect' do
     pod 'Onboard'
     pod 'SkyFloatingLabelTextField', '~> 2.0.0'
     pod 'FontAwesome.swift'
+    pod 'RevealingSplashView'
     
 end
 
