@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		141852181E55F2E200471E59 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* Social.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
+		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
+		1471D91D1E5CE98300293728 /* login2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1471D91C1E5CE98300293728 /* login2.mp4 */; };
+		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
@@ -68,6 +71,9 @@
 /* Begin PBXFileReference section */
 		141852171E55F2E200471E59 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		1471D91C1E5CE98300293728 /* login2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = login2.mp4; sourceTree = "<group>"; };
+		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
 				B9570E0B1DCF8E1000685718 /* Colors.swift */,
 				B9570E031DCF8AA000685718 /* Constants.swift */,
@@ -203,9 +210,11 @@
 		B964AE851DBA74B400A0162E /* QNect */ = {
 			isa = PBXGroup;
 			children = (
+				1471D91C1E5CE98300293728 /* login2.mp4 */,
 				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
 				B964AE861DBA74B400A0162E /* AppDelegate.swift */,
 				B964AE8A1DBA74B400A0162E /* Main.storyboard */,
+				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */,
 				B964AEAC1DBA74E800A0162E /* Controllers */,
 				B949FA3E1DBA9AA80071CBD6 /* Utitilities */,
@@ -396,6 +405,7 @@
 			files = (
 				B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */,
 				142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */,
+				1471D91D1E5CE98300293728 /* login2.mp4 in Resources */,
 				B964AE911DBA74B400A0162E /* Images.xcassets in Resources */,
 				B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */,
 			);
@@ -499,6 +509,8 @@
 				B90968CE1DCFBE0C00B73662 /* QnTableViewController.swift in Sources */,
 				B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */,
 				14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */,
+				1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */,
+				1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */,
 				B9570E0C1DCF8E1000685718 /* Colors.swift in Sources */,
 				B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */,
 				B9570E0E1DCF92EB00685718 /* ContainerViewController.swift in Sources */,

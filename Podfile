@@ -18,6 +18,8 @@ target 'QNect' do
     pod 'TwitterKit'
     pod 'OAuthSwift', '~> 1.1.0'
     pod 'PTPopupWebView'
+    pod 'Onboard'
+    
     
 end
 
