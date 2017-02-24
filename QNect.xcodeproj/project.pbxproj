@@ -12,6 +12,7 @@
 		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
 		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		147C90B81E5DDCB700D8DE70 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 147C90B71E5DDCB700D8DE70 /* onboard.mp4 */; };
+		14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D931E606ADE00794587 /* Signup1ViewController.swift */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
@@ -70,6 +71,7 @@
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147C90B71E5DDCB700D8DE70 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
+		14855D931E606ADE00794587 /* Signup1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup1ViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				14855D931E606ADE00794587 /* Signup1ViewController.swift */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
 				B90968D31DCFC79500B73662 /* ContactViewController.swift */,
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
@@ -509,6 +512,7 @@
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
+				14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */,
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */,
 				B93753531DD6623F007D50D7 /* VBFDoubleSegment.m in Sources */,
