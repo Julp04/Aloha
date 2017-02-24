@@ -42,6 +42,15 @@ class Signup1ViewController: UIViewController,UITextFieldDelegate{
         }
     }
     
+    @IBOutlet weak var profileImageView: UIImageView! {
+        didSet {
+            profileImageView.backgroundColor = UIColor.black
+            profileImageView.layer.cornerRadius = 50.0
+        }
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

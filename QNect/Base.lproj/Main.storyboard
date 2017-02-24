@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Nb-fv-cHZ" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="149" width="288" height="40"/>
+                                <rect key="frame" x="16" y="187" width="288" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="FjW-cR-BxI"/>
                                 </constraints>
@@ -65,23 +65,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qj8-tX-XQ0">
-                                <rect key="frame" x="95" y="251" width="130" height="42"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="B5c-R6-ODU"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="VUt-RR-XJK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Rg-Wp-Iqm"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pY9-BV-dm2" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="203" width="288" height="40"/>
+                                <rect key="frame" x="16" y="229" width="288" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="h5Q-RK-HWT"/>
                                 </constraints>
@@ -122,30 +107,53 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qj8-tX-XQ0">
+                                <rect key="frame" x="95" y="284" width="130" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="B5c-R6-ODU"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="VUt-RR-XJK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Rg-Wp-Iqm"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-Xa-U1P">
+                                <rect key="frame" x="110" y="72" width="100" height="100"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="pY9-BV-dm2" secondAttribute="leading" id="6tA-Jw-HCZ"/>
-                            <constraint firstItem="pY9-BV-dm2" firstAttribute="top" secondItem="8Nb-fv-cHZ" secondAttribute="bottom" constant="14" id="9vD-4P-7J6"/>
+                            <constraint firstItem="pY9-BV-dm2" firstAttribute="top" secondItem="8Nb-fv-cHZ" secondAttribute="bottom" constant="2" id="9vD-4P-7J6"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8Nb-fv-cHZ" secondAttribute="leading" id="ANS-vy-n60"/>
+                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="top" secondItem="K9I-kc-9hT" secondAttribute="bottom" constant="8" symbolic="YES" id="Rjl-Ap-ePQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pY9-BV-dm2" secondAttribute="trailing" id="RyD-oZ-Tzx"/>
-                            <constraint firstItem="8Nb-fv-cHZ" firstAttribute="top" secondItem="K9I-kc-9hT" secondAttribute="bottom" constant="85" id="SpE-zr-Wuj"/>
+                            <constraint firstItem="8Nb-fv-cHZ" firstAttribute="top" secondItem="K9I-kc-9hT" secondAttribute="bottom" constant="123" id="SpE-zr-Wuj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qj8-tX-XQ0" secondAttribute="trailing" constant="79" id="U9w-hv-apP"/>
                             <constraint firstItem="qj8-tX-XQ0" firstAttribute="leading" secondItem="1Mz-7G-4kL" secondAttribute="leadingMargin" constant="79" id="Wbs-2r-247"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Nb-fv-cHZ" secondAttribute="trailing" id="XiP-dE-2XI"/>
+                            <constraint firstItem="8Nb-fv-cHZ" firstAttribute="top" secondItem="esZ-Xa-U1P" secondAttribute="bottom" constant="15" id="opa-SH-RHz"/>
+                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="leading" secondItem="1Mz-7G-4kL" secondAttribute="leadingMargin" constant="94" id="ozZ-kx-eIW"/>
                             <constraint firstItem="pY9-BV-dm2" firstAttribute="height" secondItem="8Nb-fv-cHZ" secondAttribute="height" id="p9C-A5-gQR"/>
-                            <constraint firstItem="qj8-tX-XQ0" firstAttribute="top" secondItem="pY9-BV-dm2" secondAttribute="bottom" constant="8" id="rXm-eZ-DWh"/>
+                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="centerX" secondItem="8Nb-fv-cHZ" secondAttribute="centerX" id="qgk-qd-ccf"/>
+                            <constraint firstItem="qj8-tX-XQ0" firstAttribute="top" secondItem="pY9-BV-dm2" secondAttribute="bottom" constant="15" id="rXm-eZ-DWh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="qj8-tX-XQ0" id="ql8-Hz-pNI"/>
                         <outlet property="emailField" destination="8Nb-fv-cHZ" id="fmL-3x-Cft"/>
                         <outlet property="passwordField" destination="pY9-BV-dm2" id="oNH-xz-ohd"/>
+                        <outlet property="profileImageView" destination="esZ-Xa-U1P" id="Fca-iy-5eM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aET-xl-x4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1401" y="-1048"/>
+            <point key="canvasLocation" x="1400.625" y="-1048.943661971831"/>
         </scene>
         <!--LOG IN-->
         <scene sceneID="tne-QT-ifu">
