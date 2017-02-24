@@ -42,26 +42,13 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         backgroundPlayer?.setUpBackground()
         
         
-//        let q = UIImage(named: "qnect_logo_white")!
-//        let qSize = CGSize(width: 240.0, height: 128.0)
-//        
-//        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
-//        splashView.iconColor = UIColor.white
-//        splashView.duration = 1.5
-//        splashView.animationType = .twitter
-//        
-//        self.view.addSubview(splashView)
-//        
-//        splashView.startAnimation { 
-//            print("completed")
-//        }
-        
         
         configureScrollView()
         self.pageControl.numberOfPages = horizontalPageCount
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
        
+        view.backgroundColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {

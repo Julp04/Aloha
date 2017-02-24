@@ -101,6 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setUpTextField(passwordField)
         
         self.loginButton.layer.cornerRadius = 5.0
+        self.view.backgroundColor = UIColor.qnPurple
     }
     
     func loginUser()

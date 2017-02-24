@@ -35,7 +35,7 @@ public extension UIColor {
 
    @nonobjc class var  qnPurple:UIColor {
         get {
-            return UIColor(r: 81, g: 80, b: 190, a: 1)
+            return UIColor(r: 61, g: 7, b: 105, a: 1)
         }
     }
     

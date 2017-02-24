@@ -34,7 +34,7 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KmQ-GL-tIn" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="16" y="90" width="288" height="40"/>
-                                <color key="backgroundColor" red="0.24313725490196078" green="0.0039215686274509803" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.58843259160000005" green="0.077542554829999999" blue="0.51917798000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="zq5-sk-5V7"/>
@@ -1028,7 +1028,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2p-Bq-Wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328" y="-586"/>
+            <point key="canvasLocation" x="229" y="-660"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -2577,7 +2577,7 @@
         <image name="twitter_circle" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NVW-6j-lTO"/>
         <segue reference="fe4-3V-Y95"/>
+        <segue reference="Met-8y-vVE"/>
     </inferredMetricsTieBreakers>
 </document>
