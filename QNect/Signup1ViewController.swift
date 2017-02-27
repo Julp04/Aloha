@@ -8,9 +8,11 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import RSKImageCropper
 
 
-class Signup1ViewController: UIViewController,UITextFieldDelegate{
+
+class Signup1ViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate{
 
     @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
@@ -39,20 +41,85 @@ class Signup1ViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var continueButton: UIButton! {
         didSet{
             continueButton.layer.cornerRadius = 5.0
+            continueButton.backgroundColor = UIColor.qnPurple
+            changeContinueStatus(enabled: false)
         }
     }
     
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
-            profileImageView.backgroundColor = UIColor.black
+            profileImageView.backgroundColor = UIColor.clear
             profileImageView.layer.cornerRadius = 50.0
+            profileImageView.layer.borderColor = UIColor.qnPurple.cgColor
+            profileImageView.layer.borderWidth  = 2.0
+            profileImageView.layer.masksToBounds = true
+            
         }
     }
+    
+    @IBAction func addPhotoAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
+        
+        let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
+            
+            
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .camera
+            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
+            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.tintColor = UIColor.white
+            self.present(self.imagePicker, animated: true, completion: nil)
+            
+        }
+        
+        
+      
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
+            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.tintColor = UIColor.white
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let removePhotoAction = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
+            self.profileImageView.image = nil
+            self.addPhotoButton.titleLabel?.text = "Add Photo"
+            
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(selfieAction)
+        }
+        
+        if self.profileImageView.image != nil {
+            alert.addAction(removePhotoAction)
+        }
+        
+        
+        
+        alert.addAction(photoLibraryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+        
+      
+    }
+    
+    @IBOutlet weak var addPhotoButton: UIButton!
+    let imagePicker = UIImagePickerController()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
+        
 
         // Do any additional setup after loading the view.
     }
@@ -71,8 +138,10 @@ class Signup1ViewController: UIViewController,UITextFieldDelegate{
         
     }
     
-    func changeContinueStatus(enable:Bool)
+    func changeContinueStatus(enabled:Bool)
     {
+        continueButton.isEnabled = enabled
+        continueButton.alpha = enabled ? 1.0: 0.5
         
     }
     
@@ -111,10 +180,53 @@ class Signup1ViewController: UIViewController,UITextFieldDelegate{
             }
         }
         
+        if (passwordField.text?.characters.count)! >= 5 && (emailField.text?.contains("@"))! {
+            changeContinueStatus(enabled: true)
+        }else {
+            changeContinueStatus(enabled: false)
+        }
+        
+    
+        
         
         
         return true
     }
+    
+    
+    //MARK: - Image Picker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
+    {
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = image
+        addPhotoButton.titleLabel?.text = ""
+        
+        let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
+        imageCropper.delegate = self
+        
+        dismiss(animated: true, completion: nil)
+        self.present(imageCropper, animated: true, completion: nil)
+        
+       
+        
+        
+//        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Image Cropper
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        profileImageView.image = croppedImage
+        
+    }
+    
     
     
 

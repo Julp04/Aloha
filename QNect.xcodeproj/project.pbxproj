@@ -13,6 +13,10 @@
 		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		147C90B81E5DDCB700D8DE70 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 147C90B71E5DDCB700D8DE70 /* onboard.mp4 */; };
 		14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D931E606ADE00794587 /* Signup1ViewController.swift */; };
+		14855D961E64900600794587 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D951E64900600794587 /* NameViewController.swift */; };
+		14855D981E64901300794587 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
+		14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
+		14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
@@ -72,6 +76,10 @@
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147C90B71E5DDCB700D8DE70 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
 		14855D931E606ADE00794587 /* Signup1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup1ViewController.swift; sourceTree = "<group>"; };
+		14855D951E64900600794587 /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		14855D971E64901300794587 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
+		14855D991E64902500794587 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		14855D9B1E64903A00794587 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,7 +265,11 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				14855D951E64900600794587 /* NameViewController.swift */,
+				14855D971E64901300794587 /* UsernameViewController.swift */,
+				14855D991E64902500794587 /* PasswordViewController.swift */,
 				14855D931E606ADE00794587 /* Signup1ViewController.swift */,
+				14855D9B1E64903A00794587 /* EmailViewController.swift */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
 				B90968D31DCFC79500B73662 /* ContactViewController.swift */,
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
@@ -487,6 +499,7 @@
 				B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
 				B93753541DD6623F007D50D7 /* VBFPopFlatButton.m in Sources */,
+				14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */,
 				B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */,
 				B9C3A8001DD8E66F00CE9D06 /* ContactModel.swift in Sources */,
 				B90968CE1DCFBE0C00B73662 /* QnTableViewController.swift in Sources */,
@@ -499,6 +512,8 @@
 				B9570E0E1DCF92EB00685718 /* ContainerViewController.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
 				B9570E081DCF8CE900685718 /* SignupViewController.swift in Sources */,
+				14855D961E64900600794587 /* NameViewController.swift in Sources */,
+				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
@@ -511,6 +526,7 @@
 				B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */,
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
+				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
 				14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */,
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,

@@ -154,10 +154,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     
                     handleScannedContact(metadataObj, barCodeObject: barCodeObject)
                     
-                }else if metadataObj.stringValue.range(of: ".com") != nil {
+                }else if metadataObj.stringValue.contains(".com") {
   
+                    //Todo: Need to test different QRCodes and handle different strings
                     var url = ""
-                    if metadataObj.stringValue.range(of: "http") == nil {
+                    if !metadataObj.stringValue.contains("http"){
                         url = "http://\(metadataObj.stringValue)"
                     }else {url = metadataObj.stringValue}
                     

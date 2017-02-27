@@ -31,7 +31,7 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     
  
     @IBOutlet weak var scrollView: UIScrollView!
-    //Todo: When screen first loads takes a second for video to appear.
+    
     override func viewDidLoad() {
         
        

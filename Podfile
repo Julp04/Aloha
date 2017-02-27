@@ -22,6 +22,8 @@ target 'QNect' do
     pod 'SkyFloatingLabelTextField', '~> 2.0.0'
     pod 'FontAwesome.swift'
     pod 'RevealingSplashView'
+    pod 'RSKImageCropper'
+   
     
 end
 

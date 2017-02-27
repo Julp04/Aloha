@@ -95,6 +95,13 @@ class User
         
     }
     
+    init(userInfo:UserInfo) {
+        self.username = userInfo.userName
+        self.firstName = userInfo.firstName
+        self.lastName = userInfo.lastName
+        self.email = userInfo.email
+    }
+    
   
 }
 
