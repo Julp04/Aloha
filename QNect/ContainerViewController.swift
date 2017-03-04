@@ -38,6 +38,10 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
+    }
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
     }

@@ -9,27 +9,34 @@
 import UIKit
 import SkyFloatingLabelTextField
 import FontAwesome_swift
+import JPLoadingButton
+import Firebase
+import ReachabilitySwift
 
-class EmailViewController: UIViewController {
+class EmailViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             emailField.iconFont = UIFont.fontAwesome(ofSize: 15)
             emailField.iconText = "\u{f0e0}"
             emailField.iconMarginBottom = -2.0
+            emailField.delegate = self
         }
     }
     
-    @IBOutlet weak var continueButton: UIButton! {
+    @IBOutlet weak var continueButton: JPLoadingButton! {
         didSet {
-            continueButton.layer.cornerRadius = 5.0
-            continueButton.backgroundColor = UIColor.qnPurple
+            changeContinueStatus(enabled: false)
         }
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        
+        emailField.becomeFirstResponder()
     }
     
     var userInfo:UserInfo?
@@ -40,20 +47,91 @@ class EmailViewController: UIViewController {
     }
 
 
-
     @IBAction func continueAction(_ sender: Any) {
         continueSignup()
     }
+
+    func changeContinueStatus(enabled:Bool)
+    {
+        continueButton.isEnabled = enabled
+        continueButton.alpha = enabled ? 1.0: 0.5
+        
+    }
+    
     
     func continueSignup()
     {
         
+        if continueButton.isEnabled {
+            
+            if Reachability.isConnectedToInternet() {
+                
+                    FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!, completion: { (some, error) in
+                        if error != nil {
+                            print(error!)
+                        }else {
+                            if some == nil {
+                                print("No active email")
+                                //No active email continue to register
+                                self.userInfo?.email = self.emailField.text!
+                                
+                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
+                                    if error != nil {
+                                        print(error!)
+                                    }else {
+                                        
+                                        //Todo: Temprary not really going to main app from here
+                                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                                        self.present(mainVC, animated: true, completion: nil)
+                                    }
+                                })
+                                
+                                
+                            }else{
+                                print("Email already exists")
+                                self.emailField.errorMessage = "Email already registered"
+                            }
+                        }
+                    })
+            }
+            }else {
+                AlertUtility.showConnectionAlert()
+            }
+        
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? UINavigationController {
-            
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        self.emailField.errorMessage = ""
+        
+        var email = emailField.text
+        
+        if string == "" {
+            email?.characters.removeLast()
+        }else {
+            email?.characters.append(string.characters.first!)
         }
+        
+        if (email?.contains("@"))! && (email?.characters.count)! >= 3 {
+            changeContinueStatus(enabled: true)
+        }else {
+            changeContinueStatus(enabled: false)
+        }
+        
+        return true
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        continueSignup()
+        return true
+    }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
     }
     
 }

@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JPLoadingButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>111E135EBD05E9653397BBE554798209</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1613271357771814C71601D90B787D94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C846C83139775EC404935046A327C62</key>
+		<key>30FA0EBD8359836EF57B88A393F41CC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3331B3A062D856F442EAD69C7136F3FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,12 +137,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>661391665BCAD4F4FF4C32B80FE849CD</key>
+		<key>53D83D45C49B2070D7D9AF9D8C58BFCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A621D8DE025910D67E7ED2EAEA273B1</key>
+		<key>611F8780481356B626FFD51F9897BA9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>655E6BB242A0E1AC5477EDC10AEED7DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>674312073F8C74D95C8422200BAE3871</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,12 +167,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A29A3F4073D9F26E49FB58E8DC9B5AB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7C2A2F39B9E6476D7B5F7A9BAF47224</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2DE5EFF2A9CBD938C62EE157BA46424</key>
+		<key>B65C2BA3ECA8DC95D32AA6CD70E8E823</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,27 +192,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CFD2549BCF6BE626BC6586D6164E6D48</key>
+		<key>E3843115F87A8BA5CE3C7A1E89A2DC7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E600348B304A24CC97A1481949C182CE</key>
+		<key>ED508CD0EE28A7528E2B9D6F790F5261</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FFCABFF89C59B67C5C33212262CE790F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FFE2798C59F5C18066D43F47951330DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -42,6 +42,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
+  - JPLoadingButton (0.4.0)
   - MBProgressHUD (1.0.0)
   - OAuthSwift (1.1.1)
   - Onboard (2.3.1)
@@ -55,8 +56,8 @@ PODS:
   - SwiftyJSON (3.0.0)
   - TwitterCore (2.8.0):
     - Fabric
-  - TwitterKit (2.8.0):
-    - TwitterCore (= 2.8.0)
+  - TwitterKit (2.8.1):
+    - TwitterCore (>= 2.8)
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/mluisbrown/Cartography.git`, branch `swift3`)
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - FontAwesome.swift
+  - JPLoadingButton
   - MBProgressHUD
   - OAuthSwift (~> 1.1.0)
   - Onboard
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  JPLoadingButton: 8af25b017f2e2cd9e09697a7816ebf40c49b33aa
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
@@ -121,8 +124,8 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
-  TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
+  TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: cadf758b4b92d5ff2446167194e69da3ac84fc1e
+PODFILE CHECKSUM: 0226bb60a63c4e758979b9c297585a1f80b50a7b
 
 COCOAPODS: 1.2.0

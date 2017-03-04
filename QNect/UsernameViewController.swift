@@ -9,21 +9,25 @@
 import UIKit
 import SkyFloatingLabelTextField
 import FontAwesome_swift
+import ReachabilitySwift
+import Firebase
+import RKDropdownAlert
+import JPLoadingButton
 
-class UsernameViewController: UIViewController {
+class UsernameViewController: UIViewController , UITextFieldDelegate{
 
     @IBOutlet weak var usernameField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             usernameField.iconFont = UIFont.fontAwesome(ofSize: 15)
             usernameField.iconText = "\u{f007}"
             usernameField.iconMarginBottom = -2.0
+            usernameField.delegate = self
         }
     }
     
-    @IBOutlet weak var continueButton: UIButton! {
+    @IBOutlet weak var continueButton: JPLoadingButton! {
         didSet {
-            continueButton.layer.cornerRadius = 5.0
-            continueButton.backgroundColor = UIColor.qnPurple
+            changeContinueStatus(enabled: false)
         }
     }
     override func viewDidLoad() {
@@ -44,10 +48,60 @@ class UsernameViewController: UIViewController {
     }
 
     @IBAction func continueAction(_ sender: Any) {
-        self.userInfo?.userName = usernameField.text
         
-        self.performSegue(withIdentifier: "PasswordSegue", sender: self)
+        continueSignup()
+    }
+    
+    func continueSignup()
+    {
+        if continueButton.isEnabled {
         
+            if Reachability.isConnectedToInternet() {
+                
+                doesUsernameExist(completion: { (usernameExists) in
+                    if usernameExists {
+                        self.usernameField.errorMessage = "Username already exists"
+                        self.changeContinueStatus(enabled: false)
+                    }else {
+                        self.usernameField.errorMessage = ""
+                        self.changeContinueStatus(enabled: true)
+                        self.userInfo?.userName = self.usernameField.text
+                        
+                        self.performSegue(withIdentifier: "PasswordSegue", sender: self)
+                    }
+                })
+            }else {
+                
+                AlertUtility.showConnectionAlert()
+            }
+        }
+        
+        
+    }
+    
+    
+    func doesUsernameExist(completion: @escaping (Bool) -> Void)
+    {
+        let ref = FIRDatabase.database().reference()
+        
+        
+        let usernamesRef = ref.child("usernames")
+        let currentTypedUserRef = usernamesRef.child(usernameField.text!)
+        
+        currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                completion(true)
+            }else {
+                completion(false)
+            }
+        })
+       
+    }
+    
+    func changeContinueStatus(enabled:Bool)
+    {
+        continueButton.isEnabled = enabled
+        continueButton.alpha = enabled ? 1.0: 0.5
     }
    
     
@@ -56,6 +110,32 @@ class UsernameViewController: UIViewController {
             passwordVC.configureViewController(userInfo: userInfo!)
         }
     }
-
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.usernameField.errorMessage = ""
+        
+        var username = usernameField.text
+        
+        if string == "" {
+            username?.characters.removeLast()
+        }else {
+            username?.characters.append(string.characters.first!)
+        }
+        
+        if (username?.characters.count)! > 3 {
+            changeContinueStatus(enabled: true)
+        }else {
+            changeContinueStatus(enabled: false)
+        }
+        
+        
+        return true
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        continueSignup()
+        return true
+    }
 
 }

@@ -9,6 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import FontAwesome_swift
+import JPLoadingButton
 
 class PasswordViewController: UIViewController , UITextFieldDelegate{
 
@@ -32,12 +33,8 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
 
   
     
-    @IBOutlet weak var continueButton: UIButton! {
-        didSet {
-            continueButton.layer.cornerRadius = 5.0
-            continueButton.backgroundColor = UIColor.qnPurple
-        }
-    }
+    @IBOutlet weak var continueButton: JPLoadingButton!
+    
     var userInfo:UserInfo?
     
     func configureViewController(userInfo:UserInfo)
@@ -47,9 +44,17 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
     
    
     @IBAction func continueAction(_ sender: Any) {
-        self.userInfo?.password = passwordField.text
-        
-        self.performSegue(withIdentifier: "EmailSegue", sender: self)
+        continueSignup()
+    }
+    
+    func continueSignup()
+    {
+        if continueButton.isEnabled {
+            
+            self.userInfo?.password = passwordField.text
+            
+            self.performSegue(withIdentifier: "EmailSegue", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,6 +100,12 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
         continueButton.isEnabled = enabled
         continueButton.alpha = enabled ? 1.0: 0.5
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        continueSignup()
+        
+        return true
     }
     
 

@@ -8,8 +8,10 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import JPLoadingButton
 
 class NameViewController: UIViewController, UITextFieldDelegate {
+    
 
     @IBOutlet weak var firstnameField: SkyFloatingLabelTextField! {
         didSet {
@@ -23,12 +25,7 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var continueButton: UIButton! {
-        didSet {
-            continueButton.layer.cornerRadius = 5.0
-            continueButton.backgroundColor = UIColor.qnPurple
-        }
-    }
+    @IBOutlet weak var continueButton: JPLoadingButton!
     
     var userInfo = UserInfo()
     
@@ -40,6 +37,7 @@ class NameViewController: UIViewController, UITextFieldDelegate {
            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         firstnameField.becomeFirstResponder()
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
 
         
     }
@@ -112,6 +110,10 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         continueButton.isEnabled = enabled
         continueButton.alpha = enabled ? 1.0: 0.5
         
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
 }

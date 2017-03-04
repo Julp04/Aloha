@@ -18,6 +18,7 @@ import Fabric
 import TwitterKit
 import SkyFloatingLabelTextField
 import FontAwesome_swift
+import JPLoadingButton
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -29,7 +30,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginAction(_ sender: Any) {
         loginUser()
     }
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: JPLoadingButton! {
+        didSet {
+            changeLoginButtonStatus(enabled: false)
+
+        }
+    }
     var ref: FIRDatabaseReference!
     
     
@@ -92,59 +98,87 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         setUpTextField(emailField)
         setUpTextField(passwordField)
         
-        self.loginButton.layer.cornerRadius = 5.0
         self.view.backgroundColor = UIColor.qnPurple
+        
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
     
     func loginUser()
     {
+        
         if Reachability.isConnectedToInternet() {
             
-            showHud("Logging in...")
-            
-            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
-                if error != nil {
-                    
-                    if error!.localizedDescription.contains("Network") {
-                        RKDropdownAlert.title("Network Error", message: "Check your network settings and try again", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-                    }else {
-                        if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
-                            self.emailField.errorMessage = "Invalid Email"
+            if !(emailField.text?.contains("@"))! {
+                //User is signing in with username not email
+                //Fetch email from username and sign in with that
+                
+                let ref = FIRDatabase.database().reference()
+                
+                let usernamesRef = ref.child("usernames")
+                let currentTypedUserRef = usernamesRef.child(emailField.text!)
+                
+                currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                       
+                    }
+                })
+
+            }else {
+                //User is logging in with email
+                
+                self.loginButton.startLoadingAnimation()
+                
+                FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
+                    if error != nil {
+                        
+                        if error!.localizedDescription.contains("Network") {
+                            RKDropdownAlert.title("Network Error", message: "Check your network settings and try again", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                            
+                            
                         }else {
-                            self.passwordField.errorMessage = "Invalid Password"
+                            if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
+                                self.emailField.errorMessage = "Invalid Email"
+                            }else {
+                                self.passwordField.errorMessage = "Invalid Password"
+                            }
                         }
+                        
+                        self.loginButton.stopLoadingAnimation()
+                        
+                    }else {
+                        
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                        
+                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                        
                     }
                     
-        
-                }else {
-                    self.segueToMainApp()
-                }
-                
-                self.hideHud()
-            })
-            
-            
+                })
+            }
         }
+    }
+    
+    func changeLoginButtonStatus(enabled:Bool)
+    {
+        loginButton.isEnabled = enabled
+        loginButton.alpha  = enabled ? 1.0 : 0.5
     }
     
     //MARK: Alerts
     
     fileprivate func showConnectionAlert()
     {
-        RKDropdownAlert.title("No Internet Connection", message: "Please connect to the interwebs and try agian", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-    }
-    
-    
-    fileprivate func segueToMainApp()
-    {
-        self.performSegue(withIdentifier: SegueIdentifiers.Login, sender: self)
+        AlertUtility.showConnectionAlert()
     }
     
     
@@ -201,12 +235,42 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         if textField == passwordField {
             passwordField.errorMessage = ""
+            
+            var password = passwordField.text
+            
+            if string == "" {
+                password?.characters.removeLast()
+            }else {
+                password?.characters.append(string.characters.first!)
+            }
+            
+            if (password?.characters.count)! > 2 {
+                changeLoginButtonStatus(enabled: true)
+            }else {
+                changeLoginButtonStatus(enabled: false)
+            }
         }
         
         if textField == emailField {
-            emailField.errorMessage = ""
+            self.emailField.errorMessage = ""
+            
+            var email = emailField.text
+            
+            if string == "" {
+                email?.characters.removeLast()
+            }else {
+                email?.characters.append(string.characters.first!)
+            }
+            
+            if (email?.contains("@"))! && (email?.characters.count)! >= 3 {
+                changeLoginButtonStatus(enabled: true)
+            }else {
+                changeLoginButtonStatus(enabled: false)
+            }
+
         }
         
         return true

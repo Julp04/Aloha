@@ -23,6 +23,9 @@ target 'QNect' do
     pod 'FontAwesome.swift'
     pod 'RevealingSplashView'
     pod 'RSKImageCropper'
+    pod 'JPLoadingButton'
+    
+    
    
     
 end
