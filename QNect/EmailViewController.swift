@@ -75,16 +75,18 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
                                 //No active email continue to register
                                 self.userInfo?.email = self.emailField.text!
                                 
-                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
-                                    if error != nil {
-                                        print(error!)
-                                    }else {
-                                        
-                                        //Todo: Temprary not really going to main app from here
-                                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                                        self.present(mainVC, animated: true, completion: nil)
-                                    }
-                                })
+//                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
+//                                    if error != nil {
+//                                        print(error!)
+//                                    }else {
+//                                        
+//                                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+//                                    }
+//                                })
+//                                
+                                
+                                //Testing Purposes
+                                self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
                                 
                                 
                             }else{
@@ -100,6 +102,7 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -132,6 +135,9 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
+        if let profileInfoVC = segue.destination as? ProfileInfoViewController {
+            profileInfoVC.configureViewController(userInfo: self.userInfo!)
+        }
     }
     
 }

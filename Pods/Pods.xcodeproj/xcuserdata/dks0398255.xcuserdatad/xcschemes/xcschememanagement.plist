@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JPLoadingButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,6 +112,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0183B75CBA4AD538F45C627EC3789A49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07C725D494872967177F96922DB63391</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
@@ -117,12 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30FA0EBD8359836EF57B88A393F41CC7</key>
+		<key>1EA1BE03ACF4B6656E17DA927F4918DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3331B3A062D856F442EAD69C7136F3FC</key>
+		<key>3348F0E3CD950C857AF892537884B0F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,27 +147,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>48E0CF39BC1D551418A41BE4FB5AC4EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4E9CB5FA53E7C59108A3E80AA40371DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53D83D45C49B2070D7D9AF9D8C58BFCD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>611F8780481356B626FFD51F9897BA9A</key>
+		<key>547DD765EEE72F8BF9212C860A8388A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>655E6BB242A0E1AC5477EDC10AEED7DA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>674312073F8C74D95C8422200BAE3871</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,17 +182,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A29A3F4073D9F26E49FB58E8DC9B5AB6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A7C2A2F39B9E6476D7B5F7A9BAF47224</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B65C2BA3ECA8DC95D32AA6CD70E8E823</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,17 +197,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3843115F87A8BA5CE3C7A1E89A2DC7E</key>
+		<key>DDD123D0CF717B443FFE41E9327D4931</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ED508CD0EE28A7528E2B9D6F790F5261</key>
+		<key>E8CACABB4FF7F79CF0FE26F7653F4C92</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F610F4462409E297BEADECCA198AD43E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

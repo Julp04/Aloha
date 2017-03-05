@@ -24,6 +24,7 @@ target 'QNect' do
     pod 'RevealingSplashView'
     pod 'RSKImageCropper'
     pod 'JPLoadingButton'
+    pod 'IQKeyboardManagerSwift'
     
     
    
