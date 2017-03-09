@@ -21,7 +21,7 @@ import FontAwesome_swift
 import JPLoadingButton
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     
     @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon!
@@ -157,15 +157,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         
                     }else {
                         
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
                         
-                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                        
+                        self.loginButton.startFinishAnimation(completion: { 
+                            let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                            
+                            let scannerNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ScannerNavController") as! UINavigationController
+                            
+                            let scannerVC = scannerNavVC.topViewController as! ScannerViewController
+                            
+                            scannerVC.transitioningDelegate = self
+                            mainVC.transitioningDelegate = self
+                            self.present(mainVC, animated: true, completion: nil)
+//                            self.navigationController?.present(scannerVC, animated: true, completion: nil)
+                        })
                         
                     }
                     
                 })
             }
         }
+    }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let fadeInAnimator = JPFadeInAnimator()
+        return fadeInAnimator
+    }
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
     }
     
     func changeLoginButtonStatus(enabled:Bool)

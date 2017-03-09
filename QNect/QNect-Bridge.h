@@ -13,3 +13,4 @@
 #import <Parse/PFObject+Subclass.h>
 #import "RKDropdownAlert.h"
 #import "RSKImageCropper.h"
+#import "MGCollapsingHeaderView.h"

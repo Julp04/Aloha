@@ -117,13 +117,22 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
             email?.characters.append(string.characters.first!)
         }
         
-        if (email?.contains("@"))! && (email?.characters.count)! >= 3 {
+       
+        if isValidEmail(emailField.text!) {
             changeContinueStatus(enabled: true)
         }else {
             changeContinueStatus(enabled: false)
         }
         
         return true
+    }
+    
+    func isValidEmail(_ testStr:String) -> Bool {
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     
     
@@ -135,7 +144,7 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        if let profileInfoVC = segue.destination as? ProfileInfoViewController {
+        if let profileInfoVC = segue.destination as? ProfileInfoTableViewController {
             profileInfoVC.configureViewController(userInfo: self.userInfo!)
         }
     }

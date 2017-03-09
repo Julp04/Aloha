@@ -105,9 +105,6 @@ class Signup1ViewController: UIViewController,UITextFieldDelegate, UIImagePicker
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
-        
-        
-      
     }
     
     @IBOutlet weak var addPhotoButton: UIButton!

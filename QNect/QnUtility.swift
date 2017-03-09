@@ -29,17 +29,26 @@ class QnUtilitiy {
         currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
     }
     
-    
     static func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
     {
+        let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
         
-        let currentUser = FIRAuth.auth()!.currentUser!
-        let uidRef = usersRef.child(currentUser.uid)
-        
-        uidRef.updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
+        currentUser.updateChildValues(["firstName":firstName, "lastName":lastName, "socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
+    
+    static func updateUserInfo(socialEmail:String?, socialPhone:String?)
+    {
+        let user = FIRAuth.auth()!.currentUser!
+        let ref = FIRDatabase.database().reference()
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
+        
+        currentUser.setValue(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
+    }
+    
     
     static func setProfileImage(image:UIImage)
     {

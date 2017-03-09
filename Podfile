@@ -25,6 +25,7 @@ target 'QNect' do
     pod 'RSKImageCropper'
     pod 'JPLoadingButton'
     pod 'IQKeyboardManagerSwift'
+    pod 'MGCollapsingHeader'
     
     
    

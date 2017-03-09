@@ -40,11 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
-
-        
-        
-        
-        
         
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
             Defaults["HasLaunchedOnce"] = true
@@ -55,10 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window!.rootViewController? = onboardNav
             
-            
-            
-           
-            
+  
         }
         else {
             checkForCurrentUser()

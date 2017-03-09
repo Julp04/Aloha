@@ -45,6 +45,7 @@ PODS:
   - IQKeyboardManagerSwift (4.0.8)
   - JPLoadingButton (0.4.0)
   - MBProgressHUD (1.0.0)
+  - MGCollapsingHeader (1.0.6)
   - OAuthSwift (1.1.1)
   - Onboard (2.3.1)
   - pop (1.0.9)
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JPLoadingButton
   - MBProgressHUD
+  - MGCollapsingHeader
   - OAuthSwift (~> 1.1.0)
   - Onboard
   - pop (from `https://github.com/facebook/pop.git`)
@@ -116,6 +118,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   JPLoadingButton: 8af25b017f2e2cd9e09697a7816ebf40c49b33aa
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MGCollapsingHeader: 82a52988e0dcdd32558e883ae4df4c9c1a1674b1
   OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
@@ -129,6 +132,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 337062a7da0672af315fe244caba9137f0696a9c
+PODFILE CHECKSUM: 3c5f7cdb2912eaafbfd9f99a81f656fcd63f4736
 
 COCOAPODS: 1.2.0
