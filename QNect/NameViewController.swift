@@ -18,31 +18,28 @@ class NameViewController: UIViewController, UITextFieldDelegate {
             firstnameField.delegate = self
         }
     }
-
     @IBOutlet weak var lastnameField: SkyFloatingLabelTextField! {
         didSet {
             lastnameField.delegate = self
         }
     }
-    
     @IBOutlet weak var continueButton: JPLoadingButton!
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     var userInfo = UserInfo()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         changeContinueStatus(enabled: false)
         
-           self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         firstnameField.becomeFirstResponder()
-        UIApplication.shared.setStatusBarHidden(true, with: .none)
-
-        
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.tintColor = UIColor.qnPurple
@@ -53,16 +50,10 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
     }
 
-
-    
-
     @IBAction func continueAction(_ sender: Any) {
-      
         continueWithSignup()
-        
     }
     
     func continueWithSignup()
@@ -112,9 +103,7 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+  
     
 }
 

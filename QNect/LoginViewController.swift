@@ -24,74 +24,54 @@ import JPLoadingButton
 class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     
-    @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon!
-    @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon!
+    @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon! {
+        didSet {
+            emailField.iconFont = UIFont.fontAwesome(ofSize: 15)
+            emailField.iconText = "\u{f007}"
+            
+            emailField.selectedIconColor = UIColor.white
+            emailField.iconMarginBottom = -2.0
+        }
+    }
+    @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon! {
+        didSet {
+            passwordField.iconFont = UIFont.fontAwesome(ofSize: 15)
+            passwordField.iconText = "\u{f023}"
+            
+            passwordField.selectedIconColor = UIColor.white
+            passwordField.iconMarginBottom = -2.0
+        }
+    }
+    @IBOutlet weak var loginButton: JPLoadingButton! {
+        didSet {
+            loginButton.enable = false
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    var ref: FIRDatabaseReference!
     
     @IBAction func loginAction(_ sender: Any) {
         loginUser()
     }
-    @IBOutlet weak var loginButton: JPLoadingButton! {
-        didSet {
-            changeLoginButtonStatus(enabled: false)
-
-        }
+    @IBAction func forgotPasswordAction(_ sender: Any) {
+        forgotPassword()
     }
-    var ref: FIRDatabaseReference!
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-
     }
     
-    @IBAction func forgotPasswordAction(_ sender: Any) {
-        
-        var hitReset = 0
-        
-        var email = ""
-        let alert = FCAlertView()
     
-        alert.addTextField(withPlaceholder: "Email") { (string) in
-            email  = string!
-            
-            if hitReset == 1 {
-                    if email != "" {
-                        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
-                            if error != nil {
-                                RKDropdownAlert.title("\(email) is not a registered user", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-                            }else {
-                                RKDropdownAlert.title("Password Reset Email Sent!", message: "Check your inbox for a link to reset", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
-                            }
-                        })
-                    }else {
-                        RKDropdownAlert.title("Email cannot be blank", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-                }
-            
-            }
-            
-            
-        }
-        
-        alert.addButton("Cancel", withActionBlock: {
-            hitReset = 0
-        })
-        
-        alert.doneActionBlock { 
-            hitReset = 1
-        }
-        
-        alert.colorScheme = UIColor.qnPurple
-        
-        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
-        
-    }
+    
+  
     override func viewDidAppear(_ animated: Bool) {
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,19 +85,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        setUpTextField(emailField)
-        setUpTextField(passwordField)
-        
         self.view.backgroundColor = UIColor.qnPurple
-        
-        UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
     
     func loginUser()
     {
         
         if Reachability.isConnectedToInternet() {
-            
             if !(emailField.text?.contains("@"))! {
                 //User is signing in with username not email
                 //Fetch email from username and sign in with that
@@ -129,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
                 
                 currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     if snapshot.exists() {
-                       
+                       //todo: Login with username
                     }
                 })
 
@@ -157,51 +131,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
                         
                     }else {
                         
-                        
-                        
-                        self.loginButton.startFinishAnimation(completion: { 
-                            let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                            
-                            let scannerNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ScannerNavController") as! UINavigationController
-                            
-                            let scannerVC = scannerNavVC.topViewController as! ScannerViewController
-                            
-                            scannerVC.transitioningDelegate = self
-                            mainVC.transitioningDelegate = self
-                            self.present(mainVC, animated: true, completion: nil)
-//                            self.navigationController?.present(scannerVC, animated: true, completion: nil)
-                        })
-                        
+                        //todo: Fix storyboard animation
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
                     }
-                    
                 })
             }
         }
-    }
-    
-    // MARK: UIViewControllerTransitioningDelegate
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let fadeInAnimator = JPFadeInAnimator()
-        return fadeInAnimator
-    }
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-    }
-    
-    func changeLoginButtonStatus(enabled:Bool)
-    {
-        loginButton.isEnabled = enabled
-        loginButton.alpha  = enabled ? 1.0 : 0.5
-    }
-    
-    //MARK: Alerts
-    
-    fileprivate func showConnectionAlert()
-    {
-        AlertUtility.showConnectionAlert()
+        
     }
     
     
+    //todo: Get new hud
     func showHud(_ title:String?)
     {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -215,27 +156,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         MBProgressHUD.hide(for: self.view, animated: true)
     }
     
-    
-    //MARK: - UI Setup
-    
-    func setUpTextField(_ textField:SkyFloatingLabelTextFieldWithIcon) {
-        textField.delegate = self
+    func forgotPassword()
+    {
+        var hitReset = 0
         
+        var email = ""
+        let alert = FCAlertView()
         
-        if textField == emailField {
-            emailField.iconFont = UIFont.fontAwesome(ofSize: 15)
-            emailField.iconText = "\u{f007}"
-        }else {
-            passwordField.iconFont = UIFont.fontAwesome(ofSize: 15)
-            passwordField.iconText = "\u{f023}"
+        alert.addTextField(withPlaceholder: "Email") { (string) in
+            email  = string!
+            
+            if hitReset == 1 {
+                if email != "" {
+                    FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+                        if error != nil {
+                            RKDropdownAlert.title("\(email) is not a registered user", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                        }else {
+                            RKDropdownAlert.title("Password Reset Email Sent!", message: "Check your inbox for a link to reset", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
+                        }
+                    })
+                }else {
+                    RKDropdownAlert.title("Email cannot be blank", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                }
+            }
         }
         
-        textField.selectedIconColor = UIColor.white
-        textField.iconMarginBottom = -2.0
-        
+        alert.addButton("Cancel", withActionBlock: {
+            hitReset = 0
+        })
+        alert.doneActionBlock {
+            hitReset = 1
+        }
+        alert.colorScheme = UIColor.qnPurple
+        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
     }
     
-    //MARK: - Delegates
+    
+    //MARK: Delegates
     
     //MARK:Touches Delegates
     
@@ -268,39 +225,57 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
             }
             
             if (password?.characters.count)! > 2 {
-                changeLoginButtonStatus(enabled: true)
+                loginButton.enable = true
             }else {
-                changeLoginButtonStatus(enabled: false)
+                loginButton.enable = false
             }
         }
         
         if textField == emailField {
             self.emailField.errorMessage = ""
             
-            var email = emailField.text
-            
-            if string == "" {
-                email?.characters.removeLast()
-            }else {
-                email?.characters.append(string.characters.first!)
+            if var email = emailField.text {
+                if string == "" {
+                    email.characters.removeLast()
+                }else {
+                    email.characters.append(string.characters.first!)
+                }
+                
+                if email.isValidEmail {
+                    loginButton.enable = true
+                }else {
+                    loginButton.enable = false
+                }
             }
-            
-            if (email?.contains("@"))! && (email?.characters.count)! >= 3 {
-                changeLoginButtonStatus(enabled: true)
-            }else {
-                changeLoginButtonStatus(enabled: false)
-            }
-
         }
         
         return true
     }
+}
 
+//MARK: Extensions
+
+extension String {
     
-    //MARK: - Status Bar
-    
-    override var prefersStatusBarHidden: Bool {
-        return false
+    var isValidEmail:Bool {
+        get {
+            let email = self
+            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+            
+            return emailTest.evaluate(with: email)
+        }
     }
-    
+}
+
+extension JPLoadingButton {
+    var enable:Bool {
+        get {
+            return self.enable
+        }
+        set {
+            self.isEnabled = enable
+            self.alpha  = enable ? 1.0 : 0.5
+        }
+    }
 }

@@ -11,6 +11,9 @@ import UIKit
 class ContainerViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource{
     
     //MARK: Properties
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     
     var pageViewController:UIPageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
@@ -36,10 +39,6 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate, UI
         self.pageViewController.didMove(toParentViewController: self)
         self.view.addSubview(self.pageViewController.view)
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -77,6 +76,8 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         return nil
     }
+    
+    
 
     
 }

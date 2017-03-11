@@ -337,7 +337,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
                     }
                 }
             }else {
-                //Todo: Prompt user to link with Twitter if they are not already
+                
             }
         }
         

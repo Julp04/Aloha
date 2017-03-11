@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         Fabric.with([Twitter.self])
+        //todo: Fabric with Crashlytics
         
         
         FIRDatabase.database().persistenceEnabled = true
@@ -49,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
             
             self.window!.rootViewController? = onboardNav
-            
   
         }
         else {

@@ -13,6 +13,9 @@ import RevealingSplashView
 
 
 class OnboardViewController: UIViewController, UIScrollViewDelegate {
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     var backgroundPlayer : BackgroundVideo? // Declare an instance of BackgroundVideo called backgroundPlayer
     let horizontalPageCount = 4
@@ -25,49 +28,40 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     let kSubtitleHeight:CGFloat = 110
     let kSubtitleYOffsetLength:CGFloat = 30
     
-    @IBOutlet weak var pageControl: UIPageControl!
     let titleArray = ["Wecome", "Create", "Scan", "Connect"]
     let subtitleArray = ["Connecting with friends has never been so easy. Use QNectcodes to quickly exchange info with friends", "Add contact info and other details to easily create your personal QNectcode", "Retreive users' info by quickly scanning their QNectcode. No internet connection required!", "Link different accounts like Twitter to easily follow other users without leaving the app"]
     
- 
-    @IBOutlet weak var scrollView: UIScrollView!
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     override func viewDidLoad() {
-        
-       
-        
         super.viewDidLoad()
         
         backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
         backgroundPlayer?.setUpBackground()
         
-        
-        
         configureScrollView()
         self.pageControl.numberOfPages = horizontalPageCount
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-       
         view.backgroundColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
          self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func configureScrollView()
     {
-        
         let size = view.bounds.size
         let contentSize = CGSize(width: size.width * CGFloat(horizontalPageCount), height: size.height)
         
         scrollView.contentSize = contentSize
         scrollView.isPagingEnabled = true
         scrollView.isDirectionalLockEnabled = true
-        
         scrollView.delegate = self
+        
         configureContentInScrollView()
     }
     
@@ -107,13 +101,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
             subtitleTextView.isEditable = false
             subtitleTextView.isUserInteractionEnabled = false
             
-            
-            
-            
             scrollView.addSubview(titleLabel)
             scrollView.addSubview(subtitleTextView)
-            
-            
         }
     }
     
@@ -123,17 +112,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         let page = lround(Double(fractionalPage));
         self.pageControl.currentPage = page;
         
-        
         if scrollView.contentOffset.y < 0 {
             scrollView.contentOffset.y = 0
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-
 }
