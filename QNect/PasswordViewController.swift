@@ -23,7 +23,7 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeContinueStatus(enabled: false)
+        continueButton.enable = false
 
        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
@@ -73,34 +73,21 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
           password?.characters.append(string.characters.first!)
         }
         
-        checkPassword(password: password!)
+        
+        if (password?.characters.count)! >= 6 {
+            continueButton.enable = true
+        }else {
+            continueButton.enable = false
+        }
+        
+        
         
 
         return true
     }
-    
-    func checkPassword(password:String)
-    {
-        if password.characters.count >= 6 {
-            changeContinueStatus(enabled: true)
-        }else {
-            changeContinueStatus(enabled: false)
-        }
-    }
-    
 
-    func isValidPassword(password:String) -> Bool {
-        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,15}$"
-        let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegex)
-        return passwordTest.evaluate(with: password)
-    }
+  
     
-    func changeContinueStatus(enabled:Bool)
-    {
-        continueButton.isEnabled = enabled
-        continueButton.alpha = enabled ? 1.0: 0.5
-        
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         continueSignup()

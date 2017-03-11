@@ -24,34 +24,34 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
             usernameField.delegate = self
         }
     }
-    
     @IBOutlet weak var continueButton: JPLoadingButton! {
         didSet {
-            changeContinueStatus(enabled: false)
+            continueButton.enable = false
         }
     }
+    
+    @IBAction func continueAction(_ sender: Any) {
+        continueSignup()
+    }
+    
+    //MARK: Properties
+    var userInfo:UserInfo?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
           self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         usernameField.becomeFirstResponder()
-
-        
     }
     
-    var userInfo:UserInfo?
+    
     
     func configureViewController(userInfo:UserInfo)
     {
         self.userInfo = userInfo
     }
 
-    @IBAction func continueAction(_ sender: Any) {
-        
-        continueSignup()
-    }
-    
     func continueSignup()
     {
         if continueButton.isEnabled {
@@ -61,10 +61,10 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
                 doesUsernameExist(completion: { (usernameExists) in
                     if usernameExists {
                         self.usernameField.errorMessage = "Username already exists"
-                        self.changeContinueStatus(enabled: false)
+                        self.continueButton.enable = false
                     }else {
                         self.usernameField.errorMessage = ""
-                        self.changeContinueStatus(enabled: true)
+                        self.continueButton.enable = true
                         self.userInfo?.userName = self.usernameField.text
                         
                         self.performSegue(withIdentifier: "PasswordSegue", sender: self)
@@ -75,15 +75,15 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
                 AlertUtility.showConnectionAlert()
             }
         }
-        
-        
     }
     
     
+    /// Checks to see if the username exists in the database or not
+    ///
+    /// - Parameter completion: completion block with bool value whether or not the username exists
     func doesUsernameExist(completion: @escaping (Bool) -> Void)
     {
         let ref = FIRDatabase.database().reference()
-        
         
         let usernamesRef = ref.child("usernames")
         let currentTypedUserRef = usernamesRef.child(usernameField.text!)
@@ -97,13 +97,6 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
         })
        
     }
-    
-    func changeContinueStatus(enabled:Bool)
-    {
-        continueButton.isEnabled = enabled
-        continueButton.alpha = enabled ? 1.0: 0.5
-    }
-   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let passwordVC = segue.destination as? PasswordViewController {
@@ -123,11 +116,10 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
         }
         
         if (username?.characters.count)! > 3 {
-            changeContinueStatus(enabled: true)
+            continueButton.enable = true
         }else {
-            changeContinueStatus(enabled: false)
+            continueButton.enable = true
         }
-        
         
         return true
     }

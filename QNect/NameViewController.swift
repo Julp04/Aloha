@@ -33,9 +33,9 @@ class NameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        changeContinueStatus(enabled: false)
+        continueButton.enable = false
         
-       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         firstnameField.becomeFirstResponder()
     }
@@ -77,9 +77,9 @@ class NameViewController: UIViewController, UITextFieldDelegate {
        
         
         if (firstnameField.text?.characters.count)! <= 1 || (lastnameField.text?.characters.count)! <= 1{
-            changeContinueStatus(enabled: false)
+            continueButton.enable = false
         }else {
-            changeContinueStatus(enabled: true)
+            continueButton.enable = true
         }
         
         return true
@@ -94,17 +94,6 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
-    
-    
-    func changeContinueStatus(enabled:Bool)
-    {
-        continueButton.isEnabled = enabled
-        continueButton.alpha = enabled ? 1.0: 0.5
-        
-    }
-    
-  
-    
 }
 
 

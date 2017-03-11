@@ -31,6 +31,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
             
             emailField.selectedIconColor = UIColor.white
             emailField.iconMarginBottom = -2.0
+            
+            emailField.delegate = self
         }
     }
     @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon! {
@@ -40,6 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
             
             passwordField.selectedIconColor = UIColor.white
             passwordField.iconMarginBottom = -2.0
+            
+            passwordField.delegate = self
         }
     }
     @IBOutlet weak var loginButton: JPLoadingButton! {
@@ -60,16 +64,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         forgotPassword()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
     }
     
-    
-    
-  
     override func viewDidAppear(_ animated: Bool) {
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
     }
@@ -213,69 +213,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        passwordField.errorMessage = ""
+        emailField.errorMessage = ""
+    
+        var password = passwordField.text
+        var email = emailField.text
+        
+        if (password?.characters.count)! > 2 && (email?.isValidEmail)! {
+            loginButton.enable = true
+        }else {
+            loginButton.enable = false
+        }
+    
         if textField == passwordField {
-            passwordField.errorMessage = ""
-            
-            var password = passwordField.text
-            
             if string == "" {
                 password?.characters.removeLast()
             }else {
                 password?.characters.append(string.characters.first!)
             }
-            
-            if (password?.characters.count)! > 2 {
-                loginButton.enable = true
-            }else {
-                loginButton.enable = false
-            }
         }
         
         if textField == emailField {
-            self.emailField.errorMessage = ""
-            
-            if var email = emailField.text {
-                if string == "" {
-                    email.characters.removeLast()
-                }else {
-                    email.characters.append(string.characters.first!)
-                }
-                
-                if email.isValidEmail {
-                    loginButton.enable = true
-                }else {
-                    loginButton.enable = false
-                }
+            if string == "" {
+                email?.characters.removeLast()
+            }else {
+                email?.characters.append(string.characters.first!)
             }
         }
-        
         return true
     }
 }
 
-//MARK: Extensions
-
-extension String {
-    
-    var isValidEmail:Bool {
-        get {
-            let email = self
-            let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-            
-            return emailTest.evaluate(with: email)
-        }
-    }
-}
-
-extension JPLoadingButton {
-    var enable:Bool {
-        get {
-            return self.enable
-        }
-        set {
-            self.isEnabled = enable
-            self.alpha  = enable ? 1.0 : 0.5
-        }
-    }
-}

@@ -57,8 +57,6 @@ class User
     var ref:FIRDatabaseReference?
     var key: String?
 
-    
-    
     var profileImage:UIImage?
     
     weak var delegate:ImageDownloaderDelegate?

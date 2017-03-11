@@ -26,7 +26,7 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var continueButton: JPLoadingButton! {
         didSet {
-            changeContinueStatus(enabled: false)
+            continueButton.enable = false
         }
         
     }
@@ -51,14 +51,6 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
         continueSignup()
     }
 
-    func changeContinueStatus(enabled:Bool)
-    {
-        continueButton.isEnabled = enabled
-        continueButton.alpha = enabled ? 1.0: 0.5
-        
-    }
-    
-    
     func continueSignup()
     {
         
@@ -74,6 +66,8 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
                                 print("No active email")
                                 //No active email continue to register
                                 self.userInfo?.email = self.emailField.text!
+                                
+                                //todo: Signup user
                                 
 //                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
 //                                    if error != nil {
@@ -118,20 +112,13 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
         }
         
        
-        if isValidEmail(emailField.text!) {
-            changeContinueStatus(enabled: true)
+        if (email?.isValidEmail)! {
+            continueButton.enable = true
         }else {
-            changeContinueStatus(enabled: false)
+            continueButton.enable = false
         }
         
         return true
-    }
-    
-    func isValidEmail(_ testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
     }
     
     
