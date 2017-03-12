@@ -10,9 +10,18 @@ import UIKit
 import SkyFloatingLabelTextField
 import JPLoadingButton
 
-class NameViewController: UIViewController, UITextFieldDelegate {
+class NameViewController: UIViewController {
     
 
+    //MARK: Properties
+    
+    var userInfo = UserInfo()
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    //MARK: Outlets
+    
     @IBOutlet weak var firstnameField: SkyFloatingLabelTextField! {
         didSet {
             firstnameField.delegate = self
@@ -25,10 +34,13 @@ class NameViewController: UIViewController, UITextFieldDelegate {
     }
     @IBOutlet weak var continueButton: JPLoadingButton!
     
-    override var prefersStatusBarHidden: Bool {
-        return true
+    //MARK: Actions
+    
+    @IBAction func continueAction(_ sender: Any) {
+        continueWithSignup()
     }
-    var userInfo = UserInfo()
+    
+    //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +64,8 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 
-    @IBAction func continueAction(_ sender: Any) {
-        continueWithSignup()
-    }
+   
+    //MARK: Functionality
     
     func continueWithSignup()
     {
@@ -65,33 +76,36 @@ class NameViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //MARK: Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let usernameVC = segue.destination as? UsernameViewController {
             usernameVC.configureViewController(userInfo: userInfo)
         }
     }
-    
+}
+
+extension NameViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-       
         
-        if (firstnameField.text?.characters.count)! <= 1 || (lastnameField.text?.characters.count)! <= 1{
-            continueButton.enable = false
-        }else {
-            continueButton.enable = true
+        guard (firstnameField.text?.characters.count)! >= 3 && (lastnameField.text?.characters.count)! <= 3 else {
+            self.continueButton.enable = false
+            return true
         }
         
+        continueButton.enable = false
         return true
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == firstnameField {
-            lastnameField.becomeFirstResponder()
-        }else {
+        
+        guard textField == firstnameField else {
             continueWithSignup()
+            return true
         }
         
+        lastnameField.becomeFirstResponder()
         return true
     }
 }

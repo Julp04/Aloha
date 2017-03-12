@@ -73,8 +73,6 @@ public extension String {
         }
     }
     
-    
-    
     /// A valid password must be between 6 to 15 characters and have one upper case and lowercase letter
     var isValidPassword:Bool {
         get {

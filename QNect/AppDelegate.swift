@@ -29,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Twitter.self])
         //todo: Fabric with Crashlytics
         
+        #if DEVELOPMENT
+            let something = "development"
+        #else
+            let something = "prod"
+        #endif
         
         FIRDatabase.database().persistenceEnabled = true
         

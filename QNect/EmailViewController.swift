@@ -13,7 +13,13 @@ import JPLoadingButton
 import Firebase
 import ReachabilitySwift
 
-class EmailViewController: UIViewController, UITextFieldDelegate {
+class EmailViewController: UIViewController {
+    
+    //MARK: Properties
+    
+    var userInfo: UserInfo?
+    
+    //MARK: Outlets
 
     @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
@@ -23,7 +29,6 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
             emailField.delegate = self
         }
     }
-    
     @IBOutlet weak var continueButton: JPLoadingButton! {
         didSet {
             continueButton.enable = false
@@ -31,102 +36,75 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //MARK: Actions
+    
+    @IBAction func continueAction(_ sender: Any) {
+        continueSignup()
+    }
+    
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         emailField.becomeFirstResponder()
     }
     
-    var userInfo:UserInfo?
+    //MARK: Functionality
     
     func configureViewController(userInfo:UserInfo)
     {
         self.userInfo = userInfo
     }
 
-
-    @IBAction func continueAction(_ sender: Any) {
-        continueSignup()
-    }
-
     func continueSignup()
     {
+        guard continueButton.isEnabled else {
+            return
+        }
         
-        if continueButton.isEnabled {
+        guard Reachability.isConnectedToInternet() else {
+            AlertUtility.showConnectionAlert()
+            return
+        }
+        
+        FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!, completion: { (some, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
             
-            if Reachability.isConnectedToInternet() {
-                
-                    FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!, completion: { (some, error) in
-                        if error != nil {
-                            print(error!)
-                        }else {
-                            if some == nil {
-                                print("No active email")
-                                //No active email continue to register
-                                self.userInfo?.email = self.emailField.text!
-                                
-                                //todo: Signup user
-                                
-//                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
-//                                    if error != nil {
-//                                        print(error!)
-//                                    }else {
-//                                        
-//                                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-//                                    }
-//                                })
-//                                
-                                
-                                //Testing Purposes
-                                self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-                                
-                                
-                            }else{
-                                print("Email already exists")
-                                self.emailField.errorMessage = "Email already registered"
-                            }
-                        }
-                    })
+            guard some == nil else {
+                self.emailField.errorMessage = "Email already registered"
+                return
             }
-            }else {
-                AlertUtility.showConnectionAlert()
-            }
+            
+            print("No active email")
+            //No active email continue to register
+            self.userInfo?.email = self.emailField.text!
+            
+            //todo: Signup user
+            
+            //                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
+            //                                    if error != nil {
+            //                                        print(error!)
+            //                                    }else {
+            //
+            //                                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+            //                                    }
+            //                                })
+            //
+            
+            //Testing Purposes
+            self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+        })
         
         
     }
     
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        self.emailField.errorMessage = ""
-        
-        var email = emailField.text
-        
-        if string == "" {
-            email?.characters.removeLast()
-        }else {
-            email?.characters.append(string.characters.first!)
-        }
-        
-       
-        if (email?.isValidEmail)! {
-            continueButton.enable = true
-        }else {
-            continueButton.enable = false
-        }
-        
-        return true
-    }
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        continueSignup()
-        return true
-    }
-
+    //MARK: Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
@@ -135,4 +113,27 @@ class EmailViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+}
+
+extension EmailViewController: UITextFieldDelegate {
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.emailField.errorMessage = ""
+        var email = emailField.text
+        
+        if string == "" {
+            email?.characters.removeLast()
+        }else {
+            email?.characters.append(string.characters.first!)
+        }
+    
+        continueButton.enable = (email?.isValidEmail)! ? true : false
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        continueSignup()
+        return true
+    }
 }

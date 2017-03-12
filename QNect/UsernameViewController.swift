@@ -14,8 +14,14 @@ import Firebase
 import RKDropdownAlert
 import JPLoadingButton
 
-class UsernameViewController: UIViewController , UITextFieldDelegate{
+class UsernameViewController: UIViewController{
 
+    //MARK: Properties
+    
+    var userInfo: UserInfo?
+    
+    //MARK: Outlets
+    
     @IBOutlet weak var usernameField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             usernameField.iconFont = UIFont.fontAwesome(ofSize: 15)
@@ -30,12 +36,15 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
+    //MARK: Actions
+    
     @IBAction func continueAction(_ sender: Any) {
         continueSignup()
     }
     
-    //MARK: Properties
-    var userInfo:UserInfo?
+ 
+    
+    //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +54,12 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
         usernameField.becomeFirstResponder()
     }
     
-    
-    
-    func configureViewController(userInfo:UserInfo)
+    func configureViewController(userInfo: UserInfo)
     {
         self.userInfo = userInfo
     }
+    
+    //MARK: Functionality
 
     func continueSignup()
     {
@@ -98,11 +107,17 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
        
     }
     
+    //MARK: Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let passwordVC = segue.destination as? PasswordViewController {
             passwordVC.configureViewController(userInfo: userInfo!)
         }
     }
+}
+
+
+extension UsernameViewController: UITextFieldDelegate  {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         self.usernameField.errorMessage = ""
@@ -115,12 +130,7 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
             username?.characters.append(string.characters.first!)
         }
         
-        if (username?.characters.count)! > 3 {
-            continueButton.enable = true
-        }else {
-            continueButton.enable = true
-        }
-        
+        continueButton.enable = (username?.characters.count)! > 3 ? true : false
         return true
     }
     
@@ -129,5 +139,5 @@ class UsernameViewController: UIViewController , UITextFieldDelegate{
         continueSignup()
         return true
     }
-
+    
 }

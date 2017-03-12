@@ -21,8 +21,16 @@ import FontAwesome_swift
 import JPLoadingButton
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
+class LoginViewController: UIViewController {
     
+    //MARK: Properties
+    
+    var ref: FIRDatabaseReference!
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    //MARK: Outlets
     
     @IBOutlet weak var emailField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
@@ -52,10 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         }
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    var ref: FIRDatabaseReference!
+    //MARK: Actions
     
     @IBAction func loginAction(_ sender: Any) {
         loginUser()
@@ -63,6 +68,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
     @IBAction func forgotPasswordAction(_ sender: Any) {
         forgotPassword()
     }
+    
+    //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,72 +95,54 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         self.view.backgroundColor = UIColor.qnPurple
     }
     
+    //MARK: User Interaction
+    
     func loginUser()
     {
+        guard Reachability.isConnectedToInternet() else {
+            AlertUtility.showConnectionAlert()
+            return
+        }
         
-        if Reachability.isConnectedToInternet() {
-            if !(emailField.text?.contains("@"))! {
-                //User is signing in with username not email
-                //Fetch email from username and sign in with that
+        guard (emailField.text?.contains("@"))! else {
+            //User is logging in with email
+            loginButton.startLoadingAnimation()
+            
+            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) {
+                user, error in
                 
-                let ref = FIRDatabase.database().reference()
-                
-                let usernamesRef = ref.child("usernames")
-                let currentTypedUserRef = usernamesRef.child(emailField.text!)
-                
-                currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    if snapshot.exists() {
-                       //todo: Login with username
+                if error != nil {
+                    
+                    guard self.emailField.text!.isValidEmail else {
+                        self.emailField.errorMessage = "Invalid Email"
+                        return
                     }
-                })
-
-            }else {
-                //User is logging in with email
+                    
+                    self.passwordField.errorMessage = "Invalid Password"
+                    self.loginButton.stopLoadingAnimation()
+                }else {
+                    //Animate to main view controller
+                    //todo: Fix storyboard animation
+                    let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                    self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                }
                 
-                self.loginButton.startLoadingAnimation()
-                
-                FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
-                    if error != nil {
-                        
-                        if error!.localizedDescription.contains("Network") {
-                            RKDropdownAlert.title("Network Error", message: "Check your network settings and try again", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-                            
-                            
-                        }else {
-                            if !(self.emailField.text?.contains("@"))! || self.emailField.text == nil {
-                                self.emailField.errorMessage = "Invalid Email"
-                            }else {
-                                self.passwordField.errorMessage = "Invalid Password"
-                            }
-                        }
-                        
-                        self.loginButton.stopLoadingAnimation()
-                        
-                    }else {
-                        
-                        //todo: Fix storyboard animation
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
-                    }
-                })
             }
+            return
         }
+            
+        //User is loggin in with username
         
-    }
-    
-    
-    //todo: Get new hud
-    func showHud(_ title:String?)
-    {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        if let title = title {
-            hud.label.text = title
-        }
-    }
-    
-    func hideHud()
-    {
-        MBProgressHUD.hide(for: self.view, animated: true)
+        let ref = FIRDatabase.database().reference()
+        let usernamesRef = ref.child("usernames")
+        let currentTypedUserRef = usernamesRef.child(emailField.text!)
+        
+        currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                //todo: Login with username
+            }
+        })
+        
     }
     
     func forgotPassword()
@@ -191,40 +180,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
     }
     
-    
-    //MARK: Delegates
-    
-    //MARK:Touches Delegates
+    //MARK:Helper Functions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    //MARK: TextField Delegates
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailField {
-            passwordField.becomeFirstResponder()
-        }else {
-            loginUser()
-        }
-        return true
-    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         passwordField.errorMessage = ""
         emailField.errorMessage = ""
-    
         var password = passwordField.text
         var email = emailField.text
         
-        if (password?.characters.count)! > 2 && (email?.isValidEmail)! {
-            loginButton.enable = true
-        }else {
-            loginButton.enable = false
-        }
-    
+        loginButton.enable = (password?.characters.count)! > 2 && (email?.isValidEmail)! ? true : false
+        
         if textField == passwordField {
             if string == "" {
                 password?.characters.removeLast()
@@ -242,5 +215,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIViewControll
         }
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }else {
+            loginUser()
+        }
+        return true
+    }
+    
 }
 

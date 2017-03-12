@@ -11,8 +11,14 @@ import SkyFloatingLabelTextField
 import FontAwesome_swift
 import JPLoadingButton
 
-class PasswordViewController: UIViewController , UITextFieldDelegate{
+class PasswordViewController: UIViewController {
+    
+    //MARK: Properties
+    
+    var userInfo: UserInfo?
 
+    //MARK: Outlets
+    
     @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             self.passwordField.iconFont = UIFont.fontAwesome(ofSize: 15)
@@ -21,6 +27,16 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
             passwordField.delegate = self
         }
     }
+    @IBOutlet weak var continueButton: JPLoadingButton!
+    
+    //MARK: Actions
+    
+    @IBAction func continueAction(_ sender: Any) {
+        continueSignup()
+    }
+    
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         continueButton.enable = false
@@ -28,25 +44,16 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         passwordField.becomeFirstResponder()
-        
     }
 
-  
-    
-    @IBOutlet weak var continueButton: JPLoadingButton!
-    
-    var userInfo:UserInfo?
+    //MARK: Functionality
     
     func configureViewController(userInfo:UserInfo)
     {
         self.userInfo = userInfo
     }
     
-   
-    @IBAction func continueAction(_ sender: Any) {
-        continueSignup()
-    }
-    
+
     func continueSignup()
     {
         if continueButton.isEnabled {
@@ -57,47 +64,34 @@ class PasswordViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
+    //MARK: Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let emailVC = segue.destination as? EmailViewController {
             emailVC.configureViewController(userInfo: userInfo!)
         }
     }
-    
+}
+
+
+extension PasswordViewController: UITextFieldDelegate {
+   
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         var password = passwordField.text
-
+        
         if string == "" {
             password?.characters.removeLast()
         }else {
-          password?.characters.append(string.characters.first!)
+            password?.characters.append(string.characters.first!)
         }
         
-        
-        if (password?.characters.count)! >= 6 {
-            continueButton.enable = true
-        }else {
-            continueButton.enable = false
-        }
-        
-        
-        
-
+        continueButton.enable = (password?.characters.count)! >= 6 ? true : false
         return true
     }
-
-  
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         continueSignup()
-        
         return true
     }
-    
-
-
-    
-
-    
 }

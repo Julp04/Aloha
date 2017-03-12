@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-QNect dev.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QNect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -203,6 +208,11 @@
 			<true/>
 		</dict>
 		<key>BBAE1E6CC3094664C7B1D12612753ABC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEA9538383AE09BA09135BF513C38553</key>
 		<dict>
 			<key>primary</key>
 			<true/>

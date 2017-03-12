@@ -1,15 +1,18 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
-target 'QNect' do
+workspace 'QNect'
+
+
+def allPods
     
     pod 'MBProgressHUD'
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
     pod 'SwiftyJSON', '3.0.0'
     pod 'Cartography', :git => 'https://github.com/mluisbrown/Cartography.git', :branch => 'swift3'
     pod 'ReachabilitySwift'
-
-	pod 'Firebase/Core'
-	pod 'Firebase/Auth'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
     pod 'RKDropdownAlert'
@@ -28,9 +31,18 @@ target 'QNect' do
     pod 'MGCollapsingHeader'
     
     
-   
-    
 end
+
+target 'QNect' do
+    allPods
+end
+
+target 'QNect dev' do
+    allPods
+end
+
+
+
 
 
 

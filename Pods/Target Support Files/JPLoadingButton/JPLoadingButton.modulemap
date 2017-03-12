@@ -1,0 +1,6 @@
+framework module JPLoadingButton {
+  umbrella header "JPLoadingButton-umbrella.h"
+
+  export *
+  module * { export * }
+}

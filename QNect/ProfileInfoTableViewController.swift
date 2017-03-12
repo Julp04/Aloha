@@ -11,9 +11,15 @@ import SkyFloatingLabelTextField
 import IQKeyboardManagerSwift
 import RSKImageCropper
 
-class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
+class ProfileInfoTableViewController: UITableViewController {
 
+    //MARK: Properties
+    
+    var userInfo: UserInfo?
+    let imagePicker = UIImagePickerController()
    
+    //MARK: Outlets
+    
     @IBOutlet weak var emailField: SkyFloatingLabelTextField! {
         didSet {
             emailField.delegate = self
@@ -24,7 +30,6 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
             phoneField.delegate = self
         }
     }
-    
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
             profileImageView.backgroundColor = UIColor.clear
@@ -34,14 +39,14 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
             profileImageView.layer.masksToBounds = true
         }
     }
-    var userInfo:UserInfo?
-    let imagePicker = UIImagePickerController()
     
-    func configureViewController(userInfo:UserInfo)
-    {
-        self.userInfo = userInfo
+    //MARK: Actions
+    
+    @IBAction func addProfileImage(_ sender: Any) {
+        addProfileImage()
     }
-    
+   
+    //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,13 +62,25 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         imagePicker.delegate = self
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.resignFirstResponder()
+    //MARK: Functionality
+    
+    func configureViewController(userInfo:UserInfo)
+    {
+        self.userInfo = userInfo
     }
     
+    func continueSignup()
+    {
+        //todo: Might add more fields
+        //Should we check for internet connection??
+        QnUtilitiy.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
+    }
     
-    @IBAction func addProfileImage(_ sender: Any) {
-        
+    //MARK: User Interaction
+    
+    func addProfileImage()
+    {
+    
         let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
         
         let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
@@ -104,8 +121,15 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
+    //MARK: Helper Functions
     
-    //MARK: - Image Picker Delegate
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.resignFirstResponder()
+    }
+    
+}
+
+extension ProfileInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
     {
@@ -114,58 +138,40 @@ class ProfileInfoTableViewController: UITableViewController, UITextFieldDelegate
         
         let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
         imageCropper.delegate = self
-    
+        
         imagePicker.present(imageCropper, animated: true, completion: nil)
-
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension ProfileInfoTableViewController: UITextFieldDelegate {
     
-    //MARK: - Image Cropper
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard textField == emailField else {
+            continueSignup()
+            return true
+        }
+        
+        phoneField.becomeFirstResponder()
+        return true
+    }
+}
+
+extension ProfileInfoTableViewController: RSKImageCropViewControllerDelegate {
     
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
-        
-        
+    
         controller.dismiss(animated: true)
-        self.imagePicker.dismiss(animated: true, completion: nil)
+        imagePicker.dismiss(animated: true, completion: nil)
         profileImageView.image = croppedImage
     }
     
     func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
-        
         controller.dismiss(animated: true)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if textField == emailField {
-            phoneField.becomeFirstResponder()
-        }
-        
-        if textField == phoneField {
-            continueSignup()
-        }
-        
-        return true
-    }
-    
-    func continueSignup()
-    {
-    
-        //Should we check for internet connection??
-        QnUtilitiy.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
-        
-    }
-    
-     
-    
-    
-
-    
-    
-
-    
-    
 }
