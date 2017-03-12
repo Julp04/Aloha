@@ -11,160 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Signup1 View Controller-->
-        <scene sceneID="Flf-T3-0i4">
-            <objects>
-                <viewController id="yby-Ki-9c2" customClass="Signup1ViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K9I-kc-9hT"/>
-                        <viewControllerLayoutGuide type="bottom" id="7zD-Bn-1LV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Mz-7G-4kL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Nb-fv-cHZ" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="143" width="288" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FjW-cR-BxI"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email Address"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedIconColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pY9-BV-dm2" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="185" width="288" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="h5Q-RK-HWT"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedIconColor">
-                                        <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qj8-tX-XQ0">
-                                <rect key="frame" x="16" y="240" width="288" height="42"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="B5c-R6-ODU"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="VUt-RR-XJK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Rg-Wp-Iqm"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-Xa-U1P">
-                                <rect key="frame" x="110" y="28" width="100" height="100"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Myd-9a-e5y">
-                                <rect key="frame" x="110" y="72" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                <state key="normal" title="Add Photo"/>
-                                <connections>
-                                    <action selector="addPhotoAction:" destination="yby-Ki-9c2" eventType="touchUpInside" id="l2e-BN-8tI"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="pY9-BV-dm2" secondAttribute="leading" id="6tA-Jw-HCZ"/>
-                            <constraint firstItem="pY9-BV-dm2" firstAttribute="top" secondItem="8Nb-fv-cHZ" secondAttribute="bottom" constant="2" id="9vD-4P-7J6"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="8Nb-fv-cHZ" secondAttribute="leading" id="ANS-vy-n60"/>
-                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="top" secondItem="K9I-kc-9hT" secondAttribute="bottom" constant="8" symbolic="YES" id="Rjl-Ap-ePQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pY9-BV-dm2" secondAttribute="trailing" id="RyD-oZ-Tzx"/>
-                            <constraint firstItem="8Nb-fv-cHZ" firstAttribute="top" secondItem="K9I-kc-9hT" secondAttribute="bottom" constant="123" id="SpE-zr-Wuj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qj8-tX-XQ0" secondAttribute="trailing" id="U9w-hv-apP"/>
-                            <constraint firstItem="qj8-tX-XQ0" firstAttribute="leading" secondItem="1Mz-7G-4kL" secondAttribute="leadingMargin" id="Wbs-2r-247"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Nb-fv-cHZ" secondAttribute="trailing" id="XiP-dE-2XI"/>
-                            <constraint firstItem="8Nb-fv-cHZ" firstAttribute="top" secondItem="esZ-Xa-U1P" secondAttribute="bottom" constant="15" id="opa-SH-RHz"/>
-                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="leading" secondItem="1Mz-7G-4kL" secondAttribute="leadingMargin" constant="94" id="ozZ-kx-eIW"/>
-                            <constraint firstItem="pY9-BV-dm2" firstAttribute="height" secondItem="8Nb-fv-cHZ" secondAttribute="height" id="p9C-A5-gQR"/>
-                            <constraint firstItem="esZ-Xa-U1P" firstAttribute="centerX" secondItem="8Nb-fv-cHZ" secondAttribute="centerX" id="qgk-qd-ccf"/>
-                            <constraint firstItem="qj8-tX-XQ0" firstAttribute="top" secondItem="pY9-BV-dm2" secondAttribute="bottom" constant="15" id="rXm-eZ-DWh"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="addPhotoButton" destination="Myd-9a-e5y" id="Q3w-tn-FcG"/>
-                        <outlet property="continueButton" destination="qj8-tX-XQ0" id="ql8-Hz-pNI"/>
-                        <outlet property="emailField" destination="8Nb-fv-cHZ" id="fmL-3x-Cft"/>
-                        <outlet property="passwordField" destination="pY9-BV-dm2" id="oNH-xz-ohd"/>
-                        <outlet property="profileImageView" destination="esZ-Xa-U1P" id="Fca-iy-5eM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aET-xl-x4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1039" y="-154"/>
-        </scene>
         <!--Name View Controller-->
         <scene sceneID="ggf-bo-RHZ">
             <objects>
@@ -561,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdK-e7-Uer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2702" y="-1195"/>
+            <point key="canvasLocation" x="2546" y="-1109"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="bnV-gn-vrC">
@@ -1363,7 +1209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2p-Bq-Wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229" y="-660"/>
+            <point key="canvasLocation" x="4067" y="-1109"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">

@@ -89,12 +89,12 @@ extension NameViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        guard (firstnameField.text?.characters.count)! >= 3 && (lastnameField.text?.characters.count)! <= 3 else {
+        guard (firstnameField.text?.characters.count)! >= 3 && (lastnameField.text?.characters.count)! >= 3 else {
             self.continueButton.enable = false
             return true
         }
         
-        continueButton.enable = false
+        continueButton.enable = true
         return true
     }
 

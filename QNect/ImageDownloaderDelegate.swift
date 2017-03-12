@@ -10,4 +10,6 @@ import Foundation
 
 protocol ImageDownloaderDelegate: class {
     func imageDownloaded(image: UIImage?)
+    
+    //Changed it up
 }

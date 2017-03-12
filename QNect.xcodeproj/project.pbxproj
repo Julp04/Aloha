@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
 		141852181E55F2E200471E59 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* Social.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
 		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		147C90B81E5DDCB700D8DE70 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 147C90B71E5DDCB700D8DE70 /* onboard.mp4 */; };
-		14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D931E606ADE00794587 /* Signup1ViewController.swift */; };
 		14855D961E64900600794587 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D951E64900600794587 /* NameViewController.swift */; };
 		14855D981E64901300794587 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
@@ -56,7 +56,6 @@
 		14EC7AA31E74F27300B3C4E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
 		14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
-		14EC7AA61E74F27300B3C4E8 /* Signup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D931E606ADE00794587 /* Signup1ViewController.swift */; };
 		14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
 		14EC7AA91E74F27300B3C4E8 /* VBFDoubleSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */; };
@@ -68,7 +67,6 @@
 		14EC7AB01E74F27300B3C4E8 /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
 		14EC7AB31E74F27300B3C4E8 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 147C90B71E5DDCB700D8DE70 /* onboard.mp4 */; };
-		14EC7AB41E74F27300B3C4E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964AE901DBA74B400A0162E /* Images.xcassets */; };
 		14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE8A1DBA74B400A0162E /* Main.storyboard */; };
 		2CFA138A7B0B350CC078E744 /* Pods_QNect_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */; };
@@ -122,12 +120,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147C90B71E5DDCB700D8DE70 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
-		14855D931E606ADE00794587 /* Signup1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup1ViewController.swift; sourceTree = "<group>"; };
 		14855D951E64900600794587 /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		14855D971E64901300794587 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
 		14855D991E64902500794587 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +241,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				149D1DDC1E747F8000254601 /* Extensions.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
 				B9570E031DCF8AA000685718 /* Constants.swift */,
@@ -281,9 +280,6 @@
 		B964AE851DBA74B400A0162E /* QNect */ = {
 			isa = PBXGroup;
 			children = (
-				149D1DDC1E747F8000254601 /* Extensions.swift */,
-				147C90B71E5DDCB700D8DE70 /* onboard.mp4 */,
-				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
 				B964AE861DBA74B400A0162E /* AppDelegate.swift */,
 				B964AE8A1DBA74B400A0162E /* Main.storyboard */,
 				B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */,
@@ -339,7 +335,6 @@
 				14855D951E64900600794587 /* NameViewController.swift */,
 				14855D971E64901300794587 /* UsernameViewController.swift */,
 				14855D991E64902500794587 /* PasswordViewController.swift */,
-				14855D931E606ADE00794587 /* Signup1ViewController.swift */,
 				14855D9B1E64903A00794587 /* EmailViewController.swift */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
 				B90968D31DCFC79500B73662 /* ContactViewController.swift */,
@@ -358,6 +353,9 @@
 		B9EF94731DBA78540091D596 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				147C90B71E5DDCB700D8DE70 /* onboard.mp4 */,
+				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
+				1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */,
 				B9669A641DDCF9D200D7C5C7 /* QNect-Bridge.h */,
 				B964AE901DBA74B400A0162E /* Images.xcassets */,
 				14EC7ABF1E74F27300B3C4E8 /* Dev-Info.plist */,
@@ -500,7 +498,7 @@
 			files = (
 				14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */,
 				14EC7AB31E74F27300B3C4E8 /* onboard.mp4 in Resources */,
-				14EC7AB41E74F27300B3C4E8 /* GoogleService-Info.plist in Resources */,
+				1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */,
 				14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */,
 				14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */,
 			);
@@ -712,7 +710,6 @@
 				14EC7AA31E74F27300B3C4E8 /* Constants.swift in Sources */,
 				14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */,
 				14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */,
-				14EC7AA61E74F27300B3C4E8 /* Signup1ViewController.swift in Sources */,
 				14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */,
 				14EC7AA91E74F27300B3C4E8 /* VBFDoubleSegment.m in Sources */,
@@ -762,7 +759,6 @@
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
 				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
-				14855D941E606ADE00794587 /* Signup1ViewController.swift in Sources */,
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */,
 				B93753531DD6623F007D50D7 /* VBFDoubleSegment.m in Sources */,

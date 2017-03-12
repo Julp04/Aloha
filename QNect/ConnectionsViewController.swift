@@ -357,8 +357,4 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func imageDownloaded(image: UIImage?) {
         self.tableView.reloadData()
     }
-    
-
-
-
 }
