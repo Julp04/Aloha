@@ -12,13 +12,9 @@ import AVFoundation
 import RevealingSplashView
 
 
-class OnboardViewController: UIViewController, UIScrollViewDelegate {
+class OnboardViewController: UIViewController {
     
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var scrollView: UIScrollView!
-
-    var backgroundPlayer : BackgroundVideo? // Declare an instance of BackgroundVideo called backgroundPlayer
-    let horizontalPageCount = 4
+    //MARK: Constants
     
     let kTitleFontSize:CGFloat = 23
     let kTitleYOffsetLength:CGFloat = 90
@@ -28,6 +24,14 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     let kSubtitleHeight:CGFloat = 110
     let kSubtitleYOffsetLength:CGFloat = 30
     
+    let kvideoURLString = "onboard.mp4"
+    
+    
+    
+    //MARK: Properties
+    
+    var backgroundPlayer : BackgroundVideo? // Declare an instance of BackgroundVideo called backgroundPlayer
+    
     let titleArray = ["Wecome", "Create", "Scan", "Connect"]
     let subtitleArray = ["Connecting with friends has never been so easy. Use QNectcodes to quickly exchange info with friends", "Add contact info and other details to easily create your personal QNectcode", "Retreive users' info by quickly scanning their QNectcode. No internet connection required!", "Link different accounts like Twitter to easily follow other users without leaving the app"]
     
@@ -35,14 +39,23 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         return true
     }
     
+    
+    //MARK: Outlets
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var scrollView: UIScrollView!
+
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: "onboard.mp4")
+        backgroundPlayer = BackgroundVideo(on: self, withVideoURL: kvideoURLString)
         backgroundPlayer?.setUpBackground()
         
         configureScrollView()
-        self.pageControl.numberOfPages = horizontalPageCount
+        
+        self.pageControl.numberOfPages = titleArray.count
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         view.backgroundColor = UIColor.black
@@ -52,10 +65,12 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
          self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    //MARK: Setup
+    
     func configureScrollView()
     {
         let size = view.bounds.size
-        let contentSize = CGSize(width: size.width * CGFloat(horizontalPageCount), height: size.height)
+        let contentSize = CGSize(width: size.width * CGFloat(titleArray.count), height: size.height)
         
         scrollView.contentSize = contentSize
         scrollView.isPagingEnabled = true
@@ -68,7 +83,7 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     func configureContentInScrollView()
     {
         
-        for i in 0..<horizontalPageCount {
+        for i in 0..<titleArray.count {
         
             let size = view.bounds.size
             
@@ -105,6 +120,9 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
             scrollView.addSubview(subtitleTextView)
         }
     }
+}
+
+extension OnboardViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = self.scrollView.frame.size.width;
