@@ -56,6 +56,9 @@ PODS:
   - RSKImageCropper (1.6.0)
   - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.0.0)
+  - TransitionAnimation (4.0.0):
+    - TransitionTreasury (~> 4.0)
+  - TransitionTreasury (4.0.0)
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.1):
@@ -84,6 +87,8 @@ DEPENDENCIES:
   - RSKImageCropper
   - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON (= 3.0.0)
+  - TransitionAnimation
+  - TransitionTreasury
   - TwitterKit
 
 EXTERNAL SOURCES:
@@ -129,9 +134,11 @@ SPEC CHECKSUMS:
   RSKImageCropper: 6903235c7a8a79acb1e1f3490e2c911b858f8208
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
+  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 94d0785d240c58d0dfad4da66fb29857e77e2496
+PODFILE CHECKSUM: fd63f8906f79885b9359145868434bafd963be24
 
 COCOAPODS: 1.2.0

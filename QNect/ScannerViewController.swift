@@ -15,9 +15,27 @@ import FCAlertView
 import RKDropdownAlert
 import PTPopupWebView
 
-class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UIWebViewDelegate {
+import TransitionTreasury
+import TransitionAnimation
+
+extension ScannerViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
+            return ges.translation(in: ges.view).y != 0
+        }
+        return false
+    }
+}
+
+
+
+class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UIWebViewDelegate, NavgationTransitionable, ModalTransitionDelegate {
     
     //MARK: Strings
+    
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     
     
@@ -53,19 +71,38 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController!.navigationBar.isTranslucent = true
         
         createCaptureSession()
         
-        
-        
+        // Do any additional setup after loading the view.
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(ScannerViewController.interactiveTransition(_:)))
+        pan.delegate = self
+        view.addGestureRecognizer(pan)
+    }
+    
+    func interactiveTransition(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            guard sender.velocity(in: view).y > 0 else {
+                break
+            }
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")  as! ModalViewController
+            vc.modalDelegate = self
+            
+            tr_presentViewController(vc, method: TRPresentTransitionMethod.scanbot(present: sender, dismiss: vc.dismissGestureRecognizer), completion: {
+                print("Present finished")
+            })
+        default: break
+        }
     }
     
 
+    func modalViewControllerDismiss(interactive: Bool, callbackData data: Any?) {
+        tr_dismissViewController(interactive, completion: nil)
+    }
     
 
   

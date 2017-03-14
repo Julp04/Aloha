@@ -18,6 +18,19 @@ import OAuthSwift
 
 class QnUtilitiy {
     
+    static func setUserInfo(userInfo: UserInfo) {
+        let ref = FIRDatabase.database().reference()
+        let user = FIRAuth.auth()!.currentUser!
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
+        
+        currentUser.setValue(["username": userInfo.userName, "firstName": userInfo.firstName, "lastName": userInfo.lastName, "email": userInfo.email, "uid":user.uid])
+        
+        
+        let username = ref.child("usernames")
+        username.setValue([userInfo.userName!: userInfo.email!])
+    }
+    
     
     static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
     {

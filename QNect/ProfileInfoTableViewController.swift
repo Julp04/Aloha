@@ -60,7 +60,10 @@ class ProfileInfoTableViewController: UITableViewController {
         tableView.separatorColor = UIColor.clear
         
         imagePicker.delegate = self
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
+    
     
     //MARK: Functionality
     

@@ -46,8 +46,6 @@ class EmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         emailField.becomeFirstResponder()
     }
@@ -70,7 +68,7 @@ class EmailViewController: UIViewController {
             return
         }
         
-        FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!, completion: { (some, error) in
+        FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!) { some, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -84,22 +82,20 @@ class EmailViewController: UIViewController {
             print("No active email")
             //No active email continue to register
             self.userInfo?.email = self.emailField.text!
-            
-            //todo: Signup user
-            
-            //                                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!, completion: { (user, error) in
-            //                                    if error != nil {
-            //                                        print(error!)
-            //                                    }else {
-            //
-            //                                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-            //                                    }
-            //                                })
-            //
+
+//            FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
+//                guard error == nil else {
+//                    print(error!)
+//                    return
+//                }
+//                
+//                QnUtilitiy.setUserInfo(userInfo: self.userInfo!)
+//                self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+//            }
             
             //Testing Purposes
             self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-        })
+        }
         
         
     }

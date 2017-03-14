@@ -29,6 +29,8 @@ def allPods
     pod 'JPLoadingButton'
     pod 'IQKeyboardManagerSwift'
     pod 'MGCollapsingHeader'
+    pod 'TransitionTreasury'
+    pod 'TransitionAnimation'
     
     
 end

@@ -99,52 +99,76 @@ class LoginViewController: UIViewController {
     
     func loginUser()
     {
+        
         guard Reachability.isConnectedToInternet() else {
             AlertUtility.showConnectionAlert()
             return
         }
         
+        loginButton.startLoadingAnimation()
         guard (emailField.text?.contains("@"))! else {
-            //User is logging in with email
-            loginButton.startLoadingAnimation()
-            
-            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) {
-                user, error in
-                
-                if error != nil {
-                    
-                    guard self.emailField.text!.isValidEmail else {
-                        self.emailField.errorMessage = "Invalid Email"
-                        return
-                    }
-                    
-                    self.passwordField.errorMessage = "Invalid Password"
-                    self.loginButton.stopLoadingAnimation()
-                }else {
-                    //Animate to main view controller
-                    //todo: Fix storyboard animation
-                    let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-                    self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
-                }
-                
-            }
+            loginWithUsername()
             return
         }
+        
+        //User is loggin in with email
+        loginWithEmail()
+    }
+    
+    func loginWithEmail()
+    {
+        FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { user, error in
             
+            if error != nil {
+                guard self.emailField.text!.isValidEmail else {
+                    self.emailField.errorMessage = "Invalid Email"
+                    return
+                }
+                
+                self.passwordField.errorMessage = "Invalid Password"
+                self.loginButton.stopLoadingAnimation()
+            }else {
+                //Animate to main view controller
+                //todo: Fix storyboard animation
+                let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+            }
+        }
+    }
+    
+    func loginWithUsername()
+    {
         //User is loggin in with username
         
         let ref = FIRDatabase.database().reference()
         let usernamesRef = ref.child("usernames")
         let currentTypedUserRef = usernamesRef.child(emailField.text!)
         
-        currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() {
-                //todo: Login with username
+        currentTypedUserRef.observeSingleEvent(of: .value, with: { snapshot in
+            
+            guard snapshot.exists() else {
+                self.emailField.errorMessage = "Invalid Username"
+                self.loginButton.stopLoadingAnimation()
+                return
             }
+            
+            usernamesRef.observeSingleEvent(of: .value, with: {snapshot in
+                let values = snapshot.value as! NSDictionary
+                let email = values[self.emailField.text!] as! String
+                
+                FIRAuth.auth()?.signIn(withEmail: email, password: self.passwordField.text!) {user, error in
+                    if error != nil {
+                        
+                    }else {
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                    }
+                }
+            })
         })
-        
+
     }
-    
+
     func forgotPassword()
     {
         var hitReset = 0
@@ -196,7 +220,7 @@ extension LoginViewController: UITextFieldDelegate {
         var password = passwordField.text
         var email = emailField.text
         
-        loginButton.enable = (password?.characters.count)! > 2 && (email?.isValidEmail)! ? true : false
+        loginButton.enable = (password?.characters.count)! > 2  ? true : false
         
         if textField == passwordField {
             if string == "" {
