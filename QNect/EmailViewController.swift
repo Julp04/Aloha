@@ -18,6 +18,9 @@ class EmailViewController: UIViewController {
     //MARK: Properties
     
     var userInfo: UserInfo?
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     //MARK: Outlets
 
@@ -46,6 +49,10 @@ class EmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if UI
+            self.userInfo = UserInfo.testUser
+        #endif
         
         emailField.becomeFirstResponder()
     }
@@ -82,19 +89,29 @@ class EmailViewController: UIViewController {
             print("No active email")
             //No active email continue to register
             self.userInfo?.email = self.emailField.text!
-
-//            FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
-//                guard error == nil else {
-//                    print(error!)
-//                    return
-//                }
-//                
-//                QnUtilitiy.setUserInfo(userInfo: self.userInfo!)
-//                self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-//            }
             
-            //Testing Purposes
+        
             self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+        
+
+//                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
+//                    guard error == nil else {
+//                        print(error!)
+//                        return
+//                    }
+//                    
+//
+//                    QnUtility.setUserInfo(userInfo: self.userInfo!)
+//                    FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
+//                        
+//                        guard error == nil else {
+//                            print(error!)
+//                            return
+//                        }
+//                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+//                    }
+//                }
+
         }
         
         

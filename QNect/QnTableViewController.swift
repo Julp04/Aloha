@@ -115,16 +115,16 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         self.populateFields()
         
 
-        if let profileImage = QnUtilitiy.getProfileImageForCurrentUser() {
+        if let profileImage = QnUtility.getProfileImageForCurrentUser() {
             self.profileImageView.image = profileImage
         }else {
 //            User.currentUser(completion: { (user) in
 //    
-//                QnUtilitiy.getProfileImageForUser(user: user, completion: { (image, error) in
+//                QnUtility.getProfileImageForUser(user: user, completion: { (image, error) in
 //                    self.profileImageView.image = image
 //                    
 //                    
-//                    QnUtilitiy.setProfileImage(image: image!)
+//                    QnUtility.setProfileImage(image: image!)
 //                })
 //            })
         }
@@ -251,8 +251,8 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func saveUser()
     {
-        QnUtilitiy.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
-        QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
+        QnUtility.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
+        QnUtility.setProfileImage(image: self.profileImageView.image!)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -283,26 +283,14 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func linkTwitterUser()
     {
-        TwitterUtility().linkTwitterIn(viewController: self) { (error) in
-            if error != nil {
-                
-                RKDropdownAlert.title("Sorry!", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-            }else {
-                //User succesfully linked with Twitter
-                
-                self.populateFields()
-            }
-        }
+        
+        
       
     }
     
     fileprivate func unlinkTwitterUser()
     {
-      TwitterUtility().unlinkTwitter { (error) in
-        if error  != nil {
-            RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
-            }
-        }
+      
     }
     
     

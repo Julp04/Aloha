@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B964AE821DBA74B400A0162E"
-            BuildableName = "QNect.app"
-            BlueprintName = "QNect"
+            BlueprintIdentifier = "14EC7A801E74F27300B3C4E8"
+            BuildableName = "QNect dev.app"
+            BlueprintName = "QNect dev"
             ReferencedContainer = "container:QNect.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B964AE821DBA74B400A0162E"
-            BuildableName = "QNect.app"
-            BlueprintName = "QNect"
+            BlueprintIdentifier = "14EC7A801E74F27300B3C4E8"
+            BuildableName = "QNect dev.app"
+            BlueprintName = "QNect dev"
             ReferencedContainer = "container:QNect.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

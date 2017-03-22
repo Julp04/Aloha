@@ -110,12 +110,3 @@ extension NameViewController: UITextFieldDelegate {
     }
 }
 
-
-struct UserInfo
-{
-    var firstName:String? = nil
-    var lastName:String? = nil
-    var userName:String? = nil
-    var email:String? = nil
-    var password:String? = nil
-}

@@ -19,6 +19,9 @@ class UsernameViewController: UIViewController{
     //MARK: Properties
     
     var userInfo: UserInfo?
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     //MARK: Outlets
     
@@ -49,7 +52,11 @@ class UsernameViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        #if UI
+            self.userInfo = UserInfo.testUser
+        #endif
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         usernameField.becomeFirstResponder()
     }
@@ -66,6 +73,7 @@ class UsernameViewController: UIViewController{
         if continueButton.isEnabled {
         
             if Reachability.isConnectedToInternet() {
+                continueButton.startLoadingAnimation()
                 
                 doesUsernameExist(completion: { (usernameExists) in
                     if usernameExists {
@@ -78,6 +86,7 @@ class UsernameViewController: UIViewController{
                         
                         self.performSegue(withIdentifier: "PasswordSegue", sender: self)
                     }
+                    self.continueButton.stopLoadingAnimation()
                 })
             }else {
                 
@@ -124,10 +133,14 @@ extension UsernameViewController: UITextFieldDelegate  {
         
         var username = usernameField.text
         
-        if string == "" {
-            username?.characters.removeLast()
-        }else {
-            username?.characters.append(string.characters.first!)
+        
+        
+        if (username?.characters.count)! > 0 {
+            if string == "" {
+                username?.characters.removeLast()
+            }else {
+                username?.characters.append(string.characters.first!)
+        }
         }
         
         continueButton.enable = (username?.characters.count)! > 3 ? true : false

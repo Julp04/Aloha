@@ -50,34 +50,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
+        #if UI
+            //Skip all stuff and go straight to view controller you set as "Initial View Controller" in storyboard
+        #else
         
-        if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
-            Defaults["HasLaunchedOnce"] = true
-            Defaults.synchronize()
+        
+            if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
+                Defaults["HasLaunchedOnce"] = true
+                Defaults.synchronize()
+                
+                
+                let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
+                
+                self.window!.rootViewController? = onboardNav
+      
+            }
+            else {
+                checkForCurrentUser()
+            }
             
+            let q = UIImage(named: "qnect_logo_white")!
+            let qSize = CGSize(width: 240.0, height: 128.0)
             
-            let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
+            let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+            splashView.iconColor = UIColor.white
+            splashView.duration = 1.5
+            splashView.animationType = .twitter
             
-            self.window!.rootViewController? = onboardNav
-  
-        }
-        else {
-            checkForCurrentUser()
-        }
-        
-        let q = UIImage(named: "qnect_logo_white")!
-        let qSize = CGSize(width: 240.0, height: 128.0)
-        
-        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
-        splashView.iconColor = UIColor.white
-        splashView.duration = 1.5
-        splashView.animationType = .twitter
-        
-        self.window?.rootViewController?.view.addSubview(splashView)
-        
-        splashView.startAnimation {
-            print("completed")
-        }
+            self.window?.rootViewController?.view.addSubview(splashView)
+            
+            splashView.startAnimation {
+                print("completed")
+            }
+            
+        #endif
     
         return true
     }

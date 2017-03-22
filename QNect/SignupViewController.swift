@@ -325,9 +325,9 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
             if let error = error {
                 print(error)
             }else {
-                QnUtilitiy.setUserInfoFor(user: (FIRAuth.auth()?.currentUser)!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: self.twitterSession?.userName )
+                QnUtility.setUserInfoFor(user: (FIRAuth.auth()?.currentUser)!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: self.twitterSession?.userName )
                 
-                QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
+                QnUtility.setProfileImage(image: self.profileImageView.image!)
                 
                 self.segueToMainApp()
                 
@@ -356,10 +356,10 @@ class SignupViewController: UITableViewController, UITextFieldDelegate, UINaviga
                                 
                             }else {
                                 
-                                QnUtilitiy.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: nil)
+                                QnUtility.setUserInfoFor(user: user!, username: self.usernameField.text!, firstName: self.firstNameField.text!, lastName: self.lastNameField.text!, socialEmail: self.socialEmailField.text, socialPhone: self.socialPhoneField.text, twitter: nil)
                                 
                                 
-                                QnUtilitiy.setProfileImage(image: self.profileImageView.image!)
+                                QnUtility.setProfileImage(image: self.profileImageView.image!)
 
                                 self.segueToMainApp()
                             }

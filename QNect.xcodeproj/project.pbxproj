@@ -21,6 +21,61 @@
 		14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
 		149D1DDE1E747F8000254601 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDC1E747F8000254601 /* Extensions.swift */; };
 		149D1DDF1E747F8000254601 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */; };
+		14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
+		14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
+		14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
+		14CCB6971E7C0FB4004B1C3C /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
+		14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
+		14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
+		14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
+		14CCB69B1E7C0FB4004B1C3C /* VBFPopFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */; };
+		14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
+		14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
+		14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
+		14CCB69F1E7C0FB4004B1C3C /* QnTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */; };
+		14CCB6A01E7C0FB4004B1C3C /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
+		14CCB6A11E7C0FB4004B1C3C /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
+		14CCB6A21E7C0FB4004B1C3C /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
+		14CCB6A31E7C0FB4004B1C3C /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
+		14CCB6A41E7C0FB4004B1C3C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDC1E747F8000254601 /* Extensions.swift */; };
+		14CCB6A51E7C0FB4004B1C3C /* ContactHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */; };
+		14CCB6A61E7C0FB4004B1C3C /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0D1DCF92EB00685718 /* ContainerViewController.swift */; };
+		14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
+		14CCB6A81E7C0FB4004B1C3C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E071DCF8CE900685718 /* SignupViewController.swift */; };
+		14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D951E64900600794587 /* NameViewController.swift */; };
+		14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
+		14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
+		14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
+		14CCB6AD1E7C0FB4004B1C3C /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141225421E7622ED00B97222 /* ModalViewController.swift */; };
+		14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
+		14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
+		14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
+		14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
+		14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
+		14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
+		14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
+		14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
+		14CCB6B61E7C0FB4004B1C3C /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */; };
+		14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
+		14CCB6B81E7C0FB4004B1C3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
+		14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
+		14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
+		14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
+		14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
+		14CCB6BD1E7C0FB4004B1C3C /* VBFDoubleSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */; };
+		14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
+		14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
+		14CCB6C01E7C0FB4004B1C3C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */; };
+		14CCB6C11E7C0FB4004B1C3C /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* Social.swift */; };
+		14CCB6C31E7C0FB4004B1C3C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */; };
+		14CCB6C71E7C0FB4004B1C3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
+		14CCB6C81E7C0FB4004B1C3C /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 147C90B71E5DDCB700D8DE70 /* onboard.mp4 */; };
+		14CCB6C91E7C0FB4004B1C3C /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
+		14CCB6CA1E7C0FB4004B1C3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964AE901DBA74B400A0162E /* Images.xcassets */; };
+		14CCB6CB1E7C0FB4004B1C3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE8A1DBA74B400A0162E /* Main.storyboard */; };
+		14CCB6DA1E7C2630004B1C3C /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */; };
+		14CCB6DB1E7C2630004B1C3C /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */; };
+		14CCB6DC1E7C2630004B1C3C /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */; };
 		14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		14EC7A831E74F27300B3C4E8 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
@@ -109,6 +164,8 @@
 		B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
+		BE7A5A0E0E3901E9B56CD495 /* Pods_QNect_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */; };
+		CAB6A1D2653C6FCE46524132 /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,16 +192,19 @@
 		14855D9B1E64903A00794587 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		149D1DDC1E747F8000254601 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewController.swift; sourceTree = "<group>"; };
+		14AE14201E7F4EFE0035789E /* SnowFlake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowFlake.swift; sourceTree = "<group>"; };
+		14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QNect dev-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14CCB6D41E7C0FB5004B1C3C /* QNect dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "QNect dev copy-Info.plist"; path = "/Users/dks0398255/Desktop/QNect/QNect dev copy-Info.plist"; sourceTree = "<absolute>"; };
+		14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
 		14EC7ABE1E74F27300B3C4E8 /* QNect dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QNect dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14EC7ABF1E74F27300B3C4E8 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dev-Info.plist"; path = "/Users/dks0398255/Desktop/QNect/Dev-Info.plist"; sourceTree = "<absolute>"; };
+		33F70A088601D2F317F1D8E6 /* Pods-QNect dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QNect dev/Pods-QNect dev.debug.xcconfig"; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
 		404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QNect_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E052AF780C1A7562E24533A /* Pods_QNect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QNect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		534C30A9B96F5D239DBDC4BD /* Pods-QNect dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect dev/Pods-QNect dev.release.xcconfig"; sourceTree = "<group>"; };
 		66CEC6FF601A1FF629B8B979 /* Pods-QNect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.debug.xcconfig"; sourceTree = "<group>"; };
-		95B8242B61DDEDD010AC16C9 /* Pods-QNect dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QNect dev/Pods-QNect dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B90968CB1DCFB6B000B73662 /* QNectCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNectCode.swift; sourceTree = "<group>"; };
 		B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnTableViewController.swift; sourceTree = "<group>"; };
 		B90968CF1DCFC1FB00B73662 /* QnUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnUtility.swift; sourceTree = "<group>"; };
@@ -188,9 +248,18 @@
 		B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsModel.swift; sourceTree = "<group>"; };
 		B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNectAlertView.swift; sourceTree = "<group>"; };
 		B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
+		E2E0A7AE8C1F13D97BDEE2B9 /* Pods-QNect dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect dev/Pods-QNect dev.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		14CCB6C21E7C0FB4004B1C3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14CCB6C31E7C0FB4004B1C3C /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7AAE1E74F27300B3C4E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +267,7 @@
 				14EC7AAF1E74F27300B3C4E8 /* libsqlite3.tbd in Frameworks */,
 				14EC7AB01E74F27300B3C4E8 /* Pods_QNect.framework in Frameworks */,
 				2CFA138A7B0B350CC078E744 /* Pods_QNect_dev.framework in Frameworks */,
+				BE7A5A0E0E3901E9B56CD495 /* Pods_QNect_dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +277,7 @@
 			files = (
 				B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */,
 				614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */,
+				CAB6A1D2653C6FCE46524132 /* Pods_QNect.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +315,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
 				149D1DDC1E747F8000254601 /* Extensions.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
@@ -267,6 +339,7 @@
 				B964AE841DBA74B400A0162E /* Products */,
 				A6DCC86F55992F7852DB2F25 /* Frameworks */,
 				C075528983C508AD25572E68 /* Pods */,
+				14CCB6D41E7C0FB5004B1C3C /* QNect dev copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -276,6 +349,7 @@
 				B964AE831DBA74B400A0162E /* QNect.app */,
 				B964AE9A1DBA74B400A0162E /* QNectTests.xctest */,
 				14EC7ABE1E74F27300B3C4E8 /* QNect dev.app */,
+				14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -334,6 +408,7 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
 				149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */,
 				14855D951E64900600794587 /* NameViewController.swift */,
 				14855D971E64901300794587 /* UsernameViewController.swift */,
@@ -374,8 +449,8 @@
 			children = (
 				66CEC6FF601A1FF629B8B979 /* Pods-QNect.debug.xcconfig */,
 				3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */,
-				95B8242B61DDEDD010AC16C9 /* Pods-QNect dev.debug.xcconfig */,
-				534C30A9B96F5D239DBDC4BD /* Pods-QNect dev.release.xcconfig */,
+				33F70A088601D2F317F1D8E6 /* Pods-QNect dev.debug.xcconfig */,
+				E2E0A7AE8C1F13D97BDEE2B9 /* Pods-QNect dev.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -383,6 +458,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		14CCB6941E7C0FB4004B1C3C /* QNect dev-UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14CCB6D01E7C0FB4004B1C3C /* Build configuration list for PBXNativeTarget "QNect dev-UI" */;
+			buildPhases = (
+				14CCB6961E7C0FB4004B1C3C /* Sources */,
+				14CCB6C21E7C0FB4004B1C3C /* Frameworks */,
+				14CCB6C61E7C0FB4004B1C3C /* Resources */,
+				14CCB6CE1E7C0FB4004B1C3C /* ShellScript */,
+				14CCB6CF1E7C0FB4004B1C3C /* ShellScript */,
+				14CCB6DE1E7C2C6F004B1C3C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "QNect dev-UI";
+			productName = QNect;
+			productReference = 14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */;
+			productType = "com.apple.product-type.application";
+		};
 		14EC7A801E74F27300B3C4E8 /* QNect dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14EC7ABB1E74F27300B3C4E8 /* Build configuration list for PBXNativeTarget "QNect dev" */;
@@ -395,6 +490,7 @@
 				14EC7AB81E74F27300B3C4E8 /* [CP] Copy Pods Resources */,
 				14EC7AB91E74F27300B3C4E8 /* ShellScript */,
 				14EC7ABA1E74F27300B3C4E8 /* ShellScript */,
+				14CCB6DD1E7C2B41004B1C3C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -417,6 +513,7 @@
 				B768D25C7491114F3B27F3B4 /* [CP] Copy Pods Resources */,
 				1403CAA91E548FF600BDE899 /* ShellScript */,
 				141852191E5A103200471E59 /* ShellScript */,
+				14CCB6DF1E7C2C7B004B1C3C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -455,6 +552,9 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Julian Panucci";
 				TargetAttributes = {
+					14CCB6941E7C0FB4004B1C3C = {
+						DevelopmentTeam = DGYJ3R2C9F;
+					};
 					14EC7A801E74F27300B3C4E8 = {
 						DevelopmentTeam = DGYJ3R2C9F;
 					};
@@ -491,11 +591,24 @@
 				B964AE821DBA74B400A0162E /* QNect */,
 				B964AE991DBA74B400A0162E /* QNectTests */,
 				14EC7A801E74F27300B3C4E8 /* QNect dev */,
+				14CCB6941E7C0FB4004B1C3C /* QNect dev-UI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		14CCB6C61E7C0FB4004B1C3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14CCB6C71E7C0FB4004B1C3C /* LaunchScreen.storyboard in Resources */,
+				14CCB6C81E7C0FB4004B1C3C /* onboard.mp4 in Resources */,
+				14CCB6C91E7C0FB4004B1C3C /* GoogleService-Info-DEV.plist in Resources */,
+				14CCB6CA1E7C0FB4004B1C3C /* Images.xcassets in Resources */,
+				14CCB6CB1E7C0FB4004B1C3C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7AB11E74F27300B3C4E8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,6 +668,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"todo:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}/QNect\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		14CCB6CE1E7C0FB4004B1C3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 46e648d9c6b95833b9ab4f6be200ffb599ae7bce 090e682fffe765cecec4688b7d7c619f08fb07e73189cbbcfd01abc2d4fe9da2";
+		};
+		14CCB6CF1E7C0FB4004B1C3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"todo:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}/QNect\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		14CCB6DD1E7C2B41004B1C3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
+		};
+		14CCB6DE1E7C2C6F004B1C3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
+		};
+		14CCB6DF1E7C2C7B004B1C3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
 		};
 		14EC7A811E74F27300B3C4E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -675,6 +853,58 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		14CCB6961E7C0FB4004B1C3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14CCB6971E7C0FB4004B1C3C /* SwiftyUserDefaults.swift in Sources */,
+				14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */,
+				14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */,
+				14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */,
+				14CCB69B1E7C0FB4004B1C3C /* VBFPopFlatButton.m in Sources */,
+				14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */,
+				14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */,
+				14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */,
+				14CCB69F1E7C0FB4004B1C3C /* QnTableViewController.swift in Sources */,
+				14CCB6A01E7C0FB4004B1C3C /* SphereMenu.swift in Sources */,
+				14CCB6A11E7C0FB4004B1C3C /* ImageDownloaderDelegate.swift in Sources */,
+				14CCB6A21E7C0FB4004B1C3C /* BackgroundVideo.swift in Sources */,
+				14CCB6A31E7C0FB4004B1C3C /* OnboardViewController.swift in Sources */,
+				14CCB6A41E7C0FB4004B1C3C /* Extensions.swift in Sources */,
+				14CCB6A51E7C0FB4004B1C3C /* ContactHeaderCell.swift in Sources */,
+				14CCB6A61E7C0FB4004B1C3C /* ContainerViewController.swift in Sources */,
+				14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */,
+				14CCB6A81E7C0FB4004B1C3C /* SignupViewController.swift in Sources */,
+				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
+				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
+				14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */,
+				14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */,
+				14CCB6AD1E7C0FB4004B1C3C /* ModalViewController.swift in Sources */,
+				14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */,
+				14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */,
+				14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */,
+				14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */,
+				14CCB6DC1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
+				14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */,
+				14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */,
+				14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */,
+				14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */,
+				14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */,
+				14CCB6B61E7C0FB4004B1C3C /* ProfileInfoTableViewController.swift in Sources */,
+				14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */,
+				14CCB6B81E7C0FB4004B1C3C /* Constants.swift in Sources */,
+				14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */,
+				14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */,
+				14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */,
+				14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */,
+				14CCB6BD1E7C0FB4004B1C3C /* VBFDoubleSegment.m in Sources */,
+				14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */,
+				14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */,
+				14CCB6C01E7C0FB4004B1C3C /* SettingsViewController.swift in Sources */,
+				14CCB6C11E7C0FB4004B1C3C /* Social.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7A821E74F27300B3C4E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -702,9 +932,11 @@
 				14EC7A971E74F27300B3C4E8 /* ContactCell.swift in Sources */,
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
 				141225441E7622ED00B97222 /* ModalViewController.swift in Sources */,
+				14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */,
 				14EC7A9A1E74F27300B3C4E8 /* ScannerViewController.swift in Sources */,
 				14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */,
+				14CCB6DB1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
 				14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */,
 				14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */,
 				14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */,
@@ -752,9 +984,11 @@
 				B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				141225431E7622ED00B97222 /* ModalViewController.swift in Sources */,
+				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
 				B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */,
 				B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */,
+				14CCB6DA1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
 				B90968DA1DCFC83200B73662 /* SocialMediaCell.swift in Sources */,
 				B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */,
 				B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */,
@@ -813,9 +1047,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		14CCB6D11E7C0FB4004B1C3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
+				ENABLE_BITCODE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"UI=1",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "QNect dev copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "\"-DDEVELOPMENT\" \"-DUI\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.QNect.QNect-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		14CCB6D21E7C0FB4004B1C3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "QNect dev copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEVLOPMENT";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.QNect.QNect-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "QNect-Bridge.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		14EC7ABC1E74F27300B3C4E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95B8242B61DDEDD010AC16C9 /* Pods-QNect dev.debug.xcconfig */;
+			baseConfigurationReference = 33F70A088601D2F317F1D8E6 /* Pods-QNect dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -837,7 +1116,7 @@
 		};
 		14EC7ABD1E74F27300B3C4E8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 534C30A9B96F5D239DBDC4BD /* Pods-QNect dev.release.xcconfig */;
+			baseConfigurationReference = E2E0A7AE8C1F13D97BDEE2B9 /* Pods-QNect dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1010,6 +1289,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		14CCB6D01E7C0FB4004B1C3C /* Build configuration list for PBXNativeTarget "QNect dev-UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14CCB6D11E7C0FB4004B1C3C /* Debug */,
+				14CCB6D21E7C0FB4004B1C3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14EC7ABB1E74F27300B3C4E8 /* Build configuration list for PBXNativeTarget "QNect dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

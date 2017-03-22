@@ -65,6 +65,9 @@ public extension UIColor {
 
 public extension String {
     
+    //todo: check for thid
+    //Terminating app due to uncaught exception 'InvalidPathValidation', reason: '(child:) Must be a non-empty string and not contain '.' '#' '$' '[' or ']''
+
     var isValidEmail:Bool {
         get {
             let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"

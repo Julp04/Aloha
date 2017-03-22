@@ -31,6 +31,7 @@ def allPods
     pod 'MGCollapsingHeader'
     pod 'TransitionTreasury'
     pod 'TransitionAnimation'
+    pod 'RAMPaperSwitch', '~> 2.0.4'
     
     
 end

@@ -12,28 +12,74 @@ import OAuthSwift
 import Accounts
 import FirebaseDatabase
 import FirebaseAuth
+import Social
 
 
 
-
-class TwitterUtility {
+extension DefaultsKeys {
+    static let launchCount = DefaultsKey<Int>("launchCount")
+    static let color = DefaultsKey<UIColor>("color")
+}
+class TwitterClient {
     
     typealias ErrorCompletion = (Error?) -> Void
+    static let client = TwitterClient()
     
     
     var oauthSwift:OAuthSwift?
     let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
     let consumerSecret = "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq"
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
+    var accountStore: ACAccountStore
+    var accountType: ACAccountType
+    
+    private var accounts: [ACAccount]?
+    
+    var account:ACAccount?  {
+        get {
+            if let accounts = accounts, let id = Defaults["twitter"].string {
+                let currentAccount = accounts.filter { String($0.identifier) == id }.first
+                return currentAccount
+            }else {
+                return nil
+            }
+        }
+        set {
+            Defaults["twitter"] = newValue?.identifier
+            Defaults.synchronize()
+        }
+    }
     
     init ()
     {
-        
+        accountStore = ACAccountStore()
+        accountType = accountStore.accountType(
+            withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+    }
+
+    
+    func requestAccessToAccounts(completion:@escaping (Error?, Bool) -> Void)
+    {
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) { (success, error) in
+            guard error == nil else {
+                completion(error!, false)
+                return
+            }
+            
+            if success {
+                let arrayOfAccounts = self.accountStore.accounts(with: self.accountType) as! [ACAccount]
+                self.accounts = arrayOfAccounts
+                completion(nil, true)
+            }else {
+                completion(nil, false)
+            }
+        }
     }
     
     
     
     func linkTwitterIn(viewController:UIViewController, completion:@escaping ErrorCompletion){
+        
         
         let oauthswift = OAuth1Swift(
             consumerKey:    "m9VCFFsoERuNegQQygfBRXIuB",
@@ -145,6 +191,29 @@ class TwitterUtility {
                 completion(false)
             }
         })
+    }
+    
+    func follow(screenName: String, completion: @escaping ErrorCompletion)
+    {
+        if let account = account {
+            let requestURL = URL(string: followURL)
+            let parameters = ["screen_name": screenName]
+            let postRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: requestURL, parameters: parameters)
+            postRequest?.account = account
+            
+            postRequest?.perform(handler: { (data, response, error) in
+                guard error == nil else {
+                    completion(error!)
+                    return
+                }
+                
+                let json = response?.description
+                print(json!)
+                
+                
+            })
+        }
+        
     }
     
     

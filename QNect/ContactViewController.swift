@@ -180,7 +180,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             
             if contact?.profileImage == nil {
                 if Reachability.isConnectedToInternet() {
-                    QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                    QnUtility.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
                         if error != nil {
                             print(error!)
                         }else {
@@ -326,9 +326,9 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         let screenName = contact!.twitterScreenName
         
         
-        TwitterUtility().isUserLinkedWithTwitter { (isLinked) in
+        TwitterClient.client.isUserLinkedWithTwitter { (isLinked) in
             if isLinked {
-                TwitterUtility().followUserWith(screenName: screenName!) { (error) in
+                TwitterClient.client.followUserWith(screenName: screenName!) { (error) in
                     if error != nil {
                         RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
                     }else {

@@ -16,8 +16,6 @@ import FirebaseStorage
 
 
 class Account {
-    
-    
     var key: String
     var ref: FIRDatabaseReference
     var screenName:String?
@@ -34,8 +32,6 @@ class Account {
         self.token = values["token"] as! String
         self.refreshToken = values["refreshToken"] as! String
     }
-    
-    
 }
 
 class TwitterAccount: Account {

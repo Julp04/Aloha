@@ -122,6 +122,7 @@ class LoginViewController: UIViewController {
             if error != nil {
                 guard self.emailField.text!.isValidEmail else {
                     self.emailField.errorMessage = "Invalid Email"
+                    self.loginButton.stopLoadingAnimation()
                     return
                 }
                 
@@ -158,7 +159,9 @@ class LoginViewController: UIViewController {
                 
                 FIRAuth.auth()?.signIn(withEmail: email, password: self.passwordField.text!) {user, error in
                     if error != nil {
-                        
+                        self.loginButton.stopLoadingAnimation()
+                        self.passwordField.errorMessage = "Invalid Password"
+                        print(error!)
                     }else {
                         let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
                         self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)

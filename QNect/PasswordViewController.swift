@@ -16,6 +16,9 @@ class PasswordViewController: UIViewController {
     //MARK: Properties
     
     var userInfo: UserInfo?
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     //MARK: Outlets
     
@@ -50,7 +53,11 @@ class PasswordViewController: UIViewController {
     
     func configureViewController(userInfo:UserInfo)
     {
-        self.userInfo = userInfo
+        #if UI
+            self.userInfo = UserInfo.testUser
+        #else
+            self.userInfo = userInfo
+        #endif
     }
     
 

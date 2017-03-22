@@ -16,6 +16,9 @@ class ProfileInfoTableViewController: UITableViewController {
     //MARK: Properties
     
     var userInfo: UserInfo?
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     let imagePicker = UIImagePickerController()
    
     //MARK: Outlets
@@ -39,17 +42,33 @@ class ProfileInfoTableViewController: UITableViewController {
             profileImageView.layer.masksToBounds = true
         }
     }
+    @IBOutlet weak var continueButton: UIBarButtonItem! {
+        didSet {
+            continueButton.isEnabled = false
+            continueButton.tintColor = UIColor.clear
+        }
+    }
     
     //MARK: Actions
     
     @IBAction func addProfileImage(_ sender: Any) {
         addProfileImage()
     }
+    @IBAction func continueAction(_ sender: Any) {
+        continueSignup()
+    }
+    @IBAction func skipAction(_ sender: Any) {
+        skip()
+    }
    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if UI
+            self.userInfo = UserInfo.testUser
+        #endif
         
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
@@ -62,6 +81,7 @@ class ProfileInfoTableViewController: UITableViewController {
         imagePicker.delegate = self
         
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
     }
     
     
@@ -76,7 +96,18 @@ class ProfileInfoTableViewController: UITableViewController {
     {
         //todo: Might add more fields
         //Should we check for internet connection??
-        QnUtilitiy.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
+        QnUtility.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
+        QnUtility.setProfileImage(image: profileImageView.image!)
+        
+        performSegue(withIdentifier: "LinkAccounts", sender: self)
+    }
+    
+    func skip()
+    {
+        //Setting the image either way
+//        QnUtility.setProfileImage(image: profileImageView.image!)
+        performSegue(withIdentifier: "LinkAccounts", sender: self)
+        
     }
     
     //MARK: User Interaction
@@ -163,6 +194,19 @@ extension ProfileInfoTableViewController: UITextFieldDelegate {
         phoneField.becomeFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard textField.text != nil else {
+            continueButton.isEnabled = false
+            continueButton.tintColor = UIColor.clear
+            return true
+        }
+        
+        continueButton.isEnabled = true
+        continueButton.tintColor = UIColor.qnPurple
+        return true
+    }
 }
 
 extension ProfileInfoTableViewController: RSKImageCropViewControllerDelegate {
@@ -178,3 +222,4 @@ extension ProfileInfoTableViewController: RSKImageCropViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
+

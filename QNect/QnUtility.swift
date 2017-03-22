@@ -16,7 +16,7 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 
-class QnUtilitiy {
+class QnUtility {
     
     static func setUserInfo(userInfo: UserInfo) {
         let ref = FIRDatabase.database().reference()
@@ -28,7 +28,7 @@ class QnUtilitiy {
         
         
         let username = ref.child("usernames")
-        username.setValue([userInfo.userName!: userInfo.email!])
+        username.updateChildValues([userInfo.userName!: userInfo.email!])
     }
     
     
@@ -59,7 +59,7 @@ class QnUtilitiy {
         let users = ref.child("users")
         let currentUser = users.child(user.uid)
         
-        currentUser.setValue(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
+        currentUser.updateChildValues(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
     
     
@@ -188,38 +188,8 @@ class QnUtilitiy {
         
     }
     
-    static func followUserOnTwitter(twitterUsername:String)
-    {
-        let client = TWTRAPIClient()
-        
-        let statusesShowEndpoint = "https://api.twitter.com/1.1/friendships/create.json"
-        let params = ["user_id": "1401881", "follow":"true"]
-        var clientError : NSError?
-        
-        let request = client.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
-        
-        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
-            if connectionError != nil {
-                print("Error: \(connectionError)")
-            }
-            
-            if data == nil {
-                print("No data")
-            }else {
-                let json = JSON(data!)
-                print(json)
-            }
-        }
-    }
-    
-    
-    
- 
-    
-    
-
-    
-  
-    
    
 }
+
+
+
