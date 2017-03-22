@@ -1,6 +1,6 @@
 //
 //  Emitter.swift
-//  Emitting
+//  Snowflake
 //
 //  Created by Panucci, Julian R on 3/17/17.
 //  Copyright © 2017 Panucci, Julian R. All rights reserved.
@@ -12,12 +12,23 @@ import UIKit
 
 class Snowflake: CAEmitterLayer {
     
+
+    
     //MARK: Constants
-    static let kParticleCount = 5
+    let kParticleCount: Int = 5
+    let kParticleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+    let kEmissionLongitude: CGFloat = 30
+    let kLifetime: Float = 50
+    let kVelocity: CGFloat = 10
+    let kVelocityRange: CGFloat = 50
+    let kYAcceleration: CGFloat = 5
+    let kXAccelertation: CGFloat = 1
+    let kSpin: CGFloat = 0.01
+    
     
     //MARK: Overrides
     
-    override var emitterZPosition:CGFloat {
+    override var emitterZPosition: CGFloat {
         get {
             return 10.0
         } set {
@@ -36,12 +47,12 @@ class Snowflake: CAEmitterLayer {
     //MARK: Cell Properties
     
     var emissionRange = CGFloat(M_PI)
-    var particleSize:CGFloat = 0.3 {
+    var particleSize: CGFloat = 0.3 {
         didSet {
             emitterCells?.forEach {$0.scale = particleSize}
         }
     }
-    var particleSizeRange:CGFloat = 0.5 {
+    var particleSizeRange: CGFloat = 0.5 {
         didSet {
             emitterCells?.forEach { $0.scaleRange = particleSizeRange }
         }
@@ -60,7 +71,7 @@ class Snowflake: CAEmitterLayer {
     required init(view: UIView, particles: [UIImage: UIColor]) {
 
         totalParticles = particles.keys.count
-        particleCount = Snowflake.kParticleCount
+        particleCount = kParticleCount
         super.init()
         
         emitterSize = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
@@ -108,17 +119,17 @@ class Snowflake: CAEmitterLayer {
         emitterCell.scale = particleSize // 7
         emitterCell.scaleRange = particleSizeRange; // 8
         emitterCell.emissionRange = emissionRange
-        emitterCell.emissionLongitude = 30
+        emitterCell.emissionLongitude = kEmissionLongitude
         emitterCell.color = color.cgColor
         
-        emitterCell.lifetime = 50; // 10
+        emitterCell.lifetime = kLifetime
         emitterCell.birthRate = Float(particleCount / totalParticles)
         
-        emitterCell.velocity = 10; // 12
-        emitterCell.velocityRange = 50; // 13
-        emitterCell.yAcceleration = 5; // 14
-        emitterCell.xAcceleration = 1;
-        emitterCell.spin = 0.01
+        emitterCell.velocity = kVelocity
+        emitterCell.velocityRange = kVelocityRange
+        emitterCell.yAcceleration = kYAcceleration
+        emitterCell.xAcceleration = kXAccelertation
+        emitterCell.spin = kSpin
         
         
         emitterCell.contents = image.cgImage
