@@ -18,26 +18,16 @@ import PTPopupWebView
 import TransitionTreasury
 import TransitionAnimation
 
-extension ScannerViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
-            return ges.translation(in: ges.view).y != 0
-        }
-        return false
-    }
-}
 
 
 
-class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UIWebViewDelegate, NavgationTransitionable, ModalTransitionDelegate {
+
+class ScannerViewController: UIViewController, SFSafariViewControllerDelegate, UIWebViewDelegate, NavgationTransitionable, ModalTransitionDelegate {
     
-    //MARK: Strings
+    //MARK: Properties
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
     var tr_pushTransition: TRNavgationTransitionDelegate?
-    
-    
     
     let kDismissString = "Dismiss"
     let kPinchVelocity = 8.0
@@ -46,15 +36,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var showURLAlert = 0
     
     
-    //If the item has just been recently picked or removed, then the background is selected so that the user knows which item they are currently working on
-    // Set picked item back to false so other rows do not become selected when scrolling through list, because this method is called as rows reload.
-    
-    
-    
-    //MARK: Properties
+    //MARK: Actions
     
     @IBAction func gesture(_ sender: AnyObject) {
-        
         handleGesture(sender)
     }
     
@@ -66,7 +50,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var contact:User?
     var qrCodeFrameView = UIImageView()
     
-    //MARK: LifeCycle Methods
+    //MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,13 +67,17 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.addGestureRecognizer(pan)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        startCaptureSession()
+    }
+    
     func interactiveTransition(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
             guard sender.velocity(in: view).y > 0 else {
                 break
             }
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")  as! ModalViewController
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CodeController")  as! QnectCodeViewController
             vc.modalDelegate = self
             
             tr_presentViewController(vc, method: TRPresentTransitionMethod.scanbot(present: sender, dismiss: vc.dismissGestureRecognizer), completion: {
@@ -103,15 +91,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func modalViewControllerDismiss(interactive: Bool, callbackData data: Any?) {
         tr_dismissViewController(interactive, completion: nil)
     }
-    
-
-  
-    
-    override func viewWillAppear(_ animated: Bool) {
-        startCaptureSession()
-    }
-    
-    //MARK: UI Methods
     
     
     //MARK: Capture Session Functions
@@ -167,73 +146,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
      - parameter connection:      specific av capture connection
      */
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
- 
-        
-        if metadataObjects == nil || metadataObjects.count == 0 {
-    
-            
-            
-            showURLAlert = 0
-
-            
-
-            return
-        } else {
-
-            let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
-            
-            if metadataObj.type == AVMetadataObjectTypeQRCode{
-                if let contact = QnDecoder.decodeQRCode(metadataObj.stringValue) {
-                    
-                    self.contact = contact
-                    
-                    handleScannedContact(metadataObj, barCodeObject: barCodeObject)
-                    
-                }else if metadataObj.stringValue.contains(".com") {
-  
-                    //Todo: Need to test different QRCodes and handle different strings
-                    var url = ""
-                    if !metadataObj.stringValue.contains("http"){
-                        url = "http://\(metadataObj.stringValue)"
-                    }else {url = metadataObj.stringValue}
-                    
-                        
-                        let popupvc = PTPopupWebViewController()
-                        popupvc.popupView.URL(string: url)
-                        let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
-                        closeButton.handler({ 
-                            self.startCaptureSession()
-                            popupvc.close()
-                        })
-                       
-            
-                        
-                        let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)
-                        safariButton.title("Open in Safari")
-                        safariButton.handler({ 
-                            UIApplication.shared.openURL(URL(string: url)!)
-                        })
-                        
-                        
-                        popupvc.popupView.addButton(safariButton)
-                        popupvc.popupView.addButton(closeButton)
-                        popupvc.show()
-                        self.stopCaptureSession()
-
-                
-                }
-                
-                
-                else {
-                    let alert = UIAlertController(title: nil, message: metadataObj.stringValue, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-    }
     
     //MARK: Scanning Contact
     
@@ -297,12 +209,73 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             }
         }
     }
-    
+}
 
-  
-    
-    
-    
+extension ScannerViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
+            return ges.translation(in: ges.view).y != 0
+        }
+        return false
+    }
+}
+
+extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+        
+        if metadataObjects == nil || metadataObjects.count == 0 {
+            showURLAlert = 0
+            return
+        } else {
+            
+            let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+            
+            if metadataObj.type == AVMetadataObjectTypeQRCode{
+                if let contact = QnDecoder.decodeQRCode(metadataObj.stringValue) {
+                    
+                    self.contact = contact
+                    
+                    handleScannedContact(metadataObj, barCodeObject: barCodeObject)
+                    
+                }else if metadataObj.stringValue.contains(".com") {
+                    
+                    //Todo: Need to test different QRCodes and handle different strings
+                    var url = ""
+                    if !metadataObj.stringValue.contains("http"){
+                        url = "http://\(metadataObj.stringValue)"
+                    }else {url = metadataObj.stringValue}
+                    
+                    
+                    let popupvc = PTPopupWebViewController()
+                    popupvc.popupView.URL(string: url)
+                    let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
+                    closeButton.handler({
+                        self.startCaptureSession()
+                        popupvc.close()
+                    })
+
+                    let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)
+                    safariButton.title("Open in Safari")
+                    safariButton.handler({
+                        UIApplication.shared.openURL(URL(string: url)!)
+                    })
+
+                    popupvc.popupView.addButton(safariButton)
+                    popupvc.popupView.addButton(closeButton)
+                    popupvc.show()
+                    self.stopCaptureSession()
+                    
+                    
+                }
+                else {
+                    let alert = UIAlertController(title: nil, message: metadataObj.stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }
 
 

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
-		141225431E7622ED00B97222 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141225421E7622ED00B97222 /* ModalViewController.swift */; };
-		141225441E7622ED00B97222 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141225421E7622ED00B97222 /* ModalViewController.swift */; };
 		141852181E55F2E200471E59 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* Social.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
@@ -49,7 +47,6 @@
 		14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
 		14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
 		14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
-		14CCB6AD1E7C0FB4004B1C3C /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141225421E7622ED00B97222 /* ModalViewController.swift */; };
 		14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
 		14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
 		14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
@@ -183,7 +180,6 @@
 
 /* Begin PBXFileReference section */
 		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
-		141225421E7622ED00B97222 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -429,7 +425,6 @@
 				B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
 				B9570E0F1DCF93A800685718 /* ScannerViewController.swift */,
-				141225421E7622ED00B97222 /* ModalViewController.swift */,
 				B9570E0D1DCF92EB00685718 /* ContainerViewController.swift */,
 				B9570E071DCF8CE900685718 /* SignupViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
@@ -889,7 +884,6 @@
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
 				14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */,
 				14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */,
-				14CCB6AD1E7C0FB4004B1C3C /* ModalViewController.swift in Sources */,
 				14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */,
 				14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */,
@@ -942,7 +936,6 @@
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14EC7A971E74F27300B3C4E8 /* ContactCell.swift in Sources */,
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
-				141225441E7622ED00B97222 /* ModalViewController.swift in Sources */,
 				14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */,
 				14EC7A9A1E74F27300B3C4E8 /* ScannerViewController.swift in Sources */,
@@ -995,7 +988,6 @@
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
-				141225431E7622ED00B97222 /* ModalViewController.swift in Sources */,
 				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
 				B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */,
