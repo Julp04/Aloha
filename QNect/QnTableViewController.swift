@@ -141,7 +141,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     func populateFields()
     {
-        
+        //todo: Change to qnutility.currentuser{ user in }
         let currentUser = FIRAuth.auth()!.currentUser!
         
         databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in

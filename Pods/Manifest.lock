@@ -44,6 +44,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - IQKeyboardManagerSwift (4.0.8)
   - JPLoadingButton (0.4.0)
+  - LTMorphingLabel (0.4.0)
   - MBProgressHUD (1.0.0)
   - MGCollapsingHeader (1.0.6)
   - OAuthSwift (1.1.1)
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - FontAwesome.swift
   - IQKeyboardManagerSwift
   - JPLoadingButton
+  - LTMorphingLabel
   - MBProgressHUD
   - MGCollapsingHeader
   - OAuthSwift (~> 1.1.0)
@@ -124,6 +126,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   JPLoadingButton: 8af25b017f2e2cd9e09697a7816ebf40c49b33aa
+  LTMorphingLabel: d9a85f16ac306f0e07321d6819964deb2dc69638
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MGCollapsingHeader: 82a52988e0dcdd32558e883ae4df4c9c1a1674b1
   OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
@@ -142,6 +145,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: a5151d6a70cf276ede8e1836b2cf1e71fe091193
+PODFILE CHECKSUM: f39e5eb116a82158ca33f72c9ccdd06e069d5693
 
 COCOAPODS: 1.2.0

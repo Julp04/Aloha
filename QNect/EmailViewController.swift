@@ -75,14 +75,18 @@ class EmailViewController: UIViewController {
             return
         }
         
+        continueButton.startLoadingAnimation()
+        
         FIRAuth.auth()?.fetchProviders(forEmail: emailField.text!) { some, error in
             guard error == nil else {
                 print(error!)
+                self.continueButton.stopLoadingAnimation()
                 return
             }
             
             guard some == nil else {
                 self.emailField.errorMessage = "Email already registered"
+                self.continueButton.stopLoadingAnimation()
                 return
             }
             
@@ -91,26 +95,29 @@ class EmailViewController: UIViewController {
             self.userInfo?.email = self.emailField.text!
             
         
-            self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+//            self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+           
         
 
-//                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
-//                    guard error == nil else {
-//                        print(error!)
-//                        return
-//                    }
-//                    
-//
-//                    QnUtility.setUserInfo(userInfo: self.userInfo!)
-//                    FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
-//                        
-//                        guard error == nil else {
-//                            print(error!)
-//                            return
-//                        }
-//                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
-//                    }
-//                }
+                FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
+                    guard error == nil else {
+                        print(error!)
+                        return
+                    }
+                    
+
+                    QnUtility.setUserInfo(userInfo: self.userInfo!)
+                    FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
+                        
+                        guard error == nil else {
+                            print(error!)
+                            return
+                        }
+                        self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
+                        self.continueButton.stopLoadingAnimation()
+                    }
+                }
+            
 
         }
         

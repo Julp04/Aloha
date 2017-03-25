@@ -24,6 +24,9 @@
 		14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
 		14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
 		14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
+		14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
+		14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
+		14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
 		14CCB6971E7C0FB4004B1C3C /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
@@ -193,6 +196,9 @@
 		149D1DDC1E747F8000254601 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewController.swift; sourceTree = "<group>"; };
 		14AE14201E7F4EFE0035789E /* SnowFlake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowFlake.swift; sourceTree = "<group>"; };
+		14CC666E1E85670B00C49B34 /* Pods_QNect_dev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect_dev.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect_dev.framework"; sourceTree = "<group>"; };
+		14CC666F1E85670B00C49B34 /* Pods_QNect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect.framework"; sourceTree = "<group>"; };
+		14CC66721E856C5B00C49B34 /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QNect dev-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CCB6D41E7C0FB5004B1C3C /* QNect dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "QNect dev copy-Info.plist"; path = "/Users/dks0398255/Desktop/QNect/QNect dev copy-Info.plist"; sourceTree = "<absolute>"; };
 		14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +300,8 @@
 		A6DCC86F55992F7852DB2F25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14CC666E1E85670B00C49B34 /* Pods_QNect_dev.framework */,
+				14CC666F1E85670B00C49B34 /* Pods_QNect.framework */,
 				B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */,
 				4E052AF780C1A7562E24533A /* Pods_QNect.framework */,
 				404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */,
@@ -315,7 +323,6 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
-				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
 				149D1DDC1E747F8000254601 /* Extensions.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
@@ -392,6 +399,8 @@
 		B964AEAB1DBA74E300A0162E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
+				14CC66721E856C5B00C49B34 /* SwitchButton.swift */,
 				B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */,
 				B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */,
 				B93753551DD66259007D50D7 /* VBFPopFlatButton */,
@@ -874,6 +883,7 @@
 				14CCB6A51E7C0FB4004B1C3C /* ContactHeaderCell.swift in Sources */,
 				14CCB6A61E7C0FB4004B1C3C /* ContainerViewController.swift in Sources */,
 				14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */,
+				14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				14CCB6A81E7C0FB4004B1C3C /* SignupViewController.swift in Sources */,
 				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
@@ -926,6 +936,7 @@
 				14EC7A911E74F27300B3C4E8 /* ContactHeaderCell.swift in Sources */,
 				14EC7A921E74F27300B3C4E8 /* ContainerViewController.swift in Sources */,
 				14EC7A931E74F27300B3C4E8 /* User.swift in Sources */,
+				14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				14EC7A941E74F27300B3C4E8 /* SignupViewController.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
@@ -978,6 +989,7 @@
 				B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */,
 				B9570E0E1DCF92EB00685718 /* ContainerViewController.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
+				14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				B9570E081DCF8CE900685718 /* SignupViewController.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,

@@ -58,7 +58,7 @@ public extension UIColor {
   
    @nonobjc class var twitter:UIColor{
         get{
-            return UIColor(r: 47, g: 119, b: 230, a: 1)
+            return UIColor(r: 64, g: 153, b: 255, a: 1)
         }
     }
 }

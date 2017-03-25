@@ -32,8 +32,8 @@ def allPods
     pod 'TransitionTreasury'
     pod 'TransitionAnimation'
     pod 'RAMPaperSwitch', '~> 2.0.4'
-    
-    
+    pod 'LTMorphingLabel'
+
 end
 
 target 'QNect' do

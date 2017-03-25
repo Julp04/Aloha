@@ -80,8 +80,12 @@ class ProfileInfoTableViewController: UITableViewController {
         
         imagePicker.delegate = self
         
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.qnPurple
     }
     
     

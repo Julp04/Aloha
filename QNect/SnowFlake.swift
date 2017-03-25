@@ -18,7 +18,6 @@ class Snowflake: CAEmitterLayer {
     let kParticleCount: Int = 5
     let kParticleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
     let kEmissionLongitude: CGFloat = 30
-    let kLifetime: Float = 50
     let kVelocity: CGFloat = 10
     let kVelocityRange: CGFloat = 50
     let kYAcceleration: CGFloat = 5
@@ -57,6 +56,27 @@ class Snowflake: CAEmitterLayer {
             emitterCells?.forEach { $0.scaleRange = particleSizeRange }
         }
     }
+    var mainColor: UIColor = .white {
+        didSet {
+            mainColor = mainColor.withAlphaComponent(0.5)
+            if emitterCells != nil {
+                
+                var newCells = [CAEmitterCell]()
+                for cell in emitterCells! {
+                    cell.color = mainColor.cgColor
+                    newCells.append(cell)
+                }
+                emitterCells!.removeAll()
+                emitterCells = newCells
+            }
+        }
+    }
+    
+    var particleLifetime: Float = 50 {
+        didSet {
+            emitterCells?.forEach {$0.lifetime = lifetime}
+        }
+    }
     
     //MARK: Other Properties
     
@@ -67,6 +87,7 @@ class Snowflake: CAEmitterLayer {
         }
     
     }
+    
     
     required init(view: UIView, particles: [UIImage: UIColor]) {
 
@@ -99,10 +120,11 @@ class Snowflake: CAEmitterLayer {
     ///   - color: single color for all particles
     convenience init(view: UIView, particles: [UIImage], color: UIColor) {
         
+        let colorWithAlpha = color.withAlphaComponent(0.5)
         var dict = [UIImage: UIColor]()
         
         for image in particles {
-            dict[image] = color
+            dict[image] = colorWithAlpha
         }
         
         self.init(view: view, particles: dict)
@@ -122,7 +144,7 @@ class Snowflake: CAEmitterLayer {
         emitterCell.emissionLongitude = kEmissionLongitude
         emitterCell.color = color.cgColor
         
-        emitterCell.lifetime = kLifetime
+        emitterCell.lifetime = particleLifetime
         emitterCell.birthRate = Float(particleCount / totalParticles)
         
         emitterCell.velocity = kVelocity

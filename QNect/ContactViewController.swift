@@ -276,22 +276,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func addContact()
     {
-        let contactManager = ContactManager()
-        if contactManager.contactStoreStatus() == .denied {
-            showCantAddContactAlert()
-        } else if contactManager.contactStoreStatus() == .authorized {
-            contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
-                if success {
-                    showContactAddedAlert()
-                    animateToSuccessButton(addContactButton)
-                }else {
-                    RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
-                }
-            })
-            
-        } else {
-            contactManager.requestAccessToContacts()
-        }
+        
     }
     
     func followUser()
@@ -378,7 +363,8 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         cantAddContactAlert.addAction(UIAlertAction(title: "Change Settings",
             style: .default,
             handler: { action in
-                self.openSettings()
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                UIApplication.shared.openURL(url!)
         }))
         cantAddContactAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(cantAddContactAlert, animated: true, completion: nil)
@@ -399,10 +385,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
     }
 
-    func openSettings() {
-        let url = URL(string: UIApplicationOpenSettingsURLString)
-        UIApplication.shared.openURL(url!)
-    }
     
     
     //MARK:Message Delegates

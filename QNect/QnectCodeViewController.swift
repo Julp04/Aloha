@@ -41,12 +41,6 @@ class QnectCodeViewController: UIViewController {
         createQRCode()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        TwitterClient.client.follow(screenName: "qnect_app") { (error) in
-            print(error ?? "")
-        }
-    }
-    
     
     /**
      Uses QnEncoder to encode the string and generates a QRCode image out of that data. Sets the image view image to the QRcode image

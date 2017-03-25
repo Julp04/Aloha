@@ -24,63 +24,12 @@ class TwitterClient {
     
     typealias ErrorCompletion = (Error?) -> Void
     static let client = TwitterClient()
-    
-    
     var oauthSwift:OAuthSwift?
     let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
     let consumerSecret = "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq"
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
-    var accountStore: ACAccountStore
-    var accountType: ACAccountType
-    
-    private var accounts: [ACAccount]?
-    
-    var account:ACAccount?  {
-        get {
-            if let accounts = accounts, let id = Defaults["twitter"].string {
-                let currentAccount = accounts.filter { String($0.identifier) == id }.first
-                return currentAccount
-            }else {
-                return nil
-            }
-        }
-        set {
-            Defaults["twitter"] = newValue?.identifier
-            Defaults.synchronize()
-        }
-    }
-    
-    init ()
-    {
-        accountStore = ACAccountStore()
-        accountType = accountStore.accountType(
-            withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-    }
-
-    
-    func requestAccessToAccounts(completion:@escaping (Error?, Bool) -> Void)
-    {
-        accountStore.requestAccessToAccounts(with: accountType, options: nil) { (success, error) in
-            guard error == nil else {
-                completion(error!, false)
-                return
-            }
-            
-            if success {
-                let arrayOfAccounts = self.accountStore.accounts(with: self.accountType) as! [ACAccount]
-                self.accounts = arrayOfAccounts
-                completion(nil, true)
-            }else {
-                completion(nil, false)
-            }
-        }
-    }
-    
-    
     
     func linkTwitterIn(viewController:UIViewController, completion:@escaping ErrorCompletion){
-        
-        
         let oauthswift = OAuth1Swift(
             consumerKey:    "m9VCFFsoERuNegQQygfBRXIuB",
             consumerSecret: "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq",
@@ -93,9 +42,7 @@ class TwitterClient {
         let _ = oauthswift.authorize(
             withCallbackURL: URL(string: "qnect://")!,
             success: { credential, response, parameters in
-              
-                
-                
+            
                 let token = credential.oauthToken
                 let tokenSecret = credential.oauthTokenSecret
                 var screenName = ""
@@ -106,8 +53,6 @@ class TwitterClient {
                     }
                     
                 }
-                
-                
                 self.doesUserExist(screenName: screenName, completion: { (userExists) in
                     if userExists {
                         let error = NSError(domain: "", code: 409, userInfo: [NSLocalizedDescriptionKey:"This Twitter account is already linked with another user"])
@@ -120,13 +65,12 @@ class TwitterClient {
                         
                         let currentUser = FIRAuth.auth()!.currentUser!
     
-                        ref.child("accounts").child("twitter").child(screenName).setValue(["token":token, "tokenSecret":tokenSecret])
+                        ref.child("accounts").child("twitter").child(screenName).setValue(["token":token, "tokenSecret":tokenSecret, "phoneAccount":false])
                         ref.child("users").child(currentUser.uid).updateChildValues(["twitterScreenName":screenName])
                         
+                        completion(nil)
                     }
                 })
-                
-                
         },
             failure: { error in
                 print(error.description)
@@ -137,9 +81,9 @@ class TwitterClient {
     private func doesUserExist(screenName:String, completion:@escaping (Bool) ->Void)
     {
         let ref = FIRDatabase.database().reference()
-        
+
         ref.keepSynced(true)
-        
+      
         ref.child("accounts").child("twitter").child(screenName).observeSingleEvent(of:.value, with: { (snapshot) in
             
             if snapshot.exists() {
@@ -172,9 +116,6 @@ class TwitterClient {
             })
             }
         })
-       
-        
-        
     }
     
     
@@ -193,30 +134,6 @@ class TwitterClient {
         })
     }
     
-    func follow(screenName: String, completion: @escaping ErrorCompletion)
-    {
-        if let account = account {
-            let requestURL = URL(string: followURL)
-            let parameters = ["screen_name": screenName]
-            let postRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: requestURL, parameters: parameters)
-            postRequest?.account = account
-            
-            postRequest?.perform(handler: { (data, response, error) in
-                guard error == nil else {
-                    completion(error!)
-                    return
-                }
-                
-                let json = response?.description
-                print(json!)
-                
-                
-            })
-        }
-        
-    }
-    
-    
     func followUserWith(screenName:String, completion:@escaping ErrorCompletion) {
         
         let ref = FIRDatabase.database().reference()
@@ -224,8 +141,6 @@ class TwitterClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
        
-        
-        
         ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
             
@@ -237,6 +152,7 @@ class TwitterClient {
                 let tokenSecret = snapshotValue["tokenSecret"] as! String
                 
                 let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+                
                 
                 _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
                     let json = try? response.jsonObject()
@@ -254,24 +170,107 @@ class TwitterClient {
     }
     
     
-    static func accessTwitter(){
-        let accountStore = ACAccountStore()
-        let type = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        
-        accountStore.requestAccessToAccounts(with: type!, options: nil) { (bool, error) in
-            if error != nil {
-                print(error!)
-                
-            }else {
-                    let accounts = accountStore.accounts as! [ACAccount]
-                for account in accounts {
-                    if account.credential != nil {
-                        print(account.credential)
-                    }
-                }
-            }
-        }
-        
-    }
+  
+    
+    //Functions used for access to Account Store Twitter Sign up method
+//    
+//    var accountStore: ACAccountStore
+//    var accountType: ACAccountType
+//    private var accounts: [ACAccount]?
+//    var account:ACAccount?
+    
+    
+    //    init ()
+    //    {
+    //        accountStore = ACAccountStore()
+    //        accountType = accountStore.accountType(
+    //            withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+    //    }
+
+    
+    
+    //    func requestAccessToAccounts(completion:@escaping (Error?, Bool, [ACAccount]?) -> Void)
+    //    {
+    //        accountStore.requestAccessToAccounts(with: accountType, options: nil) { (success, error) in
+    //            guard error == nil else {
+    //                completion(error!, false, nil)
+    //                return
+    //            }
+    //
+    //            if success {
+    //                let arrayOfAccounts = self.accountStore.accounts(with: self.accountType) as! [ACAccount]
+    //                self.accounts = arrayOfAccounts
+    //                completion(nil, true, self.accounts)
+    //            }else {
+    //                completion(nil, false, nil)
+    //            }
+    //        }
+    //    }
+    
+    
+    //    func linkTwitterAccount(account: ACAccount, completion: @escaping ErrorCompletion) {
+    //
+    //        let screenName = account.username!
+    //        let token = account.credential
+    //
+    //
+    //        self.doesUserExist(screenName: screenName) { (userExists) in
+    //            guard userExists == false else {
+    //                let error = NSError(domain: "", code: 409, userInfo: [NSLocalizedDescriptionKey:"This Twitter account is already linked with another user"])
+    //                completion(error)
+    //                return
+    //            }
+    //            
+    //            self.account = account
+    //
+    //        }
+    //    }
+    
+    
+    //Will be used if we link twitter accounts through phone account
+    
+    //    func follow(screenName: String, completion: @escaping ErrorCompletion)
+    //    {
+    //
+    //        if let account = account {
+    //            let requestURL = URL(string: followURL)
+    //            let parameters = ["screen_name": screenName]
+    //            let postRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: requestURL, parameters: parameters)
+    //            postRequest?.account = account
+    //
+    //            postRequest?.perform(handler: { (data, response, error) in
+    //                guard error == nil else {
+    //                    completion(error!)
+    //                    return
+    //                }
+    //
+    //                let json = response?.description
+    //                print(json!)
+    //            })
+    //        }
+    //        
+    //    }
+    
+//    static func accessTwitter(){
+//        let accountStore = ACAccountStore()
+//        let type = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+//        
+//        accountStore.requestAccessToAccounts(with: type!, options: nil) { (bool, error) in
+//            if error != nil {
+//                print(error!)
+//                
+//            }else {
+//                let accounts = accountStore.accounts as! [ACAccount]
+//                for account in accounts {
+//                    if account.credential != nil {
+//                        print(account.credential)
+//                    }
+//                }
+//            }
+//        }
+//        
+//    }
+    
+    
 }
 

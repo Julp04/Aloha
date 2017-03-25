@@ -18,6 +18,7 @@ import OAuthSwift
 
 class QnUtility {
     
+    
     static func setUserInfo(userInfo: UserInfo) {
         let ref = FIRDatabase.database().reference()
         let user = FIRAuth.auth()!.currentUser!
@@ -62,6 +63,17 @@ class QnUtility {
         currentUser.updateChildValues(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
     
+    static func currentUser(completion: @escaping (User) -> Void)
+    {
+        let ref = FIRDatabase.database().reference()
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
+            completion(user)
+        })
+    }
+    
     
     static func setProfileImage(image:UIImage)
     {
@@ -71,8 +83,6 @@ class QnUtility {
             if let pngImageData = UIImagePNGRepresentation(image) {
                 try pngImageData.write(to: fileURL, options: .atomic)
             }
-            
-            
             
             // Get a reference to the storage service using the default Firebase App
             let storageRef = FIRStorage.storage().reference()
@@ -161,9 +171,7 @@ class QnUtility {
     {
         
         let ref = FIRDatabase.database().reference()
-        
 
-        
         let usersRef = ref.child("users")
         let uidRef = usersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
         let userInfoRef = uidRef.child("userInfo")
