@@ -28,6 +28,9 @@
 		14B224A51E8AA7D90027CBA8 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A21E8AA7D90027CBA8 /* MainController.swift */; };
 		14B224A61E8AABD20027CBA8 /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */; };
 		14B224A71E8AABD30027CBA8 /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */; };
+		14B224A91E8ABA190027CBA8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A81E8ABA190027CBA8 /* GradientView.swift */; };
+		14B224AA1E8ABA190027CBA8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A81E8ABA190027CBA8 /* GradientView.swift */; };
+		14B224AB1E8ABA190027CBA8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A81E8ABA190027CBA8 /* GradientView.swift */; };
 		14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
 		14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
 		14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
@@ -197,6 +200,7 @@
 		14AE14201E7F4EFE0035789E /* SnowFlake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowFlake.swift; sourceTree = "<group>"; };
 		14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
 		14B224A21E8AA7D90027CBA8 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		14B224A81E8ABA190027CBA8 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		14CC666E1E85670B00C49B34 /* Pods_QNect_dev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect_dev.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect_dev.framework"; sourceTree = "<group>"; };
 		14CC666F1E85670B00C49B34 /* Pods_QNect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect.framework"; sourceTree = "<group>"; };
 		14CC66721E856C5B00C49B34 /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 		B964AEAB1DBA74E300A0162E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14B224A81E8ABA190027CBA8 /* GradientView.swift */,
 				14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */,
 				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
 				14CC66721E856C5B00C49B34 /* SwitchButton.swift */,
@@ -903,6 +908,7 @@
 				14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */,
 				14CCB6B81E7C0FB4004B1C3C /* Constants.swift in Sources */,
 				14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */,
+				14B224AB1E8ABA190027CBA8 /* GradientView.swift in Sources */,
 				14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */,
 				14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */,
 				14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */,
@@ -956,6 +962,7 @@
 				14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */,
 				14EC7AA31E74F27300B3C4E8 /* Constants.swift in Sources */,
 				14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */,
+				14B224AA1E8ABA190027CBA8 /* GradientView.swift in Sources */,
 				14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */,
 				14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */,
@@ -1009,6 +1016,7 @@
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
 				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
+				14B224A91E8ABA190027CBA8 /* GradientView.swift in Sources */,
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */,
 				B93753531DD6623F007D50D7 /* VBFDoubleSegment.m in Sources */,

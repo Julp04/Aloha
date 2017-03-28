@@ -47,7 +47,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
+        tableView.backgroundColor = UIColor.clear
     
         
         let longPressGesture = UILongPressGestureRecognizer()
