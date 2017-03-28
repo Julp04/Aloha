@@ -36,7 +36,7 @@ class MainController: PageboyViewController, PageboyViewControllerDelegate, Page
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorView = GradientView(frame: view.frame)
+        colorView = UIView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
         colorView.backgroundColor = .qnPurple
         colorView.alpha = 0.0
@@ -80,9 +80,6 @@ class MainController: PageboyViewController, PageboyViewControllerDelegate, Page
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainController.interactiveTransition(_:)))
         pan.delegate = self
         view.addGestureRecognizer(pan)
-        
-
-        
     }
     
     func interactiveTransition(_ sender: UIPanGestureRecognizer) {
