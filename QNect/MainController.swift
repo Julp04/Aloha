@@ -12,22 +12,24 @@ import AVFoundation
 import TransitionTreasury
 import TransitionAnimation
 
-class MainController: PageboyViewController, PageboyViewControllerDelegate, PageboyViewControllerDataSource,  NavgationTransitionable, ModalTransitionDelegate, UIGestureRecognizerDelegate  {
+class MainController: PageboyViewController,  NavgationTransitionable, ModalTransitionDelegate, UIGestureRecognizerDelegate  {
+    
     /// Transiton delegate
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     var tr_pushTransition: TRNavgationTransitionDelegate?
 
  
+    //MARK: Properties
+    //todo: This controller will become scanner controller and scanner controller will be a place holder
     var scannerViewController: ScannerViewController!
     var profileViewController: UINavigationController!
     var connectionsViewController: UINavigationController!
     
     
     var colorView: UIView!
-    
-    
     var toFromIndex: (Int, Int) = (0, 0)
     
+    //todo: Handle this scanning stuff
     let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -102,43 +104,9 @@ class MainController: PageboyViewController, PageboyViewControllerDelegate, Page
         tr_dismissViewController(interactive, completion: nil)
     }
     
-    //MARK: Pageboy Datasource
+  
 
-    func viewControllers(forPageboyViewController pageboyViewController: PageboyViewController) -> [UIViewController]? {
-        // return array of view controllers
-        return [profileViewController, scannerViewController, connectionsViewController]
-    }
-    
-    func defaultPageIndex(forPageboyViewController pageboyViewController: PageboyViewController) -> PageboyViewController.PageIndex? {
-        // set ScannerViewController as first controller you see at index 1. Which is in the middle
-        return PageIndex.atIndex(index: 1)
-    }
 
-    
-    // MARK: PageboyViewControllerDelegate
-    
-    func pageboyViewController(_ pageboyViewController: PageboyViewController,
-                               willScrollToPageAtIndex index: Int,
-                               direction: PageboyViewController.NavigationDirection,
-                               animated: Bool) {
-     
-        toFromIndex = calculateToFromIndexTuple(direction: direction, index: index)
-    }
-    
-    func pageboyViewController(_ pageboyViewController: PageboyViewController,
-                               didScrollToPosition position: CGPoint,
-                               direction: PageboyViewController.NavigationDirection,
-                               animated: Bool) {
-        updateColorViewAlpha(position: position)
-    }
-    
-    func pageboyViewController(_ pageboyViewController: PageboyViewController,
-                               didScrollToPageAtIndex index: Int,
-                               direction: PageboyViewController.NavigationDirection,
-                               animated: Bool) {
-        
-        
-    }
     
     
     func calculateToFromIndexTuple(direction: PageboyViewController.NavigationDirection, index: Int) -> (Int, Int)
@@ -178,6 +146,45 @@ class MainController: PageboyViewController, PageboyViewControllerDelegate, Page
         }
     }
 
-    
+}
 
+extension MainController: PageboyViewControllerDelegate {
+    // MARK: PageboyViewControllerDelegate
+    
+    func pageboyViewController(_ pageboyViewController: PageboyViewController,
+                               willScrollToPageAtIndex index: Int,
+                               direction: PageboyViewController.NavigationDirection,
+                               animated: Bool) {
+        
+        toFromIndex = calculateToFromIndexTuple(direction: direction, index: index)
+    }
+    
+    func pageboyViewController(_ pageboyViewController: PageboyViewController,
+                               didScrollToPosition position: CGPoint,
+                               direction: PageboyViewController.NavigationDirection,
+                               animated: Bool) {
+        updateColorViewAlpha(position: position)
+    }
+    
+    func pageboyViewController(_ pageboyViewController: PageboyViewController,
+                               didScrollToPageAtIndex index: Int,
+                               direction: PageboyViewController.NavigationDirection,
+                               animated: Bool) {
+        
+    }
+}
+
+extension MainController: PageboyViewControllerDataSource {
+    //MARK: Pageboy Datasource
+    
+    func viewControllers(forPageboyViewController pageboyViewController: PageboyViewController) -> [UIViewController]? {
+        // return array of view controllers
+        return [profileViewController, scannerViewController, connectionsViewController]
+    }
+    
+    func defaultPageIndex(forPageboyViewController pageboyViewController: PageboyViewController) -> PageboyViewController.PageIndex? {
+        // set ScannerViewController as first controller you see at index 1. Which is in the middle
+        return PageIndex.atIndex(index: 1)
+    }
+    
 }

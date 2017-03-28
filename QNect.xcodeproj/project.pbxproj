@@ -47,7 +47,6 @@
 		14CCB6A41E7C0FB4004B1C3C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDC1E747F8000254601 /* Extensions.swift */; };
 		14CCB6A51E7C0FB4004B1C3C /* ContactHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */; };
 		14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
-		14CCB6A81E7C0FB4004B1C3C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E071DCF8CE900685718 /* SignupViewController.swift */; };
 		14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D951E64900600794587 /* NameViewController.swift */; };
 		14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
 		14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
@@ -99,7 +98,6 @@
 		14EC7A901E74F27300B3C4E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDC1E747F8000254601 /* Extensions.swift */; };
 		14EC7A911E74F27300B3C4E8 /* ContactHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */; };
 		14EC7A931E74F27300B3C4E8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
-		14EC7A941E74F27300B3C4E8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E071DCF8CE900685718 /* SignupViewController.swift */; };
 		14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D951E64900600794587 /* NameViewController.swift */; };
 		14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
 		14EC7A971E74F27300B3C4E8 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
@@ -150,7 +148,6 @@
 		B949FA401DBAA55A0071CBD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
 		B9570E021DCF8A2900685718 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		B9570E041DCF8AA000685718 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
-		B9570E081DCF8CE900685718 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E071DCF8CE900685718 /* SignupViewController.swift */; };
 		B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
 		B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
 		B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
@@ -232,7 +229,6 @@
 		B949FA3F1DBAA55A0071CBD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		B9570E031DCF8AA000685718 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B9570E071DCF8CE900685718 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		B9570E0F1DCF93A800685718 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B9570E111DCF9A3A00685718 /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnectCodeViewController.swift; sourceTree = "<group>"; };
@@ -431,7 +427,6 @@
 				B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
 				B9570E0F1DCF93A800685718 /* ScannerViewController.swift */,
-				B9570E071DCF8CE900685718 /* SignupViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
 				B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */,
 			);
@@ -883,7 +878,6 @@
 				14CCB6A51E7C0FB4004B1C3C /* ContactHeaderCell.swift in Sources */,
 				14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */,
 				14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */,
-				14CCB6A81E7C0FB4004B1C3C /* SignupViewController.swift in Sources */,
 				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
 				14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */,
@@ -936,7 +930,6 @@
 				14EC7A911E74F27300B3C4E8 /* ContactHeaderCell.swift in Sources */,
 				14EC7A931E74F27300B3C4E8 /* User.swift in Sources */,
 				14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */,
-				14EC7A941E74F27300B3C4E8 /* SignupViewController.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14EC7A971E74F27300B3C4E8 /* ContactCell.swift in Sources */,
@@ -989,7 +982,6 @@
 				B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
 				14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */,
-				B9570E081DCF8CE900685718 /* SignupViewController.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */,
