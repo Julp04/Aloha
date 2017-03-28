@@ -3523,7 +3523,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
