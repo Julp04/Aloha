@@ -24,7 +24,7 @@ class QnectCodeViewController: UIViewController {
     }
     weak var modalDelegate: ModalViewControllerDelegate?
     lazy var dismissGestureRecognizer: UIPanGestureRecognizer = {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(ModalViewController.panDismiss(_:)))
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(QnectCodeViewController.panDismiss(_:)))
         self.view.addGestureRecognizer(pan)
         return pan
     }()

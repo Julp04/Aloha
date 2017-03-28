@@ -5,7 +5,6 @@ workspace 'QNect'
 
 def allPods
     
-    pod 'MBProgressHUD'
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
     pod 'SwiftyJSON', '3.0.0'
     pod 'Cartography', :git => 'https://github.com/mluisbrown/Cartography.git', :branch => 'swift3'
@@ -33,7 +32,7 @@ def allPods
     pod 'TransitionAnimation'
     pod 'RAMPaperSwitch', '~> 2.0.4'
     pod 'LTMorphingLabel'
-
+    pod 'Pageboy'
 end
 
 target 'QNect' do

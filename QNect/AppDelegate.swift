@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let ui = true
+        let ui = false
         
         //Go to VC that is set with "Initial View Controller"
         if ui {
@@ -93,8 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate func checkForCurrentUser()
     {
         if FIRAuth.auth()?.currentUser != nil {
-            let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-            self.window?.rootViewController = mainVC
+            let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+            self.window?.rootViewController = mainVCNav
         }else {
             let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC")
             

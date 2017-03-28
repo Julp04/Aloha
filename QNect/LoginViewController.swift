@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import ReachabilitySwift
 import Firebase
 import FirebaseAuth
@@ -131,7 +130,7 @@ class LoginViewController: UIViewController {
             }else {
                 //Animate to main view controller
                 //todo: Fix storyboard animation
-                let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
                 self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
             }
         }
@@ -163,7 +162,7 @@ class LoginViewController: UIViewController {
                         self.passwordField.errorMessage = "Invalid Password"
                         print(error!)
                     }else {
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! MainController
                         self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
                     }
                 }

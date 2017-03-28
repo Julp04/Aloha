@@ -55,20 +55,22 @@ class ScannerViewController: UIViewController, SFSafariViewControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         
         createCaptureSession()
-        
-        // Do any additional setup after loading the view.
+//        
+//         Do any additional setup after loading the view.
         let pan = UIPanGestureRecognizer(target: self, action: #selector(ScannerViewController.interactiveTransition(_:)))
         pan.delegate = self
         view.addGestureRecognizer(pan)
+        
+        startCaptureSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        startCaptureSession()
+//        startCaptureSession() 
     }
     
     func interactiveTransition(_ sender: UIPanGestureRecognizer) {
@@ -81,7 +83,6 @@ class ScannerViewController: UIViewController, SFSafariViewControllerDelegate, U
             vc.modalDelegate = self
             
             tr_presentViewController(vc, method: TRPresentTransitionMethod.scanbot(present: sender, dismiss: vc.dismissGestureRecognizer), completion: {
-                print("Present finished")
             })
         default: break
         }
@@ -151,12 +152,8 @@ class ScannerViewController: UIViewController, SFSafariViewControllerDelegate, U
     
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
-        
-    
         self.stopCaptureSession()
         segueToContactViewController()
-    
-        
     }
     
     

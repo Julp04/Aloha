@@ -77,6 +77,9 @@ class AccountsViewController: UIViewController {
 
     //MARK: Actions
     
+    @IBAction func continuAction(_ sender: Any) {
+        continueToMainVC()
+    }
     
     //MARK: Lifecycle
     
@@ -106,6 +109,12 @@ class AccountsViewController: UIViewController {
     
     
     //MARK: Functionality
+    
+    func continueToMainVC() {
+        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+        
+        self.present(mainVC, animated: true, completion: nil)
+    }
     
   
     func setupTwitterButton()

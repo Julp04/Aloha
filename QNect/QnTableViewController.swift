@@ -58,7 +58,6 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     
     //MARK: Properties
-    let tweet = #imageLiteral(resourceName: "tweet")
     
     
     var errorImage = UIImage(named: "error_icon")

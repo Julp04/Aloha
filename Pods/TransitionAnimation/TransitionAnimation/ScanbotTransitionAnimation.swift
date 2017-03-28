@@ -98,13 +98,11 @@ open class ScanbotTransitionAnimation: NSObject, TRViewControllerAnimatedTransit
     
     open func slideTransition(_ sender: UIPanGestureRecognizer) {
 
-        let fromVC = transitionContext?.viewController(forKey: UITransitionContextViewControllerKey.from)
-
-        let view = fromVC!.view
+        let view = sender.view!.superview!
         
         let offsetY: CGFloat = transitionStatus == .present ? sender.translation(in: view).y : -sender.translation(in: view).y
         
-        var percent = offsetY / (view?.bounds.size.height)!
+        var percent = offsetY / view.bounds.size.height
         
         percent = min(1.0, max(0, percent))
         
