@@ -18,41 +18,44 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     /// Transiton delegate
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    //MARK: Constants
+    let kDismissString = "Dismiss"
+    let kPinchVelocity = 8.0
+    
 
  
     //MARK: Properties
-    //todo: This controller will become scanner controller and scanner controller will be a place holder
+
     var placeHolderViewController: UIViewController!
     var profileViewController: UINavigationController!
     var connectionsViewController: UINavigationController!
     
     var colorView: UIView!
-    var toFromIndex: (Int, Int) = (0, 0)
-    let kDismissString = "Dismiss"
-    let kPinchVelocity = 8.0
-    var scannedContact = 0
     var contactImage:UIImage?
-    var showURLAlert = 0
-    
     let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
-    var message: String?
     var contact: User!
     var qrCodeFrameView = UIImageView()
-    var scannerCanScan = true
+    var rightBarButton: UIButton!
     
+    
+    var scannedContact = 0
+    var toFromIndex: (Int, Int) = (0, 0)
+    var showURLAlert = 0
+    var scannerCanScan = true
+    var message: String?
     
     //MARK: Actions
     
     @IBAction func gesture(_ sender: AnyObject) {
-        handleGesture(sender)
+        handlePinch(sender)
     }
     
+    //MARK: Lifecycle
     
-  
-    
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
 
         colorView = UIView(frame: view.frame)
@@ -66,18 +69,34 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         placeHolderViewController = storyboard.instantiateViewController(withIdentifier: "PlaceHolderViewController")
         placeHolderViewController.view.alpha = 0.0
         
+        
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainController.interactiveTransition(_:)))
         pan.delegate = self
         view.addGestureRecognizer(pan)
         
         createCaptureSession()
         startCaptureSession()
+        createBarButtonItems()
         
         self.dataSource = self
         self.delegate = self
     }
     
-    //MARK: Capture Session Functions
+    //MARK: UI Setup
+    
+    func createBarButtonItems() {
+        //todo: add/find functionality for bar button item
+        rightBarButton = UIButton()
+        rightBarButton.setImage(#imageLiteral(resourceName: "qnect_q"), for: .normal)
+        rightBarButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+        
+        let rightItem: UIBarButtonItem = UIBarButtonItem()
+        rightItem.customView = rightBarButton
+        
+        self.navigationItem.rightBarButtonItem = rightItem
+    }
+    
+    //MARK: Capture Session
     
     func createCaptureSession()
     {
@@ -119,6 +138,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         captureSession?.stopRunning()
     }
     
+    //todo: Change Transisition
     func interactiveTransition(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -139,10 +159,9 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         tr_dismissViewController(interactive, completion: nil)
     }
     
-  
-
-
-    //MARK: Scanning Contact
+    //MARK: Functionality
+    
+    
     
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
@@ -160,8 +179,12 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         return center
     }
     
-    //Pinch to zoom
-    func handleGesture(_ sender: AnyObject)
+    
+    
+    /// Pinch to zoom
+    ///
+    /// - Parameter sender: pinch gesture
+    func handlePinch(_ sender: AnyObject)
     {
         let pinchVelocityDividerFactor = kPinchVelocity;
         
@@ -202,6 +225,8 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     
 
 }
+
+//MARK: Scanner Delegate
 
 extension MainController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
@@ -265,8 +290,9 @@ extension MainController: AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+//MARK: Pageboy Delegate
+
 extension MainController: PageboyViewControllerDelegate {
-    // MARK: PageboyViewControllerDelegate
     
     func pageboyViewController(_ pageboyViewController: PageboyViewController,
                                willScrollToPageAtIndex index: Int,
@@ -274,6 +300,7 @@ extension MainController: PageboyViewControllerDelegate {
                                animated: Bool) {
         //If we are scrolling then disable scanning
         scannerCanScan = false
+        self.navigationController?.navigationBar.barTintColor = .clear
         
         toFromIndex = calculateToFromIndexTuple(direction: direction, index: index)
     }
@@ -292,14 +319,13 @@ extension MainController: PageboyViewControllerDelegate {
         
         //If not on the scanner page then we do not allow scanning
         scannerCanScan = index != 1 ? false : true
-        
     }
     
     func calculateToFromIndexTuple(direction: PageboyViewController.NavigationDirection, index: Int) -> (Int, Int)
     {
         let toIndex = index
         var fromIndex = 0
-        
+
         if direction == .reverse && index == 0 {
             fromIndex = 1
         }
@@ -324,6 +350,7 @@ extension MainController: PageboyViewControllerDelegate {
         case (1, 0), (0, 1):
             colorView.backgroundColor = .qnPurple
             colorView.alpha = 1 - position.x
+            rightBarButton.alpha = position.x
         case (2, 1), (1, 2):
             colorView.backgroundColor = .qnGreen
             colorView.alpha = position.x - 1
@@ -334,9 +361,9 @@ extension MainController: PageboyViewControllerDelegate {
 
 }
 
+//MARK: Pageboy Datasource
+
 extension MainController: PageboyViewControllerDataSource {
-    //MARK: Pageboy Datasource
-    
     func viewControllers(forPageboyViewController pageboyViewController: PageboyViewController) -> [UIViewController]? {
         // return array of view controllers
         return [profileViewController, placeHolderViewController, connectionsViewController]
@@ -349,6 +376,8 @@ extension MainController: PageboyViewControllerDataSource {
     
 }
 
+
+//MARK: Gesture Delegate
 
 extension MainController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
