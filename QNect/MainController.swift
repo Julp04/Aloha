@@ -26,6 +26,10 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
 
  
     //MARK: Properties
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     var placeHolderViewController: UIViewController!
     var profileViewController: UINavigationController!
@@ -46,6 +50,8 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     var showURLAlert = 0
     var scannerCanScan = true
     var message: String?
+    
+    
     
     //MARK: Actions
     

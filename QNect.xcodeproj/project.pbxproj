@@ -195,7 +195,6 @@
 		14CC666F1E85670B00C49B34 /* Pods_QNect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect.framework"; sourceTree = "<group>"; };
 		14CC66721E856C5B00C49B34 /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QNect dev-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		14CCB6D41E7C0FB5004B1C3C /* QNect dev copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "QNect dev copy-Info.plist"; path = "/Users/dks0398255/Desktop/QNect/QNect dev copy-Info.plist"; sourceTree = "<absolute>"; };
 		14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloaderDelegate.swift; sourceTree = "<group>"; };
@@ -338,7 +337,6 @@
 				B964AE841DBA74B400A0162E /* Products */,
 				A6DCC86F55992F7852DB2F25 /* Frameworks */,
 				C075528983C508AD25572E68 /* Pods */,
-				14CCB6D41E7C0FB5004B1C3C /* QNect dev copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
