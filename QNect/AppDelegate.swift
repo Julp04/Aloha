@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let ui = false
+        let ui = true
         
         //Go to VC that is set with "Initial View Controller"
         if ui {
