@@ -52,7 +52,6 @@
 		14CCB6AB1E7C0FB4004B1C3C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
 		14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
 		14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
-		14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
 		14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
 		14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
 		14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
@@ -103,7 +102,6 @@
 		14EC7A971E74F27300B3C4E8 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
 		14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
 		14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
-		14EC7A9A1E74F27300B3C4E8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
 		14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
 		14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
 		14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
@@ -148,7 +146,6 @@
 		B949FA401DBAA55A0071CBD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
 		B9570E021DCF8A2900685718 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		B9570E041DCF8AA000685718 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
-		B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E0F1DCF93A800685718 /* ScannerViewController.swift */; };
 		B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
 		B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
@@ -229,7 +226,6 @@
 		B949FA3F1DBAA55A0071CBD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		B9570E031DCF8AA000685718 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B9570E0F1DCF93A800685718 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B9570E111DCF9A3A00685718 /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnectCodeViewController.swift; sourceTree = "<group>"; };
 		B964AE831DBA74B400A0162E /* QNect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QNect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,7 +422,6 @@
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
-				B9570E0F1DCF93A800685718 /* ScannerViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
 				B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */,
 			);
@@ -885,7 +880,6 @@
 				14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */,
 				14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */,
-				14CCB6AF1E7C0FB4004B1C3C /* ScannerViewController.swift in Sources */,
 				14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */,
 				14CCB6DC1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
 				14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */,
@@ -937,7 +931,6 @@
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
 				14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */,
-				14EC7A9A1E74F27300B3C4E8 /* ScannerViewController.swift in Sources */,
 				14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */,
 				14CCB6DB1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
 				14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */,
@@ -988,7 +981,6 @@
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
-				B9570E101DCF93A800685718 /* ScannerViewController.swift in Sources */,
 				B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */,
 				14CCB6DA1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
 				B90968DA1DCFC83200B73662 /* SocialMediaCell.swift in Sources */,

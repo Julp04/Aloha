@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sNN-Lj-zcw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wJ7-66-wft">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -407,46 +407,23 @@
             </objects>
             <point key="canvasLocation" x="3623" y="-4068"/>
         </scene>
-        <!--Scanner View Controller-->
-        <scene sceneID="bnV-gn-vrC">
+        <!--View Controller-->
+        <scene sceneID="PQ4-Pr-S0i">
             <objects>
-                <viewController storyboardIdentifier="ScannerViewController" id="sNN-Lj-zcw" customClass="ScannerViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceHolderViewController" id="g7r-Ew-ddJ" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BnS-Dp-Qcx"/>
-                        <viewControllerLayoutGuide type="bottom" id="Vvc-h0-4to"/>
+                        <viewControllerLayoutGuide type="top" id="e7c-6D-grw"/>
+                        <viewControllerLayoutGuide type="bottom" id="hUE-A4-tZq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qF3-sv-ic8">
+                    <view key="view" contentMode="scaleToFill" id="K3z-eg-A6p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.38301282051282048" green="0.38301282051282048" blue="0.38301282051282048" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="na9-7h-DOa" appends="YES" id="9b7-CZ-F3Q"/>
-                        </connections>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CdX-dX-jC9">
-                        <barButtonItem key="leftBarButtonItem" image="qnect_q" id="ahd-0W-tB3">
-                            <color key="tintColor" red="0.97851945539999996" green="0.97899710169999998" blue="0.99581330130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="settings_icon" id="AM4-3C-Ssq">
-                            <color key="tintColor" red="0.97851945539999996" green="0.97899710169999998" blue="0.99581330130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="n3R-pq-SrK" kind="presentation" id="ZTT-o4-jhV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="cuj-Rz-Wa2" kind="presentation" identifier="ScanToContactSegue" id="fe4-3V-Y95"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="06O-kY-KbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="na9-7h-DOa">
-                    <connections>
-                        <action selector="gesture:" destination="sNN-Lj-zcw" id="605-uc-dfZ"/>
-                    </connections>
-                </pinchGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cNN-ZF-D0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3623" y="-3318"/>
+            <point key="canvasLocation" x="4945" y="-3192"/>
         </scene>
         <!--QNectCode-->
         <scene sceneID="pRo-Qi-AmD">
@@ -1333,7 +1310,7 @@
             </objects>
             <point key="canvasLocation" x="9615" y="-3251"/>
         </scene>
-        <!--Scanner-->
+        <!--QNect-->
         <scene sceneID="V5d-OM-RjA">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="KlM-A4-FMv" customClass="MainController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
@@ -1345,19 +1322,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1764705926" green="0.49803921579999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Skb-Af-xHa" appends="YES" id="8Mb-ml-FOy"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Scanner" id="3uk-f0-jaW"/>
+                    <navigationItem key="navigationItem" title="QNect" id="3uk-f0-jaW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Goy-7w-5bX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="Skb-Af-xHa">
+                    <connections>
+                        <action selector="gesture:" destination="KlM-A4-FMv" id="FlZ-FE-LwJ"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4864.8000000000002" y="-2425.6371814092954"/>
+            <point key="canvasLocation" x="3945" y="-3019"/>
         </scene>
         <!--Settings-->
         <scene sceneID="21n-iJ-n9l">
             <objects>
                 <tableViewController id="BlF-UI-7RL" customClass="SettingsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OLH-st-4AY">
-                        <rect key="frame" x="0.0" y="64" width="400" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1651,24 +1637,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEL-ao-Pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1403" y="-2511"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7QM-BE-tYE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n3R-pq-SrK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lL4-DL-bgw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BlF-UI-7RL" kind="relationship" relationship="rootViewController" id="vOL-KL-2R8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R1D-fw-Emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2801" y="-2500"/>
         </scene>
         <!--Qn Table View Controller-->
         <scene sceneID="tgC-Cj-hHm">
@@ -3537,7 +3505,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rsa-0G-pUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3998" y="-2424"/>
+            <point key="canvasLocation" x="3190" y="-3019"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ILp-FE-fbf">
@@ -3588,12 +3556,7 @@
         <image name="forward_arrow" width="14" height="21"/>
         <image name="message_button" width="50" height="50"/>
         <image name="qnect_logo_white" width="230" height="83"/>
-        <image name="qnect_q" width="32" height="28"/>
-        <image name="settings_icon" width="28" height="28"/>
         <image name="twitter_circle" width="50" height="50"/>
         <image name="twitter_off" width="46" height="39"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="GBK-1Z-kXS"/>
-    </inferredMetricsTieBreakers>
 </document>
