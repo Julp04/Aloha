@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransparentNavigationBar: UINavigationBar {
+class TransparentNavigationBarWithSeparator: UINavigationBar {
 
     private var separatorView: UIView!
     
@@ -42,3 +42,30 @@ class TransparentNavigationBar: UINavigationBar {
     }
 
 }
+
+class TransparentNavigationBar: UINavigationBar {
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white,
+                                    NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
+        self.tintColor = UIColor.white.withAlphaComponent(0.7)
+        
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = true
+        
+     
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+}
+
+
+

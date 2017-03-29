@@ -165,7 +165,7 @@
             </objects>
             <point key="canvasLocation" x="2149" y="-251"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Log In-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
@@ -309,7 +309,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6R-io-sDI">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6R-io-sDI">
                                 <rect key="frame" x="16" y="72" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Llt-Kq-g6s"/>
@@ -378,7 +378,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="1dh-gY-BOb"/>
+                    <navigationItem key="navigationItem" title="Log In" id="1dh-gY-BOb"/>
                     <connections>
                         <outlet property="emailField" destination="KmQ-GL-tIn" id="eUm-fQ-QmH"/>
                         <outlet property="loginButton" destination="Mj2-R0-SGh" id="4jj-0V-IqM"/>
@@ -1642,17 +1642,17 @@
         <scene sceneID="tgC-Cj-hHm">
             <objects>
                 <tableViewController storyboardIdentifier="ProfileViewController" id="6zQ-Wo-Vde" customClass="QnTableViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ump-ku-b07">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ump-ku-b07">
                         <rect key="frame" x="0.0" y="64" width="400" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="QNect Account" id="zZf-0y-iJs">
+                            <tableViewSection headerTitle="" id="zZf-0y-iJs">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="145" id="vlc-AZ-rCW">
-                                        <rect key="frame" x="0.0" y="56" width="400" height="145"/>
+                                        <rect key="frame" x="0.0" y="35" width="400" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vlc-AZ-rCW" id="Dpt-UC-JD0">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="145"/>
@@ -1745,10 +1745,10 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.20392156859999999" green="0.47058823529999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pill" rowHeight="44" id="R09-dQ-l4s">
-                                        <rect key="frame" x="0.0" y="201" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="180" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R09-dQ-l4s" id="uuW-Xf-Ajg">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -1835,9 +1835,10 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xxL-GX-Ycw">
-                                        <rect key="frame" x="0.0" y="245" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="224" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xxL-GX-Ycw" id="Lec-f6-lGd">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -1932,13 +1933,14 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Social Code" id="mLd-OD-NrY">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="R28-gr-Eqs">
-                                        <rect key="frame" x="0.0" y="338" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="317" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R28-gr-Eqs" id="2qX-xD-b8F">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -1984,7 +1986,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="znl-wT-slU">
-                                        <rect key="frame" x="0.0" y="382" width="400" height="44"/>
+                                        <rect key="frame" x="0.0" y="361" width="400" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="znl-wT-slU" id="MHS-hK-Iyy">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -2030,7 +2032,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="57" id="Tdj-Vu-hfu">
-                                        <rect key="frame" x="0.0" y="426" width="400" height="57"/>
+                                        <rect key="frame" x="0.0" y="405" width="400" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tdj-Vu-hfu" id="Qxo-zN-flp">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="57"/>
@@ -2178,7 +2180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXu-CC-Hxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7109" y="-3434"/>
+            <point key="canvasLocation" x="7128" y="-3536"/>
         </scene>
         <!--Contact View Controller-->
         <scene sceneID="RyG-LN-1nG">
@@ -2613,7 +2615,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardVC" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

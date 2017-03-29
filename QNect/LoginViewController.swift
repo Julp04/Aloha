@@ -84,12 +84,7 @@ class LoginViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         self.view.backgroundColor = UIColor.qnPurple
     }
@@ -162,7 +157,7 @@ class LoginViewController: UIViewController {
                         self.passwordField.errorMessage = "Invalid Password"
                         print(error!)
                     }else {
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! MainController
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
                         self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
                     }
                 }
