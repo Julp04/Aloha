@@ -131,6 +131,9 @@
 		14F78E8A1E8C530E00A3D169 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E871E8C530E00A3D169 /* ProfileImageView.swift */; };
 		14F78E8C1E8C53FA00A3D169 /* headshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F78E8B1E8C53FA00A3D169 /* headshot.jpg */; };
 		14F78E8D1E8C53FA00A3D169 /* headshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14F78E8B1E8C53FA00A3D169 /* headshot.jpg */; };
+		14F78E8F1E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */; };
+		14F78E901E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */; };
+		14F78E911E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */; };
 		2CFA138A7B0B350CC078E744 /* Pods_QNect_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */; };
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
@@ -207,6 +210,7 @@
 		14EC7ABF1E74F27300B3C4E8 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dev-Info.plist"; path = "/Users/dks0398255/Desktop/QNect/Dev-Info.plist"; sourceTree = "<absolute>"; };
 		14F78E871E8C530E00A3D169 /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		14F78E8B1E8C53FA00A3D169 /* headshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headshot.jpg; sourceTree = "<group>"; };
+		14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewContoller.swift; sourceTree = "<group>"; };
 		33F70A088601D2F317F1D8E6 /* Pods-QNect dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QNect dev/Pods-QNect dev.debug.xcconfig"; sourceTree = "<group>"; };
 		3F41F439E213C0A75D5D58FD /* Pods-QNect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.release.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.release.xcconfig"; sourceTree = "<group>"; };
 		404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QNect_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -416,6 +420,7 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */,
 				14B224A21E8AA7D90027CBA8 /* MainController.swift */,
 				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
 				149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */,
@@ -894,6 +899,7 @@
 				14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */,
 				14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */,
 				14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */,
+				14F78E911E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */,
 				14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */,
 				14CCB6B61E7C0FB4004B1C3C /* ProfileInfoTableViewController.swift in Sources */,
@@ -946,6 +952,7 @@
 				14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */,
 				14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */,
 				14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */,
+				14F78E901E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */,
 				14EC7AA01E74F27300B3C4E8 /* ConnectionCell.swift in Sources */,
 				14EC7AA11E74F27300B3C4E8 /* ProfileInfoTableViewController.swift in Sources */,
@@ -998,6 +1005,7 @@
 				B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */,
 				B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */,
 				B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */,
+				14F78E8F1E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */,
 				149D1DDF1E747F8000254601 /* ProfileInfoTableViewController.swift in Sources */,
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,

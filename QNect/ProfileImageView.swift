@@ -12,14 +12,12 @@ import UIKit
 class ProfileImageView: UIImageView {
 
     
-    @IBInspectable var cornerRadius: CGFloat = 0.0
-  
-    override func draw(_ rect: CGRect) {
-        layer.cornerRadius = self.cornerRadius
-    }
+    var cornerRadius: CGFloat = 50.0
+    var borderColor: UIColor = .white
     
-    override open func awakeFromNib() {
-        super.awakeFromNib()
+    
+    override func layoutSubviews() {
+        layer.cornerRadius = cornerRadius
     }
 
 }
