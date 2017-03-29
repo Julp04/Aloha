@@ -42,9 +42,10 @@ class PasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         continueButton.enable = false
 
-       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         passwordField.becomeFirstResponder()
     }
@@ -64,9 +65,7 @@ class PasswordViewController: UIViewController {
     func continueSignup()
     {
         if continueButton.isEnabled {
-            
             self.userInfo?.password = passwordField.text
-            
             self.performSegue(withIdentifier: "EmailSegue", sender: self)
         }
     }

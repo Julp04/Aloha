@@ -36,7 +36,6 @@ class EmailViewController: UIViewController {
         didSet {
             continueButton.enable = false
         }
-        
     }
     
     //MARK: Actions
@@ -49,11 +48,6 @@ class EmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        #if UI
-            self.userInfo = UserInfo.testUser
-        #endif
-        
         emailField.becomeFirstResponder()
     }
     
@@ -117,8 +111,6 @@ class EmailViewController: UIViewController {
                         self.continueButton.stopLoadingAnimation()
                     }
                 }
-            
-
         }
         
         
