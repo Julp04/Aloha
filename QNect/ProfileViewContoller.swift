@@ -12,6 +12,8 @@ import JPLoadingButton
 class ProfileViewContoller: UITableViewController {
     
     //MARK: Properties
+    var displayCurrentUserProfile = true
+    var user: User!
     
    
     //MARK: Outlets
@@ -25,6 +27,26 @@ class ProfileViewContoller: UITableViewController {
     
     @IBOutlet weak var profileCell: UITableViewCell!
     //MARK: Actions
+    
+    
+    //MARK: Configure Before Load
+    
+    func configureViewController(displayCurrentUserProfile: Bool)
+    {
+        self.displayCurrentUserProfile = displayCurrentUserProfile
+        displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
+        
+    }
+    
+    func configureViewControllerForCurrentUser() {
+        //Setup view controller only if we were to view as ourself
+        //Ex: Follow button would be EditProfileButton, Common Connections would be Recent Added Connections, Won't show call, message, email buttons, Accounts buttons would link your accounts to your profile
+    }
+    
+    func configureViewControllerForOtherUser() {
+        //Setup view controller as if we were viewing someone else's profile
+        //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
+    }
     
     //MARK: Lifecycle
 

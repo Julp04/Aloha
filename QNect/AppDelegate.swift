@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //todo:Want to signout of Firebase if app was deleted. Use Defa
+        //todo:Want to signout of Firebase if app was deleted. Use NSUserDefaults to tell
         
         UIApplication.shared.statusBarStyle = .lightContent
         //todo: Fabric with Crashlytics
@@ -52,8 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let ui = true
-        
+        let ui = false
         //Go to VC that is set with "Initial View Controller"
         if ui {
             return true
