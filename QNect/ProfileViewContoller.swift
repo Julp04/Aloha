@@ -52,14 +52,16 @@ class ProfileViewContoller: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        locationLabel.isHidden = true
+//aboutLabel.isHidden = true
         //can change position of objects based on if they are available
-        //(ex: user may not have added a location info, so we do not show that and move about label up)
-        let yLocationLabel = contactActionContainerView.frame.origin.y
-        
-        statsContainerView.frame.origin = CGPoint(x: statsContainerView.frame.origin.x, y: yLocationLabel)
-        
-        
+//        //(ex: user may not have added a location info, so we do not show that and move about label up)
+//        let yLocationLabel = contactActionContainerView.frame.origin.y
+//        
+//        statsContainerView.frame.origin = CGPoint(x: statsContainerView.frame.origin.x, y: yLocationLabel)
+//        
+//        
         
     }
     
