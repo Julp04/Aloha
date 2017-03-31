@@ -35,7 +35,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     var profileViewController: UINavigationController!
     var connectionsViewController: UINavigationController!
     
-    var colorView: UIView!
+    var colorView: GradientView!
     var contactImage:UIImage?
     let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var captureSession: AVCaptureSession!
@@ -64,10 +64,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
      override func viewDidLoad() {
         super.viewDidLoad()
 
-        colorView = UIView(frame: view.frame)
+        colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
-        colorView.backgroundColor = .qnPurple
+        colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
         colorView.alpha = 0.0
+        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
@@ -361,7 +362,7 @@ extension MainController: PageboyViewControllerDelegate {
     func updateColorViewAlpha(position: CGPoint) {
         switch toFromIndex {
         case (1, 0), (0, 1):
-            colorView.backgroundColor = .qnPurple
+            colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
             colorView.alpha = 1 - position.x
             rightBarButton.alpha = position.x
         case (2, 1), (1, 2):
