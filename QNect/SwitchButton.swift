@@ -67,8 +67,6 @@ class SwitchButton: UIView {
         button.addTarget(self, action: #selector(SwitchButton.shrink), for: .touchDown)
         self.addSubview(button)
         
-         button.addTarget(self, action: #selector(SwitchButton.buttonAction), for: .touchUpInside)
-        
         let rectBounds = CGRect(x: 0, y: 0, width: 0, height: 0)
         
         startShape = UIBezierPath(roundedRect: rectBounds, cornerRadius: 50).cgPath

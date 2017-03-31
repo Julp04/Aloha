@@ -366,7 +366,7 @@ extension MainController: PageboyViewControllerDelegate {
             colorView.alpha = 1 - position.x
             rightBarButton.alpha = position.x
         case (2, 1), (1, 2):
-            colorView.backgroundColor = .qnGreen
+            colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
             colorView.alpha = position.x - 1
         default:
             break

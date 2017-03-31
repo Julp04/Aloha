@@ -15,6 +15,7 @@ class GradientView: UIView {
     var colors: [CGColor]? {
         didSet {
             gradientLayer.isHidden = false
+            layoutSubviews()
         }
     }
     
@@ -23,10 +24,8 @@ class GradientView: UIView {
             gradientLayer.isHidden = true
         }
     }
-   
     
-    override func draw(_ rect: CGRect) {
-        
+    override func layoutSubviews() {
         if colors != nil {
             gradientLayer.frame = self.bounds
             gradientLayer.colors = colors
@@ -37,6 +36,12 @@ class GradientView: UIView {
             
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
+    }
+   
+    
+    override func draw(_ rect: CGRect) {
+        
+    
     }
 
 

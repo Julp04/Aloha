@@ -110,6 +110,7 @@ class ProfileViewContoller: UITableViewController {
         locationLabel.isHidden = (user.location == nil && user.age == nil)
 
         profileHeight = calculateProfileViewHeight()
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -123,7 +124,7 @@ class ProfileViewContoller: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerFrame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: kHeaderHeight)
+        let headerFrame = CGRect(x: 5.0, y: 0, width: tableView.frame.width, height: kHeaderHeight)
         let headerView = UIView(frame: headerFrame)
         headerView.backgroundColor = .clear
         
