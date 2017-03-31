@@ -42,14 +42,18 @@ class TwitterAccount: Account {
 
 class User
 {
-    var uid:String!
-    var email:String!
-    var username:String!
+    var uid: String!
+    var email: String!
+    var username: String!
     var firstName:String!
     var lastName: String!
     var socialPhone: String?
     var socialEmail: String?
     var twitterScreenName:String?
+    var location: String?
+    var age: String?
+    var about: String?
+    
     var ref:FIRDatabaseReference?
     var key: String?
 

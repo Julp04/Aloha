@@ -71,6 +71,13 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
+        let profileVC = profileViewController.viewControllers.first as! ProfileViewContoller
+        
+        QnUtility.currentUser { (currentUser) in
+            profileVC.configureViewController(displayCurrentUserProfile: true, user: currentUser)
+        }
+        
+
         connectionsViewController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
         placeHolderViewController = storyboard.instantiateViewController(withIdentifier: "PlaceHolderViewController")
         placeHolderViewController.view.alpha = 0.0
