@@ -80,7 +80,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
 
         connectionsViewController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
-        placeHolderViewController = storyboard.instantiateViewController(withIdentifier: "PlaceHolderViewController")
+        placeHolderViewController = UIViewController()
         placeHolderViewController.view.alpha = 0.0
         
         
