@@ -11,13 +11,11 @@ import UIKit
 @IBDesignable
 class ProfileImageView: UIImageView {
 
-    
-    var cornerRadius: CGFloat = 50.0
+
     var borderColor: UIColor = .white
-    
-    
+
     override func layoutSubviews() {
-        layer.cornerRadius = cornerRadius
+        layer.cornerRadius = self.bounds.size.width / 2.0
         layer.masksToBounds = true
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 2.0
