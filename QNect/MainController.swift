@@ -24,7 +24,6 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     let kPinchVelocity = 8.0
     
 
- 
     //MARK: Properties
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,8 +31,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     }
 
     var placeHolderViewController: UIViewController!
-    var profileViewController: UINavigationController!
-    var connectionsViewController: UINavigationController!
+    var profileNavController: UINavigationController!
+    var connectionsNavController: UINavigationController!
+    
+    var profileViewController: ProfileViewContoller!
+    var connectionsViewController: ConnectionsViewController!
     
     var colorView: GradientView!
     var contactImage:UIImage?
@@ -71,18 +73,17 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
-        let profileVC = profileViewController.viewControllers.first as! ProfileViewContoller
-        
-        QnUtility.currentUser { (currentUser) in
-            profileVC.configureViewController(displayCurrentUserProfile: true, user: currentUser)
-        }
-        
-
-        connectionsViewController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
+        profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
+       connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
         placeHolderViewController = UIViewController()
         placeHolderViewController.view.alpha = 0.0
         
+        profileViewController = profileNavController.viewControllers.first as! ProfileViewContoller
+        connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
+        
+        QnUtility.currentUser { (currentUser) in
+            self.profileViewController.configureViewController(displayCurrentUserProfile: true, user: currentUser)
+        }
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainController.interactiveTransition(_:)))
         pan.delegate = self
@@ -175,15 +176,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     
     //MARK: Functionality
     
-    
-    
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
         self.stopCaptureSession()
         segueToContactViewController()
     }
-    
-    
     
     func centerForBarcodeObject(_ barCodeObject:AVMetadataMachineReadableCodeObject) -> CGPoint
     {
@@ -192,8 +189,6 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         let center = CGPoint(x: centerX, y: centerY)
         return center
     }
-    
-    
     
     /// Pinch to zoom
     ///
@@ -219,22 +214,14 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         }
     }
     
-    
-    
     //MARK: Segue
     
-    func segueToContactViewController()
-    {
-        performSegue(withIdentifier: SegueIdentifiers.Contact, sender: self)
+    func segueToContactViewController() {
+        
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifiers.Contact {
-            if let contactVC = (segue.destination as! UINavigationController).topViewController as? ContactViewController {
-                contactVC.configureViewController(self.contact!)
-            }
-        }
+        
     }
     
 
@@ -380,7 +367,7 @@ extension MainController: PageboyViewControllerDelegate {
 extension MainController: PageboyViewControllerDataSource {
     func viewControllers(forPageboyViewController pageboyViewController: PageboyViewController) -> [UIViewController]? {
         // return array of view controllers
-        return [profileViewController, placeHolderViewController, connectionsViewController]
+        return [profileNavController, placeHolderViewController, connectionsNavController]
     }
     
     func defaultPageIndex(forPageboyViewController pageboyViewController: PageboyViewController) -> PageboyViewController.PageIndex? {

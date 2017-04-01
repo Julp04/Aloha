@@ -7,9 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ImageDownloaderDelegate: class {
     func imageDownloaded(image: UIImage?)
-    
-    //Changed it up
 }

@@ -78,23 +78,11 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     @IBAction func save(_ sender: AnyObject) {
         saveUser()
     }
-    @IBAction func addTwitter(_ sender: AnyObject) {
-        
-        if self.twitterButton.tag == 0 {
-                linkTwitterUser()
-        }else {
-                unlinkTwitterUser()
-            }
-        
-    }
     
     
     @IBAction func cancel(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,10 +114,6 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
 //            })
         }
         
-        
-        
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -274,22 +258,6 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         
         
         return user
-    }
-    
-    /**
-     Links user's Twitter Account to QNect account.
-     */
-    
-    fileprivate func linkTwitterUser()
-    {
-        
-        
-      
-    }
-    
-    fileprivate func unlinkTwitterUser()
-    {
-      
     }
     
     

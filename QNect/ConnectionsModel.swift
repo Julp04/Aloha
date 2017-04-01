@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseStorage
+import UIKit
 
 class ConnectionsModel
 {

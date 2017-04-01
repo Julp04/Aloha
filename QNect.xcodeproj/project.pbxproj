@@ -38,7 +38,6 @@
 		14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
 		14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
-		14CCB69B1E7C0FB4004B1C3C /* VBFPopFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */; };
 		14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
@@ -56,7 +55,6 @@
 		14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
 		14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
 		14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
-		14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
 		14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
 		14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
@@ -68,7 +66,6 @@
 		14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
 		14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
-		14CCB6BD1E7C0FB4004B1C3C /* VBFDoubleSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */; };
 		14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
 		14CCB6C01E7C0FB4004B1C3C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */; };
@@ -88,7 +85,6 @@
 		14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		14EC7A851E74F27300B3C4E8 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
 		14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
-		14EC7A871E74F27300B3C4E8 /* VBFPopFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */; };
 		14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		14EC7A8A1E74F27300B3C4E8 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
@@ -106,7 +102,6 @@
 		14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
 		14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
 		14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
-		14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
 		14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
 		14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
@@ -118,7 +113,6 @@
 		14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
 		14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
-		14EC7AA91E74F27300B3C4E8 /* VBFDoubleSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */; };
 		14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
 		14EC7AAC1E74F27300B3C4E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */; };
@@ -144,14 +138,11 @@
 		B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
 		B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
-		B90968DA1DCFC83200B73662 /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D61DCFC83200B73662 /* SocialMediaCell.swift */; };
 		B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */; };
 		B90968DC1DCFC83200B73662 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D81DCFC83200B73662 /* ContactCell.swift */; };
 		B92418041DCFAFDF007C0B3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */; };
 		B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
 		B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
-		B93753531DD6623F007D50D7 /* VBFDoubleSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */; };
-		B93753541DD6623F007D50D7 /* VBFPopFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */; };
 		B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937537F1DD669F8007D50D7 /* ContactManager.swift */; };
 		B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */; };
 		B949FA401DBAA55A0071CBD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
@@ -225,16 +216,11 @@
 		B90968CF1DCFC1FB00B73662 /* QnUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnUtility.swift; sourceTree = "<group>"; };
 		B90968D31DCFC79500B73662 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		B90968D51DCFC83200B73662 /* ConnectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
-		B90968D61DCFC83200B73662 /* SocialMediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaCell.swift; sourceTree = "<group>"; };
 		B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactHeaderCell.swift; sourceTree = "<group>"; };
 		B90968D81DCFC83200B73662 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B92418051DCFB4BD007C0B3B /* QnDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnDecoder.swift; sourceTree = "<group>"; };
 		B92418071DCFB4CA007C0B3B /* QnEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnEncoder.swift; sourceTree = "<group>"; };
-		B937534F1DD6623F007D50D7 /* VBFDoubleSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBFDoubleSegment.h; path = ../VBFDoubleSegment.h; sourceTree = "<group>"; };
-		B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBFDoubleSegment.m; path = ../VBFDoubleSegment.m; sourceTree = "<group>"; };
-		B93753511DD6623F007D50D7 /* VBFPopFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBFPopFlatButton.h; path = ../VBFPopFlatButton.h; sourceTree = "<group>"; };
-		B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBFPopFlatButton.m; path = ../VBFPopFlatButton.m; sourceTree = "<group>"; };
 		B937537F1DD669F8007D50D7 /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B949FA3F1DBAA55A0071CBD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -313,17 +299,6 @@
 				404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B93753551DD66259007D50D7 /* VBFPopFlatButton */ = {
-			isa = PBXGroup;
-			children = (
-				B937534F1DD6623F007D50D7 /* VBFDoubleSegment.h */,
-				B93753501DD6623F007D50D7 /* VBFDoubleSegment.m */,
-				B93753511DD6623F007D50D7 /* VBFPopFlatButton.h */,
-				B93753521DD6623F007D50D7 /* VBFPopFlatButton.m */,
-			);
-			name = VBFPopFlatButton;
 			sourceTree = "<group>";
 		};
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
@@ -411,10 +386,8 @@
 				14CC66721E856C5B00C49B34 /* SwitchButton.swift */,
 				B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */,
 				B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */,
-				B93753551DD66259007D50D7 /* VBFPopFlatButton */,
 				B90968D51DCFC83200B73662 /* ConnectionCell.swift */,
 				B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */,
-				B90968D61DCFC83200B73662 /* SocialMediaCell.swift */,
 				B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */,
 				B90968D81DCFC83200B73662 /* ContactCell.swift */,
 				B90968CB1DCFB6B000B73662 /* QNectCode.swift */,
@@ -879,7 +852,6 @@
 				14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */,
 				14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */,
 				14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */,
-				14CCB69B1E7C0FB4004B1C3C /* VBFPopFlatButton.m in Sources */,
 				14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */,
 				14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */,
 				14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */,
@@ -901,7 +873,6 @@
 				14CCB6AE1E7C0FB4004B1C3C /* ContactManager.swift in Sources */,
 				14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */,
 				14CCB6DC1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
-				14CCB6B11E7C0FB4004B1C3C /* SocialMediaCell.swift in Sources */,
 				14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */,
 				14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */,
 				14F78E911E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
@@ -915,7 +886,6 @@
 				1421634B1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */,
 				14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */,
-				14CCB6BD1E7C0FB4004B1C3C /* VBFDoubleSegment.m in Sources */,
 				14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */,
 				14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */,
 				14B224A71E8AABD30027CBA8 /* TransparentNavigationBar.swift in Sources */,
@@ -933,7 +903,6 @@
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
 				14EC7A851E74F27300B3C4E8 /* SCLAlertView.swift in Sources */,
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
-				14EC7A871E74F27300B3C4E8 /* VBFPopFlatButton.m in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
 				14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */,
 				14EC7A8A1E74F27300B3C4E8 /* ContactModel.swift in Sources */,
@@ -955,7 +924,6 @@
 				14EC7A991E74F27300B3C4E8 /* ContactManager.swift in Sources */,
 				14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */,
 				14CCB6DB1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
-				14EC7A9C1E74F27300B3C4E8 /* SocialMediaCell.swift in Sources */,
 				14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */,
 				14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */,
 				14F78E901E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
@@ -969,7 +937,6 @@
 				1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */,
-				14EC7AA91E74F27300B3C4E8 /* VBFDoubleSegment.m in Sources */,
 				14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */,
 				14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */,
 				14B224A61E8AABD20027CBA8 /* TransparentNavigationBar.swift in Sources */,
@@ -987,7 +954,6 @@
 				B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */,
 				B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
-				B93753541DD6623F007D50D7 /* VBFPopFlatButton.m in Sources */,
 				14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */,
 				B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */,
 				B9C3A8001DD8E66F00CE9D06 /* ContactModel.swift in Sources */,
@@ -1008,7 +974,6 @@
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
 				B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */,
 				14CCB6DA1E7C2630004B1C3C /* AccountsViewController.swift in Sources */,
-				B90968DA1DCFC83200B73662 /* SocialMediaCell.swift in Sources */,
 				B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */,
 				B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */,
 				B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */,
@@ -1022,7 +987,6 @@
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
 				142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */,
-				B93753531DD6623F007D50D7 /* VBFDoubleSegment.m in Sources */,
 				14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */,
 				B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */,
 				14B224A11E8AA4380027CBA8 /* TransparentNavigationBar.swift in Sources */,

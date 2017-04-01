@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController {
             
             
             
-            self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
+//            self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
             
         }))
         self.present(alert, animated: true, completion: nil)

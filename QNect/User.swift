@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
-
+import UIKit
 
 
 
@@ -54,12 +54,13 @@ class User
     var age: String?
     var about: String?
     
-    var ref:FIRDatabaseReference?
+    var ref: FIRDatabaseReference?
     var key: String?
-
-    var profileImage:UIImage?
     
-    weak var delegate:ImageDownloaderDelegate?
+    var profileImage: UIImage?
+
+    
+    weak var delegate: ImageDownloaderDelegate?
     
     init(snapshot:FIRDataSnapshot) {
         

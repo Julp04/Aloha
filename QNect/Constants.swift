@@ -8,14 +8,6 @@
 
 import Foundation
 
-struct SegueIdentifiers {
-    static let Signup = "SignupSegue"
-    static let Login = "LoginSegue"
-    static let Signedup = "SignedupSegue"
-    static let Contact = "ScanToContactSegue"
-    static let Logout = "LogoutSegue"
-}
-
 struct ViewControllerIdentifier {
     static let Scanner = "ScannerNavController"
     static let QNectCode = "CodeNavController"
