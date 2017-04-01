@@ -60,7 +60,7 @@ class EmailViewController: UIViewController {
 
     func continueSignup()
     {
-        guard continueButton.isEnabled else {
+        guard continueButton.enable else {
             return
         }
         
