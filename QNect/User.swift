@@ -10,14 +10,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
-
+import UIKit
 
 
 
 
 class Account {
-    
-    
     var key: String
     var ref: FIRDatabaseReference
     var screenName:String?
@@ -34,8 +32,6 @@ class Account {
         self.token = values["token"] as! String
         self.refreshToken = values["refreshToken"] as! String
     }
-    
-    
 }
 
 class TwitterAccount: Account {
@@ -46,22 +42,25 @@ class TwitterAccount: Account {
 
 class User
 {
-    var uid:String!
-    var email:String!
-    var username:String!
+    var uid: String!
+    var email: String!
+    var username: String!
     var firstName:String!
     var lastName: String!
     var socialPhone: String?
     var socialEmail: String?
     var twitterScreenName:String?
-    var ref:FIRDatabaseReference?
+    var location: String?
+    var age: String?
+    var about: String?
+    
+    var ref: FIRDatabaseReference?
     var key: String?
+    
+    var profileImage: UIImage?
 
     
-    
-    var profileImage:UIImage?
-    
-    weak var delegate:ImageDownloaderDelegate?
+    weak var delegate: ImageDownloaderDelegate?
     
     init(snapshot:FIRDataSnapshot) {
         
@@ -93,6 +92,13 @@ class User
         self.email = email
         self.twitterScreenName = twitterScreenName
         
+    }
+    
+    init(userInfo:UserInfo) {
+        self.username = userInfo.userName
+        self.firstName = userInfo.firstName
+        self.lastName = userInfo.lastName
+        self.email = userInfo.email
     }
     
   

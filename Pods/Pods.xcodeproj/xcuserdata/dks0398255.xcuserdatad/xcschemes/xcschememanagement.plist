@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +39,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MBProgressHUD.xcscheme</key>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JPLoadingButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LTMorphingLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MGCollapsingHeader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,7 +64,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Onboard.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PTPopupWebView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pageboy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-QNect dev.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QNect.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RAMPaperSwitch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,12 +99,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RSKImageCropper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RevealingSplashView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TransitionAnimation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TransitionTreasury.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,6 +142,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09E6C557A2F290875B3E3E7A953DC691</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
@@ -77,17 +157,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17930F3F0E9CE092C3D05C113C965266</key>
+		<key>209457B83FAEDB20467851EFF5F3B236</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CC07AC26545FE80254CD570C9165438</key>
+		<key>4A8D0F0707890852DD11492CD2FE7D51</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
+		<key>4BBFD4184BAACF1A481205C42D30AA51</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C69BF3EF4CE81852226B9442B0C2DF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +187,52 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C6F3C1F78412373741D82636971D071</key>
+		<key>5000A93B19D0BC53C772EF4B813E9D36</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>655E6BB242A0E1AC5477EDC10AEED7DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6FA9EA3269E674179C09E63DA5443C8D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77244CF4AB7B10123897268F7876B8A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77979430716929ED71E6E262A9F9A184</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77C9A4D4D6F0896FE331E21A7AD0FA53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D7AD29F3C8B09CC7562F8CDA00EF83F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>839B08EF7A33A3AB0076194FB5878793</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F5682E0AC126B1910FC04BA8A16F382</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9DAEBA7B361F0F4E328DF3146B448080</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +242,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEEB4532C8A0E650EDB5252769349C87</key>
+		<key>BBAE1E6CC3094664C7B1D12612753ABC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,12 +252,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C74D47B051BF84CA30E0723F127F42AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA0555E2EDB1F6DDD904EDF0B8BBD159</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E84C700A599BF77B6B206D9105E89D02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EF1ABE20DAA23760FBF0359740C1F0B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F344DCB37FD2220B8126F5D76E5BBA47</key>
+		<key>F0B923FB5059F326E2877A68EC8DF8DA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

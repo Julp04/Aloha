@@ -23,6 +23,7 @@
 //
 
 import Foundation
+import Accounts
 
 public extension UserDefaults {
     class Proxy {
@@ -487,3 +488,4 @@ public func += (proxy: UserDefaults.Proxy, b: Double) {
 public postfix func ++ (proxy: UserDefaults.Proxy) {
     proxy += 1
 }
+

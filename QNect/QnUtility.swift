@@ -16,7 +16,21 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 
-class QnUtilitiy {
+class QnUtility {
+    
+    
+    static func setUserInfo(userInfo: UserInfo) {
+        let ref = FIRDatabase.database().reference()
+        let user = FIRAuth.auth()!.currentUser!
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
+        
+        currentUser.setValue(["username": userInfo.userName, "firstName": userInfo.firstName, "lastName": userInfo.lastName, "email": userInfo.email, "uid":user.uid])
+        
+        
+        let username = ref.child("usernames")
+        username.updateChildValues([userInfo.userName!: userInfo.email!])
+    }
     
     
     static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
@@ -29,17 +43,37 @@ class QnUtilitiy {
         currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
     }
     
-    
     static func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
     {
+        let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
-        let usersRef = ref.child("users")
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
         
-        let currentUser = FIRAuth.auth()!.currentUser!
-        let uidRef = usersRef.child(currentUser.uid)
-        
-        uidRef.updateChildValues(["firstName":firstName, "lastName":lastName, "socialPhone":socialPhone!, "socialEmail":socialEmail!])
+        currentUser.updateChildValues(["firstName":firstName, "lastName":lastName, "socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
+    
+    static func updateUserInfo(socialEmail:String?, socialPhone:String?)
+    {
+        let user = FIRAuth.auth()!.currentUser!
+        let ref = FIRDatabase.database().reference()
+        let users = ref.child("users")
+        let currentUser = users.child(user.uid)
+        
+        currentUser.updateChildValues(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
+    }
+    
+    static func currentUser(completion: @escaping (User) -> Void)
+    {
+        let ref = FIRDatabase.database().reference()
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
+            completion(user)
+        })
+    }
+    
     
     static func setProfileImage(image:UIImage)
     {
@@ -49,8 +83,6 @@ class QnUtilitiy {
             if let pngImageData = UIImagePNGRepresentation(image) {
                 try pngImageData.write(to: fileURL, options: .atomic)
             }
-            
-            
             
             // Get a reference to the storage service using the default Firebase App
             let storageRef = FIRStorage.storage().reference()
@@ -115,7 +147,6 @@ class QnUtilitiy {
     { 
         
         
-        
     
     }
     
@@ -131,7 +162,7 @@ class QnUtilitiy {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent("profileImage")
 
-        try! FileManager().removeItem(at: fileURL)
+//        try! FileManager().removeItem(at: fileURL)
         
         
     }
@@ -140,9 +171,7 @@ class QnUtilitiy {
     {
         
         let ref = FIRDatabase.database().reference()
-        
 
-        
         let usersRef = ref.child("users")
         let uidRef = usersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
         let userInfoRef = uidRef.child("userInfo")
@@ -167,38 +196,8 @@ class QnUtilitiy {
         
     }
     
-    static func followUserOnTwitter(twitterUsername:String)
-    {
-        let client = TWTRAPIClient()
-        
-        let statusesShowEndpoint = "https://api.twitter.com/1.1/friendships/create.json"
-        let params = ["user_id": "1401881", "follow":"true"]
-        var clientError : NSError?
-        
-        let request = client.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
-        
-        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
-            if connectionError != nil {
-                print("Error: \(connectionError)")
-            }
-            
-            if data == nil {
-                print("No data")
-            }else {
-                let json = JSON(data!)
-                print(json)
-            }
-        }
-    }
-    
-    
-    
- 
-    
-    
-
-    
-  
-    
    
 }
+
+
+

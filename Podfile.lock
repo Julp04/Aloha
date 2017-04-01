@@ -1,42 +1,36 @@
 PODS:
   - Cartography (0.5.0)
   - Fabric (1.6.11)
-  - FCAlertView (1.2.9)
-  - Firebase/Auth (3.12.0):
+  - FCAlertView (1.3.1)
+  - Firebase/Auth (3.14.0):
     - Firebase/Core
-    - FirebaseAuth (= 3.1.0)
-  - Firebase/Core (3.12.0):
-    - FirebaseAnalytics (= 3.6.0)
-    - FirebaseCore (= 3.4.7)
-  - Firebase/Database (3.12.0):
+    - FirebaseAuth (= 3.1.1)
+  - Firebase/Core (3.14.0):
+    - FirebaseAnalytics (= 3.7.0)
+    - FirebaseCore (= 3.5.1)
+  - Firebase/Database (3.14.0):
     - Firebase/Core
-    - FirebaseDatabase (= 3.1.1)
-  - Firebase/Storage (3.12.0):
+    - FirebaseDatabase (= 3.1.2)
+  - Firebase/Storage (3.14.0):
     - Firebase/Core
-    - FirebaseStorage (= 1.0.5)
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
+    - FirebaseStorage (= 1.1.0)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseAuth (3.1.0):
-    - FirebaseAnalytics (~> 3.6)
+  - FirebaseAuth (3.1.1):
+    - FirebaseAnalytics (~> 3.7)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.4.7):
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
+  - FirebaseCore (3.5.1):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (3.1.1):
-    - FirebaseAnalytics (~> 3.5)
-  - FirebaseInstanceID (1.0.8)
-  - FirebaseStorage (1.0.5):
-    - FirebaseAnalytics (~> 3.5)
+  - FirebaseDatabase (3.1.2):
+    - FirebaseAnalytics (~> 3.7)
+  - FirebaseInstanceID (1.0.9)
+  - FirebaseStorage (1.1.0):
+    - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
+  - FontAwesome.swift (1.0.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -48,16 +42,29 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
-  - MBProgressHUD (1.0.0)
-  - OAuthSwift (1.1.0)
+  - IQKeyboardManagerSwift (4.0.8)
+  - JPLoadingButton (0.4.0)
+  - LTMorphingLabel (0.4.0)
+  - MGCollapsingHeader (1.0.6)
+  - OAuthSwift (1.1.1)
+  - Onboard (2.3.1)
+  - Pageboy (0.4.12)
   - pop (1.0.9)
+  - PTPopupWebView (0.4.0)
+  - RAMPaperSwitch (2.0.4)
   - ReachabilitySwift (3)
+  - RevealingSplashView (0.1.0)
   - RKDropdownAlert (0.3.0)
+  - RSKImageCropper (1.6.0)
+  - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.0.0)
+  - TransitionAnimation (4.0.0):
+    - TransitionTreasury (~> 4.0)
+  - TransitionTreasury (4.0.0)
   - TwitterCore (2.8.0):
     - Fabric
-  - TwitterKit (2.8.0):
-    - TwitterCore (= 2.8.0)
+  - TwitterKit (2.8.1):
+    - TwitterCore (>= 2.8)
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/mluisbrown/Cartography.git`, branch `swift3`)
@@ -67,12 +74,25 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - MBProgressHUD
+  - FontAwesome.swift
+  - IQKeyboardManagerSwift
+  - JPLoadingButton
+  - LTMorphingLabel
+  - MGCollapsingHeader
   - OAuthSwift (~> 1.1.0)
+  - Onboard
+  - Pageboy
   - pop (from `https://github.com/facebook/pop.git`)
+  - PTPopupWebView
+  - RAMPaperSwitch (~> 2.0.4)
   - ReachabilitySwift
+  - RevealingSplashView
   - RKDropdownAlert
+  - RSKImageCropper
+  - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON (= 3.0.0)
+  - TransitionAnimation
+  - TransitionTreasury
   - TwitterKit
 
 EXTERNAL SOURCES:
@@ -93,27 +113,38 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Cartography: de3e85d2fc2d7288a2e7c89e1ac6cad08599d75e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FCAlertView: 60a6e16609d1458e16752f1918c2c43644c390ea
-  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
-  FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
-  FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  FCAlertView: 083c067bfd98f147abf5a66fe0e31cefac7bc809
+  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
+  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  JPLoadingButton: 8af25b017f2e2cd9e09697a7816ebf40c49b33aa
+  LTMorphingLabel: d9a85f16ac306f0e07321d6819964deb2dc69638
+  MGCollapsingHeader: 82a52988e0dcdd32558e883ae4df4c9c1a1674b1
+  OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  Pageboy: 4a0a478d78cf5b31a5439828bc8f6519edf4e508
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
+  RAMPaperSwitch: d24db52c5423c14812d4069073c3159cffcf3992
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  RevealingSplashView: 501dd03d975ba2c4165dd463ea1c7c407fb9d13e
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
+  RSKImageCropper: 6903235c7a8a79acb1e1f3490e2c911b858f8208
+  SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
+  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
-  TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
+  TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: b8724a75f740dfa114e3cd7cef9858c2a6256893
+PODFILE CHECKSUM: dcc85f231839948605fcb31051aaadb7a2cd97d3
 
 COCOAPODS: 1.2.0

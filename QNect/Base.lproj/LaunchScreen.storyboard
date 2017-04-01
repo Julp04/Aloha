@@ -21,35 +21,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_bg" translatesAutoresizingMaskIntoConstraints="NO" id="KSD-W1-q3f">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="480"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qnect_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="5qx-s7-tI5">
-                                <rect key="frame" x="40" y="175.5" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="9Gi-kz-jp5"/>
-                                    <constraint firstAttribute="width" constant="240" id="iYn-h6-3uW"/>
-                                </constraints>
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23921568627450979" green="0.027450980392156862" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="5qx-s7-tI5" firstAttribute="centerX" secondItem="KSD-W1-q3f" secondAttribute="centerX" id="3Nh-hX-fLD"/>
-                            <constraint firstItem="KSD-W1-q3f" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="Avc-7q-q4A"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KSD-W1-q3f" secondAttribute="trailing" constant="-20" id="LND-h1-gJf"/>
-                            <constraint firstItem="5qx-s7-tI5" firstAttribute="centerY" secondItem="KSD-W1-q3f" secondAttribute="centerY" id="bac-MR-o5q"/>
-                            <constraint firstItem="KSD-W1-q3f" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="mNR-s4-VzB"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="KSD-W1-q3f" secondAttribute="bottom" id="srP-LV-gVf"/>
+                            <constraint firstItem="5qx-s7-tI5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HaA-6d-Ven"/>
+                            <constraint firstItem="5qx-s7-tI5" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="156" id="lq2-oW-POu"/>
+                            <constraint firstItem="5qx-s7-tI5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="wFR-vx-u2k"/>
+                            <constraint firstItem="5qx-s7-tI5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="24" id="zlT-lq-EFp"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49.275362318840585" y="372.554347826087"/>
+            <point key="canvasLocation" x="281" y="318"/>
         </scene>
     </scenes>
     <resources>
-        <image name="launch_screen_bg" width="320" height="568"/>
         <image name="qnect_logo_white" width="231" height="83"/>
     </resources>
 </document>

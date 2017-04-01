@@ -16,25 +16,20 @@ class ContactManager
 {
     var store = CNContactStore()
     
-    init()
-    {
-        if contactStoreStatus() == .denied {
-            requestAccessToContacts()
-        } else {
-        }
-    }
     
-    func requestAccessToContacts()
+    func requestAccessToContacts(completion:@escaping ((_ accessGranted: Bool) -> Void))
     {
         switch CNContactStore.authorizationStatus(for: .contacts){
-        case .authorized: break
-            
-        case .notDetermined:
-            store.requestAccess(for: .contacts){succeeded, errror in
-                
-            }
+        case .authorized:
+            completion(true)
         default:
-            print("Not handled")
+            store.requestAccess(for: .contacts){succeeded, error in
+                if error != nil {
+                    completion(false)
+                }else {
+                    completion(true)
+                }
+            }
         }
     }
     
@@ -98,7 +93,7 @@ class ContactManager
     }
  
     
-    func contactStoreStatus() -> CNAuthorizationStatus
+    static func contactStoreStatus() -> CNAuthorizationStatus
     {
         let status = CNContactStore.authorizationStatus(for: .contacts)
         

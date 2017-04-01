@@ -29,8 +29,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     let kTopConstraint:CGFloat = 10
     let kToastFontSize:CGFloat = 15
     
-    var addContactButton:VBFPopFlatButton!
-    var addTwitterButton:VBFPopFlatButton!
     var headerCell:ContactHeaderCell?
     
     var contactImage:UIImage?
@@ -72,9 +70,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         
-        
-        
-  
+
         headerCell = tableView.dequeueReusableCell(withIdentifier: "ContactHeaderCell") as? ContactHeaderCell
         headerCell!.callButton.isHidden = true
         headerCell!.messageButton.isHidden = true
@@ -82,11 +78,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             headerCell!.callButton.isHidden = false
             headerCell!.messageButton.isHidden = false
         }
-        
-    
-        addContactButton = createAddButton(forAction: #selector(ContactViewController.addContact))
-        addTwitterButton = createAddButton(forAction: #selector(ContactViewController.followContactOnTwitter))
-        
         
         
         
@@ -132,26 +123,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             cell.phoneLabel.text = contactModel!.phoneNumberForContact()
             cell.emailLabel.text = contactModel!.socialEmailForContact()
             
-            cell.addSubview(addContactButton)
-            constrainButton(addContactButton)
-
-            
-            return cell
-            
-        }else if indexPath.section == 2
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SocialMediaCell") as! SocialMediaCell
-            cell.nameLabel.text = contactModel!.socialAccountAtIndex(indexPath.row)
-            cell.mediaTypeImageView.image = contactModel!.imageForSocialAccountAtIndex(indexPath.row)
-            
-            switch contactModel!.socialAccountTypeAtIndex(indexPath.row) {
-            case AccountsKey.Twitter:
-                cell.addSubview(addTwitterButton)
-                constrainButton(addTwitterButton)
-            default:
-                break
-            }
-            
+        
             return cell
         }else {
             return UITableViewCell(frame: CGRect.zero)
@@ -180,7 +152,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             
             if contact?.profileImage == nil {
                 if Reachability.isConnectedToInternet() {
-                    QnUtilitiy.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                    QnUtility.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
                         if error != nil {
                             print(error!)
                         }else {
@@ -232,66 +204,11 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     }
     
     
-    //MARK: Button Setup
-    
-    func createAddButton(forAction action:Selector) -> VBFPopFlatButton
-    {
-        //Here we are going to want to check if the contact has already been added and if they have already been followed on Twitter if that is so, then the button type must be different
-        
-        
-        let button = VBFPopFlatButton(frame: CGRect(x: 0, y: 0, width: kAddButtonWidth, height: kAddButtonWidth), buttonType: .buttonAddType, buttonStyle: .buttonRoundedStyle, animateToInitialState: false)
-        
-        button?.roundBackgroundColor = UIColor.qnPurple
-        button?.lineThickness = 2.5
-        button?.lineRadius = 2
-        button?.addTarget(self, action: action, for: .touchUpInside)
-        return button!
-    }
-    
-    func constrainButton(_ button:VBFPopFlatButton)
-    {
-        constrain(button) { button in
-            button.trailing   == (button.superview?.trailing)! - kTrailingConstraint
-            button.top == (button.superview?.topMargin)! + kTopConstraint
-            button.centerY == (button.superview?.centerY)!
-        }
-    }
-    
-    func animateToSuccessButton(_ button:VBFPopFlatButton)
-    {
-        button.roundBackgroundColor = UIColor.qnGreenTeal
-        button.animate(to: .buttonOkType)
-        button.isEnabled = false
-    }
-    
-    func animateToDeniedButton(_ button:VBFPopFlatButton)
-    {
-        button.roundBackgroundColor = UIColor.qnRed
-        button.animate(to: .buttonCloseType)
-        button.isEnabled = false
-    }
-    
-    
     //MARK: - Contact Actions
     
     func addContact()
     {
-        let contactManager = ContactManager()
-        if contactManager.contactStoreStatus() == .denied {
-            showCantAddContactAlert()
-        } else if contactManager.contactStoreStatus() == .authorized {
-            contactManager.addContact(contact!, image: contact?.profileImage, completion: { (success) in
-                if success {
-                    showContactAddedAlert()
-                    animateToSuccessButton(addContactButton)
-                }else {
-                    RKDropdownAlert.title("Contact could not be added", backgroundColor: UIColor.red, textColor: UIColor.white)
-                }
-            })
-            
-        } else {
-            contactManager.requestAccessToContacts()
-        }
+        
     }
     
     func followUser()
@@ -326,18 +243,17 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         let screenName = contact!.twitterScreenName
         
         
-        TwitterUtility().isUserLinkedWithTwitter { (isLinked) in
+        TwitterClient.client.isUserLinkedWithTwitter { (isLinked) in
             if isLinked {
-                TwitterUtility().followUserWith(screenName: screenName!) { (error) in
+                TwitterClient.client.followUserWith(screenName: screenName!) { (error) in
                     if error != nil {
                         RKDropdownAlert.title("Oops", message: error!.localizedDescription, backgroundColor: UIColor.qnRed, textColor: UIColor.white)
                     }else {
                         RKDropdownAlert.title("You are now following \(screenName!) on Twitter!", backgroundColor: UIColor.twitter, textColor: UIColor.white)
-                        self.animateToSuccessButton(self.addTwitterButton)
                     }
                 }
             }else {
-                //Todo: Prompt user to link with Twitter if they are not already
+                
             }
         }
         
@@ -378,7 +294,8 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         cantAddContactAlert.addAction(UIAlertAction(title: "Change Settings",
             style: .default,
             handler: { action in
-                self.openSettings()
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                UIApplication.shared.openURL(url!)
         }))
         cantAddContactAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(cantAddContactAlert, animated: true, completion: nil)
@@ -392,17 +309,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         RKDropdownAlert.title("Wooo!", message: "You saved \(contact!.firstName!) \(contact!.lastName!) to your contacts!", backgroundColor: UIColor.qnTeal, textColor: UIColor.white)
     }
     
-    func showTwitterNotLinkedAlert()
-    {
-        
-        
-        
-    }
 
-    func openSettings() {
-        let url = URL(string: UIApplicationOpenSettingsURLString)
-        UIApplication.shared.openURL(url!)
-    }
     
     
     //MARK:Message Delegates

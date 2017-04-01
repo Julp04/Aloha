@@ -12,6 +12,7 @@ import Firebase
 import Fabric
 import TwitterKit
 import OAuthSwift
+import RevealingSplashView
 
 
 
@@ -19,14 +20,25 @@ import OAuthSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        FIRApp.configure()
-        Fabric.with([Twitter.self])
+        //todo:Want to signout of Firebase if app was deleted. Use NSUserDefaults to tell
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        //todo: Fabric with Crashlytics
+        
+        #if DEVELOPMENT
+            let filePath = Bundle.main.path(forResource: "GoogleService-Info-DEV", ofType: "plist")!
+            let options = FIROptions(contentsOfFile: filePath)
+            FIRApp.configure(with: options!)
+        #else
+            let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+            let options = FIROptions(contentsOfFile: filePath)
+            FIRApp.configure(with: options!)
+        #endif
+        
+        Fabric.with([Twitter.self])
         
         FIRDatabase.database().persistenceEnabled = true
         
@@ -39,28 +51,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
-
         
+        let ui = false
+        //Go to VC that is set with "Initial View Controller"
+        if ui {
+            return true
+        }else {
+                if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
+                    Defaults["HasLaunchedOnce"] = true
+                    Defaults.synchronize()
+                    
+                    
+                    let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
+                    
+                    self.window!.rootViewController? = onboardNav
+          
+                }
+                else {
+                    checkForCurrentUser()
+                }
+                
+                let q = UIImage(named: "qnect_logo_white")!
+                let qSize = CGSize(width: 240.0, height: 128.0)
+                
+                let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+                splashView.iconColor = UIColor.white
+                splashView.duration = 1.5
+                splashView.animationType = .twitter
+                
+                self.window?.rootViewController?.view.addSubview(splashView)
+                
+                splashView.startAnimation {
+                    print("completed")
+                }
         
-        
-        
-        if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
-            Defaults["HasLaunchedOnce"] = true
-            Defaults["QuickScan"] = false
-            Defaults["AutomaticURLOpen"] = false
-            Defaults.synchronize()
-            
-            
-            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialVC")
-            
-            self.window!.rootViewController = tutorialVC
-            
+            return true
         }
-        else {
-            checkForCurrentUser()
-        }
-    
-        return true
     }
     
     
@@ -69,8 +95,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate func checkForCurrentUser()
     {
         if FIRAuth.auth()?.currentUser != nil {
-            let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
-            self.window?.rootViewController = mainVC
+            let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+            self.window?.rootViewController = mainVCNav
+        }else {
+            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC")
+            
+            self.window!.rootViewController = tutorialVC
         }
     }
     

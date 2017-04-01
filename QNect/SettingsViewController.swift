@@ -15,21 +15,14 @@ class SettingsViewController: UITableViewController {
 
     
     
-    @IBOutlet weak var webpageSwitch: UISwitch! {
-        didSet {
-            webpageSwitch.isOn = Defaults["AutomaticURLOpen"].bool!
-        }
-    }
+ 
     //MARK: IBActions
     
     @IBAction func dismissViewController(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func webPageSwitchAction(_ sender: UISwitch) {
-        Defaults["AutomaticURLOpen"] = sender.isOn
-        Defaults.synchronize()
-    }
+  
     //MARK: LifeCycle Methods
     
     override func viewWillAppear(_ animated: Bool){
@@ -75,11 +68,11 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
 
-           QnUtilitiy.signOut()
+           QnUtility.signOut()
             
             
             
-            self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
+//            self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
             
         }))
         self.present(alert, animated: true, completion: nil)

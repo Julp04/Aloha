@@ -38,26 +38,19 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        createTitleView()
-        
-        
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
+        tableView.backgroundColor = UIColor.clear
     
-        
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
 
         fetchFromDatabase()
-        
     }
     
     func fetchFromDatabase()
@@ -357,8 +350,4 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     func imageDownloaded(image: UIImage?) {
         self.tableView.reloadData()
     }
-    
-
-
-
 }

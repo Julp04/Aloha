@@ -1,0 +1,6 @@
+framework module MGCollapsingHeader {
+  umbrella header "MGCollapsingHeader-umbrella.h"
+
+  export *
+  module * { export * }
+}

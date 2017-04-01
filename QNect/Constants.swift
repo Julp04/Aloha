@@ -8,14 +8,6 @@
 
 import Foundation
 
-struct SegueIdentifiers {
-    static let Signup = "SignupSegue"
-    static let Login = "LoginSegue"
-    static let Signedup = "SignedupSegue"
-    static let Contact = "ScanToContactSegue"
-    static let Logout = "LogoutSegue"
-}
-
 struct ViewControllerIdentifier {
     static let Scanner = "ScannerNavController"
     static let QNectCode = "CodeNavController"
@@ -23,3 +15,23 @@ struct ViewControllerIdentifier {
     static let Containter = "ContainerViewController"
     static let Login = "LoginNavController"
 }
+
+struct UserInfo
+{
+    static let testUser = UserInfo()
+    
+    init() {
+        firstName = "Test"
+        lastName = "User"
+        userName = "testuser"
+        email = "test@g.com"
+        password = "julian"
+    }
+    
+    var firstName:String? = nil
+    var lastName:String? = nil
+    var userName:String? = nil
+    var email:String? = nil
+    var password:String? = nil
+}
+
