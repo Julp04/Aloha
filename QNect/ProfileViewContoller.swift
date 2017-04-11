@@ -29,6 +29,7 @@ class ProfileViewContoller: UITableViewController {
     
    
     //MARK: Outlets
+  
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -110,6 +111,10 @@ class ProfileViewContoller: UITableViewController {
         locationLabel.isHidden = (user.location == nil && user.age == nil)
 
         profileHeight = calculateProfileViewHeight()
+        
+        profileImageView.onClick =  {
+            print("Profile image view clicked")
+        }
         
     }
     
