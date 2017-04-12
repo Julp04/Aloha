@@ -65,7 +65,7 @@
 		14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14CCB6B81E7C0FB4004B1C3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
 		14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
-		14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
+		14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
 		14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
 		14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
@@ -112,7 +112,7 @@
 		14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14EC7AA31E74F27300B3C4E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E031DCF8AA000685718 /* Constants.swift */; };
 		14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
-		14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
+		14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
 		14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
 		14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImage.swift */; };
 		14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
@@ -137,7 +137,7 @@
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		B90968CE1DCFBE0C00B73662 /* QnTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */; };
-		B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnUtility.swift */; };
+		B90968D01DCFC1FB00B73662 /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
 		B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
 		B90968DB1DCFC83200B73662 /* ContactHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */; };
@@ -216,7 +216,7 @@
 		66CEC6FF601A1FF629B8B979 /* Pods-QNect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QNect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QNect/Pods-QNect.debug.xcconfig"; sourceTree = "<group>"; };
 		B90968CB1DCFB6B000B73662 /* QNectCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNectCode.swift; sourceTree = "<group>"; };
 		B90968CD1DCFBE0C00B73662 /* QnTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnTableViewController.swift; sourceTree = "<group>"; };
-		B90968CF1DCFC1FB00B73662 /* QnUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnUtility.swift; sourceTree = "<group>"; };
+		B90968CF1DCFC1FB00B73662 /* QnClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnClient.swift; sourceTree = "<group>"; };
 		B90968D31DCFC79500B73662 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		B90968D51DCFC83200B73662 /* ConnectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		B90968D71DCFC83200B73662 /* ContactHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactHeaderCell.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 				B9570E111DCF9A3A00685718 /* ProfileImage.swift */,
 				B92418051DCFB4BD007C0B3B /* QnDecoder.swift */,
 				B92418071DCFB4CA007C0B3B /* QnEncoder.swift */,
-				B90968CF1DCFC1FB00B73662 /* QnUtility.swift */,
+				B90968CF1DCFC1FB00B73662 /* QnClient.swift */,
 				141852171E55F2E200471E59 /* Social.swift */,
 				B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */,
 			);
@@ -886,7 +886,7 @@
 				14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */,
 				14CCB6B81E7C0FB4004B1C3C /* Constants.swift in Sources */,
 				14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */,
-				14CCB6BA1E7C0FB4004B1C3C /* QnUtility.swift in Sources */,
+				14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */,
 				1421634B1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */,
 				14CCB6BC1E7C0FB4004B1C3C /* ProfileImage.swift in Sources */,
@@ -937,7 +937,7 @@
 				14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */,
 				14EC7AA31E74F27300B3C4E8 /* Constants.swift in Sources */,
 				14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */,
-				14EC7AA51E74F27300B3C4E8 /* QnUtility.swift in Sources */,
+				14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */,
 				1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImage.swift in Sources */,
@@ -987,7 +987,7 @@
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				B9570E041DCF8AA000685718 /* Constants.swift in Sources */,
 				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
-				B90968D01DCFC1FB00B73662 /* QnUtility.swift in Sources */,
+				B90968D01DCFC1FB00B73662 /* QnClient.swift in Sources */,
 				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
 				142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImage.swift in Sources */,

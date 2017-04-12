@@ -100,7 +100,7 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
         self.populateFields()
         
 
-        if let profileImage = QnUtility.getProfileImageForCurrentUser() {
+        if let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser() {
             self.profileImageView.image = profileImage
         }else {
 //            User.currentUser(completion: { (user) in
@@ -234,8 +234,8 @@ class QnTableViewController: UITableViewController, UITextFieldDelegate, UIImage
     
     fileprivate func saveUser()
     {
-        QnUtility.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
-        QnUtility.setProfileImage(image: self.profileImageView.image!)
+        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: socialEmailField.text, socialPhone: socialPhoneField.text)
+        QnClient.sharedInstance.setProfileImage(image: self.profileImageView.image!)
         
         self.dismiss(animated: true, completion: nil)
     }

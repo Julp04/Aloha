@@ -16,10 +16,13 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 
-class QnUtility {
+class QnClient {
+    
+    static let sharedInstance = QnClient()
     
     
-    static func setUserInfo(userInfo: UserInfo) {
+     func setUserInfo(userInfo: UserInfo)
+     {
         let ref = FIRDatabase.database().reference()
         let user = FIRAuth.auth()!.currentUser!
         let users = ref.child("users")
@@ -33,7 +36,7 @@ class QnUtility {
     }
     
     
-    static func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
+    func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
     {
         
         let ref = FIRDatabase.database().reference()
@@ -43,7 +46,7 @@ class QnUtility {
         currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
     }
     
-    static func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
+    func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
@@ -53,7 +56,7 @@ class QnUtility {
         currentUser.updateChildValues(["firstName":firstName, "lastName":lastName, "socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
     
-    static func updateUserInfo(socialEmail:String?, socialPhone:String?)
+    func updateUserInfo(socialEmail:String?, socialPhone:String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
@@ -63,7 +66,7 @@ class QnUtility {
         currentUser.updateChildValues(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
     }
     
-    static func currentUser(completion: @escaping (User) -> Void)
+    func currentUser(completion: @escaping (User) -> Void)
     {
         let ref = FIRDatabase.database().reference()
         let currentUser = FIRAuth.auth()!.currentUser!
@@ -75,7 +78,7 @@ class QnUtility {
     }
     
     
-    static func setProfileImage(image:UIImage)
+    func setProfileImage(image:UIImage)
     {
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -108,14 +111,13 @@ class QnUtility {
     }
     
     
-    static func getProfileImageForUser(user:User, completion:@escaping (UIImage?, Error?) ->Void)
+    func getProfileImageForUser(user:User, completion:@escaping (UIImage?, Error?) ->Void)
     {
         let storageRef = FIRStorage.storage().reference()
         
         
         let userStorageRef = storageRef.child("users")
         let userRef = userStorageRef.child(user.email).child("profileImage")
-        
         
         userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
             
@@ -130,7 +132,7 @@ class QnUtility {
     
     
     
-    static func getProfileImageForCurrentUser() -> UIImage?
+    func getProfileImageForCurrentUser() -> UIImage?
     {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
@@ -143,19 +145,19 @@ class QnUtility {
     }
     
     
-    static func followUser(user:User)
+    func followUser(user:User)
     { 
         
         
     
     }
     
-    static func unfollowUser(connection:User)
+    func unfollowUser(connection:User)
     {
         
     }
     
-    static func signOut()
+    func signOut()
     {
         try! FIRAuth.auth()?.signOut()
         
@@ -164,10 +166,9 @@ class QnUtility {
 
 //        try! FileManager().removeItem(at: fileURL)
         
-        
     }
     
-    static func doesTwitterUserExistsWith(session:TWTRSession, completion:@escaping (Bool) -> Void)
+    func doesTwitterUserExistsWith(session:TWTRSession, completion:@escaping (Bool) -> Void)
     {
         
         let ref = FIRDatabase.database().reference()

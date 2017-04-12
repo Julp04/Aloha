@@ -152,7 +152,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
             
             if contact?.profileImage == nil {
                 if Reachability.isConnectedToInternet() {
-                    QnUtility.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
+                    QnClient.sharedInstance.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
                         if error != nil {
                             print(error!)
                         }else {

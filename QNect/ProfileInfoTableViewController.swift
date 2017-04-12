@@ -98,10 +98,10 @@ class ProfileInfoTableViewController: UITableViewController {
     
     func continueSignup()
     {
-        //todo: Might add more fields
+        //todo: Include location, about, age, etc
         //Should we check for internet connection??
-        QnUtility.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
-        QnUtility.setProfileImage(image: profileImageView.image!)
+        QnClient.sharedInstance.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
+        QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         
         performSegue(withIdentifier: "LinkAccounts", sender: self)
     }
@@ -109,7 +109,7 @@ class ProfileInfoTableViewController: UITableViewController {
     func skip()
     {
         //Setting the image either way
-//        QnUtility.setProfileImage(image: profileImageView.image!)
+        QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         performSegue(withIdentifier: "LinkAccounts", sender: self)
         
     }
