@@ -138,12 +138,12 @@
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/AccountsViewController.swift"
-                  timestampString = "512682532.434277"
+                  timestampString = "513732028.383435"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
                   endingLineNumber = "155"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/AccountsViewController.swift"
-                  timestampString = "512682532.435851"
+                  timestampString = "513732028.384919"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "156"
                   endingLineNumber = "156"
-                  offsetFromSymbolStart = "32">
+                  offsetFromSymbolStart = "26">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -218,12 +218,12 @@
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactManager.swift"
-                  timestampString = "512682532.438408"
+                  timestampString = "513732028.387423"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
                   endingLineNumber = "26"
-                  offsetFromSymbolStart = "161">
+                  offsetFromSymbolStart = "139">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -233,12 +233,12 @@
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ContactManager.swift"
-                  timestampString = "512682532.439627"
+                  timestampString = "513732028.388635"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "27"
                   endingLineNumber = "27"
-                  offsetFromSymbolStart = "34">
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -410,12 +410,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/MainController.swift"
-            timestampString = "512678272.066796"
+            timestampString = "513549497.151496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "createBarButtonItems()"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "createCaptureSession()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

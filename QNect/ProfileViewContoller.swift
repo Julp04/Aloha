@@ -38,7 +38,6 @@ class ProfileViewContoller: UITableViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
-    
     @IBOutlet weak var statsStackView: UIStackView!
     //MARK: Actions
     
@@ -50,8 +49,8 @@ class ProfileViewContoller: UITableViewController {
     {
         self.displayCurrentUserProfile = displayCurrentUserProfile
         self.user = user
-        user.about = "I am cool"
-//        user.location = "Pittsburgh"
+//        user.about = "I am cool"
+        user.location = "Pittsburgh, PA"
         user.age = "23"
     }
     
@@ -71,6 +70,11 @@ class ProfileViewContoller: UITableViewController {
         followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.editProfile), for: .touchUpInside)
         
         connectionsHeaderTitle = "Recently Added"
+        
+        //ProfileImageView
+        profileImageView.onClick = {
+            //todo:Change profilePicture
+        }
 
     }
     
@@ -78,13 +82,16 @@ class ProfileViewContoller: UITableViewController {
         //Setup view controller as if we were viewing someone else's profile
         //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
         
+        callButton.addTarget(self, action: #selector(ProfileViewContoller.callUser), for: .touchUpInside)
+        messageButton.addTarget(self, action: #selector(ProfileViewContoller.messageUser), for: .touchUpInside)
+        emailButton.addTarget(self, action: #selector(ProfileViewContoller.emailUser), for: .touchUpInside)
+        
         callButton.isHidden = user.socialPhone == nil
         messageButton.isHidden = user.socialPhone == nil
         emailButton.isHidden = user.socialEmail == nil
         
-        //Edit profile button instead of follow button
-        followOrEditProfileButton.setTitle("FOLLOW", for: .normal)
-        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.editProfile), for: .touchUpInside)
+        //Follow button instead of editProfile button
+        configureFollowButton()
         
         connectionsHeaderTitle = "Common Connections"
     }
@@ -111,10 +118,6 @@ class ProfileViewContoller: UITableViewController {
         locationLabel.isHidden = (user.location == nil && user.age == nil)
 
         profileHeight = calculateProfileViewHeight()
-        
-        profileImageView.onClick =  {
-            print("Profile image view clicked")
-        }
         
     }
     
@@ -162,10 +165,36 @@ class ProfileViewContoller: UITableViewController {
         return finalPosition
     }
     
+    func configureFollowButton() {
+        //todo: Check whether current user is following displayed user
+        let isFollowing = false
+        let buttonText = isFollowing ? "Following" : "Follow"
+        
+        followOrEditProfileButton.setTitle(buttonText, for: .normal)
+        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.follow), for: .touchUpInside)
+    }
+    
     //MARK: Functionality
     
-    func editProfile()
-    {
+    func editProfile() {
+        //todo:Segue to editProfileViewController
+        
+        
+    }
+    
+    func follow() {
+    
+    }
+    
+    func messageUser() {
+        
+    }
+    
+    func callUser() {
+        
+    }
+    
+    func emailUser() {
         
     }
 
