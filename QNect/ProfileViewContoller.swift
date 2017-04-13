@@ -51,7 +51,7 @@ class ProfileViewContoller: UITableViewController {
         self.user = user
 //        user.about = "I am cool"
         user.location = "Pittsburgh, PA"
-        user.age = "23"
+        user.birthdate = "10-09-1993"
     }
     
     fileprivate func configureViewControllerForCurrentUser() {
@@ -101,12 +101,16 @@ class ProfileViewContoller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
+        displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
         
-        if user.location != nil && user.age != nil {
-            locationLabel.text = "\(user.location!) | \(user.age!)"
+        
+        let birthdate = user.birthdate?.asDate()
+        let age = birthdate?.age
+        
+        if user.location != nil && age != nil {
+            locationLabel.text = "\(user.location!) | \(age!)"
         }else {
-            locationLabel.text = user.location ?? user.age
+            locationLabel.text = user.location ?? age
         }
         
         aboutLabel.text = user.about
@@ -115,7 +119,7 @@ class ProfileViewContoller: UITableViewController {
         
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
-        locationLabel.isHidden = (user.location == nil && user.age == nil)
+        locationLabel.isHidden = (user.location == nil && age == nil)
 
         profileHeight = calculateProfileViewHeight()
         

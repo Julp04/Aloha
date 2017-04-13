@@ -12,7 +12,7 @@ import Foundation
 
 class QnEncoder {
     
-    var user:User!
+    var user: User
     var qnString = "qn:"
 
     init(user:User)
@@ -23,7 +23,7 @@ class QnEncoder {
     func encodeSocialCode() -> String
     {
         
-        let socialProperties = [user?.username, user?.firstName, user?.lastName, user?.socialEmail, user?.socialPhone, user.uid, user?.email, user.twitterScreenName]
+        let socialProperties = [user.username, user.firstName, user.lastName, user.socialEmail, user.socialPhone, user.uid, user.email, user.twitterScreenName, user.birthdate, user.location]
         
         for property in socialProperties {
             if let property = property {

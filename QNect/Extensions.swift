@@ -84,6 +84,13 @@ public extension String {
             return passwordTest.evaluate(with: self)
         }
     }
+    
+    func asDate() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let date = dateFormatter.date(from: self)
+        return date
+    }
 }
 
 public extension JPLoadingButton {
@@ -97,4 +104,26 @@ public extension JPLoadingButton {
         }
     }
 }
+
+public extension Date {
+    var age: String {
+        get {
+            let now = Date()
+            let birthday: Date = self
+            let calendar = Calendar.current
+            
+            let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+            return String(ageComponents.year!)
+        }
+    }
+
+    func asString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let dateString = dateFormatter.string(from: self)
+        
+        return dateString
+    }
+}
+
 
