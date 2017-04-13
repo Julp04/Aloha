@@ -96,7 +96,7 @@ public extension String {
 public extension JPLoadingButton {
     var enable:Bool {
         get {
-            return self.enable
+            return self.isEnabled
         }
         set {
             self.isEnabled = newValue

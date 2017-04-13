@@ -118,7 +118,6 @@ class ProfileInfoTableViewController: UITableViewController {
     
     func addProfileImage()
     {
-    
         let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
         
         let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
@@ -156,7 +155,6 @@ class ProfileInfoTableViewController: UITableViewController {
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     //MARK: Helper Functions
@@ -167,23 +165,7 @@ class ProfileInfoTableViewController: UITableViewController {
     
 }
 
-extension ProfileInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
-    {
-        profileImageView.contentMode = .scaleAspectFit
-        profileImageView.image = image
-        
-        let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
-        imageCropper.delegate = self
-        
-        imagePicker.present(imageCropper, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
+
 
 extension ProfileInfoTableViewController: UITextFieldDelegate {
     
@@ -210,6 +192,24 @@ extension ProfileInfoTableViewController: UITextFieldDelegate {
         continueButton.isEnabled = true
         continueButton.tintColor = UIColor.qnPurple
         return true
+    }
+}
+
+extension ProfileInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
+    {
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = image
+        
+        let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
+        imageCropper.delegate = self
+        
+        imagePicker.present(imageCropper, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
