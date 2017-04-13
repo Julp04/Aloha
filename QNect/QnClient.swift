@@ -130,8 +130,6 @@ class QnClient {
         }
     }
     
-    
-    
     func getProfileImageForCurrentUser() -> UIImage?
     {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -166,6 +164,45 @@ class QnClient {
 
 //        try! FileManager().removeItem(at: fileURL)
         
+    }
+    
+    func deleteUser(completion:@escaping (Error) -> Void) {
+        //todo: Needs to be tested thoroughly with internet and without
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        QnClient.sharedInstance.currentUser { (user) in
+            let userName = user.username!
+            let uid = user.uid!
+            
+            
+            currentUser.delete(completion: { (error) in
+                guard error == nil else {
+                    completion(error!)
+                    return
+                }
+                
+                TwitterClient().unlinkTwitter(completion: { (error) in
+                    if error != nil {
+                        completion(error!)
+                    }
+                })
+                
+                //No error remove, all other traces of this user from database
+                let ref = FIRDatabase.database().reference()
+                ref.child("usernames").child(userName).removeValue()
+                
+                //Remove profile picture locally and on database
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileURL = documentsURL.appendingPathComponent("profileImage")
+                try! FileManager().removeItem(at: fileURL)
+                
+                ref.child("users").child(uid).removeValue()
+                
+            })
+        }
+        
+      
     }
     
     func doesTwitterUserExistsWith(session:TWTRSession, completion:@escaping (Bool) -> Void)
