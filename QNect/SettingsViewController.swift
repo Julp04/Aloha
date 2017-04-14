@@ -68,7 +68,7 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
 
-           QnUtility.signOut()
+           QnClient.sharedInstance.signOut()
             
             
             

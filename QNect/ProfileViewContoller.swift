@@ -10,6 +10,8 @@ import UIKit
 import JPLoadingButton
 import FirebaseAuth
 import Firebase
+import ReachabilitySwift
+import RSKImageCropper
 
 class ProfileViewContoller: UITableViewController {
     
@@ -26,9 +28,11 @@ class ProfileViewContoller: UITableViewController {
     var connectionsHeaderTitle: String!
     
     var profileHeight: CGFloat = 0.0
+    let imagePicker = UIImagePickerController()
     
    
     //MARK: Outlets
+  
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -37,7 +41,6 @@ class ProfileViewContoller: UITableViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
-    
     @IBOutlet weak var statsStackView: UIStackView!
     //MARK: Actions
     
@@ -49,16 +52,15 @@ class ProfileViewContoller: UITableViewController {
     {
         self.displayCurrentUserProfile = displayCurrentUserProfile
         self.user = user
-        user.about = "I am cool"
-//        user.location = "Pittsburgh"
-        user.age = "23"
+//        user.about = "I am cool"
+        user.location = "Pittsburgh, PA"
+        user.birthdate = "10-09-1993"
     }
     
     fileprivate func configureViewControllerForCurrentUser() {
         //Setup view controller only if we were to view as ourself
         //Ex: Follow button would be EditProfileButton, Common Connections would be Recent Added Connections, Won't show call, message, email buttons, Accounts buttons would link your accounts to your profile
        
-        
         
         //Cannot email, message, or call self...
         callButton.isHidden = true
@@ -70,6 +72,16 @@ class ProfileViewContoller: UITableViewController {
         followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.editProfile), for: .touchUpInside)
         
         connectionsHeaderTitle = "Recently Added"
+        
+        //ProfileImageView
+        imagePicker.delegate = self
+        //todo: Might not allow to change profileImage on this controller
+        profileImageView.onClick = {
+            self.editProfileImage()
+        }
+        
+        let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
+        profileImageView.image = profileImage
 
     }
     
@@ -77,15 +89,22 @@ class ProfileViewContoller: UITableViewController {
         //Setup view controller as if we were viewing someone else's profile
         //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
         
+        callButton.addTarget(self, action: #selector(ProfileViewContoller.callUser), for: .touchUpInside)
+        messageButton.addTarget(self, action: #selector(ProfileViewContoller.messageUser), for: .touchUpInside)
+        emailButton.addTarget(self, action: #selector(ProfileViewContoller.emailUser), for: .touchUpInside)
+        
         callButton.isHidden = user.socialPhone == nil
         messageButton.isHidden = user.socialPhone == nil
         emailButton.isHidden = user.socialEmail == nil
         
-        //Edit profile button instead of follow button
-        followOrEditProfileButton.setTitle("FOLLOW", for: .normal)
-        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.editProfile), for: .touchUpInside)
+        //Follow button instead of editProfile button
+        configureFollowButton()
         
         connectionsHeaderTitle = "Common Connections"
+        
+        //Set profile image
+        setProfileImageForOtherUser()
+    
     }
     
     //MARK: Lifecycle
@@ -93,23 +112,27 @@ class ProfileViewContoller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
+        displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
         
-        if user.location != nil && user.age != nil {
-            locationLabel.text = "\(user.location!) | \(user.age!)"
+        
+        let birthdate = user.birthdate?.asDate()
+        let age = birthdate?.age
+        
+        if user.location != nil && age != nil {
+            locationLabel.text = "\(user.location!) | \(age!)"
         }else {
-            locationLabel.text = user.location ?? user.age
+            locationLabel.text = user.location ?? age
         }
-        
         aboutLabel.text = user.about
+        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
         
        
-        
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
-        locationLabel.isHidden = (user.location == nil && user.age == nil)
+        locationLabel.isHidden = (user.location == nil && age == nil)
 
         profileHeight = calculateProfileViewHeight()
+        
         
     }
     
@@ -157,13 +180,129 @@ class ProfileViewContoller: UITableViewController {
         return finalPosition
     }
     
+    func configureFollowButton() {
+        //todo: Check whether current user is following displayed user
+        let isFollowing = false
+        let buttonText = isFollowing ? "Following" : "Follow"
+        
+        followOrEditProfileButton.setTitle(buttonText, for: .normal)
+        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.follow), for: .touchUpInside)
+    }
+    
+    func setProfileImageForOtherUser() {
+        
+        if user.profileImage == nil {
+            if Reachability.isConnectedToInternet() {
+                QnClient.sharedInstance.getProfileImageForUser(user: user, completion: { (profileImage, error) in
+                    if error != nil {
+                        print(error!)
+                    }else {
+                        self.profileImageView.image = profileImage
+                    }
+                })
+            }
+        }else {
+            self.profileImageView.image = user.profileImage
+        }
+    }
+    
     //MARK: Functionality
     
-    func editProfile()
-    {
+    func editProfile() {
+        //todo:Segue to editProfileViewController
+        
+        
+    }
+    
+    func editProfileImage() {
+        let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
+        
+        let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .camera
+            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
+            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.tintColor = UIColor.white
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
+            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.tintColor = UIColor.white
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let removePhotoAction = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
+            self.profileImageView.image = ProfileImageCreator.create(self.user.firstName!, last: self.user.lastName!)
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(selfieAction)
+        }
+        
+        if self.profileImageView.image != nil {
+            alert.addAction(removePhotoAction)
+        }
+        
+        alert.addAction(photoLibraryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func follow() {
+    
+    }
+    
+    func messageUser() {
+        
+    }
+    
+    func callUser() {
+        
+    }
+    
+    func emailUser() {
         
     }
 
 
+}
+
+
+extension ProfileViewContoller: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
+    {
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = image
+        
+        let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
+        imageCropper.delegate = self
+        
+        imagePicker.present(imageCropper, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewContoller: RSKImageCropViewControllerDelegate {
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+        
+        controller.dismiss(animated: true)
+        imagePicker.dismiss(animated: true, completion: nil)
+        profileImageView.image = croppedImage
+    }
+    
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        controller.dismiss(animated: true)
+    }
 }
 

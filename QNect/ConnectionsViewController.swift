@@ -204,7 +204,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 if profileImage != nil {
                     cell.profileImageView.image = profileImage
                 }else {
-                    cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
+                    cell.profileImageView.image = ProfileImageCreator.create(connection.firstName, last: connection.lastName)
                 }
                
                 
@@ -228,7 +228,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
                 if profileImage != nil {
                     cell.profileImageView.image = profileImage
                 }else {
-                    cell.profileImageView.image = ProfileImage.createProfileImage(connection.firstName, last: connection.lastName)
+                    cell.profileImageView.image = ProfileImageCreator.create(connection.firstName, last: connection.lastName)
                 }
                 
             }

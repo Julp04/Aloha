@@ -51,7 +51,7 @@ class User
     var socialEmail: String?
     var twitterScreenName:String?
     var location: String?
-    var age: String?
+    var birthdate: String?
     var about: String?
     
     var ref: FIRDatabaseReference?
@@ -72,16 +72,18 @@ class User
         self.socialEmail = values["socialEmail"] as? String
         self.socialPhone = values["socialPhone"] as? String
         self.twitterScreenName = values["twitterScreenName"] as? String
+        self.birthdate = values["birthDate"] as? String
+        
+        
         self.uid = values["uid"] as! String
         self.email = values["email"] as! String
         
         self.key = snapshot.key
         self.ref = snapshot.ref
-        
     }
     
     
-    init(username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, uid:String, email:String, twitterScreenName:String?) {
+    init(username: String, firstName: String, lastName: String, socialEmail: String?, socialPhone: String?, uid:String, email: String, twitterScreenName: String?, birthdate: String?, location: String?) {
         
         self.username = username
         self.firstName = firstName
@@ -92,6 +94,8 @@ class User
         self.email = email
         self.twitterScreenName = twitterScreenName
         
+        self.birthdate = birthdate
+        self.location = location
     }
     
     init(userInfo:UserInfo) {
@@ -102,6 +106,25 @@ class User
     }
     
   
+}
+
+struct UserInfo
+{
+    static let testUser = UserInfo()
+    
+    init() {
+        firstName = "Test"
+        lastName = "User"
+        userName = "testuser"
+        email = "test@g.com"
+        password = "julian"
+    }
+    
+    var firstName:String? = nil
+    var lastName:String? = nil
+    var userName:String? = nil
+    var email:String? = nil
+    var password:String? = nil
 }
 
 

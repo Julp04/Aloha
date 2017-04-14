@@ -81,7 +81,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         profileViewController = profileNavController.viewControllers.first as! ProfileViewContoller
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
         
-        QnUtility.currentUser { (currentUser) in
+        QnClient.sharedInstance.currentUser { (currentUser) in
             self.profileViewController.configureViewController(displayCurrentUserProfile: true, user: currentUser)
         }
         

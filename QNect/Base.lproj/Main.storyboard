@@ -29,24 +29,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppA-Nl-QAQ">
-                                                    <rect key="frame" x="8" y="8.5" width="359" height="100"/>
+                                                    <rect key="frame" x="8" y="9" width="359" height="100"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headshot.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yjw-xv-0m7" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-IH-5gU" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
                                                             <rect key="frame" x="129.5" y="0.0" width="100" height="100"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="100" id="XXg-WX-h2w"/>
-                                                                <constraint firstAttribute="width" constant="100" id="nvb-jF-aVn"/>
+                                                                <constraint firstAttribute="width" constant="100" id="LTa-VL-7k4"/>
+                                                                <constraint firstAttribute="height" constant="100" id="psM-GV-Bg7"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="32"/>
-                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="headshot.jpg"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </imageView>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9Oa-QR-Q7K">
-                                                    <rect key="frame" x="8" y="154.5" width="359" height="44.5"/>
+                                                    <rect key="frame" x="8" y="155" width="359" height="44.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9l-hy-lBc">
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="44.5"/>
@@ -58,7 +57,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9fG-5p-5av">
-                                                    <rect key="frame" x="8" y="204" width="359" height="28"/>
+                                                    <rect key="frame" x="8" y="202.5" width="359" height="28"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7Z-9l-ciX" customClass="JPLoadingButton" customModule="QNect" customModuleProvider="target">
                                                             <rect key="frame" x="79.5" y="0.0" width="200" height="28"/>
@@ -80,7 +79,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="fKY-OC-teG">
-                                                    <rect key="frame" x="0.0" y="317.5" width="375" height="56"/>
+                                                    <rect key="frame" x="0.0" y="316.5" width="375" height="56"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pqE-qG-2p6">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -89,7 +88,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6ke-cJ-6Aj">
-                                                                            <rect key="frame" x="27" y="2.5" width="70" height="51"/>
+                                                                            <rect key="frame" x="27" y="3" width="70" height="51"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="320" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZp-6O-bLD">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
@@ -124,7 +123,7 @@
                                                                     <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ar9-GG-XsG">
-                                                                            <rect key="frame" x="17" y="3" width="91.5" height="51"/>
+                                                                            <rect key="frame" x="17.5" y="3" width="91.5" height="51"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="404" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV0-ca-c1y">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
@@ -158,7 +157,7 @@
                                                                     <rect key="frame" x="250" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TSM-jx-bp0">
-                                                                            <rect key="frame" x="15.5" y="4" width="94.5" height="48.5"/>
+                                                                            <rect key="frame" x="15.5" y="4.5" width="94.5" height="48.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGE-ci-xJ7">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="94.5" height="30"/>
@@ -219,7 +218,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iua-ce-8vF">
-                                                    <rect key="frame" x="16" y="252.5" width="343" height="43"/>
+                                                    <rect key="frame" x="16" y="251.5" width="343" height="43"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5c-yH-pwS">
                                                             <rect key="frame" x="0.0" y="0.0" width="114.5" height="43"/>
@@ -244,13 +243,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="ppA-Nl-QAQ" secondAttribute="trailing" id="51R-Av-hcl"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Iua-ce-8vF" secondAttribute="trailing" constant="8" id="5Ka-5t-C9r"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9Oa-QR-Q7K" secondAttribute="trailing" id="5LH-Ow-c5F"/>
-                                                <constraint firstItem="ppA-Nl-QAQ" firstAttribute="top" secondItem="ShN-Xc-cM0" secondAttribute="topMargin" id="97L-D5-9mj"/>
+                                                <constraint firstItem="ppA-Nl-QAQ" firstAttribute="top" secondItem="ShN-Xc-cM0" secondAttribute="topMargin" constant="1" id="97L-D5-9mj"/>
                                                 <constraint firstItem="9fG-5p-5av" firstAttribute="leading" secondItem="ShN-Xc-cM0" secondAttribute="leadingMargin" id="FVx-0V-0Ds"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9fG-5p-5av" secondAttribute="trailing" id="MP8-G7-KSD"/>
                                                 <constraint firstItem="Iua-ce-8vF" firstAttribute="leading" secondItem="ShN-Xc-cM0" secondAttribute="leadingMargin" constant="8" id="Wde-lc-JZg"/>
                                                 <constraint firstItem="fKY-OC-teG" firstAttribute="leading" secondItem="ShN-Xc-cM0" secondAttribute="leading" id="Zf6-3o-bZI"/>
                                                 <constraint firstItem="BqW-uR-Y3q" firstAttribute="leading" secondItem="ShN-Xc-cM0" secondAttribute="leadingMargin" id="ak5-AQ-7yx"/>
-                                                <constraint firstItem="9fG-5p-5av" firstAttribute="top" secondItem="9Oa-QR-Q7K" secondAttribute="bottom" constant="5" id="bXX-f3-p4T"/>
+                                                <constraint firstItem="9fG-5p-5av" firstAttribute="top" secondItem="9Oa-QR-Q7K" secondAttribute="bottom" constant="3.5" id="bXX-f3-p4T"/>
                                                 <constraint firstItem="BqW-uR-Y3q" firstAttribute="trailing" secondItem="ShN-Xc-cM0" secondAttribute="trailingMargin" id="d9u-cW-Hih"/>
                                                 <constraint firstAttribute="trailing" secondItem="fKY-OC-teG" secondAttribute="trailing" id="mED-S4-K1R"/>
                                                 <constraint firstItem="9Oa-QR-Q7K" firstAttribute="top" secondItem="BqW-uR-Y3q" secondAttribute="bottom" constant="3.5" id="n6t-d9-H7U"/>
@@ -307,13 +306,13 @@
                         <outlet property="locationLabel" destination="hJH-21-dTM" id="2Vn-oM-ZSc"/>
                         <outlet property="messageButton" destination="QI0-tf-8vJ" id="YyA-fO-xXw"/>
                         <outlet property="nameLabel" destination="FTm-l8-6pw" id="5Pq-DJ-bwv"/>
-                        <outlet property="profileImageView" destination="yjw-xv-0m7" id="iU4-ui-61e"/>
+                        <outlet property="profileImageView" destination="7ZY-IH-5gU" id="Eui-N8-EGO"/>
                         <outlet property="statsStackView" destination="fKY-OC-teG" id="QFW-Yp-P8M"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm5-7I-awE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652" y="-3202"/>
+            <point key="canvasLocation" x="2652" y="-3174"/>
         </scene>
         <!--Name View Controller-->
         <scene sceneID="ggf-bo-RHZ">
@@ -467,7 +466,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FbI-Cr-ZU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3087.1999999999998" y="-251.42428785607197"/>
+            <point key="canvasLocation" x="-156" y="-922"/>
         </scene>
         <!--Log In-->
         <scene sceneID="tne-QT-ifu">
@@ -678,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1183" y="-1583"/>
+            <point key="canvasLocation" x="577" y="-1833"/>
         </scene>
         <!--QNectCode-->
         <scene sceneID="pRo-Qi-AmD">
@@ -726,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15m-ki-hfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.5999999999999" y="-4252.6236881559225"/>
+            <point key="canvasLocation" x="4023" y="-3724"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -807,7 +806,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1W-3F-bgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.62318840579712" y="-1755.163043478261"/>
+            <point key="canvasLocation" x="-231" y="-1833"/>
         </scene>
         <!--Connections View Controller-->
         <scene sceneID="Y5e-LO-eV9">
@@ -869,7 +868,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJ5-Lv-FKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5018" y="-1976"/>
+            <point key="canvasLocation" x="5359" y="-3027"/>
         </scene>
         <!--QNect-->
         <scene sceneID="V5d-OM-RjA">
@@ -1197,7 +1196,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEL-ao-Pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="-2309"/>
+            <point key="canvasLocation" x="2909" y="-4054"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zbO-VV-lsY">
@@ -1333,7 +1332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HiI-bj-fBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="-240.62968515742131"/>
+            <point key="canvasLocation" x="577" y="-910"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="AWQ-Id-adX">
@@ -1451,7 +1450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oG-H0-r8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4562.3999999999996" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="1321" y="-913"/>
         </scene>
         <!--Email View Controller-->
         <scene sceneID="qgY-Bg-ZgG">
@@ -1558,7 +1557,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8I-B5-wBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5359.1999999999998" y="-241.52923538230885"/>
+            <point key="canvasLocation" x="2116" y="-912"/>
         </scene>
         <!--Profile Info Table View Controller-->
         <scene sceneID="vx8-R6-MEH">
@@ -1852,7 +1851,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baN-L2-RU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6039.1999999999998" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="2796" y="-913"/>
         </scene>
         <!--Accounts View Controller-->
         <scene sceneID="GWI-6J-q7I">
@@ -1940,7 +1939,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Allow QNect to access your contacts to easily import new connections" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF8-tf-3mA" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
-                                                        <rect key="frame" x="61" y="45" width="262" height="62"/>
+                                                        <rect key="frame" x="48.5" y="45" width="274.5" height="62"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="62" id="fXi-zb-1uJ"/>
                                                         </constraints>
@@ -1948,8 +1947,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="contact_logo" translatesAutoresizingMaskIntoConstraints="NO" id="p6d-Ne-R3W">
-                                                        <rect key="frame" x="8" y="55" width="39" height="42"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p6d-Ne-R3W">
+                                                        <rect key="frame" x="8" y="55" width="26.5" height="42"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="42" id="EDX-l0-u8L"/>
                                                         </constraints>
@@ -2065,7 +2064,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="755-3a-iD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6688.8000000000002" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="3447" y="-913"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VTL-Qj-kac">
@@ -2083,14 +2082,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rsa-0G-pUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="-3019"/>
+            <point key="canvasLocation" x="3594" y="-3026"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ILp-FE-fbf">
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2101,14 +2100,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWU-tf-Jdq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="-1888"/>
+            <point key="canvasLocation" x="4668" y="-3019"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="to2-Y7-xl2">
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2142,7 +2141,6 @@
     </scenes>
     <resources>
         <image name="call_button" width="43" height="43"/>
-        <image name="contact_logo" width="39" height="42"/>
         <image name="email_button" width="43" height="43"/>
         <image name="headshot.jpg" width="253" height="253"/>
         <image name="message_button" width="43" height="43"/>

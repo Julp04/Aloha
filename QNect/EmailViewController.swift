@@ -100,7 +100,7 @@ class EmailViewController: UIViewController {
                     }
                     
 
-                    QnUtility.setUserInfo(userInfo: self.userInfo!)
+                    QnClient.sharedInstance.setUserInfo(userInfo: self.userInfo!)
                     FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
                         
                         guard error == nil else {

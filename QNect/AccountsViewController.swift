@@ -181,7 +181,7 @@ class AccountsViewController: UIViewController {
         self.twitterButton.isEnabled = false
         self.twitterButton.animationDidStartClosure = {_ in
             
-            QnUtility.currentUser {user in
+            QnClient.sharedInstance.currentUser {user in
                 self.twitterTitleLabel.text = user.twitterScreenName!
             }
             self.twitterImageView.tintColor = .white
