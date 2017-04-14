@@ -466,7 +466,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FbI-Cr-ZU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3087.1999999999998" y="-251.42428785607197"/>
+            <point key="canvasLocation" x="-156" y="-922"/>
         </scene>
         <!--Log In-->
         <scene sceneID="tne-QT-ifu">
@@ -677,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1183" y="-1583"/>
+            <point key="canvasLocation" x="577" y="-1833"/>
         </scene>
         <!--QNectCode-->
         <scene sceneID="pRo-Qi-AmD">
@@ -725,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15m-ki-hfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.5999999999999" y="-4252.6236881559225"/>
+            <point key="canvasLocation" x="4023" y="-3724"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -752,7 +752,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ8-fX-ZV8">
-                                <rect key="frame" x="-4" y="624" width="192" height="43"/>
+                                <rect key="frame" x="-4" y="624" width="191.5" height="43"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="rdu-Jl-eBq"/>
@@ -766,7 +766,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC1-zz-Z7L">
-                                <rect key="frame" x="188" y="624" width="191" height="43"/>
+                                <rect key="frame" x="187.5" y="624" width="191.5" height="43"/>
                                 <color key="backgroundColor" red="0.23827278796680285" green="0.028901109920143744" blue="0.41313184212639698" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="SIGN UP">
@@ -806,7 +806,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1W-3F-bgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.62318840579712" y="-1755.163043478261"/>
+            <point key="canvasLocation" x="-231" y="-1833"/>
         </scene>
         <!--Connections View Controller-->
         <scene sceneID="Y5e-LO-eV9">
@@ -868,7 +868,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJ5-Lv-FKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5018" y="-1976"/>
+            <point key="canvasLocation" x="5359" y="-3027"/>
         </scene>
         <!--QNect-->
         <scene sceneID="V5d-OM-RjA">
@@ -1196,14 +1196,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEL-ao-Pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="-2309"/>
+            <point key="canvasLocation" x="2909" y="-4054"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zbO-VV-lsY">
             <objects>
                 <navigationController storyboardIdentifier="OnboardVC" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1332,7 +1332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HiI-bj-fBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="-240.62968515742131"/>
+            <point key="canvasLocation" x="577" y="-910"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="AWQ-Id-adX">
@@ -1450,7 +1450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oG-H0-r8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4562.3999999999996" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="1321" y="-913"/>
         </scene>
         <!--Email View Controller-->
         <scene sceneID="qgY-Bg-ZgG">
@@ -1557,7 +1557,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8I-B5-wBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5359.1999999999998" y="-241.52923538230885"/>
+            <point key="canvasLocation" x="2116" y="-912"/>
         </scene>
         <!--Profile Info Table View Controller-->
         <scene sceneID="vx8-R6-MEH">
@@ -1851,7 +1851,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baN-L2-RU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6039.1999999999998" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="2796" y="-913"/>
         </scene>
         <!--Accounts View Controller-->
         <scene sceneID="GWI-6J-q7I">
@@ -2064,14 +2064,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="755-3a-iD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6688.8000000000002" y="-242.42878560719643"/>
+            <point key="canvasLocation" x="3447" y="-913"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VTL-Qj-kac">
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2100,7 +2100,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWU-tf-Jdq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="-1888"/>
+            <point key="canvasLocation" x="4668" y="-3019"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="to2-Y7-xl2">
