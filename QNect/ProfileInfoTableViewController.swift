@@ -73,7 +73,7 @@ class ProfileInfoTableViewController: UITableViewController {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
-        self.profileImageView.image = ProfileImage.createProfileImage(userInfo!.firstName!, last: userInfo!.lastName!)
+        self.profileImageView.image = ProfileImageCreator.create(userInfo!.firstName!, last: userInfo!.lastName!)
         
         self.tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.clear
@@ -141,7 +141,7 @@ class ProfileInfoTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         let removePhotoAction = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
-            self.profileImageView.image = ProfileImage.createProfileImage(self.userInfo!.firstName!, last: self.userInfo!.lastName!)
+            self.profileImageView.image = ProfileImageCreator.create(self.userInfo!.firstName!, last: self.userInfo!.lastName!)
         }
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {

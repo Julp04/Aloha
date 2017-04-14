@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable
 class ProfileImageView: UIView {
-    
 
     var borderColor: UIColor = .white
     @IBInspectable var image: UIImage? {
@@ -53,10 +52,7 @@ class ProfileImageView: UIView {
         layer.borderWidth = 2.0
     }
     
-    
-    
     @objc private func buttonClick() {
         onClick()
     }
-
 }

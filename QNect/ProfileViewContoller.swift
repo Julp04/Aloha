@@ -238,7 +238,7 @@ class ProfileViewContoller: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         let removePhotoAction = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
-            self.profileImageView.image = ProfileImage.createProfileImage(self.user.firstName!, last: self.user.lastName!)
+            self.profileImageView.image = ProfileImageCreator.create(self.user.firstName!, last: self.user.lastName!)
         }
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {

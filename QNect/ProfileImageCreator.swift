@@ -9,11 +9,8 @@
 import Foundation
 import UIKit
 
-class ProfileImage
+class ProfileImageCreator
 {
-    
-    
-
     /**
     Creates a unique profile image for the user with their first and last initals.
     
@@ -22,7 +19,7 @@ class ProfileImage
     
     - returns: the profile image
     */
-    static func createProfileImage(_ first:String, last:String?) -> UIImage
+    static func create(_ first:String, last:String?) -> UIImage
     {
         let fontsize:CGFloat = 100
         let rect = CGRect(x: 0, y: 0, width: 200, height: 200)
