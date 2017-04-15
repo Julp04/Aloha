@@ -12,8 +12,6 @@ import UIKit
 
 class Snowflake: CAEmitterLayer {
     
-
-    
     //MARK: Constants
     let kParticleCount: Int = 5
     let kParticleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)

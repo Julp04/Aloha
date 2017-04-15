@@ -29,8 +29,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     let kTopConstraint:CGFloat = 10
     let kToastFontSize:CGFloat = 15
     
-    var headerCell:ContactHeaderCell?
-    
     var contactImage:UIImage?
     
     var databaseRef: FIRDatabaseReference! {
@@ -70,17 +68,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         
-
-        headerCell = tableView.dequeueReusableCell(withIdentifier: "ContactHeaderCell") as? ContactHeaderCell
-        headerCell!.callButton.isHidden = true
-        headerCell!.messageButton.isHidden = true
-        if let _ = contact?.socialPhone {
-            headerCell!.callButton.isHidden = false
-            headerCell!.messageButton.isHidden = false
-        }
-        
-        
-        
         tableView.reloadData()
     }
     
@@ -118,13 +105,10 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as! ContactCell
-            cell.nameLabel.text = contactModel!.nameForContact()
-            cell.phoneLabel.text = contactModel!.phoneNumberForContact()
-            cell.emailLabel.text = contactModel!.socialEmailForContact()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell")
             
         
-            return cell
+            return cell!
         }else {
             return UITableViewCell(frame: CGRect.zero)
         }
@@ -143,28 +127,19 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         {
         case 0:
             
-            let view  = tableView.dequeueReusableCell(withIdentifier: "ContactHeaderCell") as! ContactHeaderCell
-            view.profileImageView.layer.cornerRadius = (view.profileImageView.frame.height)/2
-            view.profileImageView.layer.borderColor = UIColor.white.cgColor
-            view.profileImageView.layer.masksToBounds = true
-            view.profileImageView.layer.borderWidth = kProfileImageBorderWidth
-            
-            
             if contact?.profileImage == nil {
                 if Reachability.isConnectedToInternet() {
                     QnClient.sharedInstance.getProfileImageForUser(user: contact!, completion: { (profileImage, error) in
                         if error != nil {
                             print(error!)
                         }else {
-                            view.profileImageView.image = profileImage
+                            
                         }
                     })
                 }
             }else {
-               view.profileImageView.image = contact?.profileImage
+               
             }
-            
-            
             
             
             return view
@@ -256,10 +231,6 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
                 
             }
         }
-        
-       
-        
-       
     }
     
     func sendMessage()

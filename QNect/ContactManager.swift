@@ -16,7 +16,6 @@ class ContactManager
 {
     var store = CNContactStore()
     
-    
     func requestAccessToContacts(completion:@escaping ((_ accessGranted: Bool) -> Void))
     {
         switch CNContactStore.authorizationStatus(for: .contacts){
@@ -72,13 +71,20 @@ class ContactManager
             contact.imageData = data
         }
         
-        
-        //birthday
-//        let birthday = NSDateComponents()
-//        birthday.year = 1980
-//        birthday.month = 9
-//        birthday.day = 27
-//        fooBar.birthday = birthday
+        //Set Birthday
+        if let connectionBirthDay = connection.birthdate?.asDate() {
+            let calendar = Calendar.current
+            let year = calendar.component(.year, from: connectionBirthDay)
+            let month = calendar.component(.month, from: connectionBirthDay)
+            let day = calendar.component(.day, from: connectionBirthDay)
+            
+            var birthday = DateComponents()
+            birthday.year = year
+            birthday.month = month
+            birthday.day = day
+            
+            contact.birthday = birthday
+        }
         
         //Save Contact
         let request = CNSaveRequest()

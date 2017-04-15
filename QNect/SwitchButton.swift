@@ -140,8 +140,6 @@ class SwitchButton: UIView {
         unShrink()
     }
     
-    
-
     internal func shrink()
     {
         UIView.animate(withDuration: 0.5) {
