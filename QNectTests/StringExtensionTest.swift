@@ -9,11 +9,11 @@
 import XCTest
 @testable import QNect
 
-class QNectTests: XCTestCase {
+class StringExtensionTest: XCTestCase {
     
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
@@ -21,9 +21,14 @@ class QNectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAsDateWorks() {
+        let actualBirthdate = "10-09-1993".asDate()
+        
+        let calendar = Calendar.current
+        let components = DateComponents(calendar: calendar, timeZone: nil, era: nil, year: 1993, month: 10, day: 09, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        let expectedDate = calendar.date(from: components)
+        
+        XCTAssertEqual(expectedDate, actualBirthdate)
     }
     
     func testPerformanceExample() {
