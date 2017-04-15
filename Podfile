@@ -39,6 +39,10 @@ target 'QNect' do
     allPods
 end
 
+target 'QNectTests' do
+    pod 'Firebase'
+end
+
 target 'QNect dev' do
     allPods
 end
