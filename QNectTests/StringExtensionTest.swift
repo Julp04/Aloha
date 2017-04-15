@@ -31,6 +31,41 @@ class StringExtensionTest: XCTestCase {
         XCTAssertEqual(expectedDate, actualBirthdate)
     }
     
+    func testIsValidEmailWorks() {
+        var correctEmail = "julpanucci@gmail.com"
+        XCTAssertTrue(correctEmail.isValidEmail)
+        
+        correctEmail = "julpanucci@qnect.org"
+        XCTAssertTrue(correctEmail.isValidEmail)
+        
+        var incorrectEmail = "ajkajfkajfkajf"
+        XCTAssertFalse(incorrectEmail.isValidEmail)
+        
+        incorrectEmail = "julpanucci@.com"
+        XCTAssertFalse(incorrectEmail.isValidEmail)
+        
+        incorrectEmail = "jkjkajka.com"
+        XCTAssertFalse(incorrectEmail.isValidEmail)
+    }
+    
+    func testIsValidPasswordWorks() {
+        let tooShort = "hey1"
+        XCTAssertFalse(tooShort.isValidPassword)
+        
+        let noUppercase = "kajfkajfkajkfjak23"
+        XCTAssertFalse(noUppercase.isValidPassword)
+        
+        let noLowercase = "FJAFJJFAJG1"
+        XCTAssertFalse(noLowercase.isValidPassword)
+        
+        let tooLong = "thispasswordisDefinitelyTooLongButHasUppercaseAndLowercase"
+        XCTAssertFalse(tooLong.isValidPassword)
+        
+        let perfect = "Julian34"
+        XCTAssertTrue(perfect.isValidPassword)
+        
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
