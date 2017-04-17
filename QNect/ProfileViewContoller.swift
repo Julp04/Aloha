@@ -209,9 +209,16 @@ class ProfileViewContoller: UITableViewController {
     //MARK: Functionality
     
     func editProfile() {
-        //todo:Segue to editProfileViewController
+        let editProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        editProfileViewController.configureViewController(edittingInfo: true)
         
+        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
+        navigationController.setViewControllers([editProfileViewController], animated: true)
+
         
+        //todo: Custom transition, status bar should be black
+        present(navigationController, animated: true, completion: nil)
+
     }
     
     func editProfileImage() {

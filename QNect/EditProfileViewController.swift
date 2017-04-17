@@ -79,7 +79,12 @@ class EditProfileViewController: UITableViewController {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
-        self.profileImageView.image = ProfileImageCreator.create(userInfo!.firstName!, last: userInfo!.lastName!)
+        
+        if let userInfo = userInfo {
+            self.profileImageView.image = ProfileImageCreator.create(userInfo.firstName!, last: userInfo.lastName!)
+        }else {
+            self.profileImageView.image = QnClient.sharedInstance.getProfileImageForCurrentUser()
+        }
         profileImageView.onClick = {
             self.editProfileImage()
         }
@@ -138,6 +143,7 @@ class EditProfileViewController: UITableViewController {
     func saveInfo() {
         //todo: Save and update user info
         print("Saving user info...")
+        dismiss(animated: true, completion: nil)
     }
     
     func continueSignup()
@@ -162,7 +168,7 @@ class EditProfileViewController: UITableViewController {
     
     func editProfileImage()
     {
-        let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Edit Profile Image", message: nil, preferredStyle: .actionSheet)
         
         let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
             self.imagePicker.allowsEditing = false

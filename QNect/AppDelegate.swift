@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
             self.window?.rootViewController = mainVCNav
         }else {
-            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC")
+            let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController")
             
             self.window!.rootViewController = tutorialVC
         }
