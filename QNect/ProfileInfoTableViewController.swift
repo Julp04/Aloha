@@ -16,10 +16,18 @@ class ProfileInfoTableViewController: UITableViewController {
     //MARK: Properties
     
     var userInfo: UserInfo?
+    var edittingInfo = false
     override var prefersStatusBarHidden: Bool {
         return true
     }
     let imagePicker = UIImagePickerController()
+    var continueButton: UIBarButtonItem! {
+        didSet {
+            continueButton.isEnabled = false
+            continueButton.tintColor = .clear
+        }
+    }
+    var saveButton: UIBarButtonItem!
    
     //MARK: Outlets
     
@@ -33,7 +41,7 @@ class ProfileInfoTableViewController: UITableViewController {
             phoneField.delegate = self
         }
     }
-    @IBOutlet weak var profileImageView: UIImageView! {
+    @IBOutlet weak var profileImageView: ProfileImageView! {
         didSet {
             profileImageView.backgroundColor = UIColor.clear
             profileImageView.layer.cornerRadius = 50.0
@@ -42,21 +50,14 @@ class ProfileInfoTableViewController: UITableViewController {
             profileImageView.layer.masksToBounds = true
         }
     }
-    @IBOutlet weak var continueButton: UIBarButtonItem! {
-        didSet {
-            continueButton.isEnabled = false
-            continueButton.tintColor = UIColor.clear
-        }
-    }
+   
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var skipButton: UIBarButtonItem!
+    @IBOutlet weak var continueAndSaveButton: UIBarButtonItem!
     
     //MARK: Actions
     
-    @IBAction func addProfileImage(_ sender: Any) {
-        addProfileImage()
-    }
-    @IBAction func continueAction(_ sender: Any) {
-        continueSignup()
-    }
     @IBAction func skipAction(_ sender: Any) {
         skip()
     }
@@ -66,6 +67,11 @@ class ProfileInfoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(ProfileInfoTableViewController.saveInfo))
+        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(ProfileInfoTableViewController.continueSignup))
+    
+        
         #if UI
             self.userInfo = UserInfo.testUser
         #endif
@@ -74,6 +80,9 @@ class ProfileInfoTableViewController: UITableViewController {
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
         self.profileImageView.image = ProfileImageCreator.create(userInfo!.firstName!, last: userInfo!.lastName!)
+        profileImageView.onClick = {
+            self.editProfileImage()
+        }
         
         self.tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.clear
@@ -82,6 +91,8 @@ class ProfileInfoTableViewController: UITableViewController {
         
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        
+        setupViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,11 +100,44 @@ class ProfileInfoTableViewController: UITableViewController {
     }
     
     
-    //MARK: Functionality
+    //MARK: Setup
+    
+    func setupViewController() {
+        if edittingInfo {
+            titleLabel.text = "Edit Profile"
+            descriptionLabel.isHidden = true
+            skipButton.isEnabled = false
+            skipButton.tintColor = UIColor.clear
+           
+            navigationItem.rightBarButtonItem = saveButton
+            //todo: Populate fields for what they have already entered
+        }else {
+            titleLabel.text = "Profile Info"
+            descriptionLabel.isHidden = false
+            skipButton.isEnabled = true
+            skipButton.tintColor = UIColor.qnPurple
+            navigationItem.leftBarButtonItem = skipButton
+            navigationItem.rightBarButtonItem = continueButton
+        }
+    }
     
     func configureViewController(userInfo:UserInfo)
     {
         self.userInfo = userInfo
+    }
+    
+    func configureViewController(edittingInfo: Bool) {
+        //If the user has already signed up then they can edit their info in this controller as well, so editting info will be true
+        
+        //If the user is signing up and is the first time on this screen edittign info will be false
+        
+        self.edittingInfo = edittingInfo
+    }
+    
+    //MARK: Functionality
+    func saveInfo() {
+        //todo: Save and update user info
+        print("Saving user info...")
     }
     
     func continueSignup()
@@ -116,7 +160,7 @@ class ProfileInfoTableViewController: UITableViewController {
     
     //MARK: User Interaction
     
-    func addProfileImage()
+    func editProfileImage()
     {
         let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
         
@@ -226,4 +270,5 @@ extension ProfileInfoTableViewController: RSKImageCropViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
+
 
