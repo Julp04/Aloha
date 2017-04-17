@@ -35,7 +35,7 @@
 		14855D981E64901300794587 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D9B1E64903A00794587 /* EmailViewController.swift */; };
-		149D1DDF1E747F8000254601 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */; };
+		149D1DDF1E747F8000254601 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* EditProfileViewController.swift */; };
 		14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
 		14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
 		14AE14231E7F4EFE0035789E /* SnowFlake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE14201E7F4EFE0035789E /* SnowFlake.swift */; };
@@ -69,7 +69,7 @@
 		14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
 		14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
-		14CCB6B61E7C0FB4004B1C3C /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */; };
+		14CCB6B61E7C0FB4004B1C3C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* EditProfileViewController.swift */; };
 		14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
@@ -111,7 +111,7 @@
 		14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
 		14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		14EC7AA01E74F27300B3C4E8 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
-		14EC7AA11E74F27300B3C4E8 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */; };
+		14EC7AA11E74F27300B3C4E8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* EditProfileViewController.swift */; };
 		14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
@@ -197,7 +197,7 @@
 		14855D971E64901300794587 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
 		14855D991E64902500794587 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		14855D9B1E64903A00794587 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
-		149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoTableViewController.swift; sourceTree = "<group>"; };
+		149D1DDD1E747F8000254601 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		14AE14201E7F4EFE0035789E /* SnowFlake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowFlake.swift; sourceTree = "<group>"; };
 		14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
 		14B224A21E8AA7D90027CBA8 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 				14F78E8E1E8C5D1800A3D169 /* ProfileViewContoller.swift */,
 				14B224A21E8AA7D90027CBA8 /* MainController.swift */,
 				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
-				149D1DDD1E747F8000254601 /* ProfileInfoTableViewController.swift */,
+				149D1DDD1E747F8000254601 /* EditProfileViewController.swift */,
 				14855D951E64900600794587 /* NameViewController.swift */,
 				14855D971E64901300794587 /* UsernameViewController.swift */,
 				14855D991E64902500794587 /* PasswordViewController.swift */,
@@ -950,7 +950,7 @@
 				14F78E911E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */,
 				14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */,
-				14CCB6B61E7C0FB4004B1C3C /* ProfileInfoTableViewController.swift in Sources */,
+				14CCB6B61E7C0FB4004B1C3C /* EditProfileViewController.swift in Sources */,
 				14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */,
 				14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */,
 				14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */,
@@ -1000,7 +1000,7 @@
 				14F78E901E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */,
 				14EC7AA01E74F27300B3C4E8 /* ConnectionCell.swift in Sources */,
-				14EC7AA11E74F27300B3C4E8 /* ProfileInfoTableViewController.swift in Sources */,
+				14EC7AA11E74F27300B3C4E8 /* EditProfileViewController.swift in Sources */,
 				14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */,
 				14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */,
 				14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */,
@@ -1050,7 +1050,7 @@
 				14F78E8F1E8C5D1800A3D169 /* ProfileViewContoller.swift in Sources */,
 				148522371EA153DD00F0BDC4 /* String+Extension.swift in Sources */,
 				B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */,
-				149D1DDF1E747F8000254601 /* ProfileInfoTableViewController.swift in Sources */,
+				149D1DDF1E747F8000254601 /* EditProfileViewController.swift in Sources */,
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnClient.swift in Sources */,

@@ -1559,10 +1559,10 @@
             </objects>
             <point key="canvasLocation" x="2116" y="-912"/>
         </scene>
-        <!--Profile Info Table View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="vx8-R6-MEH">
             <objects>
-                <tableViewController id="nJ0-dh-6ow" customClass="ProfileInfoTableViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileViewController" id="nJ0-dh-6ow" customClass="EditProfileViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CQq-ci-zup">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

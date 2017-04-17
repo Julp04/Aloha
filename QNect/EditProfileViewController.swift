@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import IQKeyboardManagerSwift
 import RSKImageCropper
 
-class ProfileInfoTableViewController: UITableViewController {
+class EditProfileViewController: UITableViewController {
 
     //MARK: Properties
     
@@ -68,8 +68,8 @@ class ProfileInfoTableViewController: UITableViewController {
         super.viewDidLoad()
         
 
-        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(ProfileInfoTableViewController.saveInfo))
-        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(ProfileInfoTableViewController.continueSignup))
+        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(EditProfileViewController.saveInfo))
+        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(EditProfileViewController.continueSignup))
     
         
         #if UI
@@ -211,7 +211,7 @@ class ProfileInfoTableViewController: UITableViewController {
 
 
 
-extension ProfileInfoTableViewController: UITextFieldDelegate {
+extension EditProfileViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -239,7 +239,7 @@ extension ProfileInfoTableViewController: UITextFieldDelegate {
     }
 }
 
-extension ProfileInfoTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
     {
@@ -257,7 +257,7 @@ extension ProfileInfoTableViewController: UIImagePickerControllerDelegate, UINav
     }
 }
 
-extension ProfileInfoTableViewController: RSKImageCropViewControllerDelegate {
+extension EditProfileViewController: RSKImageCropViewControllerDelegate {
     
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
     
