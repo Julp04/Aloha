@@ -215,7 +215,8 @@ class ProfileViewContoller: UITableViewController {
         let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
         navigationController.setViewControllers([editProfileViewController], animated: true)
 
-        
+        //todo: Memory is bad here, editProfileController persists and never removes
+
         //todo: Custom transition, status bar should be black
         present(navigationController, animated: true, completion: nil)
 
