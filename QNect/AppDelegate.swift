@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     Defaults.synchronize()
                     
                     
-                    let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardVC") as! UINavigationController
+                    let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
                     
                     self.window!.rootViewController? = onboardNav
           
