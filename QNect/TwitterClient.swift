@@ -144,29 +144,23 @@ class TwitterClient {
         ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
             
-            ref.child("accounts").child("twitter").child(user.twitterScreenName!).observeSingleEvent(of: .value, with: { (twitterSnap) in
-                
-                let snapshotValue = twitterSnap.value as! [String: AnyObject]
-                
-                let token = snapshotValue["token"] as! String
-                let tokenSecret = snapshotValue["tokenSecret"] as! String
-                
-                let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
-                
-                
-                _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
-                    let json = try? response.jsonObject()
-                    print(json!)
+            guard let twitterAccount = user.twitterAccount else {
+                return
+            }
+            let token = twitterAccount.token
+            let tokenSecret = twitterAccount.tokenSecret
+            
+            let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+            
+            _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
+                let json = try? response.jsonObject()
+                print(json!)
                     
                     completion(nil)
                 }, failure: { (error) in
                     completion(error)
                 })
-                
-            })
-            
         })
-        
     }
     
     

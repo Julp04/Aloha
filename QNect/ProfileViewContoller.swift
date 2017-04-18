@@ -118,6 +118,14 @@ class ProfileViewContoller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        TwitterClient.client.isUserLinkedWithTwitter { (userLinkedWithTwitter) in
+            print(userLinkedWithTwitter)
+        }
+        
+        TwitterClient.client.followUserWith(screenName: "qnect") { (error) in
+            print(error)
+        }
+        
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
     

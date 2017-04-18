@@ -18,6 +18,8 @@ class ProfileManager {
     
     private func numberOfLinkedAccounts() -> Int {
         
+       return 1
+        
     }
     
     

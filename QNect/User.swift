@@ -13,32 +13,26 @@ import FirebaseStorage
 import UIKit
 
 
-
+enum AccountsIdentifiers: String {
+    case twitter = "twitter"
+    
+    static let allIdentifiers = [twitter]
+}
 
 class Account {
-    var key: String
-    var ref: FIRDatabaseReference
-    var screenName:String?
-    var token:String
-    var refreshToken:String
+    var screenName: String
+    var token: String
+    var tokenSecret: String
+    var identifier: AccountsIdentifiers
     
-    init(snapshot:FIRDataSnapshot)
+    init(accountDetails: NSDictionary, identifier: AccountsIdentifiers)
     {
-        let values = snapshot.value as! NSDictionary
-        
-        self.key = snapshot.key
-        self.ref = snapshot.ref
-        self.screenName = values["screenName"] as? String
-        self.token = values["token"] as! String
-        self.refreshToken = values["refreshToken"] as! String
+        self.screenName = accountDetails["screenName"] as! String
+        self.token = accountDetails["token"] as! String
+        self.tokenSecret = accountDetails["tokenSecret"] as! String
+        self.identifier = identifier
     }
 }
-
-class TwitterAccount: Account {
-    
-    
-}
-
 
 class User
 {
@@ -49,10 +43,12 @@ class User
     var lastName: String!
     var socialPhone: String?
     var socialEmail: String?
-    var twitterScreenName:String?
     var location: String?
     var birthdate: String?
     var about: String?
+    
+    private var accounts: [Account]?
+    var twitterAccount: Account?
     
     var ref: FIRDatabaseReference?
     var key: String?
@@ -71,19 +67,43 @@ class User
         self.lastName = values["lastName"] as! String
         self.socialEmail = values["socialEmail"] as? String
         self.socialPhone = values["socialPhone"] as? String
-        self.twitterScreenName = values["twitterScreenName"] as? String
         self.birthdate = values["birthDate"] as? String
         
+        if let accountsDict = values["accounts"] as? NSDictionary {
+            self.accounts = parseAccountsDict(accountsDict: accountsDict)
+        }
         
         self.uid = values["uid"] as! String
         self.email = values["email"] as! String
         
         self.key = snapshot.key
         self.ref = snapshot.ref
+        
+        setAccounts()
+    }
+    
+    private func parseAccountsDict(accountsDict: NSDictionary) -> [Account] {
+        var accounts = [Account]()
+        
+        for identifier in AccountsIdentifiers.allIdentifiers {
+            if let details = accountsDict[identifier.rawValue] as? NSDictionary {
+                let account = Account(accountDetails: details, identifier: identifier)
+                accounts.append(account)
+            }
+        }
+        
+        return accounts
+    }
+    
+    private func setAccounts() {
+        self.twitterAccount = accounts?.filter { $0.identifier == . twitter}.first
+        
+        //Add other accounts 
+        
     }
     
     
-    init(username: String, firstName: String, lastName: String, socialEmail: String?, socialPhone: String?, uid:String, email: String, twitterScreenName: String?, birthdate: String?, location: String?) {
+    init(username: String, firstName: String, lastName: String, socialEmail: String?, socialPhone: String?, uid:String, email: String, birthdate: String?, location: String?) {
         
         self.username = username
         self.firstName = firstName
@@ -92,7 +112,7 @@ class User
         self.socialPhone = socialPhone
         self.uid = uid
         self.email = email
-        self.twitterScreenName = twitterScreenName
+        
         
         self.birthdate = birthdate
         self.location = location
