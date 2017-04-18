@@ -1,0 +1,6 @@
+framework module Pods_QNectTests {
+  umbrella header "Pods-QNectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
