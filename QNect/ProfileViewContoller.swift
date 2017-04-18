@@ -21,6 +21,11 @@ class ProfileViewContoller: UITableViewController {
     let kHeaderFontSize: CGFloat = 13.0
     let kHeaderFontName = "Futura"
     
+    let collectionTopInset: CGFloat = 0
+    let collectionBottomInset: CGFloat = 0
+    let collectionLeftInset: CGFloat = 10
+    let collectionRightInset: CGFloat = 10
+    
     
     //MARK: Properties
     var displayCurrentUserProfile = true
@@ -42,6 +47,7 @@ class ProfileViewContoller: UITableViewController {
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var statsStackView: UIStackView!
+    @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
     
     
@@ -112,6 +118,10 @@ class ProfileViewContoller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        accountsCollectionView.dataSource = self
+        accountsCollectionView.delegate = self
+    
+        
         displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
         
         
@@ -142,7 +152,7 @@ class ProfileViewContoller: UITableViewController {
             return profileHeight
         }
         
-        return 50
+        return 125
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -175,7 +185,7 @@ class ProfileViewContoller: UITableViewController {
     func calculateProfileViewHeight() -> CGFloat
     {
         let y = statsStackView.frame.origin.y
-        let finalPosition = y + statsStackView.frame.size.height
+        let finalPosition = y
         
         return finalPosition
     }
@@ -278,10 +288,64 @@ class ProfileViewContoller: UITableViewController {
     func emailUser() {
         
     }
+}
 
+extension ProfileViewContoller: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 150.0, height: 100.0)
+        
+        
+        let newButton = SwitchButton(frame: buttonFrame, onTintColor: .green, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add Contact")
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
+        
+        cell.contentView.addSubview(newButton)
+        
+        cell.backgroundColor = UIColor.clear
+        
+        return cell
+    }
+
+    
+}
+
+extension ProfileViewContoller: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tableViewCellHeight: CGFloat = tableView.rowHeight
+        let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
+        let collectionViewHeight: CGFloat = collectionItemWidth
+        
+        return CGSize(width: 150.0, height: 100.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 
 }
 
+extension ProfileViewContoller: UICollectionViewDelegate {
+    
+}
 
 extension ProfileViewContoller: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

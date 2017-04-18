@@ -15,6 +15,9 @@
 		1418C0021EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
 		1418C0031EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
 		1418C0041EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
+		1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
+		1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
+		1418C0241EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
@@ -48,9 +51,6 @@
 		14B224A51E8AA7D90027CBA8 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A21E8AA7D90027CBA8 /* MainController.swift */; };
 		14B224A61E8AABD20027CBA8 /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */; };
 		14B224A71E8AABD30027CBA8 /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */; };
-		14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
-		14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
-		14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC66721E856C5B00C49B34 /* SwitchButton.swift */; };
 		14CCB6971E7C0FB4004B1C3C /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		14CCB6981E7C0FB4004B1C3C /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		14CCB6991E7C0FB4004B1C3C /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
@@ -188,6 +188,7 @@
 		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +208,6 @@
 		14B224A21E8AA7D90027CBA8 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		14CC666E1E85670B00C49B34 /* Pods_QNect_dev.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect_dev.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect_dev.framework"; sourceTree = "<group>"; };
 		14CC666F1E85670B00C49B34 /* Pods_QNect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_QNect.framework; path = "../../Library/Developer/Xcode/DerivedData/QNect-flxuhfguimfibtfznyfhdwcdlrso/Build/Products/Debug-iphonesimulator/Pods_QNect.framework"; sourceTree = "<group>"; };
-		14CC66721E856C5B00C49B34 /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		14CCB6D31E7C0FB4004B1C3C /* QNect dev-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QNect dev-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
@@ -408,11 +408,11 @@
 		B964AEAB1DBA74E300A0162E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1418C0211EA6728800C5538F /* SwitchButton.swift */,
 				142163481E8ED4C600CF6FF4 /* GradientView.swift */,
 				14F78E871E8C530E00A3D169 /* ProfileImageView.swift */,
 				14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */,
 				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
-				14CC66721E856C5B00C49B34 /* SwitchButton.swift */,
 				B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */,
 				B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */,
 				B90968D51DCFC83200B73662 /* ConnectionCell.swift */,
@@ -941,8 +941,8 @@
 				14CCB6A31E7C0FB4004B1C3C /* OnboardViewController.swift in Sources */,
 				148522391EA153DD00F0BDC4 /* String+Extension.swift in Sources */,
 				14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */,
-				14CC66751E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
+				1418C0241EA6728800C5538F /* SwitchButton.swift in Sources */,
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
 				14B224A51E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */,
@@ -992,8 +992,8 @@
 				14EC7A8F1E74F27300B3C4E8 /* OnboardViewController.swift in Sources */,
 				148522381EA153DD00F0BDC4 /* String+Extension.swift in Sources */,
 				14EC7A931E74F27300B3C4E8 /* User.swift in Sources */,
-				14CC66741E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
+				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
@@ -1043,8 +1043,8 @@
 				1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */,
 				1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
-				14CC66731E856C5B00C49B34 /* SwitchButton.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
+				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,

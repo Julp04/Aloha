@@ -11,13 +11,17 @@ import UIKit
 @IBDesignable
 class SwitchButton: UIView {
     
+    
+    //MARK:Constants
+    let kLabelHeight: CGFloat = 21.0
+    
 
     //MARK: Inspectables
-    @IBInspectable var cornerRadius: CGFloat = 0.0
+    @IBInspectable var cornerRadius: CGFloat = 20.0
     @IBInspectable var shadow: CGFloat = 0.0
     @IBInspectable open var duration: Double = 0.5
     @IBInspectable var onTintColor: UIColor = .blue
-    @IBInspectable fileprivate var isOn = false
+    @IBInspectable var isOn = false
     
     fileprivate var shape: CAShapeLayer! = CAShapeLayer()
     
@@ -25,6 +29,7 @@ class SwitchButton: UIView {
     private var startShape: CGPath!
     private var endShape: CGPath!
     private var button: UIButton!
+
     
     open var animationDidStartClosure = {(onAnimation: Bool) -> Void in }
     open var animationDidStopClosure  = {(onAnimation: Bool, finished: Bool) -> Void in }
@@ -35,6 +40,39 @@ class SwitchButton: UIView {
     override func draw(_ rect: CGRect) {
         layer.cornerRadius = cornerRadius
         commonInit()
+    }
+    
+    init(frame: CGRect, onTintColor: UIColor, image: UIImage, shortText: String) {
+        super.init(frame: frame)
+        self.onTintColor = onTintColor
+        
+        //Add image view and label
+        let labelWidth = 0.575 * frame.width
+        let imageSize = 0.25 * frame.width
+        
+        let imageY = (frame.height - imageSize) / 2
+        let imageX: CGFloat = 8.0
+        
+        let labelX = labelWidth - imageSize + 10
+        
+        let imageView = UIImageView(frame: CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize))
+            imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+        
+        let label = UILabel(frame: CGRect(x: labelX, y: imageView.center.y - kLabelHeight / 2.0, width: labelWidth, height: kLabelHeight))
+        label.font = UIFont(name: "Futura", size: 22.0)
+        label.adjustsFontSizeToFitWidth = true
+        label.text = shortText
+        label.textAlignment = .center
+        label.textColor = .white
+        
+        
+        self.addSubview(imageView)
+        self.addSubview(label)
+        
+        
+        commonInit()
+        
     }
     
     init(frame: CGRect ,color: UIColor) {
@@ -67,11 +105,13 @@ class SwitchButton: UIView {
         button.addTarget(self, action: #selector(SwitchButton.shrink), for: .touchDown)
         self.addSubview(button)
         
+        
+        
         let rectBounds = CGRect(x: 0, y: 0, width: 0, height: 0)
         
         startShape = UIBezierPath(roundedRect: rectBounds, cornerRadius: 50).cgPath
         
-        let height = layer.bounds.height * 3
+        let height = layer.bounds.height * 2.5
         let width = height
         
         let x = height / -2.4 - 20
@@ -94,7 +134,8 @@ class SwitchButton: UIView {
 
     }
     
-
+    
+    
     // MARK: - Animations
     fileprivate func animateButton(toValue to: CGPath) {
         
@@ -133,23 +174,19 @@ class SwitchButton: UIView {
     
     internal func buttonAction()
     {
-        if isEnabled {
-            onClick()
-        }
-        
+        onClick()
         unShrink()
     }
     
     internal func shrink()
     {
-        UIView.animate(withDuration: 0.5) {
-            self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.5) { 
+             self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }
     }
-
-    internal func unShrink()
-    {
-        UIView.animate(withDuration: 0.5) {
+    
+    internal func unShrink() {
+        UIView.animate(withDuration: 0.5) { 
             self.transform = CGAffineTransform.identity
         }
     }
@@ -157,11 +194,11 @@ class SwitchButton: UIView {
 
 
 extension SwitchButton: CAAnimationDelegate {
-    internal func animationDidStart(_ anim: CAAnimation) {
+    func animationDidStart(_ anim: CAAnimation) {
         animationDidStartClosure(isOn)
     }
     
-    internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         animationDidStopClosure(isOn, flag)
     }
 }
