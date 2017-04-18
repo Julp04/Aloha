@@ -47,7 +47,7 @@ class User
     var birthdate: String?
     var about: String?
     
-    private var accounts: [Account]?
+    var accounts: [Account]?
     var twitterAccount: Account?
     
     var ref: FIRDatabaseReference?
