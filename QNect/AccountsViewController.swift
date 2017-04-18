@@ -113,7 +113,7 @@ class AccountsViewController: UIViewController {
   
     func setupTwitterButton()
     {
-        let twitterParticles = [#imageLiteral(resourceName: "twitter_icon")]
+        let twitterParticles = [#imageLiteral(resourceName: "twitter_on")]
         twitterWhiteFlake = Snowflake(view: twitterButton, particles: twitterParticles, color: .white)
         twitterBlueFlake = Snowflake(view: twitterButton, particles: twitterParticles, color: .twitter)
         twitterButton.layer.addSublayer(twitterBlueFlake)

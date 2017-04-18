@@ -23,7 +23,10 @@ class EmptyView: UIView {
     let kTitleLabelHeight: CGFloat = 21.0
     let kDescriptionLabelHeight: CGFloat = 70.0
     let kTitleLabelFontSize: CGFloat = 24.0
-    let kDescriptionLabelFontSize: CGFloat = 17.0
+    let kDescriptionLabelFontSize: CGFloat = 14.0
+    let kDescriptionLabelOffset: CGFloat = 16.0
+    
+    let kLabelOffset: CGFloat = 8.0
     
     var image: UIImage
     var titleText: String
@@ -69,14 +72,14 @@ class EmptyView: UIView {
         imageView.contentMode = .scaleAspectFit
         
         
-        descriptionLabel = UILabel(frame: CGRect(x: 0, y: imageView.frame.origin.y - kDescriptionLabelHeight - 8, width: frame.size.width, height: kDescriptionLabelHeight))
+        descriptionLabel = UILabel(frame: CGRect(x: kDescriptionLabelOffset, y: imageView.frame.origin.y - kDescriptionLabelHeight - kLabelOffset, width: frame.size.width - kDescriptionLabelOffset - 16.0 , height: kDescriptionLabelHeight))
         descriptionLabel.numberOfLines = 2
         descriptionLabel.font = UIFont(name: "Futura", size: kDescriptionLabelFontSize)
         descriptionLabel.textAlignment = .center
         descriptionLabel.text = descriptionText
         descriptionLabel.textColor = descriptionColor
         
-        titleLabel = UILabel(frame: CGRect(x: 0, y: descriptionLabel.frame.origin.y - kTitleLabelHeight - 8, width: frame.size.width, height: kTitleLabelHeight))
+        titleLabel = UILabel(frame: CGRect(x: 0, y: descriptionLabel.frame.origin.y - kTitleLabelHeight - kLabelOffset, width: frame.size.width, height: kTitleLabelHeight))
         titleLabel.font = UIFont(name: "Futura", size: kTitleLabelFontSize)
         titleLabel.text = titleText
         titleLabel.textAlignment = .center
