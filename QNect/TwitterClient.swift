@@ -102,7 +102,7 @@ class TwitterClient {
         
         ref.child("users").child(currentUser.uid).observeSingleEvent(of:.value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
-            if let screenName = user.twitterScreenName {
+            if let screenName = user.twitterAccount?.screenName {
             ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
                 if error != nil {
                     completion(error)
