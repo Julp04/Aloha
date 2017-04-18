@@ -8,7 +8,6 @@
 
 import UIKit
 import MessageUI
-import Cartography
 import ReachabilitySwift
 import RKDropdownAlert
 import Firebase
