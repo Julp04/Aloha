@@ -7,7 +7,6 @@ def allPods
     
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
     pod 'SwiftyJSON', '3.0.0'
-    pod 'Cartography', :git => 'https://github.com/mluisbrown/Cartography.git', :branch => 'swift3'
     pod 'ReachabilitySwift'
     
     pod 'Firebase/Core'

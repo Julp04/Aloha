@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '40F7652595B260479BD2810A7217370E'
+               BlueprintIdentifier = 'DF7A9E2A30D686A33E0C8D6AB04A445C'
                BlueprintName = 'RAMPaperSwitch'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'RAMPaperSwitch.framework'>
