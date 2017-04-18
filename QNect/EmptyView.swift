@@ -10,13 +10,6 @@ import UIKit
 
 class EmptyView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     //MARK: Constants
     let kImageViewSize: CGFloat = 200.0
@@ -47,8 +40,6 @@ class EmptyView: UIView {
             descriptionLabel.textColor = descriptionColor
         }
     }
-    
-   
     
     required init(frame: CGRect, image: UIImage, titleText: String, descriptionText: String?) {
         self.image = image
