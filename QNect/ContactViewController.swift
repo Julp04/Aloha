@@ -155,7 +155,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         if indexPath.section == 2 {
             switch indexPath.row {
             case 0:
-                if let screenName = contact?.twitterScreenName {
+                if let screenName = contact?.twitterAccount?.screenName {
                     let url = URL(string: "twitter://user?screen_name=\(screenName)")
                     UIApplication.shared.openURL(url!)
                 
@@ -215,7 +215,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func followContactOnTwitter()
     {
-        let screenName = contact!.twitterScreenName
+        let screenName = contact!.twitterAccount?.screenName
         
         
         TwitterClient.client.isUserLinkedWithTwitter { (isLinked) in

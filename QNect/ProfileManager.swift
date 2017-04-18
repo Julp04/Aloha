@@ -11,16 +11,11 @@ import Foundation
 class ProfileManager {
     
     var user: User
-    
     init(user: User) {
         self.user = user
     }
     
     private func numberOfLinkedAccounts() -> Int {
-        
-       return 1
-        
+        return user.accounts?.count ?? 0
     }
-    
-    
 }

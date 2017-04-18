@@ -18,7 +18,7 @@ class ContactModel
     {
         self.contact = contact
         
-        if let twitterScreenName = contact.twitterScreenName {
+        if let twitterScreenName = contact.twitterAccount?.screenName {
             socialAccounts["twitter"] = twitterScreenName
         }
     }
