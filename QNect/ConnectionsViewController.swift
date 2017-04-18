@@ -146,20 +146,32 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        if segmentControl.selectedSegmentIndex == 0 {
+//        if segmentControl.selectedSegmentIndex == 0 {
+//        
+//            if following == nil || following?.numberOfConnections() == 0{
+//              
+//                
+//                return 0
+//            }else {
+//                return following!.numberOfConnectionSections()
+//            }
+//        }else {
+//            if followers == nil || followers?.numberOfConnections() == 0 {
+//                return 1
+//            }else {
+//                return followers!.numberOfConnectionSections()
+//            }
+//        }
         
-            if following == nil || following?.numberOfConnections() == 0{
-                return 1
-            }else {
-                return following!.numberOfConnectionSections()
-            }
-        }else {
-            if followers == nil || followers?.numberOfConnections() == 0 {
-                return 1
-            }else {
-                return followers!.numberOfConnectionSections()
-            }
-        }
+        
+        let emptyView = UIView(frame: view.bounds)
+        let connectionsICon = #imageLiteral(resourceName: "connections_icon")
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "connections_icon"))
+        emptyView.addSubview(imageView)
+        
+        self.tableView.backgroundView = emptyView
+        
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

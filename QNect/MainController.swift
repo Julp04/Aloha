@@ -44,7 +44,6 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var contact: User!
     var qrCodeFrameView = UIImageView()
-    var rightBarButton: UIButton!
     
     
     var scannedContact = 0
@@ -101,14 +100,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     
     func createBarButtonItems() {
         //todo: add/find functionality for bar button item
-        rightBarButton = UIButton()
-        rightBarButton.setImage(#imageLiteral(resourceName: "qnect_q"), for: .normal)
-        rightBarButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
         
-        let rightItem: UIBarButtonItem = UIBarButtonItem()
-        rightItem.customView = rightBarButton
-        
-        self.navigationItem.rightBarButtonItem = rightItem
     }
     
     //MARK: Capture Session
@@ -351,7 +343,7 @@ extension MainController: PageboyViewControllerDelegate {
         case (1, 0), (0, 1):
             colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
             colorView.alpha = 1 - position.x
-            rightBarButton.alpha = position.x
+//            rightBarButton.alpha = position.x
         case (2, 1), (1, 2):
             colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
             colorView.alpha = position.x - 1
