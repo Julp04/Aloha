@@ -65,8 +65,8 @@ class TwitterClient {
                         
                         let currentUser = FIRAuth.auth()!.currentUser!
     
-                        ref.child("accounts").child("twitter").child(screenName).setValue(["token":token, "tokenSecret":tokenSecret, "phoneAccount":false])
-                        ref.child("users").child(currentUser.uid).updateChildValues(["twitterScreenName":screenName])
+                        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").setValue(["screenName": screenName, "token": token, "tokenSecret": tokenSecret])
+                        ref.child("accounts").child("twitter").setValue(["screenName": screenName])
                         
                         completion(nil)
                     }
@@ -125,7 +125,7 @@ class TwitterClient {
         let ref = FIRDatabase.database().reference()
         
         let currentUser = FIRAuth.auth()!.currentUser!
-        ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {

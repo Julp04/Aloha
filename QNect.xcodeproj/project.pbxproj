@@ -18,6 +18,9 @@
 		1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		1418C0241EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
+		1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
+		1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
+		1418C0281EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
 		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
@@ -189,6 +192,7 @@
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
+		1418C0251EA67C2F00C5538F /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				1418C0251EA67C2F00C5538F /* ProfileManager.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
 				14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */,
@@ -943,6 +948,7 @@
 				14CCB6A71E7C0FB4004B1C3C /* User.swift in Sources */,
 				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
 				1418C0241EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1418C0281EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
 				14B224A51E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				14CCB6AC1E7C0FB4004B1C3C /* LoginViewController.swift in Sources */,
@@ -994,6 +1000,7 @@
 				14EC7A931E74F27300B3C4E8 /* User.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
 				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
@@ -1045,6 +1052,7 @@
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
 				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,
