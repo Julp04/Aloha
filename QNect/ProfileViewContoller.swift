@@ -34,6 +34,7 @@ class ProfileViewContoller: UITableViewController {
     
     var profileHeight: CGFloat = 0.0
     let imagePicker = UIImagePickerController()
+    var twitterButton: SwitchButton?
     
    
     //MARK: Outlets
@@ -117,6 +118,17 @@ class ProfileViewContoller: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
+        
+        if let twitterScreenName = user.twitterAccount?.screenName {
+            twitterButton = SwitchButton(frame: buttonFrame, onTintColor: .green, image: #imageLiteral(resourceName: "twitter_on"), shortText: twitterScreenName)
+            twitterButton?.backgroundColor = UIColor.twitter.withAlphaComponent(0.5)
+            twitterButton?.onClick = {
+                self.twitterButton?.switchState()
+            }
+        }
+        
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
@@ -297,21 +309,20 @@ extension ProfileViewContoller: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 5 ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 150.0, height: 100.0)
-        
-        
-        let newButton = SwitchButton(frame: buttonFrame, onTintColor: .green, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add Contact")
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
+       
+        if indexPath.row == 0 {
+            
+            if let twitterButton = twitterButton {
+                cell.contentView.addSubview(twitterButton)
+            }
+        }
         
-        cell.contentView.addSubview(newButton)
-        
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.brown
         
         return cell
     }
@@ -330,7 +341,7 @@ extension ProfileViewContoller: UICollectionViewDelegateFlowLayout {
         let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
         let collectionViewHeight: CGFloat = collectionItemWidth
         
-        return CGSize(width: 150.0, height: 100.0)
+        return CGSize(width: 125.0, height: 75.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
