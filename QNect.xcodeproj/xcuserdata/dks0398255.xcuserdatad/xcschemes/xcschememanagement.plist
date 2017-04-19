@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>QNect-UI.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>30</integer>
-		</dict>
 		<key>QNect-dev.xcscheme</key>
 		<dict>
 			<key>orderHint</key>

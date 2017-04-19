@@ -17,14 +17,15 @@ struct QnDecoder
         var decodedMessage = ""
         
         //decode once
-        if var decodedData = Data(base64Encoded: message, options: NSData.Base64DecodingOptions(rawValue: 0)) {
-            var decodedString = NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue)
+        if var decodedData = Data(base64Encoded: message, options: Data.Base64DecodingOptions(rawValue: 0)) {
+
+            var decodedString = String(data: decodedData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             
             //decode twice
-            decodedData = Data(base64Encoded: decodedString as! String, options: NSData.Base64DecodingOptions(rawValue: 0))!
-            decodedString = NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue)
+            decodedData = Data(base64Encoded: decodedString!, options: Data.Base64DecodingOptions(rawValue: 0))!
+            decodedString = String(data: decodedData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             
-            decodedMessage = decodedString as! String
+            decodedMessage = decodedString!
         }
         
         if (decodedMessage.range(of: qnString) != nil) {

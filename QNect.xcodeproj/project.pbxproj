@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
-		140D081F1E8FE95B0091AD62 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 140D081E1E8FE95B0091AD62 /* Dev-Info.plist */; };
 		140D08201E8FE95B0091AD62 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 140D081E1E8FE95B0091AD62 /* Dev-Info.plist */; };
 		14184CF11EA1AB410068E01C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14184CF01EA1AB410068E01C /* UserTest.swift */; };
 		141852181E55F2E200471E59 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* TwitterClient.swift */; };
@@ -169,8 +168,6 @@
 		B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
-		BE7A5A0E0E3901E9B56CD495 /* Pods_QNect_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404A716E999CDDC4A8B1A5CD /* Pods_QNect_dev.framework */; };
-		CAB6A1D2653C6FCE46524132 /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		D342E54DCE6316714236A88D /* Pods_QNectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 851C301048E826C0D2EE42E4 /* Pods_QNectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -277,7 +274,6 @@
 				14EC7AAF1E74F27300B3C4E8 /* libsqlite3.tbd in Frameworks */,
 				14EC7AB01E74F27300B3C4E8 /* Pods_QNect.framework in Frameworks */,
 				2CFA138A7B0B350CC078E744 /* Pods_QNect_dev.framework in Frameworks */,
-				BE7A5A0E0E3901E9B56CD495 /* Pods_QNect_dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +283,6 @@
 			files = (
 				B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */,
 				614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */,
-				CAB6A1D2653C6FCE46524132 /* Pods_QNect.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +570,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Julian Panucci";
 				TargetAttributes = {
 					14CCB6941E7C0FB4004B1C3C = {
@@ -645,7 +640,6 @@
 				14EC7AB31E74F27300B3C4E8 /* onboard.mp4 in Resources */,
 				1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */,
 				14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */,
-				140D081F1E8FE95B0091AD62 /* Dev-Info.plist in Resources */,
 				14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */,
 				14F78E8C1E8C53FA00A3D169 /* headshot.jpg in Resources */,
 			);

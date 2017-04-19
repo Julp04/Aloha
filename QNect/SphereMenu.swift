@@ -17,7 +17,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     
 
     let kItemInitTag:Int = 1001
-    let kAngleOffset:CGFloat = CGFloat(M_PI_2) / 2.0
+    let kAngleOffset:CGFloat = CGFloat(Double.pi / 4.0)
     let kSphereLength:CGFloat = 100
     let kSphereDamping:Float = 0.3
     
@@ -152,7 +152,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     }
 
     func centerForSphereAtIndex(_ index:Int) -> CGPoint{
-        let firstAngle:CGFloat = CGFloat(M_PI) + (CGFloat(M_PI_2) - kAngleOffset) + CGFloat(index) * kAngleOffset
+        let firstAngle:CGFloat = CGFloat(Double.pi) + (CGFloat(Double.pi / 2.0) - kAngleOffset) + CGFloat(index) * kAngleOffset
         let startPoint = self.center
         let x = startPoint.x + cos(firstAngle) * kSphereLength;
         let y = startPoint.y + sin(firstAngle) * kSphereLength;

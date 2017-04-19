@@ -117,7 +117,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         }
         
         if error != nil{
-            print("\(error?.localizedDescription)")
+            print("\(String(describing: error?.localizedDescription))")
         } else {
             captureSession = AVCaptureSession()
             captureSession?.addInput(input as! AVCaptureInput)
@@ -364,7 +364,7 @@ extension MainController: PageboyViewControllerDataSource {
     
     func defaultPageIndex(forPageboyViewController pageboyViewController: PageboyViewController) -> PageboyViewController.PageIndex? {
         // set ScannerViewController as first controller you see at index 1. Which is in the middle
-        return PageIndex.atIndex(index: 1)
+        return PageIndex.at(index: 1)
     }
     
 }
