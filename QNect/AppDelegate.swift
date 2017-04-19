@@ -45,48 +45,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let currentCountStr = UIApplication.shared.applicationIconBadgeNumber
         let currentCount = currentCountStr
+        
         if(currentCount > 0) {
             UIApplication.shared.applicationIconBadgeNumber = currentCount - 1
         } else {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
-        
-        let ui = false
-        //Go to VC that is set with "Initial View Controller"
-        if ui {
-            return true
-        }else {
-                if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
-                    Defaults["HasLaunchedOnce"] = true
-                    Defaults.synchronize()
-                    
-                    
-                    let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
-                    
-                    self.window!.rootViewController? = onboardNav
-          
-                }
-                else {
-                    checkForCurrentUser()
-                }
-                
-                let q = UIImage(named: "qnect_logo_white")!
-                let qSize = CGSize(width: 240.0, height: 128.0)
-                
-                let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
-                splashView.iconColor = UIColor.white
-                splashView.duration = 1.5
-                splashView.animationType = .twitter
-                
-                self.window?.rootViewController?.view.addSubview(splashView)
-                
-                splashView.startAnimation {
-                    print("completed")
-                }
-        
-            return true
+
+        if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
+            Defaults["HasLaunchedOnce"] = true
+            Defaults.synchronize()
+            
+            
+            let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
+            
+            self.window!.rootViewController? = onboardNav
         }
+        else {
+            checkForCurrentUser()
+        }
+        
+        let q = UIImage(named: "qnect_logo_white")!
+        let qSize = CGSize(width: 240.0, height: 128.0)
+        
+        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+        splashView.iconColor = UIColor.white
+        splashView.duration = 1.5
+        splashView.animationType = .twitter
+        
+        self.window?.rootViewController?.view.addSubview(splashView)
+        
+        splashView.startAnimation {
+            print("completed")
+        }
+        
+        return true
     }
     
     
