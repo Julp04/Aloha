@@ -23,12 +23,34 @@ class SwitchButton: UIView {
     @IBInspectable var onTintColor: UIColor = .blue
     @IBInspectable var isOn = false
     
+    private var shortDescriptionLabel: UILabel?
+    private var imageView: UIImageView?
+    var shortText: String? {
+        didSet {
+            shortDescriptionLabel?.text = shortText
+        }
+    }
+    
+    var labelColor: UIColor = .white {
+        didSet {
+            shortDescriptionLabel?.textColor = labelColor
+        }
+    }
+    var imageColor: UIColor = .white {
+        didSet {
+            imageView?.tintColor = imageColor
+        }
+    }
+    
+    var offColor: UIColor = .black
+    
     fileprivate var shape: CAShapeLayer! = CAShapeLayer()
     
     private var rectShape = CAShapeLayer()
     private var startShape: CGPath!
     private var endShape: CGPath!
     private var button: UIButton!
+    private var image: UIImage?
 
     
     open var animationDidStartClosure = {(onAnimation: Bool) -> Void in }
@@ -42,9 +64,12 @@ class SwitchButton: UIView {
         commonInit()
     }
     
-    init(frame: CGRect, onTintColor: UIColor, image: UIImage, shortText: String) {
+    init(frame: CGRect, backgroundColor: UIColor,onTintColor: UIColor, image: UIImage, shortText: String) {
         super.init(frame: frame)
+
+        self.image = image.withRenderingMode(.alwaysTemplate)
         self.onTintColor = onTintColor
+        self.offColor = backgroundColor
         
         //Add image view and label
         let labelWidth = 0.575 * frame.width
@@ -55,20 +80,26 @@ class SwitchButton: UIView {
         
         let labelX = labelWidth - imageSize + 10
         
-        let imageView = UIImageView(frame: CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize))
-            imageView.image = image
-        imageView.contentMode = .scaleAspectFit
+        imageView = UIImageView(frame: CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize))
+            imageView?.image = self.image
+        imageView?.contentMode = .scaleAspectFit
         
-        let label = UILabel(frame: CGRect(x: labelX, y: imageView.center.y - kLabelHeight / 2.0, width: labelWidth, height: kLabelHeight))
-        label.font = UIFont(name: "Futura", size: 22.0)
-        label.adjustsFontSizeToFitWidth = true
-        label.text = shortText
-        label.textAlignment = .center
-        label.textColor = .white
+        shortDescriptionLabel = UILabel(frame: CGRect(x: labelX, y: (imageView?.center.y)! - kLabelHeight / 2.0, width: labelWidth, height: kLabelHeight))
+        shortDescriptionLabel?.font = UIFont(name: "Futura", size: 22.0)
+        shortDescriptionLabel?.adjustsFontSizeToFitWidth = true
+        shortDescriptionLabel?.text = shortText
+        shortDescriptionLabel?.textAlignment = .center
         
         
-        self.addSubview(imageView)
-        self.addSubview(label)
+        
+        self.addSubview(imageView!)
+        self.addSubview(shortDescriptionLabel!)
+        
+       
+        
+        self.backgroundColor = backgroundColor
+        imageView?.tintColor = self.onTintColor
+        shortDescriptionLabel?.textColor = self.onTintColor
         
         
         commonInit()
@@ -111,7 +142,7 @@ class SwitchButton: UIView {
         
         startShape = UIBezierPath(roundedRect: rectBounds, cornerRadius: 50).cgPath
         
-        let height = layer.bounds.height * 2.5
+        let height = layer.bounds.height * 3.0
         let width = height
         
         let x = height / -2.4 - 20
@@ -158,6 +189,13 @@ class SwitchButton: UIView {
             //If button is off, turn it on
             animateButton(toValue: endShape)
             isOn = !isOn
+            
+            
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.imageView?.tintColor = self.offColor
+                self.labelColor = self.offColor
+            })
+            
         }
     }
     
@@ -165,6 +203,13 @@ class SwitchButton: UIView {
         if isOn {
             animateButton(toValue: startShape)
             isOn = !isOn
+            
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.imageView?.tintColor = self.onTintColor
+                self.labelColor = self.onTintColor
+            })
+            
         }
     }
     
@@ -174,8 +219,12 @@ class SwitchButton: UIView {
     
     internal func buttonAction()
     {
-        onClick()
+        if isEnabled {
+            onClick()
+        }
+        
         unShrink()
+        
     }
     
     internal func shrink()

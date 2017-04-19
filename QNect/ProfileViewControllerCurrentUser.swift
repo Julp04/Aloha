@@ -13,7 +13,7 @@ import Firebase
 import ReachabilitySwift
 import RSKImageCropper
 
-class ProfileViewContoller: UITableViewController {
+class ProfileViewControllerCurrentUser: UITableViewController {
     
     //MARK: Constants
     let kAccountsHeaderTitle = "Accounts"
@@ -34,7 +34,8 @@ class ProfileViewContoller: UITableViewController {
     
     var profileHeight: CGFloat = 0.0
     let imagePicker = UIImagePickerController()
-    var twitterButton: SwitchButton?
+    var twitterButton: SwitchButton!
+    var profileManager: ProfileManager!
     
    
     //MARK: Outlets
@@ -55,16 +56,17 @@ class ProfileViewContoller: UITableViewController {
     //MARK: Configure Before Load
     
     
-    func configureViewController(displayCurrentUserProfile: Bool, user: User)
+    func configureViewController(currentUser: User)
     {
-        self.displayCurrentUserProfile = displayCurrentUserProfile
-        self.user = user
+        self.user = currentUser
 //        user.about = "I am cool"
         user.location = "Pittsburgh, PA"
         user.birthdate = "10-09-1993"
+        
+        profileManager = ProfileManager(user: currentUser)
     }
     
-    fileprivate func configureViewControllerForCurrentUser() {
+    fileprivate func setupViewController() {
         //Setup view controller only if we were to view as ourself
         //Ex: Follow button would be EditProfileButton, Common Connections would be Recent Added Connections, Won't show call, message, email buttons, Accounts buttons would link your accounts to your profile
        
@@ -76,7 +78,7 @@ class ProfileViewContoller: UITableViewController {
         
         //Edit profile button instead of follow button
         followOrEditProfileButton.setTitle("Edit Profile", for: .normal)
-        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.editProfile), for: .touchUpInside)
+        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewControllerCurrentUser.editProfile), for: .touchUpInside)
         
         connectionsHeaderTitle = "Recently Added"
         
@@ -89,29 +91,6 @@ class ProfileViewContoller: UITableViewController {
         
         let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
         profileImageView.image = profileImage
-
-    }
-    
-    fileprivate func configureViewControllerForOtherUser() {
-        //Setup view controller as if we were viewing someone else's profile
-        //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
-        
-        callButton.addTarget(self, action: #selector(ProfileViewContoller.callUser), for: .touchUpInside)
-        messageButton.addTarget(self, action: #selector(ProfileViewContoller.messageUser), for: .touchUpInside)
-        emailButton.addTarget(self, action: #selector(ProfileViewContoller.emailUser), for: .touchUpInside)
-        
-        callButton.isHidden = user.socialPhone == nil
-        messageButton.isHidden = user.socialPhone == nil
-        emailButton.isHidden = user.socialEmail == nil
-        
-        //Follow button instead of editProfile button
-        configureFollowButton()
-        
-        connectionsHeaderTitle = "Common Connections"
-        
-        //Set profile image
-        setProfileImageForOtherUser()
-    
     }
     
     //MARK: Lifecycle
@@ -119,24 +98,14 @@ class ProfileViewContoller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
-        
-        if let twitterScreenName = user.twitterAccount?.screenName {
-            twitterButton = SwitchButton(frame: buttonFrame, onTintColor: .green, image: #imageLiteral(resourceName: "twitter_on"), shortText: twitterScreenName)
-            twitterButton?.backgroundColor = UIColor.twitter.withAlphaComponent(0.5)
-            twitterButton?.onClick = {
-                self.twitterButton?.switchState()
-            }
-        }
+        setupViewController()
+        createAccountsButtons()
         
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
     
-        
-        displayCurrentUserProfile ? configureViewControllerForCurrentUser() : configureViewControllerForOtherUser()
-        
-        
+
         let birthdate = user.birthdate?.asDate()
         let age = birthdate?.age
         
@@ -154,8 +123,6 @@ class ProfileViewContoller: UITableViewController {
         locationLabel.isHidden = (user.location == nil && age == nil)
 
         profileHeight = calculateProfileViewHeight()
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -194,6 +161,46 @@ class ProfileViewContoller: UITableViewController {
     
     //MARK: UI Helper
     
+    func createAccountsButtons() {
+        
+        twitterButton = profileManager.twitterButton()
+        guard (user.twitterAccount != nil) else {
+            twitterButton.onClick = {
+                TwitterClient.client.linkTwitterIn(viewController: self, completion: { (error) in
+                    if error != nil {
+                        print(error!)
+                    }else {
+                        DispatchQueue.main.async {
+                            self.turnOnTwitterButton()
+                        }
+                    }
+                })
+            }
+            return
+        }
+        
+        twitterButton.onClick = {
+            //Open Twitter App with profile
+        }
+
+    }
+    
+    func turnOnTwitterButton() {
+        
+        twitterButton.turnOn()
+        self.twitterButton.isEnabled = false
+        self.twitterButton.animationDidStartClosure = {_ in
+            
+            QnClient.sharedInstance.currentUser {user in
+                self.twitterButton.shortText = user.twitterAccount!.screenName
+            }
+
+        }
+        
+        
+    }
+
+    
     func calculateProfileViewHeight() -> CGFloat
     {
         let y = statsStackView.frame.origin.y
@@ -202,36 +209,10 @@ class ProfileViewContoller: UITableViewController {
         return finalPosition
     }
     
-    func configureFollowButton() {
-        //todo: Check whether current user is following displayed user
-        let isFollowing = false
-        let buttonText = isFollowing ? "Following" : "Follow"
-        
-        followOrEditProfileButton.setTitle(buttonText, for: .normal)
-        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewContoller.follow), for: .touchUpInside)
-    }
-    
-    func setProfileImageForOtherUser() {
-        
-        if user.profileImage == nil {
-            if Reachability.isConnectedToInternet() {
-                QnClient.sharedInstance.getProfileImageForUser(user: user, completion: { (profileImage, error) in
-                    if error != nil {
-                        print(error!)
-                    }else {
-                        self.profileImageView.image = profileImage
-                    }
-                })
-            }
-        }else {
-            self.profileImageView.image = user.profileImage
-        }
-    }
-    
     //MARK: Functionality
     
     func editProfile() {
-        weak var editProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
+        let editProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
         editProfileViewController?.configureViewController(edittingInfo: true)
         
         let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
@@ -284,25 +265,9 @@ class ProfileViewContoller: UITableViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func follow() {
-    
-    }
-    
-    func messageUser() {
-        
-    }
-    
-    func callUser() {
-        
-    }
-    
-    func emailUser() {
-        
-    }
 }
 
-extension ProfileViewContoller: UICollectionViewDataSource {
+extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -330,7 +295,7 @@ extension ProfileViewContoller: UICollectionViewDataSource {
     
 }
 
-extension ProfileViewContoller: UICollectionViewDelegateFlowLayout {
+extension ProfileViewControllerCurrentUser: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
@@ -354,11 +319,11 @@ extension ProfileViewContoller: UICollectionViewDelegateFlowLayout {
 
 }
 
-extension ProfileViewContoller: UICollectionViewDelegate {
+extension ProfileViewControllerCurrentUser: UICollectionViewDelegate {
     
 }
 
-extension ProfileViewContoller: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileViewControllerCurrentUser: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
     {
@@ -376,7 +341,7 @@ extension ProfileViewContoller: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
-extension ProfileViewContoller: RSKImageCropViewControllerDelegate {
+extension ProfileViewControllerCurrentUser: RSKImageCropViewControllerDelegate {
     
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
         

@@ -34,7 +34,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     var profileNavController: UINavigationController!
     var connectionsNavController: UINavigationController!
     
-    var profileViewController: ProfileViewContoller!
+    var profileViewController: ProfileViewControllerCurrentUser!
     var connectionsViewController: ConnectionsViewController!
     
     var colorView: GradientView!
@@ -77,11 +77,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         placeHolderViewController = UIViewController()
         placeHolderViewController.view.alpha = 0.0
         
-        profileViewController = profileNavController.viewControllers.first as! ProfileViewContoller
+        profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
         
         QnClient.sharedInstance.currentUser { (currentUser) in
-            self.profileViewController.configureViewController(displayCurrentUserProfile: true, user: currentUser)
+            self.profileViewController.configureViewController(currentUser: currentUser)
         }
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainController.interactiveTransition(_:)))

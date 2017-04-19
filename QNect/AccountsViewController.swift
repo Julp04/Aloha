@@ -154,7 +154,9 @@ class AccountsViewController: UIViewController {
         contactButton.onClick = {
             ContactManager().requestAccessToContacts { accessGranted in
                 if accessGranted {
-                    self.turnOnContactButton()
+                    DispatchQueue.main.async {
+                        self.turnOnContactButton()
+                    }
                 }else {
                     //Show alert that user can turn on access to contacts in settings
                     DispatchQueue.main.async {
