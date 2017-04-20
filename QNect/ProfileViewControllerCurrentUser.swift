@@ -34,7 +34,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
     var profileHeight: CGFloat = 0.0
     let imagePicker = UIImagePickerController()
-    var twitterButton: SwitchButton!
     var profileManager: ProfileManager!
     
    
@@ -63,7 +62,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         user.location = "Pittsburgh, PA"
         user.birthdate = "10-09-1993"
         
-        profileManager = ProfileManager(user: currentUser)
+        profileManager = ProfileManager(user: currentUser, viewController: self)
     }
     
     fileprivate func setupViewController() {
@@ -99,7 +98,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         super.viewDidLoad()
         
         setupViewController()
-        createAccountsButtons()
         
         
         accountsCollectionView.dataSource = self
@@ -160,45 +158,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     }
     
     //MARK: UI Helper
-    
-    func createAccountsButtons() {
-        
-        twitterButton = profileManager.twitterButton()
-        guard (user.twitterAccount != nil) else {
-            twitterButton.onClick = {
-                TwitterClient.client.linkTwitterIn(viewController: self, completion: { (error) in
-                    if error != nil {
-                        print(error!)
-                    }else {
-                        DispatchQueue.main.async {
-                            self.turnOnTwitterButton()
-                        }
-                    }
-                })
-            }
-            return
-        }
-        
-        twitterButton.onClick = {
-            //Open Twitter App with profile
-        }
-
-    }
-    
-    func turnOnTwitterButton() {
-        
-        twitterButton.turnOn()
-        self.twitterButton.isEnabled = false
-        self.twitterButton.animationDidStartClosure = {_ in
-            
-            QnClient.sharedInstance.currentUser {user in
-                self.twitterButton.shortText = user.twitterAccount!.screenName
-            }
-
-        }
-        
-        
-    }
 
     
     func calculateProfileViewHeight() -> CGFloat
@@ -221,8 +180,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
 
         //todo: Custom transition, status bar should be black
         
-        //Fixes memory warning
-        self.view.window?.rootViewController?.present(navigationController, animated: true)
+        //Memory issue
+        self.present(navigationController, animated: true)
 
     }
     
@@ -274,20 +233,19 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5 ?? 0
+        return profileManager.numberOfLinkedAccounts()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
-       
-        if indexPath.row == 0 {
-            
-            if let twitterButton = twitterButton {
-                cell.contentView.addSubview(twitterButton)
-            }
-        }
         
-        cell.backgroundColor = UIColor.brown
+        let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
+        button.tag = 111
+        
+        if (cell.contentView.viewWithTag(111)) != nil {
+        }else {
+            cell.contentView.addSubview(button)
+        }
         
         return cell
     }
