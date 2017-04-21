@@ -72,10 +72,6 @@ class EditProfileViewController: UITableViewController {
         continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(EditProfileViewController.continueSignup))
     
         
-        #if UI
-            self.userInfo = UserInfo.testUser
-        #endif
-        
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         

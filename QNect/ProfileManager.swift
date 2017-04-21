@@ -22,7 +22,6 @@ class ProfileManager {
     
     var buttons = [SwitchButton]()
     
-    
     init(user: User, viewController: UIViewController) {
         self.user = user
         self.viewController = viewController

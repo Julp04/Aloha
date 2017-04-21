@@ -171,13 +171,11 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     //MARK: Functionality
     
     func editProfile() {
-        let editProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
-        editProfileViewController?.configureViewController(edittingInfo: true)
         
-        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
-        navigationController.setViewControllers([editProfileViewController!], animated: true)
-
-
+        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewControllerNav") as! UINavigationController
+        
+        let editProfileVC = navigationController.viewControllers.first as? EditProfileViewController
+        editProfileVC?.configureViewController(edittingInfo: true)
         //todo: Custom transition, status bar should be black
         
         //Memory issue
