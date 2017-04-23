@@ -48,7 +48,7 @@ class QnectCodeViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        self.view.backgroundColor = UIColor.qnPurple
+        self.view.backgroundColor = UIColor.clear
         
         borderView.layer.cornerRadius = kBorderRadius
     }

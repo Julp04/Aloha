@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zWK-Qx-NPk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zWK-Qx-NPk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -740,7 +740,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14828487060000001" green="0.1407304727" blue="0.41406567970000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Nqg-OU-g47" firstAttribute="centerX" secondItem="F4L-5d-aFU" secondAttribute="centerX" id="2Ux-SS-kte"/>
                             <constraint firstItem="Nqg-OU-g47" firstAttribute="centerY" secondItem="F4L-5d-aFU" secondAttribute="centerY" id="qbo-9s-0MC"/>
@@ -754,7 +754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15m-ki-hfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4023" y="-3724"/>
+            <point key="canvasLocation" x="4108" y="-3786"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -955,6 +955,9 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="QNect" id="3uk-f0-jaW"/>
+                    <connections>
+                        <segue destination="rI9-Cc-z6b" kind="showDetail" identifier="CodeSegue" id="7BH-mH-EcN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Goy-7w-5bX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="Skb-Af-xHa">
@@ -2692,7 +2695,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

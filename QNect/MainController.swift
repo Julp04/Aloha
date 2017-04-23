@@ -44,6 +44,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var contact: User!
     var qrCodeFrameView = UIImageView()
+    var transitionManager = TransitionManager(segueIdentifier: "CodeSegue")
     
     
     var scannedContact = 0
@@ -84,9 +85,8 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
             self.profileViewController.configureViewController(currentUser: currentUser)
         }
         
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(MainController.interactiveTransition(_:)))
-        pan.delegate = self
-        view.addGestureRecognizer(pan)
+        transitionManager.sourceViewController = self
+        
         
         createCaptureSession()
         startCaptureSession()
@@ -145,26 +145,6 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         captureSession?.stopRunning()
     }
     
-    //todo: Change Transisition
-    func interactiveTransition(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            guard sender.velocity(in: view).y > 0 else {
-                break
-            }
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CodeController")  as! QnectCodeViewController
-            vc.modalDelegate = self
-            
-            tr_presentViewController(vc, method: TRPresentTransitionMethod.scanbot(present: sender, dismiss: vc.dismissGestureRecognizer), completion: {
-            })
-        default: break
-        }
-    }
-    
-    
-    func modalViewControllerDismiss(interactive: Bool, callbackData data: Any?) {
-        tr_dismissViewController(interactive, completion: nil)
-    }
     
     //MARK: Functionality
     
@@ -213,6 +193,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CodeSegue" {
+            let codeViewController = segue.destination
+            codeViewController.transitioningDelegate = transitionManager
+            transitionManager.presentedViewController = codeViewController
+        }
         
     }
     
