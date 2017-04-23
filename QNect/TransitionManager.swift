@@ -40,7 +40,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.0
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -119,12 +119,13 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         if sender == gesture {
         
             let progress = sender.translation(in: view2).y / view2.frame.size.height + 0.2
+            let velocity = sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
             var percent = offsetY / (view2.bounds.size.height)
             percent = min(1.0, max(0, percent))
             
-            print(progress)
+            print(velocity)
             
             
             switch sender.state {
@@ -132,7 +133,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                 interactionInProgress = true
                 sourceViewController.performSegue(withIdentifier: segueIdentifier, sender: self)
             case .changed:
-                shouldCompleteTransition =  progress > 0.5
+                shouldCompleteTransition =  progress > 0.5 || velocity > 1000
                 update(progress)
             case .ended:
                 interactionInProgress = false
@@ -146,6 +147,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             }
         }else {
             let progress = sender.translation(in: view2).y / -view2.frame.size.height + 0.2
+            let velocity = -sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
             var percent = offsetY / (view2.bounds.size.height)
@@ -158,7 +160,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                 interactionInProgress = true
                 sourceViewController.dismiss(animated: true, completion: nil)
             case .changed:
-                shouldCompleteTransition =  progress > 0.5
+                shouldCompleteTransition =  progress > 0.5 || velocity > 950
                 update(progress)
             case .ended:
                 interactionInProgress = false
