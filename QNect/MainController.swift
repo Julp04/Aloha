@@ -209,7 +209,6 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
 extension MainController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
-        
         guard scannerCanScan else {
             //If scannerCanScan is set to true we must be on a different page where we will not allow scanning
             return
@@ -227,17 +226,22 @@ extension MainController: AVCaptureMetadataOutputObjectsDelegate {
                 if let contact = QnDecoder.decodeQRCode(metadataObj.stringValue) {
                     
                     self.contact = contact
-                    
+                    let scan = Scan(contact: contact)
                     handleScannedContact(metadataObj, barCodeObject: barCodeObject)
                     
                 }else if metadataObj.stringValue.contains(".com") {
+                    
+                    
                     
                     //Todo: Need to test different QRCodes and handle different strings
                     var url = ""
                     if !metadataObj.stringValue.contains("http"){
                         url = "http://\(metadataObj.stringValue)"
-                    }else {url = metadataObj.stringValue}
+                    }else {
+                        url = metadataObj.stringValue
+                    }
                     
+                    let scan = Scan(url: url)
                     
                     let popupvc = PTPopupWebViewController()
                     popupvc.popupView.URL(string: url)
@@ -259,9 +263,15 @@ extension MainController: AVCaptureMetadataOutputObjectsDelegate {
                     self.stopCaptureSession()
                 }
                 else {
-                    let alert = UIAlertController(title: nil, message: metadataObj.stringValue, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    let message = metadataObj.stringValue
+                    let scan = Scan(message: message!)
+                    
+                    let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default) {_ in
+                        self.startCaptureSession()
+                        })
+                    self.present(alert, animated: true)
+                    self.stopCaptureSession()
                 }
             }
         }
