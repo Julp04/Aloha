@@ -146,7 +146,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                 break
             }
         }else {
-            let progress = sender.translation(in: view2).y / -view2.frame.size.height + 0.2
+            let progress = sender.translation(in: view2).y / -view2.frame.size.height
             let velocity = -sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
@@ -160,7 +160,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                 interactionInProgress = true
                 sourceViewController.dismiss(animated: true, completion: nil)
             case .changed:
-                shouldCompleteTransition =  progress > 0.5 || velocity > 950
+                shouldCompleteTransition =  progress > 0.3 || velocity > 950
                 update(progress)
             case .ended:
                 interactionInProgress = false
