@@ -45,14 +45,14 @@ class ContactManager
         
         
         //Phone numbers
-        if let phoneNumber = connection.socialPhone {
+        if let phoneNumber = connection.phone {
             let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber))
             contact.phoneNumbers = [homePhone]
         }
         
         
         //Email
-        if let email = connection.socialEmail {
+        if let email = connection.personalEmail {
             let homeEmail = CNLabeledValue(label: CNLabelHome, value: email as NSString)
             contact.emailAddresses = [homeEmail]
         }

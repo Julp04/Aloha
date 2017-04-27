@@ -26,7 +26,7 @@ class UserTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-         user = User(username: testUsername, firstName: testFirstName, lastName: testLastName, socialEmail: testEmail, socialPhone: testPhone, uid: testUID, email: testEmail, twitterScreenName: testTwitter, birthdate: testBirthdate, location: testLocation)
+         user = User(username: testUsername, firstName: testFirstName, lastName: testLastName, personalEmail: testEmail, phone: testPhone, uid: testUID, email: testEmail, twitterScreenName: testTwitter, birthdate: testBirthdate, location: testLocation)
     }
     
     override func tearDown() {

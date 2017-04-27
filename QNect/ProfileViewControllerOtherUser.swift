@@ -67,9 +67,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
         
-        callButton.isHidden = user.socialPhone == nil
-        messageButton.isHidden = user.socialPhone == nil
-        emailButton.isHidden = user.socialEmail == nil
+        callButton.isHidden = user.phone == nil
+        messageButton.isHidden = user.phone == nil
+        emailButton.isHidden = user.personalEmail == nil
         
         //check if you are following user already
         configureFollowButton()

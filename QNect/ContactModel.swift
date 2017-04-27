@@ -64,8 +64,8 @@ class ContactModel
     
     func phoneNumberForContact() -> String
     {
-        if contact.socialPhone != "" {
-            let mutableString = NSMutableString(string: contact.socialPhone!)
+        if contact.phone != "" {
+            let mutableString = NSMutableString(string: contact.phone!)
             mutableString.insert("(", at: 0)
             mutableString.insert(")-", at: 4)
             mutableString.insert("-", at: 9)
@@ -75,9 +75,9 @@ class ContactModel
         }
     }
     
-    func socialEmailForContact() -> String
+    func personalEmailForContact() -> String
     {
-        return contact.socialEmail!
+        return contact.personalEmail!
     }
     
     func nameForContact() -> String

@@ -23,7 +23,7 @@ class QnEncoder {
     func encodeSocialCode() -> String
     {
         
-        let socialProperties = [user.username, user.firstName, user.lastName, user.socialEmail, user.socialPhone, user.uid, user.email, user.birthdate, user.location]
+        let socialProperties = [user.username, user.firstName, user.lastName, user.personalEmail, user.phone, user.uid, user.email, user.birthdate, user.location]
         
         for property in socialProperties {
             if let property = property {

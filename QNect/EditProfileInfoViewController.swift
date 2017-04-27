@@ -81,8 +81,8 @@ class EditProfileInfoViewController: UITableViewController {
         firstNameField.text = currentUser.firstName
         lastNameField.text = currentUser.lastName
         
-        emailField.text = (currentUser.socialEmail != nil) ? currentUser.socialEmail! : nil
-        phoneField.text = (currentUser.socialPhone != nil) ? currentUser.socialPhone! : nil
+        emailField.text = (currentUser.personalEmail != nil) ? currentUser.personalEmail! : nil
+        phoneField.text = (currentUser.phone != nil) ? currentUser.phone! : nil
         locationField.text = (currentUser.location != nil) ? currentUser.location! : nil
         
         //Get profile image of user

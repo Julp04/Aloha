@@ -234,7 +234,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func sendMessage()
     {
-        if let phoneNumber = contact?.socialPhone {
+        if let phoneNumber = contact?.phone {
             let messageVC = MFMessageComposeViewController()
             
             messageVC.recipients = ["\(phoneNumber)"]
@@ -247,7 +247,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
     
     func makeCall()
     {
-        if let phoneNumber = contact?.socialPhone {
+        if let phoneNumber = contact?.phone {
             let phone = "tel://\(phoneNumber)";
             let url = URL(string:phone)!;
             UIApplication.shared.openURL(url);

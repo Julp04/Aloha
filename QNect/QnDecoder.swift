@@ -43,8 +43,8 @@ struct QnDecoder
         let username = components[1]
         let firstName = components[2]
         let lastName = components[3]
-        let socialEmail = components[4] == "" ? nil: components[4]
-        let socialPhone = components[5] == "" ? nil: components[5]
+        let personalEmail = components[4] == "" ? nil: components[4]
+        let phone = components[5] == "" ? nil: components[5]
         let uid = components[6]
         let email = components[7]
         let birthdate = components[8] == "" ? nil: components[8]
@@ -53,7 +53,7 @@ struct QnDecoder
         
 
         
-        let user = User(username: username, firstName: firstName, lastName: lastName, socialEmail: socialEmail, socialPhone: socialPhone, uid: uid, email: email, birthdate: birthdate, location: location)
+        let user = User(username: username, firstName: firstName, lastName: lastName, personalEmail: personalEmail, phone: phone, uid: uid, email: email, birthdate: birthdate, location: location)
         
         return user
         

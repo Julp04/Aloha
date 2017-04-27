@@ -41,8 +41,8 @@ class User
     var username: String!
     var firstName:String!
     var lastName: String!
-    var socialPhone: String?
-    var socialEmail: String?
+    var phone: String?
+    var personalEmail: String?
     var location: String?
     var birthdate: String?
     var about: String?
@@ -65,8 +65,8 @@ class User
         self.username = values["username"] as! String
         self.firstName = values["firstName"] as! String
         self.lastName = values["lastName"] as! String
-        self.socialEmail = values["socialEmail"] as? String
-        self.socialPhone = values["socialPhone"] as? String
+        self.personalEmail = values["personalEmail"] as? String
+        self.phone = values["phone"] as? String
         self.birthdate = values["birthDate"] as? String
         
         if let accountsDict = values["accounts"] as? NSDictionary {
@@ -103,13 +103,13 @@ class User
     }
     
     
-    init(username: String, firstName: String, lastName: String, socialEmail: String?, socialPhone: String?, uid:String, email: String, birthdate: String?, location: String?) {
+    init(username: String, firstName: String, lastName: String, personalEmail: String?, phone: String?, uid:String, email: String, birthdate: String?, location: String?) {
         
         self.username = username
         self.firstName = firstName
         self.lastName = lastName
-        self.socialEmail = socialEmail
-        self.socialPhone = socialPhone
+        self.personalEmail = personalEmail
+        self.phone = phone
         self.uid = uid
         self.email = email
         
