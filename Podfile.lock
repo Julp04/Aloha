@@ -49,7 +49,6 @@ PODS:
   - LTMorphingLabel (0.5.0)
   - MGCollapsingHeader (1.0.6)
   - OAuthSwift (1.1.1)
-  - Onboard (2.3.1)
   - Pageboy (1.0.3)
   - pop (1.0.9)
   - PTPopupWebView (0.4.0)
@@ -82,7 +81,6 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MGCollapsingHeader
   - OAuthSwift (~> 1.1.0)
-  - Onboard
   - Pageboy
   - pop (from `https://github.com/facebook/pop.git`)
   - PTPopupWebView
@@ -124,7 +122,6 @@ SPEC CHECKSUMS:
   LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
   MGCollapsingHeader: 82a52988e0dcdd32558e883ae4df4c9c1a1674b1
   OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
-  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   Pageboy: bbc0d544d9d6be8de8303379700b974c5f03e2fd
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
@@ -140,6 +137,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: fc5bb88325f39bdd0eb109a4e61e284f15904454
+PODFILE CHECKSUM: 6dcad70933367011183c47d1bc3ee55292c9b728
 
 COCOAPODS: 1.2.0
