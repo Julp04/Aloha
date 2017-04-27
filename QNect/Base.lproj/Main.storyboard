@@ -1715,7 +1715,7 @@
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Personal Email"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
@@ -2643,7 +2643,7 @@
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Personal Email"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
@@ -2733,6 +2733,8 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="selectedIconColor">
                                                             <color key="value" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Phone"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Phone"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>

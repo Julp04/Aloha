@@ -36,34 +36,34 @@ class QnClient {
     }
     
     
-    func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, socialEmail:String?, socialPhone:String?, twitter:String?)
+    func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, personalEmail:String?, phone:String?, twitter:String?)
     {
         
         let ref = FIRDatabase.database().reference()
         let users = ref.child("users")
         let currentUser = users.child(user.uid)
         
-        currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "socialEmail":socialEmail,"socialPhone":socialPhone, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
+        currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "personalEmail":phone,"phone":personalEmail, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
     }
     
-    func updateUserInfo(firstName:String, lastName:String, socialEmail:String?, socialPhone:String?)
+    func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
         let users = ref.child("users")
         let currentUser = users.child(user.uid)
         
-        currentUser.updateChildValues(["firstName":firstName, "lastName":lastName, "socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
+        currentUser.updateChildValues(["firstName": firstName, "lastName": lastName, "personalEmail": personalEmail ?? "","phone": phone ?? ""])
     }
     
-    func updateUserInfo(socialEmail:String?, socialPhone:String?)
+    func updateUserInfo(personalEmail:String?, phone:String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
         let users = ref.child("users")
         let currentUser = users.child(user.uid)
         
-        currentUser.updateChildValues(["socialEmail":socialEmail ?? "","socialPhone":socialPhone ?? ""])
+        currentUser.updateChildValues(["personalEmail": personalEmail ?? "","phone": phone ?? ""])
     }
     
     func currentUser(completion: @escaping (User) -> Void)

@@ -96,7 +96,7 @@ class EditProfileInfoViewController: UITableViewController {
     func saveInfo () {
         //save all profile info and images
         
-        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: emailField.text, socialPhone: phoneField.text)
+        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, personalEmail: emailField.text, phone: phoneField.text)
         
         dismiss(animated: true) {
             self.listener?.presentedControllerDismissed()

@@ -108,7 +108,7 @@ class AddProfileInfoViewController: UITableViewController {
     {
         //todo: Include location, about, age, etc
         //Should we check for internet connection??
-        QnClient.sharedInstance.updateUserInfo(socialEmail: emailField.text, socialPhone: phoneField.text)
+        QnClient.sharedInstance.updateUserInfo(personalEmail: emailField.text, phone: phoneField.text)
         QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         
         performSegue(withIdentifier: "LinkAccounts", sender: self)
