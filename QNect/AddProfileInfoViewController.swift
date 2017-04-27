@@ -119,7 +119,6 @@ class AddProfileInfoViewController: UITableViewController {
         //Setting the image either way
         QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         performSegue(withIdentifier: "LinkAccounts", sender: self)
-        
     }
     
     //MARK: User Interaction

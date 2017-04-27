@@ -16,6 +16,23 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 
+enum DatabaseFields: String {
+    case username = "username"
+    case firstName = "firstName"
+    case lastName = "lastName"
+    case email = "email"
+    case uid = "uid"
+    case location = "location"
+    case personalEmail = "personalEmail"
+    case phone = "phone"
+    case about = "about"
+    case birthdate = "birthdate"
+    
+    case profileImage = "profileImage"
+    case users = "users"
+    case usernames = "usernames"
+}
+
 class QnClient {
     
     static let sharedInstance = QnClient()
@@ -25,45 +42,44 @@ class QnClient {
      {
         let ref = FIRDatabase.database().reference()
         let user = FIRAuth.auth()!.currentUser!
-        let users = ref.child("users")
+        let users = ref.child(DatabaseFields.users.rawValue)
         let currentUser = users.child(user.uid)
         
-        currentUser.setValue(["username": userInfo.userName, "firstName": userInfo.firstName, "lastName": userInfo.lastName, "email": userInfo.email, "uid":user.uid])
+        currentUser.setValue([DatabaseFields.username.rawValue: userInfo.userName,
+                              DatabaseFields.firstName.rawValue: userInfo.firstName,
+                              DatabaseFields.lastName.rawValue: userInfo.lastName,
+                              DatabaseFields.email.rawValue: userInfo.email,
+                              DatabaseFields.uid.rawValue: user.uid])
         
         
-        let username = ref.child("usernames")
+        let username = ref.child(DatabaseFields.usernames.rawValue)
         username.updateChildValues([userInfo.userName!: userInfo.email!])
     }
     
-    
-    func setUserInfoFor(user:FIRUser,username:String, firstName:String, lastName:String, personalEmail:String?, phone:String?, twitter:String?)
-    {
-        
-        let ref = FIRDatabase.database().reference()
-        let users = ref.child("users")
-        let currentUser = users.child(user.uid)
-        
-        currentUser.setValue(["username":username, "firstName":firstName, "lastName":lastName, "personalEmail":phone,"phone":personalEmail, "email":user.email, "twitterScreenName":twitter, "uid":user.uid])
-    }
-    
-    func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?)
+    func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?, location: String?, birthdate: Date?, about: String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
-        let users = ref.child("users")
+        let users = ref.child(DatabaseFields.users.rawValue)
         let currentUser = users.child(user.uid)
         
-        currentUser.updateChildValues(["firstName": firstName, "lastName": lastName, "personalEmail": personalEmail ?? "","phone": phone ?? ""])
-    }
-    
-    func updateUserInfo(personalEmail:String?, phone:String?)
-    {
-        let user = FIRAuth.auth()!.currentUser!
-        let ref = FIRDatabase.database().reference()
-        let users = ref.child("users")
-        let currentUser = users.child(user.uid)
-        
-        currentUser.updateChildValues(["personalEmail": personalEmail ?? "","phone": phone ?? ""])
+        currentUser.updateChildValues([DatabaseFields.firstName.rawValue: firstName,
+                                       DatabaseFields.lastName.rawValue: lastName,])
+        if let personalEmail = personalEmail {
+            currentUser.updateChildValues([DatabaseFields.personalEmail.rawValue: personalEmail])
+        }
+        if let phone = phone {
+            currentUser.updateChildValues([DatabaseFields.phone.rawValue: phone])
+        }
+        if let location = location {
+            currentUser.updateChildValues([DatabaseFields.location.rawValue: location])
+        }
+        if let birthdate = birthdate {
+            currentUser.updateChildValues([DatabaseFields.birthdate.rawValue: birthdate])
+        }
+        if let about = about  {
+            currentUser.updateChildValues([DatabaseFields.about.rawValue: about])
+        }
     }
     
     func currentUser(completion: @escaping (User) -> Void)
@@ -71,7 +87,7 @@ class QnClient {
         let ref = FIRDatabase.database().reference()
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observe(.value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
             completion(user)
         })
@@ -82,7 +98,7 @@ class QnClient {
     {
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = documentsURL.appendingPathComponent("profileImage")
+            let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
             if let pngImageData = UIImagePNGRepresentation(image) {
                 try pngImageData.write(to: fileURL, options: .atomic)
             }
@@ -91,9 +107,9 @@ class QnClient {
             let storageRef = FIRStorage.storage().reference()
             
             // Create a storage reference from our storage service
-            let userStorageRef = storageRef.child("users")
+            let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
             let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.email)!)
-            let profileImageRef = userRef.child("profileImage")
+            let profileImageRef = userRef.child(DatabaseFields.profileImage.rawValue)
             
             
             // Create a reference to the file you want to uplo
@@ -116,8 +132,8 @@ class QnClient {
         let storageRef = FIRStorage.storage().reference()
         
         
-        let userStorageRef = storageRef.child("users")
-        let userRef = userStorageRef.child(user.email).child("profileImage")
+        let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
+        let userRef = userStorageRef.child(user.email).child(DatabaseFields.profileImage.rawValue)
         
         userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
             
@@ -134,7 +150,7 @@ class QnClient {
     {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
-        let filePath = documentsURL.appendingPathComponent("profileImage").path
+        let filePath = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue).path
         if FileManager.default.fileExists(atPath: filePath) {
             return UIImage(contentsOfFile: filePath)!
         }else {
@@ -160,7 +176,7 @@ class QnClient {
         try! FIRAuth.auth()?.signOut()
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsURL.appendingPathComponent("profileImage")
+        let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
 
 //        try! FileManager().removeItem(at: fileURL)
         
@@ -190,51 +206,20 @@ class QnClient {
                 
                 //No error remove, all other traces of this user from database
                 let ref = FIRDatabase.database().reference()
-                ref.child("usernames").child(userName).removeValue()
+                ref.child(DatabaseFields.usernames.rawValue).child(userName).removeValue()
                 
                 //Remove profile picture locally and on database
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let fileURL = documentsURL.appendingPathComponent("profileImage")
+                let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
                 try! FileManager().removeItem(at: fileURL)
                 
-                ref.child("users").child(uid).removeValue()
+                ref.child(DatabaseFields.users.rawValue).child(uid).removeValue()
                 
             })
         }
         
       
     }
-    
-    func doesTwitterUserExistsWith(session:TWTRSession, completion:@escaping (Bool) -> Void)
-    {
-        
-        let ref = FIRDatabase.database().reference()
-
-        let usersRef = ref.child("users")
-        let uidRef = usersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
-        let userInfoRef = uidRef.child("userInfo")
-        
-        userInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if !snapshot.exists() {
-                completion(false)
-            }else {
-            
-                let snapshotValue = snapshot.value as! [String: AnyObject]
-                let twitterUsername = snapshotValue["twitter"] as? String
-                
-                if twitterUsername == session.userName {
-                    completion(true)
-                }else {
-                    completion(false)
-                }
-            }
-        })
-        
-        
-    }
-    
-   
 }
 
 
