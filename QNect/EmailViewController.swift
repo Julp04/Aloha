@@ -120,7 +120,7 @@ class EmailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        if let profileInfoVC = segue.destination as? EditProfileViewController {
+        if let profileInfoVC = segue.destination as? AddProfileInfoViewController {
             profileInfoVC.configureViewController(userInfo: self.userInfo!)
         }
     }

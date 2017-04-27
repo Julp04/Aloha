@@ -11,7 +11,11 @@ import UIKit
 @IBDesignable
 class ProfileImageView: UIView {
 
-    var borderColor: UIColor = .white
+    var borderColor: UIColor = .white {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
     @IBInspectable var image: UIImage? {
         didSet {
             imageView.image = image

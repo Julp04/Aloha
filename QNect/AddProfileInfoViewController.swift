@@ -11,12 +11,11 @@ import SkyFloatingLabelTextField
 import IQKeyboardManagerSwift
 import RSKImageCropper
 
-class EditProfileViewController: UITableViewController {
+class AddProfileInfoViewController: UITableViewController {
 
     //MARK: Properties
     
     var userInfo: UserInfo?
-    var edittingInfo = false
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -66,10 +65,8 @@ class EditProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(EditProfileViewController.saveInfo))
-        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(EditProfileViewController.continueSignup))
+    
+        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(AddProfileInfoViewController.continueSignup))
     
         
         IQKeyboardManager.sharedManager().enable = true
@@ -92,8 +89,6 @@ class EditProfileViewController: UITableViewController {
         
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        
-        setupViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,44 +98,11 @@ class EditProfileViewController: UITableViewController {
     
     //MARK: Setup
     
-    func setupViewController() {
-        if edittingInfo {
-            titleLabel.text = "Edit Profile"
-            descriptionLabel.isHidden = true
-            skipButton.isEnabled = false
-            skipButton.tintColor = UIColor.clear
-           
-            navigationItem.rightBarButtonItem = saveButton
-            //todo: Populate fields for what they have already entered
-        }else {
-            titleLabel.text = "Profile Info"
-            descriptionLabel.isHidden = false
-            skipButton.isEnabled = true
-            skipButton.tintColor = UIColor.qnPurple
-            navigationItem.leftBarButtonItem = skipButton
-            navigationItem.rightBarButtonItem = continueButton
-        }
-    }
-    
     func configureViewController(userInfo:UserInfo)
     {
         self.userInfo = userInfo
     }
     
-    func configureViewController(edittingInfo: Bool) {
-        //If the user has already signed up then they can edit their info in this controller as well, so editting info will be true
-        
-        //If the user is signing up and is the first time on this screen edittign info will be false
-        
-        self.edittingInfo = edittingInfo
-    }
-    
-    //MARK: Functionality
-    func saveInfo() {
-        //todo: Save and update user info
-        print("Saving user info...")
-        dismiss(animated: true, completion: nil)
-    }
     
     func continueSignup()
     {
@@ -213,7 +175,7 @@ class EditProfileViewController: UITableViewController {
 
 
 
-extension EditProfileViewController: UITextFieldDelegate {
+extension AddProfileInfoViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -241,7 +203,7 @@ extension EditProfileViewController: UITextFieldDelegate {
     }
 }
 
-extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddProfileInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
     {
@@ -259,7 +221,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     }
 }
 
-extension EditProfileViewController: RSKImageCropViewControllerDelegate {
+extension AddProfileInfoViewController: RSKImageCropViewControllerDelegate {
     
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
     
