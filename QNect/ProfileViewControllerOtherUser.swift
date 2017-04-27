@@ -32,7 +32,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
     var connectionsHeaderTitle: String!
     
     var profileHeight: CGFloat = 0.0
-    let imagePicker = UIImagePickerController()
     var twitterButton: SwitchButton?
     
    
@@ -54,12 +53,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
     //MARK: Configure Before Load
     
     
-    func configureViewController(displayCurrentUserProfile: Bool, user: User)
+    func configureViewController(user: User)
     {
         self.user = user
-//        user.about = "I am cool"
-        user.location = "Pittsburgh, PA"
-        user.birthdate = "10-09-1993"
     }
     
     
@@ -75,7 +71,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         messageButton.isHidden = user.socialPhone == nil
         emailButton.isHidden = user.socialEmail == nil
         
-        //Follow button instead of editProfile button
+        //check if you are following user already
         configureFollowButton()
         
         connectionsHeaderTitle = "Common Connections"
@@ -200,61 +196,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: Functionality
     
-    func editProfile() {
-        weak var editProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
-        editProfileViewController?.configureViewController(edittingInfo: true)
-        
-        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
-        navigationController.setViewControllers([editProfileViewController!], animated: true)
-
-
-        //todo: Custom transition, status bar should be black
-        
-        //Fixes memory warning
-        self.view.window?.rootViewController?.present(navigationController, animated: true)
-
-    }
-    
-    func editProfileImage() {
-        let alert = UIAlertController(title: "Add Profile Picture", message: nil, preferredStyle: .actionSheet)
-        
-        let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
-            self.imagePicker.allowsEditing = false
-            self.imagePicker.sourceType = .camera
-            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-            self.imagePicker.navigationBar.tintColor = UIColor.white
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-        
-        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
-            self.imagePicker.allowsEditing = false
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-            self.imagePicker.navigationBar.tintColor = UIColor.white
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        let removePhotoAction = UIAlertAction(title: "Remove Photo", style: .destructive) { (action) in
-            self.profileImageView.image = ProfileImageCreator.create(self.user.firstName!, last: self.user.lastName!)
-        }
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            alert.addAction(selfieAction)
-        }
-        
-        if self.profileImageView.image != nil {
-            alert.addAction(removePhotoAction)
-        }
-        
-        alert.addAction(photoLibraryAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     func follow() {
     
     }
@@ -326,37 +267,5 @@ extension ProfileViewControllerOtherUser: UICollectionViewDelegateFlowLayout {
 
 extension ProfileViewControllerOtherUser: UICollectionViewDelegate {
     
-}
-
-extension ProfileViewControllerOtherUser: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
-    {
-        profileImageView.contentMode = .scaleAspectFit
-        profileImageView.image = image
-        
-        let imageCropper = RSKImageCropViewController(image: image, cropMode: .circle)
-        imageCropper.delegate = self
-        
-        imagePicker.present(imageCropper, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension ProfileViewControllerOtherUser: RSKImageCropViewControllerDelegate {
-    
-    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
-        
-        controller.dismiss(animated: true)
-        imagePicker.dismiss(animated: true, completion: nil)
-        profileImageView.image = croppedImage
-    }
-    
-    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
-        controller.dismiss(animated: true)
-    }
 }
 
