@@ -13,6 +13,8 @@ import Firebase
 import ReachabilitySwift
 import RSKImageCropper
 
+
+
 class ProfileViewControllerCurrentUser: UITableViewController {
     
     //MARK: Constants
@@ -65,7 +67,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         profileManager = ProfileManager(user: currentUser, viewController: self)
     }
     
-    fileprivate func setupViewController() {
+    func setupViewController() {
         //Setup view controller only if we were to view as ourself
         //Ex: Follow button would be EditProfileButton, Common Connections would be Recent Added Connections, Won't show call, message, email buttons, Accounts buttons would link your accounts to your profile
        
@@ -90,6 +92,24 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
         profileImageView.image = profileImage
+        
+        let birthdate = user.birthdate?.asDate()
+        let age = birthdate?.age
+        
+        if user.location != nil && age != nil {
+            locationLabel.text = "\(user.location!) | \(age!)"
+        }else {
+            locationLabel.text = user.location ?? age
+        }
+        aboutLabel.text = user.about
+        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
+        
+        
+        //Check whether other info is available
+        aboutLabel.isHidden = user.about == nil
+        locationLabel.isHidden = (user.location == nil && age == nil)
+        
+        profileHeight = calculateProfileViewHeight()
     }
     
     //MARK: Lifecycle
@@ -104,23 +124,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         accountsCollectionView.delegate = self
     
 
-        let birthdate = user.birthdate?.asDate()
-        let age = birthdate?.age
         
-        if user.location != nil && age != nil {
-            locationLabel.text = "\(user.location!) | \(age!)"
-        }else {
-            locationLabel.text = user.location ?? age
-        }
-        aboutLabel.text = user.about
-        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
-        
-       
-        //Check whether other info is available
-        aboutLabel.isHidden = user.about == nil
-        locationLabel.isHidden = (user.location == nil && age == nil)
-
-        profileHeight = calculateProfileViewHeight()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -176,7 +180,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         let editProfileNavController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileInfoNavController") as! UINavigationController
         let editProfileInfoViewController = editProfileNavController.viewControllers.first as! EditProfileInfoViewController
-        editProfileInfoViewController.configureViewController(currentUser: self.user)
+        editProfileInfoViewController.configureViewController(currentUser: self.user, listener: self)
         
         self.present(editProfileNavController, animated: true, completion: nil)
     }
@@ -306,6 +310,13 @@ extension ProfileViewControllerCurrentUser: RSKImageCropViewControllerDelegate {
     
     func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
         controller.dismiss(animated: true)
+    }
+}
+
+extension ProfileViewControllerCurrentUser: PresentedControllerListener {
+    func presentedControllerDismissed() {
+        //When EditProfileViewController dismisses and info is saved call this function to repopulate profile controller
+        setupViewController()
     }
 }
 

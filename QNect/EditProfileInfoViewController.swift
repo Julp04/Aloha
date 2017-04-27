@@ -10,6 +10,11 @@ import UIKit
 import SkyFloatingLabelTextField
 import RSKImageCropper
 
+
+protocol PresentedControllerListener {
+    func presentedControllerDismissed()
+}
+
 class EditProfileInfoViewController: UITableViewController {
     
     //MARK: Constants
@@ -18,9 +23,11 @@ class EditProfileInfoViewController: UITableViewController {
     
     var currentUser: User!
     let imagePicker = UIImagePickerController()
+    private var listener: PresentedControllerListener?
     
     //MARK: Outlets
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var locationField: SkyFloatingLabelTextField!
     @IBOutlet weak var firstNameField: SkyFloatingLabelTextField!
     
@@ -31,13 +38,17 @@ class EditProfileInfoViewController: UITableViewController {
     
     //MARK: Actions
     
+    
     @IBAction func saveAction(_ sender: Any) {
+        saveInfo()
     }
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadUserInfo()
         
         tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.clear
@@ -47,12 +58,49 @@ class EditProfileInfoViewController: UITableViewController {
             self.editProfileImage()
         }
         profileImageView.borderColor = .qnPurple
+        
+        //Textview delegate setup
+        firstNameField.delegate = self
+        lastNameField.delegate = self
+        emailField.delegate = self
+        phoneField.delegate = self
+        locationField.delegate = self
       
         
     }
     
-    func configureViewController(currentUser: User) {
+    func configureViewController(currentUser: User, listener: PresentedControllerListener) {
         self.currentUser = currentUser
+        self.listener = listener
+    }
+    
+    
+    //MARK: Setup
+    
+    func loadUserInfo() {
+        firstNameField.text = currentUser.firstName
+        lastNameField.text = currentUser.lastName
+        
+        emailField.text = (currentUser.socialEmail != nil) ? currentUser.socialEmail! : nil
+        phoneField.text = (currentUser.socialPhone != nil) ? currentUser.socialPhone! : nil
+        locationField.text = (currentUser.location != nil) ? currentUser.location! : nil
+        
+        //Get profile image of user
+        let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
+        profileImageView.image = profileImage
+        
+    }
+    
+    //MARK: Functionality
+    
+    func saveInfo () {
+        //save all profile info and images
+        
+        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, socialEmail: emailField.text, socialPhone: phoneField.text)
+        
+        dismiss(animated: true) {
+            self.listener?.presentedControllerDismissed()
+        }
     }
     
 
@@ -106,6 +154,29 @@ class EditProfileInfoViewController: UITableViewController {
 
 extension EditProfileInfoViewController: UITextFieldDelegate {
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard (firstNameField.text?.characters.count)! >= 3 && (lastNameField.text?.characters.count)! >= 3 else {
+            self.saveButton.isEnabled = false
+            return true
+        }
+        
+        saveButton.isEnabled = true
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case firstNameField:
+            lastNameField.becomeFirstResponder()
+        case lastNameField:
+            emailField.becomeFirstResponder()
+        default:
+            break
+        }
+        
+        return true
+    }
 
     
 }
@@ -142,3 +213,7 @@ extension EditProfileInfoViewController: RSKImageCropViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
+
+
+
+
