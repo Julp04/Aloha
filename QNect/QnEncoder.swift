@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AES256CBC
 
 
 
@@ -32,16 +33,14 @@ class QnEncoder {
                 qnString += ":"
             }
         }
+    
+        // get AES-256 CBC encrypted string
         
-        //todo: encryption
-        //encode once
-        let data = (qnString as NSString).data(using: String.Encoding.utf8.rawValue)
-        qnString = data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: (0)))
+        let encryptedString = AES256CBC.encryptString(qnString, password: Encyrptor.password.rawValue)!
         
-        //encode twice
-        let data2 = (qnString as NSString).data(using: String.Encoding.utf8.rawValue)
-        qnString = data2!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: (0)))
-        return qnString
+        // decrypt AES-256 CBC encrypted string
+        
+        return encryptedString
     }
 
 }

@@ -7,6 +7,13 @@
 //
 
 import Foundation
+import AES256CBC
+
+public enum Encyrptor: String {
+    
+    case password = "weArePennStatePasswordPanucci123"
+    
+}
 
 struct QnDecoder
 {
@@ -14,22 +21,11 @@ struct QnDecoder
     
     static func decodeQRCode(_ message:String) -> User?
     {
-        var decodedMessage = ""
-        
-        //decode once
-        if var decodedData = Data(base64Encoded: message, options: Data.Base64DecodingOptions(rawValue: 0)) {
 
-            var decodedString = String(data: decodedData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-            
-            //decode twice
-            decodedData = Data(base64Encoded: decodedString!, options: Data.Base64DecodingOptions(rawValue: 0))!
-            decodedString = String(data: decodedData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-            
-            decodedMessage = decodedString!
-        }
+        let decryptedString = AES256CBC.decryptString(message, password: Encyrptor.password.rawValue)
         
-        if (decodedMessage.range(of: qnString) != nil) {
-            return decodeSocialCode(decodedMessage)
+        if (decryptedString?.contains("qn"))! {
+            return decodeSocialCode(decryptedString!)
         }else {
             return nil
         }

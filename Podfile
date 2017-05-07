@@ -31,6 +31,7 @@ def allPods
     pod 'RAMPaperSwitch', '~> 2.0.4'
     pod 'LTMorphingLabel'
     pod 'Pageboy'
+    pod 'AES256CBC'
 end
 
 target 'QNect' do
