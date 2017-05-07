@@ -20,54 +20,32 @@ class AddProfileInfoViewController: UITableViewController {
         return true
     }
     let imagePicker = UIImagePickerController()
-    var continueButton: UIBarButtonItem! {
-        didSet {
-            continueButton.isEnabled = false
-            continueButton.tintColor = .clear
-        }
-    }
     var saveButton: UIBarButtonItem!
+    var datePicker = UIDatePicker()
    
     //MARK: Outlets
     
-    @IBOutlet weak var emailField: SkyFloatingLabelTextField! {
-        didSet {
-            emailField.delegate = self
-        }
-    }
-    @IBOutlet weak var phoneField: SkyFloatingLabelTextField! {
-        didSet {
-            phoneField.delegate = self
-        }
-    }
-    @IBOutlet weak var profileImageView: ProfileImageView! {
-        didSet {
-            profileImageView.backgroundColor = UIColor.clear
-            profileImageView.layer.cornerRadius = 50.0
-            profileImageView.layer.borderColor = UIColor.qnPurple.cgColor
-            profileImageView.layer.borderWidth  = 2.0
-            profileImageView.layer.masksToBounds = true
-        }
-    }
+    @IBOutlet weak var emailField: SkyFloatingLabelTextField!
+    @IBOutlet weak var phoneField: SkyFloatingLabelTextField!
+    @IBOutlet weak var profileImageView: ProfileImageView!
+    @IBOutlet weak var locationField: SkyFloatingLabelTextField!
+    @IBOutlet weak var birthdateField: SkyFloatingLabelTextField!
+    @IBOutlet weak var aboutField: UITextView!
    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var skipButton: UIBarButtonItem!
-    @IBOutlet weak var continueAndSaveButton: UIBarButtonItem!
     
+    @IBOutlet weak var continueButton: UIBarButtonItem!
     //MARK: Actions
-    
-    @IBAction func skipAction(_ sender: Any) {
-        skip()
-    }
    
+    @IBAction func continueAction(_ sender: Any) {
+        continueSignup()
+    }
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        continueButton = UIBarButtonItem(title: "Continue", style: .plain, target: self, action: #selector(AddProfileInfoViewController.continueSignup))
-    
         
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
@@ -75,8 +53,6 @@ class AddProfileInfoViewController: UITableViewController {
         
         if let userInfo = userInfo {
             self.profileImageView.image = ProfileImageCreator.create(userInfo.firstName!, last: userInfo.lastName!)
-        }else {
-            self.profileImageView.image = QnClient.sharedInstance.getProfileImageForCurrentUser()
         }
         profileImageView.onClick = {
             self.editProfileImage()
@@ -86,6 +62,20 @@ class AddProfileInfoViewController: UITableViewController {
         tableView.separatorColor = UIColor.clear
         
         imagePicker.delegate = self
+        emailField.delegate = self
+        locationField.delegate = self
+        birthdateField.delegate = self
+        phoneField.delegate = self
+        aboutField.delegate = self
+        aboutField.textColor = .gray
+        
+        
+        birthdateField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(AddProfileInfoViewController.datePickerValueChanged), for: .valueChanged)
+        datePicker.datePickerMode = .date
+        if let birthdate = birthdateField.text?.asDate() {
+            datePicker.date = birthdate
+        }
         
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
@@ -93,6 +83,7 @@ class AddProfileInfoViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.tintColor = UIColor.qnPurple
+        super.viewWillAppear(true)
     }
     
     
@@ -106,9 +97,9 @@ class AddProfileInfoViewController: UITableViewController {
     
     func continueSignup()
     {
-        //todo: Include location, about, age, etc
-        //Should we check for internet connection??
-        QnClient.sharedInstance.updateUserInfo(personalEmail: emailField.text, phone: phoneField.text)
+
+        QnClient.sharedInstance.updateUserInfo(firstName: userInfo!.firstName!, lastName: userInfo!.lastName!, personalEmail: emailField.text, phone: phoneField.text, location: locationField.text, birthdate: birthdateField.text, about: aboutField.text)
+        
         QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         
         performSegue(withIdentifier: "LinkAccounts", sender: self)
@@ -164,42 +155,55 @@ class AddProfileInfoViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func datePickerValueChanged(sender: UIDatePicker) {
+        let date = sender.date
+        birthdateField.text = date.asString()
+    }
+    
     //MARK: Helper Functions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.resignFirstResponder()
+        view.endEditing(true)
     }
     
 }
 
-
+extension AddProfileInfoViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "About" {
+            textView.textColor = .black
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.characters.count == 0 {
+            textView.text = "About"
+            textView.textColor = .gray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.characters.count > 50 {
+            continueButton.isEnabled = false
+            continueButton.tintColor = .clear
+            textView.textColor = .qnRed
+        }else {
+            textView.textColor = .black
+            continueButton.isEnabled = true
+            continueButton.tintColor = .qnPurple
+        }
+    }
+}
 
 extension AddProfileInfoViewController: UITextFieldDelegate {
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        guard textField == emailField else {
-            continueSignup()
-            return true
-        }
-        
-        phoneField.becomeFirstResponder()
-        return true
-    }
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard textField.text != nil else {
-            continueButton.isEnabled = false
-            continueButton.tintColor = UIColor.clear
-            return true
-        }
-        
-        continueButton.isEnabled = true
-        continueButton.tintColor = UIColor.qnPurple
         return true
     }
+    
 }
 
 extension AddProfileInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -233,5 +237,7 @@ extension AddProfileInfoViewController: RSKImageCropViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
+
+
 
 

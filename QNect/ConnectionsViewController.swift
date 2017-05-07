@@ -34,6 +34,8 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
     }
     
     
+    //MARK: Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,20 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
         
 
         fetchFromDatabase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
+        //bug i was having (this might be temp fix ?? 😜
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Enable the transition manager when we leave this view controler
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = true
     }
     
     func fetchFromDatabase()
@@ -135,11 +151,6 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
        self.tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
-    
-   
     
 
     // MARK: - Table view data source

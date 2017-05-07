@@ -45,7 +45,7 @@ class ProfileImageView: UIView {
         
         button.layer.cornerRadius = bounds.size.width / 2.0
         button.addTarget(self, action: #selector(ProfileImageView.buttonClick), for: .touchUpInside)
-        button.backgroundColor = .blue
+        button.backgroundColor = .clear
         
         addSubview(button)
         addSubview(imageView)

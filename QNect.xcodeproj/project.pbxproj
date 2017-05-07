@@ -549,9 +549,9 @@
 				B964AE811DBA74B400A0162E /* Resources */,
 				B25797AFECB6F33E622DCCC5 /* [CP] Embed Pods Frameworks */,
 				B768D25C7491114F3B27F3B4 /* [CP] Copy Pods Resources */,
-				1403CAA91E548FF600BDE899 /* ShellScript */,
-				141852191E5A103200471E59 /* ShellScript */,
-				14CCB6DF1E7C2C7B004B1C3C /* ShellScript */,
+				1403CAA91E548FF600BDE899 /* Run Script */,
+				141852191E5A103200471E59 /* Todo Warning Script */,
+				14CCB6DF1E7C2C7B004B1C3C /* Sketch Script */,
 			);
 			buildRules = (
 			);
@@ -717,26 +717,28 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QNectTests/Pods-QNectTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1403CAA91E548FF600BDE899 /* ShellScript */ = {
+		1403CAA91E548FF600BDE899 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 46e648d9c6b95833b9ab4f6be200ffb599ae7bce 090e682fffe765cecec4688b7d7c619f08fb07e73189cbbcfd01abc2d4fe9da2";
 		};
-		141852191E5A103200471E59 /* ShellScript */ = {
+		141852191E5A103200471E59 /* Todo Warning Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Todo Warning Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,13 +797,14 @@
 			shellPath = /bin/sh;
 			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
 		};
-		14CCB6DF1E7C2C7B004B1C3C /* ShellScript */ = {
+		14CCB6DF1E7C2C7B004B1C3C /* Sketch Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Sketch Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

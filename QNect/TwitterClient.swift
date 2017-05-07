@@ -66,7 +66,7 @@ class TwitterClient {
                         let currentUser = FIRAuth.auth()!.currentUser!
     
                         ref.child("users").child(currentUser.uid).child("accounts").child("twitter").setValue(["screenName": screenName, "token": token, "tokenSecret": tokenSecret])
-                        ref.child("accounts").child("twitter").setValue(["screenName": screenName])
+                        ref.child("accounts").child("twitter").setValue([screenName: "screenName"])
                         
                         completion(nil)
                     }

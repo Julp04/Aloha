@@ -67,7 +67,9 @@ class User
         self.lastName = values["lastName"] as! String
         self.personalEmail = values["personalEmail"] as? String
         self.phone = values["phone"] as? String
-        self.birthdate = values["birthDate"] as? String
+        self.birthdate = values["birthdate"] as? String
+        self.location = values["location"] as? String
+        self.about = values["about"] as? String
         
         if let accountsDict = values["accounts"] as? NSDictionary {
             self.accounts = parseAccountsDict(accountsDict: accountsDict)

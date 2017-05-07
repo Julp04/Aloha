@@ -18,17 +18,11 @@ class SettingsViewController: UITableViewController {
  
     //MARK: IBActions
     
-    @IBAction func dismissViewController(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
   
     //MARK: LifeCycle Methods
     
     override func viewWillAppear(_ animated: Bool){
-        self.navigationItem.title = "Settings"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
+       
     }
     
     //MARK: Table View Delegate Methods
@@ -72,7 +66,7 @@ class SettingsViewController: UITableViewController {
             
             
             
-//            self.performSegue(withIdentifier: SegueIdentifiers.Logout, sender: self)
+            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
             
         }))
         self.present(alert, animated: true, completion: nil)

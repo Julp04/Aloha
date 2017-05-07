@@ -86,6 +86,9 @@ class ContactManager
             contact.birthday = birthday
         }
         
+        //Set QNect username
+        contact.note = "Added through QNect"
+        
         //Save Contact
         let request = CNSaveRequest()
         request.add(contact, toContainerWithIdentifier: nil)
@@ -97,6 +100,39 @@ class ContactManager
         }
 
     }
+    
+    func contactExists(user: User) -> Bool {
+        var contactExists = false
+        let lastName = user.lastName
+        let predicate = CNContact.predicateForContacts(matchingName: lastName!)
+        
+        let fetchResults = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactNoteKey]
+        
+        do {
+            let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: fetchResults as [CNKeyDescriptor])
+            for contact in contacts {
+                if contact.note == "Added through QNect" {
+                    contactExists = true
+                }
+            }
+        }catch let error {
+            print(error)
+        }
+        
+        return contactExists
+    }
+    
+    
+    static func contactsAutorized() -> Bool {
+        switch contactStoreStatus() {
+        case .authorized:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    
  
     
     static func contactStoreStatus() -> CNAuthorizationStatus

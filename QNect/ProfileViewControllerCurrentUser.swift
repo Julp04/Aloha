@@ -60,11 +60,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     func configureViewController(currentUser: User)
     {
         self.user = currentUser
-//        user.about = "I am cool"
-        user.location = "Pittsburgh, PA"
-        user.birthdate = "10-09-1993"
-        
-        profileManager = ProfileManager(user: currentUser, viewController: self)
+        profileManager = ProfileManager(currentUser: currentUser, viewController: self)
     }
     
     func setupViewController() {
@@ -119,12 +115,22 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         setupViewController()
         
-        
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
+    }
     
-
+    override func viewWillAppear(_ animated: Bool) {
         
+        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe 
+        //bug i was having (this might be temp fix ?? 😜
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Enable the transition manager when we leave this view controler
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = true
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

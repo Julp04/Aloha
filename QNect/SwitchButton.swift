@@ -13,7 +13,9 @@ class SwitchButton: UIView {
     
     
     //MARK:Constants
-    let kLabelHeight: CGFloat = 21.0
+    let kLabelHeight: CGFloat = 42.0
+    let kLabelFontSizeSmall: CGFloat = 16.0
+    let kLabelFontSizeLarge: CGFloat = 22.0
     
 
     //MARK: Inspectables
@@ -85,7 +87,11 @@ class SwitchButton: UIView {
         imageView?.contentMode = .scaleAspectFit
         
         shortDescriptionLabel = UILabel(frame: CGRect(x: labelX, y: (imageView?.center.y)! - kLabelHeight / 2.0, width: labelWidth, height: kLabelHeight))
-        shortDescriptionLabel?.font = UIFont(name: "Futura", size: 22.0)
+        
+        
+        shortDescriptionLabel?.font = shortText.characters.count > 7 ? UIFont(name: "Futura", size: kLabelFontSizeSmall) : UIFont(name: "Futura", size: kLabelFontSizeLarge)
+        shortDescriptionLabel?.numberOfLines = shortText.contains(" ") ? 0 : 1
+        shortDescriptionLabel?.lineBreakMode = .byWordWrapping
         shortDescriptionLabel?.adjustsFontSizeToFitWidth = true
         shortDescriptionLabel?.text = shortText
         shortDescriptionLabel?.textAlignment = .center

@@ -29,7 +29,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: Properties
     var user: User!
-    var connectionsHeaderTitle: String!
+    let connectionsHeaderTitle = "Common Connections"
+    var colorView: GradientView!
+    var profileManager: ProfileManager!
     
     var profileHeight: CGFloat = 0.0
     var twitterButton: SwitchButton?
@@ -63,6 +65,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Setup view controller as if we were viewing someone else's profile
         //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
         
+        
+        
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
@@ -74,10 +78,11 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //check if you are following user already
         configureFollowButton()
         
-        connectionsHeaderTitle = "Common Connections"
-        
         //Set profile image
         setProfileImage()
+        user.profileImage = profileImageView.image
+        
+        profileManager = ProfileManager(user: user, viewController: self)
     
     }
     
@@ -88,8 +93,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         setUpViewController()
         
-        createAccountsButtons()
-        
+//        colorView = GradientView(frame: view.frame)
+//        view.insertSubview(colorView, at: 0)
+//        colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
+//        
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
@@ -112,8 +119,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         locationLabel.isHidden = (user.location == nil && age == nil)
 
         profileHeight = calculateProfileViewHeight()
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -152,13 +157,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: UI Helper
     
-    func createAccountsButtons() {
-        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
-        if let twitterScreenName = user.twitterAccount?.screenName {
-            //User linked with twitter
-           
-        }
-    }
     
     func calculateProfileViewHeight() -> CGFloat
     {
@@ -185,6 +183,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
                     if error != nil {
                         print(error!)
                     }else {
+                        self.user.profileImage = profileImage
                         self.profileImageView.image = profileImage
                     }
                 })
@@ -220,20 +219,19 @@ extension ProfileViewControllerOtherUser: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5 ?? 0
+        return profileManager.numberOfLinkedAccounts()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
-       
-        if indexPath.row == 0 {
-            
-            if let twitterButton = twitterButton {
-                cell.contentView.addSubview(twitterButton)
-            }
-        }
         
-        cell.backgroundColor = UIColor.brown
+        let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
+        button.tag = 111
+        
+        if (cell.contentView.viewWithTag(111)) != nil {
+        }else {
+            cell.contentView.addSubview(button)
+        }
         
         return cell
     }

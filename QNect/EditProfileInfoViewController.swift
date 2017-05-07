@@ -24,6 +24,7 @@ class EditProfileInfoViewController: UITableViewController {
     var currentUser: User!
     let imagePicker = UIImagePickerController()
     private var listener: PresentedControllerListener?
+    var datePicker = UIDatePicker()
     
     //MARK: Outlets
     
@@ -35,6 +36,8 @@ class EditProfileInfoViewController: UITableViewController {
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var emailField: SkyFloatingLabelTextField!
     @IBOutlet weak var phoneField: SkyFloatingLabelTextField!
+    @IBOutlet weak var birthdateField: SkyFloatingLabelTextField!
+    @IBOutlet weak var aboutField: UITextView!
     
     //MARK: Actions
     
@@ -65,6 +68,18 @@ class EditProfileInfoViewController: UITableViewController {
         emailField.delegate = self
         phoneField.delegate = self
         locationField.delegate = self
+        
+        birthdateField.delegate = self
+        birthdateField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(EditProfileInfoViewController.datePickerValueChanged(sender:)), for: .valueChanged)
+        datePicker.datePickerMode = .date
+        if let birthdate = birthdateField.text?.asDate() {
+            datePicker.date = birthdate
+        }
+        
+        
+        
+        aboutField.delegate = self
       
         
     }
@@ -84,6 +99,10 @@ class EditProfileInfoViewController: UITableViewController {
         emailField.text = (currentUser.personalEmail != nil) ? currentUser.personalEmail! : nil
         phoneField.text = (currentUser.phone != nil) ? currentUser.phone! : nil
         locationField.text = (currentUser.location != nil) ? currentUser.location! : nil
+        birthdateField.text = (currentUser.birthdate != nil) ? currentUser.birthdate! : nil
+        
+        aboutField.text = (currentUser.about != nil) ? currentUser.about! : "About"
+        aboutField.textColor = aboutField.text == "About" ? .lightGray : .black
         
         //Get profile image of user
         let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
@@ -96,14 +115,19 @@ class EditProfileInfoViewController: UITableViewController {
     func saveInfo () {
         //save all profile info and images
         
-        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, personalEmail: emailField.text, phone: phoneField.text)
+        QnClient.sharedInstance.updateUserInfo(firstName: firstNameField.text!, lastName: lastNameField.text!, personalEmail: emailField.text, phone: phoneField.text, location: locationField.text, birthdate: birthdateField.text, about: aboutField.text)
+        
+        QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         
         dismiss(animated: true) {
             self.listener?.presentedControllerDismissed()
         }
     }
     
-
+    func datePickerValueChanged(sender: UIDatePicker) {
+        let date = sender.date
+        birthdateField.text = date.asString()
+    }
     
     
     //MARK: User Interaction
@@ -150,6 +174,33 @@ class EditProfileInfoViewController: UITableViewController {
     }
 }
 
+extension EditProfileInfoViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "About" {
+            textView.textColor = .black
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.characters.count == 0 {
+            textView.text = "About"
+            textView.textColor = .gray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.characters.count > 50 {
+            saveButton.isEnabled = false
+            saveButton.tintColor = .clear
+            textView.textColor = .qnRed
+        }else {
+            textView.textColor = .black
+            saveButton.isEnabled = true
+            saveButton.tintColor = .qnPurple
+        }
+    }
+}
 
 
 extension EditProfileInfoViewController: UITextFieldDelegate {
@@ -158,10 +209,12 @@ extension EditProfileInfoViewController: UITextFieldDelegate {
         
         guard (firstNameField.text?.characters.count)! >= 3 && (lastNameField.text?.characters.count)! >= 3 else {
             self.saveButton.isEnabled = false
+            self.saveButton.tintColor = .clear
             return true
         }
         
         saveButton.isEnabled = true
+        saveButton.tintColor = .qnPurple
         return true
     }
     

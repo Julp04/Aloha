@@ -38,25 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FIRApp.configure(with: options!)
         #endif
         
-        Fabric.with([Twitter.self])
-        
         FIRDatabase.database().persistenceEnabled = true
-        
-        
-        let currentCountStr = UIApplication.shared.applicationIconBadgeNumber
-        let currentCount = currentCountStr
-        
-        if(currentCount > 0) {
-            UIApplication.shared.applicationIconBadgeNumber = currentCount - 1
-        } else {
-            UIApplication.shared.applicationIconBadgeNumber = 0
-        }
         
 
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
+            
+            if let currentUser = FIRAuth.auth()?.currentUser {
+                QnClient.sharedInstance.signOut()
+            }
+           
             Defaults["HasLaunchedOnce"] = true
             Defaults.synchronize()
-            
             
             let onboardNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
             
@@ -82,8 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    
     
     
     fileprivate func checkForCurrentUser()

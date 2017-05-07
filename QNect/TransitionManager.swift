@@ -14,6 +14,8 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     var shouldCompleteTransition = false
     var presenting = true
     
+    var isEnabled = true
+    
     var segueIdentifier: String
     
     init(segueIdentifier: String) {
@@ -114,6 +116,10 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     }
     
     func handlePan(_ sender: UIPanGestureRecognizer) {
+        guard isEnabled else {
+            return
+        }
+        
         let view2 = sender.view!.superview!
         
         if sender == gesture {

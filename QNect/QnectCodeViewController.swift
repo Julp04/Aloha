@@ -45,10 +45,11 @@ class QnectCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
+        self.navigationController?.navigationBar.barTintColor = UIColor.qnGreenTeal
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        self.view.backgroundColor = UIColor.clear
+        self.view.backgroundColor = UIColor.qnGreenTeal
+        
         
         borderView.layer.cornerRadius = kBorderRadius
     }
@@ -76,7 +77,7 @@ class QnectCodeViewController: UIViewController {
             let encoder = QnEncoder(user: user)
             let qrCode = QNectCode(message: encoder.encodeSocialCode())
             
-            qrCode.color = UIColor.qnPurple
+            qrCode.color = UIColor.qnTeal
             qrCode.backgroundColor = UIColor.white
             self.qnCodeImageView.image = qrCode.image
         })

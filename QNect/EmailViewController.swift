@@ -49,6 +49,9 @@ class EmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailField.becomeFirstResponder()
+        
+         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //MARK: Functionality
@@ -87,9 +90,6 @@ class EmailViewController: UIViewController {
             print("No active email")
             //No active email continue to register
             self.userInfo?.email = self.emailField.text!
-            
-        
-//            self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
            
         
 
@@ -134,6 +134,10 @@ extension EmailViewController: UITextFieldDelegate {
         self.emailField.errorMessage = ""
         var email = emailField.text
         
+        guard email != "" else {
+            return true
+        }
+        
         if string == "" {
             email?.characters.removeLast()
         }else {
@@ -146,6 +150,12 @@ extension EmailViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         continueSignup()
+        return true
+    }
+}
+
+extension EmailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

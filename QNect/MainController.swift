@@ -74,9 +74,10 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
-       connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
+        connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
+        
         placeHolderViewController = UIViewController()
-        placeHolderViewController.view.alpha = 0.0
+        placeHolderViewController.view.backgroundColor = .clear
         
         profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
@@ -193,6 +194,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "CodeSegue" {
             let codeViewController = segue.destination
             codeViewController.transitioningDelegate = transitionManager

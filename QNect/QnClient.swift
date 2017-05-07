@@ -56,7 +56,7 @@ class QnClient {
         username.updateChildValues([userInfo.userName!: userInfo.email!])
     }
     
-    func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?, location: String?, birthdate: Date?, about: String?)
+    func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?, location: String?, birthdate: String?, about: String?)
     {
         let user = FIRAuth.auth()!.currentUser!
         let ref = FIRDatabase.database().reference()
@@ -64,11 +64,14 @@ class QnClient {
         let currentUser = users.child(user.uid)
         
         currentUser.updateChildValues([DatabaseFields.firstName.rawValue: firstName,
-                                       DatabaseFields.lastName.rawValue: lastName,])
+                                       DatabaseFields.lastName.rawValue: lastName])
+        
         if let personalEmail = personalEmail {
             currentUser.updateChildValues([DatabaseFields.personalEmail.rawValue: personalEmail])
         }
-        if let phone = phone {
+        if var phone = phone {
+            phone = String(phone.characters.filter {"0123456789".characters.contains($0) })
+            
             currentUser.updateChildValues([DatabaseFields.phone.rawValue: phone])
         }
         if let location = location {
@@ -77,15 +80,20 @@ class QnClient {
         if let birthdate = birthdate {
             currentUser.updateChildValues([DatabaseFields.birthdate.rawValue: birthdate])
         }
-        if let about = about  {
+        if var about = about  {
+            if about == "About" {
+                about = ""
+            }
+            
             currentUser.updateChildValues([DatabaseFields.about.rawValue: about])
         }
     }
-    
+
     func currentUser(completion: @escaping (User) -> Void)
     {
         let ref = FIRDatabase.database().reference()
         let currentUser = FIRAuth.auth()!.currentUser!
+        print(currentUser.uid)
         
         ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observe(.value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
@@ -173,7 +181,12 @@ class QnClient {
     
     func signOut()
     {
-        try! FIRAuth.auth()?.signOut()
+        do {
+           try FIRAuth.auth()?.signOut()
+        }catch let error {
+            print(error)
+        }
+        
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
@@ -217,8 +230,6 @@ class QnClient {
                 
             })
         }
-        
-      
     }
 }
 

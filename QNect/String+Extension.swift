@@ -33,4 +33,15 @@ extension String {
         let date = dateFormatter.date(from: self)
         return date
     }
+    
+    func isNumber() -> Bool {
+        let numberCharacters = NSCharacterSet.decimalDigits.inverted
+        return !self.isEmpty && self.rangeOfCharacter(from: numberCharacters) == nil
+    }
+    
+    func isLetter() -> Bool {
+        let alphaCharacters = NSCharacterSet.letters.inverted
+        return !self.isEmpty && self.rangeOfCharacter(from: alphaCharacters) == nil
+    }
 }
+

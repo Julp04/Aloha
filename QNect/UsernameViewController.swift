@@ -133,6 +133,9 @@ extension UsernameViewController: UITextFieldDelegate  {
         
         var username = usernameField.text
         
+        if !string.isLetter() && !string.isNumber() && string != ""{
+            return false
+        }
         
         
         if (username?.characters.count)! > 0 {
