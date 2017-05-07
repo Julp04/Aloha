@@ -1,5 +1,5 @@
 //
-//  QnectCodeViewController.swift
+//  CodeViewController.swift
 //  QNect
 //
 //  Created by Julian Panucci on 11/6/16.
@@ -12,7 +12,7 @@ import FirebaseDatabase
 import RKDropdownAlert
 import TransitionTreasury
 
-class QnectCodeViewController: UIViewController {
+class CodeViewController: UIViewController {
     
     //MARK: Constants
     let kBorderRadius: CGFloat = 20.0
@@ -24,7 +24,7 @@ class QnectCodeViewController: UIViewController {
     }
     weak var modalDelegate: ModalViewControllerDelegate?
     lazy var dismissGestureRecognizer: UIPanGestureRecognizer = {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(QnectCodeViewController.panDismiss(_:)))
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(CodeViewController.panDismiss(_:)))
         self.view.addGestureRecognizer(pan)
         return pan
     }()
@@ -70,17 +70,25 @@ class QnectCodeViewController: UIViewController {
      */
     fileprivate func createQRCode()
     {
-        let currentUser = FIRAuth.auth()!.currentUser!
-        
-        databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
-            let user = User(snapshot: snapshot)
+//        let currentUser = FIRAuth.auth()!.currentUser!
+//        
+//        databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
+//            let user = User(snapshot: snapshot)
+//            let encoder = QnEncoder(user: user)
+//            let qrCode = QNectCode(message: encoder.encodeSocialCode())
+//            
+//            qrCode.color = UIColor.qnTeal
+//            qrCode.backgroundColor = UIColor.white
+//            self.qnCodeImageView.image = qrCode.image
+//        })
+//        
+        QnClient.sharedInstance.currentUser { (user) in
             let encoder = QnEncoder(user: user)
-            let qrCode = QNectCode(message: encoder.encodeSocialCode())
-            
-            qrCode.color = UIColor.qnTeal
-            qrCode.backgroundColor = UIColor.white
+            let qrCode = QNectCode(message: encoder.encodeUserInfo())
+            qrCode.color = .black
+            qrCode.backgroundColor = .white
             self.qnCodeImageView.image = qrCode.image
-        })
+        }
     }
     
     //MARK: Helpers

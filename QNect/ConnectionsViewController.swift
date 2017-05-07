@@ -333,7 +333,7 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
             
                 let connection = following?.connectionAtIndexPath(indexPath!)
                 let name = (connection?.firstName)! + " " + (connection?.lastName)!
-                let message = QnEncoder(user: connection!).encodeSocialCode()
+                let message = QnEncoder(user: connection!).encodeUserInfo()
                 let qrImage = QNectCode(message: message).image
                 
                 let qnectAlertView = QNectAlertView()

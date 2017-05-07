@@ -20,12 +20,12 @@ class QnEncoder {
         self.user = user
     }
 
-    func encodeSocialCode() -> String
+    func encodeUserInfo() -> String
     {
         
-        let socialProperties = [user.username, user.firstName, user.lastName, user.personalEmail, user.phone, user.uid, user.email, user.birthdate, user.location]
+        let userProperties = [user.username, user.firstName, user.lastName, user.personalEmail, user.phone, user.uid, user.email, user.birthdate, user.location]
         
-        for property in socialProperties {
+        for property in userProperties {
             if let property = property {
                 qnString += "\(property):"
             } else {
@@ -33,6 +33,7 @@ class QnEncoder {
             }
         }
         
+        //todo: encryption
         //encode once
         let data = (qnString as NSString).data(using: String.Encoding.utf8.rawValue)
         qnString = data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: (0)))

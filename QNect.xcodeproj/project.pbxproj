@@ -87,7 +87,7 @@
 		14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14CCB6B91E7C0FB4004B1C3C /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
-		14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
+		14CCB6BB1E7C0FB4004B1C3C /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */; };
 		14CCB6BC1E7C0FB4004B1C3C /* ProfileImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImageCreator.swift */; };
 		14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
@@ -135,7 +135,7 @@
 		14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		14EC7AA41E74F27300B3C4E8 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D971E64901300794587 /* UsernameViewController.swift */; };
 		14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
-		14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
+		14EC7AA71E74F27300B3C4E8 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */; };
 		14EC7AA81E74F27300B3C4E8 /* ProfileImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImageCreator.swift */; };
 		14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */; };
 		14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
@@ -166,7 +166,7 @@
 		B949FA401DBAA55A0071CBD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FA3F1DBAA55A0071CBD6 /* User.swift */; };
 		B9570E021DCF8A2900685718 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		B9570E121DCF9A3A00685718 /* ProfileImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E111DCF9A3A00685718 /* ProfileImageCreator.swift */; };
-		B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */; };
+		B95F6A581DCFA87B00EA3577 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */; };
 		B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
 		B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE8A1DBA74B400A0162E /* Main.storyboard */; };
 		B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
@@ -251,7 +251,7 @@
 		B949FA3F1DBAA55A0071CBD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		B9570E111DCF9A3A00685718 /* ProfileImageCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCreator.swift; sourceTree = "<group>"; };
-		B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnectCodeViewController.swift; sourceTree = "<group>"; };
+		B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		B964AE831DBA74B400A0162E /* QNect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QNect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B964AE861DBA74B400A0162E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B964AE8B1DBA74B400A0162E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
-				B95F6A571DCFA87B00EA3577 /* QnectCodeViewController.swift */,
+				B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -989,7 +989,7 @@
 				14CCB6BA1E7C0FB4004B1C3C /* QnClient.swift in Sources */,
 				1485223B1EA153EB00F0BDC4 /* Date+Extension.swift in Sources */,
 				1421634B1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
-				14CCB6BB1E7C0FB4004B1C3C /* QnectCodeViewController.swift in Sources */,
+				14CCB6BB1E7C0FB4004B1C3C /* CodeViewController.swift in Sources */,
 				14CCB6BC1E7C0FB4004B1C3C /* ProfileImageCreator.swift in Sources */,
 				14CCB6BE1E7C0FB4004B1C3C /* AlertUtility.swift in Sources */,
 				14CCB6BF1E7C0FB4004B1C3C /* ConnectionsViewController.swift in Sources */,
@@ -1045,7 +1045,7 @@
 				14EC7AA51E74F27300B3C4E8 /* QnClient.swift in Sources */,
 				1485223A1EA153EA00F0BDC4 /* Date+Extension.swift in Sources */,
 				1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
-				14EC7AA71E74F27300B3C4E8 /* QnectCodeViewController.swift in Sources */,
+				14EC7AA71E74F27300B3C4E8 /* CodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImageCreator.swift in Sources */,
 				14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */,
 				14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */,
@@ -1099,7 +1099,7 @@
 				B964AE871DBA74B400A0162E /* AppDelegate.swift in Sources */,
 				14855D981E64901300794587 /* UsernameViewController.swift in Sources */,
 				B90968D01DCFC1FB00B73662 /* QnClient.swift in Sources */,
-				B95F6A581DCFA87B00EA3577 /* QnectCodeViewController.swift in Sources */,
+				B95F6A581DCFA87B00EA3577 /* CodeViewController.swift in Sources */,
 				142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImageCreator.swift in Sources */,
 				14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */,

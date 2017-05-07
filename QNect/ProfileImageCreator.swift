@@ -32,9 +32,9 @@ class ProfileImageCreator
         firstInitial.font = firstInitial.font.withSize(fontsize)
         firstInitial.textColor = UIColor.white
         if let last = last {
-            firstInitial.text = "\(first[index])\(last[index])"
+            firstInitial.text = "\(first[index])".capitalized + "\(last[index])".capitalized
         }else {
-            firstInitial.text = "\(first[index])"
+            firstInitial.text = "\(first[index])".capitalized
         }
         firstInitial.textAlignment = .center
         firstInitial.sizeToFit()

@@ -93,10 +93,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         setUpViewController()
         
-//        colorView = GradientView(frame: view.frame)
-//        view.insertSubview(colorView, at: 0)
-//        colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
-//        
+        colorView = GradientView(frame: view.frame)
+        view.insertSubview(colorView, at: 0)
+        colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
