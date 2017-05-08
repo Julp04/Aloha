@@ -31,70 +31,71 @@ enum DatabaseFields: String {
     case profileImage = "profileImage"
     case users = "users"
     case usernames = "usernames"
+    
+    case following = "following"
+    case followers = "followers"
 }
 
 class QnClient {
     
+    var ref: FIRDatabaseReference
+    var currentUser: FIRUser
     static let sharedInstance = QnClient()
     
+    init() {
+        ref = FIRDatabase.database().reference()
+        currentUser = FIRAuth.auth()!.currentUser!
+    }
     
      func setUserInfo(userInfo: UserInfo)
      {
-        let ref = FIRDatabase.database().reference()
-        let user = FIRAuth.auth()!.currentUser!
-        let users = ref.child(DatabaseFields.users.rawValue)
-        let currentUser = users.child(user.uid)
+        let usersRef = ref.child(DatabaseFields.users.rawValue)
+        let currentUserRef = usersRef.child(currentUser.uid)
         
-        currentUser.setValue([DatabaseFields.username.rawValue: userInfo.userName,
+        currentUserRef.setValue([DatabaseFields.username.rawValue: userInfo.userName,
                               DatabaseFields.firstName.rawValue: userInfo.firstName,
                               DatabaseFields.lastName.rawValue: userInfo.lastName,
                               DatabaseFields.email.rawValue: userInfo.email,
-                              DatabaseFields.uid.rawValue: user.uid])
+                              DatabaseFields.uid.rawValue: currentUser.uid])
         
         
-        let username = ref.child(DatabaseFields.usernames.rawValue)
-        username.updateChildValues([userInfo.userName!: userInfo.email!])
+        let usernameRef = ref.child(DatabaseFields.usernames.rawValue)
+        usernameRef.updateChildValues([userInfo.userName!: userInfo.email!])
     }
     
     func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?, location: String?, birthdate: String?, about: String?)
     {
-        let user = FIRAuth.auth()!.currentUser!
-        let ref = FIRDatabase.database().reference()
         let users = ref.child(DatabaseFields.users.rawValue)
-        let currentUser = users.child(user.uid)
+        let currentUserRef = users.child(currentUser.uid)
         
-        currentUser.updateChildValues([DatabaseFields.firstName.rawValue: firstName,
+        currentUserRef.updateChildValues([DatabaseFields.firstName.rawValue: firstName,
                                        DatabaseFields.lastName.rawValue: lastName])
         
         if let personalEmail = personalEmail {
-            currentUser.updateChildValues([DatabaseFields.personalEmail.rawValue: personalEmail])
+            currentUserRef.updateChildValues([DatabaseFields.personalEmail.rawValue: personalEmail])
         }
         if var phone = phone {
             phone = String(phone.characters.filter {"0123456789".characters.contains($0) })
             
-            currentUser.updateChildValues([DatabaseFields.phone.rawValue: phone])
+            currentUserRef.updateChildValues([DatabaseFields.phone.rawValue: phone])
         }
         if let location = location {
-            currentUser.updateChildValues([DatabaseFields.location.rawValue: location])
+            currentUserRef.updateChildValues([DatabaseFields.location.rawValue: location])
         }
         if let birthdate = birthdate {
-            currentUser.updateChildValues([DatabaseFields.birthdate.rawValue: birthdate])
+            currentUserRef.updateChildValues([DatabaseFields.birthdate.rawValue: birthdate])
         }
         if var about = about  {
             if about == "About" {
                 about = ""
             }
             
-            currentUser.updateChildValues([DatabaseFields.about.rawValue: about])
+            currentUserRef.updateChildValues([DatabaseFields.about.rawValue: about])
         }
     }
 
     func currentUser(completion: @escaping (User) -> Void)
     {
-        let ref = FIRDatabase.database().reference()
-        let currentUser = FIRAuth.auth()!.currentUser!
-        print(currentUser.uid)
-        
         ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observe(.value, with: { (snapshot) in
             let user = User(snapshot: snapshot)
             completion(user)
@@ -170,8 +171,7 @@ class QnClient {
     func followUser(user:User)
     { 
         
-        
-    
+
     }
     
     func unfollowUser(connection:User)
