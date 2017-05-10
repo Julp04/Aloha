@@ -81,10 +81,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         //ProfileImageView
         imagePicker.delegate = self
-        //todo: Might not allow to change profileImage on this controller
-        profileImageView.onClick = {
-            self.editProfileImage()
-        }
         
         let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
         profileImageView.image = profileImage

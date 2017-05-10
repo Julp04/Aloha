@@ -45,6 +45,9 @@ class EditProfileInfoViewController: UITableViewController {
     @IBAction func saveAction(_ sender: Any) {
         saveInfo()
     }
+    @IBAction func dismissAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     //MARK: Lifecycle
     
