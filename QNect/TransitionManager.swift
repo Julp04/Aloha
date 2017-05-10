@@ -42,7 +42,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -123,16 +123,12 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         let view2 = sender.view!.superview!
         
         if sender == gesture {
-        
-            let progress = sender.translation(in: view2).y / view2.frame.size.height + 0.2
+            let progress = sender.translation(in: view2).y / view2.frame.size.height + 0.1
             let velocity = sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
             var percent = offsetY / (view2.bounds.size.height)
             percent = min(1.0, max(0, percent))
-            
-            print(velocity)
-            
             
             switch sender.state {
             case .began:

@@ -96,10 +96,13 @@ class ProfileViewControllerOtherUser: UITableViewController {
         super.viewDidLoad()
         
         setUpViewController()
-        
-        colorView = GradientView(frame: view.frame)
-        tableView.insertSubview(colorView, at: 0)
+    
+        colorView = GradientView(frame: tableView.bounds)
         colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
+        let backgroundView = UIView(frame: tableView.bounds)
+        backgroundView.addSubview(colorView)
+        tableView.backgroundView = backgroundView
+        
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
@@ -208,12 +211,12 @@ class ProfileViewControllerOtherUser: UITableViewController {
         settingsAlert.addAction(cancelAction)
         
         if followingStatus != .blocking {
-            let blockAction = UIAlertAction(title: "Block \(user.username!)", style: .default) { (action) in
+            let blockAction = UIAlertAction(title: "Block", style: .destructive) { (action) in
                 QnClient.sharedInstance.block(user: self.user)
             }
             settingsAlert.addAction(blockAction)
         }else {
-            let unblockAction = UIAlertAction(title: "Unblock \(user.username!)", style: .default, handler: { (action) in
+            let unblockAction = UIAlertAction(title: "Unblock", style: .destructive, handler: { (action) in
                 QnClient.sharedInstance.unblock(user: self.user)
             })
             settingsAlert.addAction(unblockAction)

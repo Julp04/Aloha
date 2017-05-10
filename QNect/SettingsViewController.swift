@@ -13,13 +13,23 @@ import RKDropdownAlert
 
 class SettingsViewController: UITableViewController {
 
+
+    //MARK: Constants
     
+    //MARK: Properties
     
- 
-    //MARK: IBActions
+    //MARK: Outlets
+    
+    //MARK: Actions
     
   
     //MARK: LifeCycle Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.backgroundColor = .qnBlue
+        
+    }
     
     override func viewWillAppear(_ animated: Bool){
        
@@ -48,10 +58,7 @@ class SettingsViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+  
     
     
     //MARK: Cell Actions
@@ -63,9 +70,7 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
 
            QnClient.sharedInstance.signOut()
-            
-            
-            
+
             self.performSegue(withIdentifier: "LogoutSegue", sender: self)
             
         }))
@@ -83,12 +88,12 @@ class SettingsViewController: UITableViewController {
         })
         
         alert.doneActionBlock {
-            let email = FIRAuth.auth()?.currentUser?.email
-            FIRAuth.auth()?.sendPasswordReset(withEmail: email!, completion: { (error) in
+            let email = FIRAuth.auth()!.currentUser!.email!
+            FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
                 if error != nil {
                     RKDropdownAlert.title("Something went wrong", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
                 }else {
-                    RKDropdownAlert.title("Password Reset Email Sent!", message: "Check your inbox for a link to reset", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
+                    RKDropdownAlert.title("Email Sent!", message: "Check your inbox for a link to reset password", backgroundColor: UIColor.qnGreen, textColor: UIColor.white)
                 }
             })
 
@@ -96,9 +101,8 @@ class SettingsViewController: UITableViewController {
         
         alert.colorScheme = UIColor.qnPurple
         
-        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "We'll send you a link to your email to reset your password", withCustomImage: #imageLiteral(resourceName: "lock"), withDoneButtonTitle: "Reset Password", andButtons: nil)
-        
-
+        alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "We'll send you a link to your email to reset your password", withCustomImage: #imageLiteral(resourceName: "lock_icon"), withDoneButtonTitle: "Reset Password", andButtons: nil)
+    
     }
     
 
