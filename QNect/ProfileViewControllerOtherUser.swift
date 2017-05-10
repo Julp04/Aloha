@@ -12,6 +12,8 @@ import FirebaseAuth
 import Firebase
 import ReachabilitySwift
 import RSKImageCropper
+import MessageUI
+
 
 
 class ProfileViewControllerOtherUser: UITableViewController {
@@ -58,7 +60,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         present(settingsAlert, animated: true, completion: nil)
     }
     
-    
+    @IBAction func dimissAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     //MARK: Configure Before Load
     
     
@@ -72,6 +76,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Setup view controller as if we were viewing someone else's profile
         //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
         
+        navigationController?.navigationBar.topItem?.title = user.username
         
         
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
@@ -189,10 +194,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
             action = #selector(ProfileViewControllerOtherUser.unfollow)
         case .pending:
             buttonText = "Pending"
-            action = #selector(ProfileViewControllerOtherUser.cancelFollowRequest)
+            action = #selector(ProfileViewControllerOtherUser.showCancelRequestAlert)
         case .blocking:
             buttonText = "Blocked"
-            action = #selector(ProfileViewControllerOtherUser.displayBlockAction)
+            action = #selector(ProfileViewControllerOtherUser.showBlockAction)
         case .notFollowing:
             buttonText = "Follow"
             action = #selector(ProfileViewControllerOtherUser.follow)
@@ -262,23 +267,58 @@ class ProfileViewControllerOtherUser: UITableViewController {
         QnClient.sharedInstance.unfollow(user: user)
     }
     
-    func cancelFollowRequest() {
-        QnClient.sharedInstance.cancelFollow(user: user)
+    func showCancelRequestAlert() {
+        
+        let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
+        let cancelRequestAction = UIAlertAction(title: "Cancel follow request", style: .destructive) { (action) in
+            QnClient.sharedInstance.cancelFollow(user: self.user)
+        }
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alert.addAction(cancelRequestAction)
+        alert.addAction(dismissAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func messageUser() {
-        
+        if let phoneNumber = user.phone {
+            let messageVC = MFMessageComposeViewController()
+            
+            messageVC.recipients = [phoneNumber]
+            messageVC.messageComposeDelegate = self
+            
+            self.present(messageVC, animated: false, completion: nil)
+        }
     }
     
     func callUser() {
+        let callAlert = UIAlertController(title: "Call \(user.firstName!) \(user.lastName!)", message: nil, preferredStyle: .alert)
+        let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
+            if let phoneNumber = self.user.phone {
+                let phone = "tel://\(phoneNumber)";
+                let url = URL(string:phone)!;
+                UIApplication.shared.openURL(url);
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        callAlert.addAction(cancelAction)
+        callAlert.addAction(callAction)
         
+        present(callAlert, animated: true, completion: nil)
     }
     
     func emailUser() {
+        if let email = user.personalEmail {
+            let emailVC = MFMailComposeViewController()
+            emailVC.setToRecipients([email])
+            emailVC.mailComposeDelegate = self
+            
+            present(emailVC, animated: true, completion: nil)
+        }
         
     }
     
-    func displayBlockAction() {
+    func showBlockAction() {
         let alert = UIAlertController(title: self.user.username, message: nil, preferredStyle: .actionSheet)
         
         let unblockAction = UIAlertAction(title: "Unblock", style: .destructive) { (action) in
@@ -346,5 +386,32 @@ extension ProfileViewControllerOtherUser: UICollectionViewDelegateFlowLayout {
 
 extension ProfileViewControllerOtherUser: UICollectionViewDelegate {
     
+}
+
+extension ProfileViewControllerOtherUser: MFMessageComposeViewControllerDelegate {
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch (result) {
+        case MessageComposeResult.cancelled:
+            print("Message was cancelled")
+            self.dismiss(animated: true, completion: nil)
+        case MessageComposeResult.failed:
+            print("Message failed")
+            self.dismiss(animated: true, completion: nil)
+        case MessageComposeResult.sent:
+            print("Message was sent")
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+extension ProfileViewControllerOtherUser: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        default:
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 

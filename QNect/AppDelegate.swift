@@ -69,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController?.view.addSubview(splashView)
         
         splashView.startAnimation {
-            print("completed")
         }
         
         return true
@@ -79,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate func checkForCurrentUser()
     {
         if FIRAuth.auth()?.currentUser != nil {
+            
             let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
             self.window?.rootViewController = mainVCNav
         }else {

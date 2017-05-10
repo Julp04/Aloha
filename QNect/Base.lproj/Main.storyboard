@@ -2564,7 +2564,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="brf-6f-s4X">
-                        <barButtonItem key="leftBarButtonItem" image="settings_icon" id="zHO-Le-f5d">
+                        <barButtonItem key="leftBarButtonItem" image="cancel_button" id="2xk-TA-APK">
+                            <connections>
+                                <action selector="dimissAction:" destination="h0r-OT-G9p" id="y0a-2n-SyG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="settings_icon" id="zHO-Le-f5d">
                             <connections>
                                 <action selector="settingsAction:" destination="h0r-OT-G9p" id="WMs-tV-UFU"/>
                             </connections>
@@ -2612,7 +2617,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="EditProfileInfoViewController" id="0tZ-iO-tz6" customClass="EditProfileInfoViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ExN-3I-WgS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -3027,6 +3032,7 @@
                             <outlet property="delegate" destination="0tZ-iO-tz6" id="Phg-N0-Sm3"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="h2U-jF-wt6">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Dop-JT-ndU">
                             <color key="tintColor" red="0.1764705926" green="0.01176470611" blue="0.56078433989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3138,6 +3144,7 @@
     </scenes>
     <resources>
         <image name="call_button" width="43" height="43"/>
+        <image name="cancel_button" width="23" height="22"/>
         <image name="connections_icon" width="109" height="123"/>
         <image name="email_button" width="43" height="43"/>
         <image name="headshot.jpg" width="253" height="253"/>

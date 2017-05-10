@@ -90,11 +90,15 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
         
         createCaptureSession()
-        startCaptureSession()
+      
         createBarButtonItems()
         
         self.dataSource = self
         self.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+          startCaptureSession()
     }
     
     //MARK: UI Setup
@@ -151,7 +155,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
-        self.stopCaptureSession()
+        
         self.performSegue(withIdentifier: "ContactProfileSegue", sender: self)
     }
     
@@ -203,8 +207,8 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
             let profileNavController = segue.destination as! UINavigationController
             let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
             profileViewController.configureViewController(user: self.contact)
+            self.stopCaptureSession()
         }
-        
     }
     
 
