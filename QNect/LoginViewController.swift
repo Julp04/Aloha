@@ -228,6 +228,11 @@ extension LoginViewController: UITextFieldDelegate {
         }
         
         if textField == emailField {
+            
+            guard email != "" else {
+                return true
+            }
+            
             if string == "" {
                 email?.characters.removeLast()
             }else {

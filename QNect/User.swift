@@ -46,6 +46,7 @@ class User
     var location: String?
     var birthdate: String?
     var about: String?
+    var isPrivate: Bool
     
     var accounts: [Account]?
     var twitterAccount: Account?
@@ -62,21 +63,22 @@ class User
         
         let values = snapshot.value as! NSDictionary
         
-        self.username = values["username"] as! String
-        self.firstName = values["firstName"] as! String
-        self.lastName = values["lastName"] as! String
-        self.personalEmail = values["personalEmail"] as? String
-        self.phone = values["phone"] as? String
-        self.birthdate = values["birthdate"] as? String
-        self.location = values["location"] as? String
-        self.about = values["about"] as? String
+        self.isPrivate = values[DatabaseFields.isPrivate.rawValue] as! Bool
+        self.username = values[DatabaseFields.username.rawValue] as! String
+        self.firstName = values[DatabaseFields.firstName.rawValue] as! String
+        self.lastName = values[DatabaseFields.lastName.rawValue] as! String
+        self.personalEmail = values[DatabaseFields.personalEmail.rawValue] as? String
+        self.phone = values[DatabaseFields.phone.rawValue] as? String
+        self.birthdate = values[DatabaseFields.birthdate.rawValue] as? String
+        self.location = values[DatabaseFields.location.rawValue] as? String
+        self.about = values[DatabaseFields.about.rawValue] as? String
         
         if let accountsDict = values["accounts"] as? NSDictionary {
             self.accounts = parseAccountsDict(accountsDict: accountsDict)
         }
         
-        self.uid = values["uid"] as! String
-        self.email = values["email"] as! String
+        self.uid = values[DatabaseFields.uid.rawValue] as! String
+        self.email = values[DatabaseFields.email.rawValue] as! String
         
         self.key = snapshot.key
         self.ref = snapshot.ref
@@ -105,7 +107,7 @@ class User
     }
     
     
-    init(username: String, firstName: String, lastName: String, personalEmail: String?, phone: String?, uid:String, email: String, birthdate: String?, location: String?) {
+    init(username: String, firstName: String, lastName: String, personalEmail: String?, phone: String?, uid: String, email: String, birthdate: String?, location: String?) {
         
         self.username = username
         self.firstName = firstName
@@ -118,13 +120,9 @@ class User
         
         self.birthdate = birthdate
         self.location = location
-    }
-    
-    init(userInfo:UserInfo) {
-        self.username = userInfo.userName
-        self.firstName = userInfo.firstName
-        self.lastName = userInfo.lastName
-        self.email = userInfo.email
+        
+        //set to private because when we init user like this it is from scanning a qrcode
+        self.isPrivate = false
     }
     
   

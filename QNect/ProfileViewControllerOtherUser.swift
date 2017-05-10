@@ -13,6 +13,7 @@ import Firebase
 import ReachabilitySwift
 import RSKImageCropper
 
+
 class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: Constants
@@ -35,6 +36,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     var profileHeight: CGFloat = 0.0
     var twitterButton: SwitchButton?
+    var followingStatus: FollowingStatus = .notFollowing
+    var settingsAlert: UIAlertController!
     
    
     //MARK: Outlets
@@ -50,6 +53,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var statsStackView: UIStackView!
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
+    
+    @IBAction func settingsAction(_ sender: Any) {
+        present(settingsAlert, animated: true, completion: nil)
+    }
     
     
     //MARK: Configure Before Load
@@ -74,9 +81,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         callButton.isHidden = user.phone == nil
         messageButton.isHidden = user.phone == nil
         emailButton.isHidden = user.personalEmail == nil
-        
-        //check if you are following user already
-        configureFollowButton()
         
         //Set profile image
         setProfileImage()
@@ -118,6 +122,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         locationLabel.isHidden = (user.location == nil && age == nil)
 
         profileHeight = calculateProfileViewHeight()
+        
+        listenForUpdates()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,6 +162,65 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: UI Helper
     
+    func listenForUpdates() {
+        
+        QnClient.sharedInstance.getFollowStatus(user: user) { (status) in
+            self.followingStatus = status
+            self.updateUI()
+        }
+    }
+    
+    func updateUI() {
+        updateFollowButton()
+        updateSettingsAlert()
+    }
+    
+    func updateFollowButton() {
+        self.followOrEditProfileButton.removeTarget(nil, action: nil, for: .allEvents)
+        
+        var buttonText = ""
+        var action: Selector
+        switch followingStatus {
+        case .accepted:
+            buttonText = "Unfollow"
+            action = #selector(ProfileViewControllerOtherUser.unfollow)
+        case .pending:
+            buttonText = "Pending"
+            action = #selector(ProfileViewControllerOtherUser.cancelFollowRequest)
+        case .blocking:
+            buttonText = "Blocked"
+            action = #selector(ProfileViewControllerOtherUser.displayBlockAction)
+        case .notFollowing:
+            buttonText = "Follow"
+            action = #selector(ProfileViewControllerOtherUser.follow)
+        }
+        
+        self.followOrEditProfileButton.setTitle(buttonText, for: .normal)
+        self.followOrEditProfileButton.addTarget(self, action: action, for: .touchUpInside)
+    }
+    
+    func updateSettingsAlert() {
+        let name = "\(user.firstName!) \(user.lastName!)"
+        
+        settingsAlert = UIAlertController(title: name , message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        settingsAlert.addAction(cancelAction)
+        
+        if followingStatus != .blocking {
+            let blockAction = UIAlertAction(title: "Block \(user.username!)", style: .default) { (action) in
+                QnClient.sharedInstance.block(user: self.user)
+            }
+            settingsAlert.addAction(blockAction)
+        }else {
+            let unblockAction = UIAlertAction(title: "Unblock \(user.username!)", style: .default, handler: { (action) in
+                QnClient.sharedInstance.unblock(user: self.user)
+            })
+            settingsAlert.addAction(unblockAction)
+        }
+        
+    }
+    
     
     func calculateProfileViewHeight() -> CGFloat
     {
@@ -163,15 +228,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         let finalPosition = y
         
         return finalPosition
-    }
-    
-    func configureFollowButton() {
-        //todo: Check whether current user is following displayed user
-        let isFollowing = false
-        let buttonText = isFollowing ? "Following" : "Follow"
-        
-        followOrEditProfileButton.setTitle(buttonText, for: .normal)
-        followOrEditProfileButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.follow), for: .touchUpInside)
     }
     
     func setProfileImage() {
@@ -196,6 +252,15 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func follow() {
     
+        QnClient.sharedInstance.follow(user: user)
+    }
+    
+    func unfollow() {
+        QnClient.sharedInstance.unfollow(user: user)
+    }
+    
+    func cancelFollowRequest() {
+        QnClient.sharedInstance.cancelFollow(user: user)
     }
     
     func messageUser() {
@@ -209,6 +274,20 @@ class ProfileViewControllerOtherUser: UITableViewController {
     func emailUser() {
         
     }
+    
+    func displayBlockAction() {
+        let alert = UIAlertController(title: self.user.username, message: nil, preferredStyle: .actionSheet)
+        
+        let unblockAction = UIAlertAction(title: "Unblock", style: .destructive) { (action) in
+            QnClient.sharedInstance.unblock(user: self.user)
+        }
+        alert.addAction(unblockAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+   
 }
 
 extension ProfileViewControllerOtherUser: UICollectionViewDataSource {

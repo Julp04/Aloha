@@ -944,7 +944,7 @@
             </objects>
             <point key="canvasLocation" x="6136.8000000000002" y="-3029.2353823088456"/>
         </scene>
-        <!--QNect-->
+        <!--Main Controller-->
         <scene sceneID="V5d-OM-RjA">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="KlM-A4-FMv" customClass="MainController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
@@ -961,7 +961,7 @@
                             <outletCollection property="gestureRecognizers" destination="Skb-Af-xHa" appends="YES" id="8Mb-ml-FOy"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="QNect" id="3uk-f0-jaW"/>
+                    <navigationItem key="navigationItem" id="3uk-f0-jaW"/>
                     <connections>
                         <segue destination="p9j-Fr-J66" kind="showDetail" identifier="CodeSegue" id="7BH-mH-EcN"/>
                         <segue destination="0Ux-yL-CRM" kind="presentation" identifier="ContactProfileSegue" id="m5M-PE-9vt"/>
@@ -2565,7 +2565,13 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="brf-6f-s4X"/>
+                    <navigationItem key="navigationItem" id="brf-6f-s4X">
+                        <barButtonItem key="leftBarButtonItem" image="settings_icon" id="zHO-Le-f5d">
+                            <connections>
+                                <action selector="settingsAction:" destination="h0r-OT-G9p" id="WMs-tV-UFU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>

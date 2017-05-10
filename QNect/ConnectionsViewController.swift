@@ -174,10 +174,10 @@ class ConnectionsViewController: UITableViewController, UIGestureRecognizerDeleg
 //            }
 //        }
         
-        
-        let emptyView = EmptyView(frame: self.view.frame, image: #imageLiteral(resourceName: "connections_icon"), titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
-      
-        self.tableView.backgroundView = emptyView
+//        
+//        let emptyView = EmptyView(frame: self.view.frame, image: #imageLiteral(resourceName: "connections_icon"), titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
+//      
+//        self.tableView.backgroundView = emptyView
         
         return 0
     }
