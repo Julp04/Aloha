@@ -24,7 +24,7 @@ class TwitterClient {
     
     typealias ErrorCompletion = (Error?) -> Void
     static let client = TwitterClient()
-    var oauthSwift:OAuthSwift?
+    var oauthSwift: OAuthSwift?
     let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
     let consumerSecret = "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq"
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
@@ -65,8 +65,8 @@ class TwitterClient {
                         
                         let currentUser = FIRAuth.auth()!.currentUser!
     
-                        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").setValue(["screenName": screenName, "token": token, "tokenSecret": tokenSecret])
-                        ref.child("accounts").child("twitter").setValue([screenName: "screenName"])
+                        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName": screenName, "token": token, "tokenSecret": tokenSecret])
+                        ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])
                         
                         completion(nil)
                     }
@@ -101,7 +101,7 @@ class TwitterClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         
         ref.child("users").child(currentUser.uid).observeSingleEvent(of:.value, with: { (snapshot) in
-            let user = User(snapshot: snapshot)
+            let user = User(snapshot: snapshot)!
             if let screenName = user.twitterAccount?.screenName {
             ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
                 if error != nil {
@@ -142,7 +142,7 @@ class TwitterClient {
         let currentUser = FIRAuth.auth()!.currentUser!
        
         ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let user = User(snapshot: snapshot)
+            let user = User(snapshot: snapshot)!
             
             guard let twitterAccount = user.twitterAccount else {
                 return
