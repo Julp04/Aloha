@@ -59,9 +59,12 @@ class User
     
     weak var delegate: ImageDownloaderDelegate?
     
-    init(snapshot:FIRDataSnapshot) {
+    init?(snapshot:FIRDataSnapshot) {
         
-        let values = snapshot.value as! NSDictionary
+        guard let values = snapshot.value as? NSDictionary else {
+            return nil
+        }
+        
         
         self.isPrivate = values[DatabaseFields.isPrivate.rawValue] as! Bool
         self.username = values[DatabaseFields.username.rawValue] as! String
