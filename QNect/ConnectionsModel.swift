@@ -59,11 +59,15 @@ class ConnectionsModel
         }
     }
     
-    func connectionAtIndexPath(_ indexPath:IndexPath) -> User
+    func connectionAtIndexPath(_ indexPath:IndexPath) -> User?
     {
         let letter = allKeys[indexPath.section]
-        let connections = dictionary[letter]!
-        return connections[indexPath.row]
+        if let connections = dictionary[letter] {
+            return connections[indexPath.row]
+        }else {
+            return nil
+        }
+        
     }
     
     func indexTitle() -> [String]?
