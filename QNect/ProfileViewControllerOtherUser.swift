@@ -324,6 +324,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         let unblockAction = UIAlertAction(title: "Unblock", style: .destructive) { (action) in
             QnClient.sharedInstance.unblock(user: self.user)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
         alert.addAction(unblockAction)
         
         present(alert, animated: true, completion: nil)
