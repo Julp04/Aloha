@@ -98,17 +98,10 @@ class AddProfileInfoViewController: UITableViewController {
     func continueSignup()
     {
 
-        QnClient.sharedInstance.updateUserInfo(firstName: userInfo!.firstName!, lastName: userInfo!.lastName!, personalEmail: emailField.text, phone: phoneField.text, location: locationField.text, birthdate: birthdateField.text, about: aboutField.text)
+        QnClient.sharedInstance.updateUserInfo(firstName: userInfo!.firstName!, lastName: userInfo!.lastName!, personalEmail: emailField.text!, phone: phoneField.text!, location: locationField.text!, birthdate: birthdateField.text!, about: aboutField.text!)
         
         QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         
-        performSegue(withIdentifier: "LinkAccounts", sender: self)
-    }
-    
-    func skip()
-    {
-        //Setting the image either way
-        QnClient.sharedInstance.setProfileImage(image: profileImageView.image!)
         performSegue(withIdentifier: "LinkAccounts", sender: self)
     }
     

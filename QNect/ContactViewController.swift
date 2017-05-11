@@ -192,7 +192,7 @@ class ContactViewController: UITableViewController,MFMessageComposeViewControlle
         let currentUser = FIRAuth.auth()!.currentUser!
         
         databaseRef.child("users").child(currentUser.uid).observe(.value, with: { (snapshot) in
-            let user = User(snapshot: snapshot)
+            let user = User(snapshot: snapshot)!
             
             
             self.databaseRef.child("following").child(user.uid).child(self.contact!.uid).setValue(["firstName":self.contact!.firstName, "lastName":self.contact!.lastName])

@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/ContactManager.swift"
-            timestampString = "515596005.109299"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "addContact(_:image:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -105,13 +89,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/MainController.swift"
-            timestampString = "516150003.706187"
+            filePath = "QNect/ConnectionsViewController.swift"
+            timestampString = "516234387.114989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "handleScannedContact(_:barCodeObject:)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "gestureRecognizerShouldBegin(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516234804.394039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
+            landmarkName = "getFollowing(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516234804.394039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "getFollowing(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +137,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/MainController.swift"
-            timestampString = "516150001.505132"
+            filePath = "QNect/ProfileViewControllerOtherUser.swift"
+            timestampString = "516233274.736143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "emailUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516235269.260721"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "updateUserInfo(firstName:lastName:personalEmail:phone:location:birthdate:about:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect_dev.QnClient.updateUserInfo (firstName : Swift.String, lastName : Swift.String, personalEmail : Swift.Optional&lt;Swift.String&gt;, phone : Swift.Optional&lt;Swift.String&gt;, location : Swift.Optional&lt;Swift.String&gt;, birthdate : Swift.Optional&lt;Swift.String&gt;, about : Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "QNect dev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnClient.swift"
+                  timestampString = "516235603.000651"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1838">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QNect_dev.QnClient.updateUserInfo (firstName : Swift.String, lastName : Swift.String, personalEmail : Swift.Optional&lt;Swift.String&gt;, phone : Swift.Optional&lt;Swift.String&gt;, location : Swift.Optional&lt;Swift.String&gt;, birthdate : Swift.Optional&lt;Swift.String&gt;, about : Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "QNect dev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnClient.swift"
+                  timestampString = "516235603.001959"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1949">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516235279.341537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "updateUserInfo(firstName:lastName:personalEmail:phone:location:birthdate:about:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
