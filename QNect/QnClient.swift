@@ -136,9 +136,10 @@ class QnClient {
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
-            if let pngImageData = UIImagePNGRepresentation(image) {
-                try pngImageData.write(to: fileURL, options: .atomic)
+            if let jpgData = UIImageJPEGRepresentation(image, 0.5) {
+                try jpgData.write(to: fileURL, options: .atomic)
             }
+            
             
             // Get a reference to the storage service using the default Firebase App
             let storageRef = FIRStorage.storage().reference()
