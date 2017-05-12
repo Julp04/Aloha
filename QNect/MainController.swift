@@ -156,12 +156,7 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
     {
         
-        let profileNavController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUserNav") as! UINavigationController
-        let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
-        profileViewController.configureViewController(user: self.contact)
-        present(profileNavController, animated: true) { 
-            self.stopCaptureSession()
-        }
+        self.performSegue(withIdentifier: "ContactProfileSegue", sender: self)
     }
     
     func centerForBarcodeObject(_ barCodeObject:AVMetadataMachineReadableCodeObject) -> CGPoint
@@ -208,6 +203,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
             let codeViewController = segue.destination
             codeViewController.transitioningDelegate = transitionManager
             transitionManager.presentedViewController = codeViewController
+        }else if segue.identifier == "ContactProfileSegue" {
+            let profileNavController = segue.destination as! UINavigationController
+            let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
+            profileViewController.configureViewController(user: self.contact)
+            self.stopCaptureSession()
         }
     }
     
