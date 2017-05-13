@@ -52,7 +52,15 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
+    
     @IBOutlet weak var statsStackView: UIStackView!
+    @IBOutlet weak var followStackView: UIStackView!
+    @IBOutlet weak var contactButtonsStackView: UIStackView!
+    @IBOutlet weak var profileImageStackView: UIStackView!
+    @IBOutlet weak var nameStackView: UIStackView!
+    @IBOutlet weak var aboutStackView: UIStackView!
+    
+    
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
     
@@ -120,7 +128,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             
-            return profileHeight
+            //todo: calculate this value better
+            return 315.0
         }
         
         return 125
@@ -179,14 +188,21 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         var buttonText = ""
         var action: Selector
+        var buttonColor = UIColor(white: 1.0, alpha: 0.5)
+        var buttonTextColor = UIColor.qnBlue
+        
         switch followingStatus {
         case .accepted:
+            buttonColor = .qnBlue
+            buttonTextColor = .white
             buttonText = "Following"
             action = #selector(ProfileViewControllerOtherUser.showUnfollowAction)
         case .pending:
             buttonText = "Pending"
             action = #selector(ProfileViewControllerOtherUser.showCancelRequestAlert)
         case .blocking:
+            buttonColor = .qnRed
+            buttonTextColor = .white
             buttonText = "Blocked"
             action = #selector(ProfileViewControllerOtherUser.showUnblockAction)
         case .notFollowing:
@@ -194,6 +210,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
             action = #selector(ProfileViewControllerOtherUser.follow)
         }
         
+        self.followOrEditProfileButton.setTitleColor(buttonTextColor, for: .normal)
+        self.followOrEditProfileButton.backgroundColor = buttonColor
         self.followOrEditProfileButton.setTitle(buttonText, for: .normal)
         self.followOrEditProfileButton.addTarget(self, action: action, for: .touchUpInside)
     }
@@ -249,6 +267,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func calculateProfileViewHeight() -> CGFloat
     {
+        
+        let imageHeight = profileImageStackView.frame.height
+        let nameHeight = nameStackView.frame.height
+        let aboutHeight = aboutStackView.frame.height
+        let followHeight = followStackView.frame.height
+        let contactButtonsHeight = contactButtonsStackView.frame.height
+        let statsHeight = statsStackView.frame.height
+        
+        let total = imageHeight + nameHeight + aboutHeight + followHeight + contactButtonsHeight + statsHeight
+        
         let y = statsStackView.frame.origin.y
         let finalPosition = y
         
