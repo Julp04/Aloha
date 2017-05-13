@@ -89,32 +89,38 @@ class QnClient {
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        let users = ref.child(DatabaseFields.users.rawValue)
-        let currentUserRef = users.child(currentUser.uid)
+        let usersRef = ref.child(DatabaseFields.users.rawValue)
+        let currentUserRef = usersRef.child(currentUser.uid)
         
         currentUserRef.updateChildValues([DatabaseFields.firstName.rawValue: firstName,
                                        DatabaseFields.lastName.rawValue: lastName])
         
         if let personalEmail = personalEmail, personalEmail != "" {
             currentUserRef.updateChildValues([DatabaseFields.personalEmail.rawValue: personalEmail])
+        }else {
+            currentUserRef.child(DatabaseFields.personalEmail.rawValue).removeValue()
         }
         if var phone = phone, phone != "" {
             phone = String(phone.characters.filter {"0123456789".characters.contains($0) })
-            
             currentUserRef.updateChildValues([DatabaseFields.phone.rawValue: phone])
+        }else {
+            currentUserRef.child(DatabaseFields.phone.rawValue).removeValue()
         }
         if let location = location, location != "" {
             currentUserRef.updateChildValues([DatabaseFields.location.rawValue: location])
+        }else {
+            currentUserRef.child(DatabaseFields.location.rawValue).removeValue()
         }
         if let birthdate = birthdate, birthdate != "" {
             currentUserRef.updateChildValues([DatabaseFields.birthdate.rawValue: birthdate])
+        }else {
+            currentUserRef.child(DatabaseFields.birthdate.rawValue).removeValue()
         }
-        if var about = about, about != ""  {
-            if about == "About" {
-                about = ""
-            }
-            
-            currentUserRef.updateChildValues([DatabaseFields.about.rawValue: about])
+        
+        if about == "About" || about == "" {
+            currentUserRef.child(DatabaseFields.about.rawValue).removeValue()
+        }else {
+            currentUserRef.updateChildValues([DatabaseFields.about.rawValue: about!])
         }
     }
 
@@ -182,6 +188,21 @@ class QnClient {
                 completion(image, nil)
             }
         }
+    }
+    
+    
+    /// Gets most recent info of user passed in.
+    ///
+    /// - Parameters:
+    ///   - user: Current user to get most recent info
+    ///   - completion: pass back the updated user
+    func getUpdatedInfoForUser(user: User, completion:@escaping (User) -> Void) {
+        
+        ref.child(DatabaseFields.users.rawValue).child(user.uid).observe(.value, with: { snapshot in
+            if let updatedUser = User(snapshot: snapshot) {
+                completion(updatedUser)
+            }
+        })
     }
     
     func getProfileImageForCurrentUser() -> UIImage?
@@ -317,16 +338,24 @@ class QnClient {
                     
                     let user = User(snapshot: snapshot)!
                     
-                    let userUID = item.key 
-                    let followingStatus = item.value as! String
+                    self.getProfileImageForUser(user: user, completion: { (image,error) in
+                        if image != nil {
+                            user.profileImage = image
+                        }
+                        
+                        let userUID = item.key
+                        let followingStatus = item.value as! String
+                        
+                        //Do not re-add users
+                        users = users.filter() {$0.uid != userUID }
+                        if followingStatus == FollowingStatus.accepted.rawValue {
+                            users.append(user)
+                        }
+                        
+                        completion(users)
+                    })
                     
-                    //Do not re-add users
-                    users = users.filter() {$0.uid != userUID }
-                    if followingStatus == FollowingStatus.accepted.rawValue {
-                        users.append(user)
-                    }
                     
-                    completion(users)
                 })
             }
             
