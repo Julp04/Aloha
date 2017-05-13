@@ -135,7 +135,7 @@ class EditProfileInfoViewController: UITableViewController {
     {
         let alert = UIAlertController(title: "Edit Profile Image", message: nil, preferredStyle: .actionSheet)
         
-        let selfieAction = UIAlertAction(title: "Take Selfie", style: .default) { (action) in
+        let selfieAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .camera
             self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
@@ -163,12 +163,9 @@ class EditProfileInfoViewController: UITableViewController {
             alert.addAction(selfieAction)
         }
         
-        if self.profileImageView.image != nil {
-            alert.addAction(removePhotoAction)
-        }
-        
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
+        alert.addAction(removePhotoAction)
         self.present(alert, animated: true, completion: nil)
     }
 }

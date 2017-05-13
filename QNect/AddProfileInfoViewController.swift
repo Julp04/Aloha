@@ -148,6 +148,7 @@ class AddProfileInfoViewController: UITableViewController {
         
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
+        alert.addAction(removePhotoAction)
         self.present(alert, animated: true, completion: nil)
     }
     
