@@ -34,7 +34,6 @@ class CodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         self.view.backgroundColor = UIColor.qnGreenTeal
         
@@ -49,6 +48,9 @@ class CodeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         createQRCode()
+        
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     
