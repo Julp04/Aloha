@@ -82,7 +82,10 @@ class AddProfileInfoViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.tintColor = UIColor.qnPurple
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationItem.hidesBackButton = true
+        
+      
         super.viewWillAppear(true)
     }
     

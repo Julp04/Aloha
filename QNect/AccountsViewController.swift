@@ -69,7 +69,6 @@ class AccountsViewController: UIViewController {
         }
     }
     
-    
     var twitterWhiteFlake: Snowflake!
     var twitterBlueFlake: Snowflake!
     var contactGreenFlake: Snowflake!
@@ -161,12 +160,15 @@ class AccountsViewController: UIViewController {
                     //Show alert that user can turn on access to contacts in settings
                     DispatchQueue.main.async {
                         let alert = FCAlertView()
-                        alert.addButton("Settings") {
+                        alert.addButton("Dismiss") {
+                          alert.dismiss()
+                        }
+                        alert.colorScheme = .qnGreen
+                        alert.showAlert(inView: self, withTitle: "Access Denied", withSubtitle: "Go to settings to change access to contacts", withCustomImage: #imageLiteral(resourceName: "contact_logo"), withDoneButtonTitle: "Settings", andButtons: nil)
+                        alert.doneBlock = {
                             let url = URL(string: UIApplicationOpenSettingsURLString)
                             UIApplication.shared.openURL(url!)
                         }
-                        alert.colorScheme = .qnGreen
-                        alert.showAlert(inView: self, withTitle: "Access Denied", withSubtitle: "Go to settings to change access to contacts", withCustomImage: #imageLiteral(resourceName: "contact_logo"), withDoneButtonTitle: "Dismiss", andButtons: nil)
                         
                     }
                 }
@@ -216,15 +218,8 @@ class AccountsViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
     //MARK: UI
     
-    
-
 
 }
 

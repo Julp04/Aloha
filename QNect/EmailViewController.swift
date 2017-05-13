@@ -51,7 +51,6 @@ class EmailViewController: UIViewController {
         emailField.becomeFirstResponder()
         
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //MARK: Functionality
