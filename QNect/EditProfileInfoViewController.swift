@@ -80,11 +80,7 @@ class EditProfileInfoViewController: UITableViewController {
             datePicker.date = birthdate
         }
         
-        
-        
         aboutField.delegate = self
-      
-        
     }
     
     func configureViewController(currentUser: User, listener: PresentedControllerListener) {
