@@ -329,6 +329,10 @@ class QnClient {
         ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).observe(.value, with:  { snapshot in
             var users = [User]()
             
+            if !snapshot.exists() {
+                completion(users)
+            }
+            
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 self.ref.child(DatabaseFields.users.rawValue).child(item.key).observe(.value, with: {snapshot in
