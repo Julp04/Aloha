@@ -748,7 +748,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings_icon" id="umK-bK-YtJ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="BlF-UI-7RL" kind="show" id="Q8R-XY-50q"/>
+                                <segue destination="BlF-UI-7RL" kind="show" id="z9x-44-mPY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -846,7 +846,7 @@
         <scene sceneID="Y5e-LO-eV9">
             <objects>
                 <tableViewController storyboardIdentifier="ConnectionsViewController" id="vdH-fS-tNn" customClass="ConnectionsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Va4-8M-pBB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Va4-8M-pBB">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -907,10 +907,21 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="c8O-qP-9NR"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="DCf-24-PkP" id="yUQ-Fh-YZz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJ5-Lv-FKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="DCf-24-PkP">
+                    <connections>
+                        <outlet property="delegate" destination="vdH-fS-tNn" id="TDa-y9-8HU"/>
+                        <outlet property="searchContentsController" destination="vdH-fS-tNn" id="ZUi-yN-HJv"/>
+                        <outlet property="searchResultsDataSource" destination="vdH-fS-tNn" id="DBE-j8-YAo"/>
+                        <outlet property="searchResultsDelegate" destination="vdH-fS-tNn" id="ePc-oH-8Kw"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="5357.6000000000004" y="-3027.4362818590707"/>
+            <point key="canvasLocation" x="5329" y="-3044"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LX0-aZ-6sb">
@@ -967,8 +978,11 @@
                             <outletCollection property="gestureRecognizers" destination="Skb-Af-xHa" appends="YES" id="8Mb-ml-FOy"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="3uk-f0-jaW"/>
+                    <navigationItem key="navigationItem" id="3uk-f0-jaW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="c6m-X5-Tkq"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="rightBarButtonItem" destination="c6m-X5-Tkq" id="atr-qA-GIP"/>
                         <segue destination="p9j-Fr-J66" kind="showDetail" identifier="CodeSegue" id="7BH-mH-EcN"/>
                         <segue destination="0Ux-yL-CRM" kind="presentation" identifier="ContactProfileSegue" id="m5M-PE-9vt"/>
                     </connections>
@@ -986,7 +1000,7 @@
         <scene sceneID="21n-iJ-n9l">
             <objects>
                 <tableViewController id="BlF-UI-7RL" customClass="SettingsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OLH-st-4AY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OLH-st-4AY">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1262,6 +1276,7 @@
                             <outlet property="delegate" destination="BlF-UI-7RL" id="cRT-4q-rrE"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="PhT-rT-UPz"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1273,14 +1288,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEL-ao-Pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4806" y="-5165"/>
+            <point key="canvasLocation" x="5744" y="-5165.217391304348"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zbO-VV-lsY">
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1640,7 +1655,7 @@
         <scene sceneID="vx8-R6-MEH">
             <objects>
                 <tableViewController storyboardIdentifier="AddProfileInfoViewController" id="nJ0-dh-6ow" customClass="AddProfileInfoViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CQq-ci-zup">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CQq-ci-zup">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1997,15 +2012,15 @@
                         <viewControllerLayoutGuide type="top" id="9bu-em-KVc"/>
                         <viewControllerLayoutGuide type="bottom" id="bHJ-eP-FFq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="wrD-xX-jpF">
+                    <view key="view" contentMode="scaleToFill" id="wrD-xX-jpF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7L-S2-YcU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK7-ry-kuK">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nS8-VU-kRI" customClass="SwitchButton" customModule="QNect" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="124" width="331" height="126"/>
@@ -2208,7 +2223,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2224,7 +2239,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ILp-FE-fbf">
             <objects>
-                <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="MTb-og-dz8" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2237,14 +2252,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWU-tf-Jdq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4668" y="-3019"/>
+            <point key="canvasLocation" x="4665" y="-3045"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="to2-Y7-xl2">
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2588,13 +2603,18 @@
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="aboutLabel" destination="IfL-PC-9OQ" id="YNj-B4-uff"/>
+                        <outlet property="aboutStackView" destination="EdH-WV-bfm" id="VRW-hF-Ety"/>
                         <outlet property="accountsCollectionView" destination="jNI-zn-On3" id="bXJ-7b-QSr"/>
                         <outlet property="callButton" destination="Qg8-ui-ARh" id="TBj-vX-gb5"/>
+                        <outlet property="contactButtonsStackView" destination="5Rf-Ww-wxV" id="8HN-w8-QZy"/>
                         <outlet property="emailButton" destination="717-o8-hSc" id="pFD-7k-3NP"/>
                         <outlet property="followOrEditProfileButton" destination="Q5a-Ny-7T6" id="sx5-NN-mUP"/>
+                        <outlet property="followStackView" destination="BsS-Fb-B6a" id="3Eb-4Y-0q6"/>
                         <outlet property="locationLabel" destination="Sj8-SA-AWn" id="74c-gj-0uz"/>
                         <outlet property="messageButton" destination="76L-uJ-sdy" id="ywT-7y-UK5"/>
                         <outlet property="nameLabel" destination="b7w-9a-mut" id="It4-If-3Qa"/>
+                        <outlet property="nameStackView" destination="DJJ-Pw-bVA" id="JRr-d0-ZAP"/>
+                        <outlet property="profileImageStackView" destination="pwm-fX-Pp7" id="op0-MQ-r8p"/>
                         <outlet property="profileImageView" destination="CX1-Qy-yL3" id="78B-7J-Nak"/>
                         <outlet property="statsStackView" destination="ey4-Wg-tgW" id="Rll-KH-GmD"/>
                     </connections>
@@ -3076,7 +3096,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3094,7 +3114,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerOtherUserNav" automaticallyAdjustsScrollViewInsets="NO" id="0Ux-yL-CRM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3142,7 +3162,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
