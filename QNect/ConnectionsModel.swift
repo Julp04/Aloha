@@ -14,14 +14,20 @@ import UIKit
 class ConnectionsModel
 {
     fileprivate var connections = [User]()
+    fileprivate var filteredConnections = [User]()
+    
     var dictionary = [String: [User]]()
+    var filteredDictionary = [String: [User]]()
+    
     var allKeys = [String]()
+    var filteredKeys = [String]()
+    
     var profileImages = [UIImage]()
+   
     
     init(connections:[User])
     {
         self.connections = connections
-        
         for connection in connections {
             
             let firstLetter = connection.lastName.firstLetter()
@@ -29,14 +35,15 @@ class ConnectionsModel
                 dictionary[firstLetter!] = [connection]
             }
         }
-        
         allKeys = Array(dictionary.keys).sorted()
+       
     }
     
     func numberOfConnections() ->Int
     {
         return self.connections.count
     }
+    
     
     func numberOfConnectionSections() -> Int
     {
@@ -52,11 +59,7 @@ class ConnectionsModel
     
     func titleForSection(_ section:Int) -> String?
     {
-        if allKeys.count == 0 {
-            return nil
-        }else {
-            return allKeys[section]
-        }
+        return allKeys.count == 0 ? nil : allKeys[section]
     }
     
     func connectionAtIndexPath(_ indexPath:IndexPath) -> User?
@@ -72,11 +75,7 @@ class ConnectionsModel
     
     func indexTitle() -> [String]?
     {
-        if allKeys.count == 0 {
-            return nil
-        }else {
-            return allKeys
-        }
+        return allKeys.count == 0 ? nil : allKeys
     }
     
     func imageForConnectionAt(indexPath:IndexPath) -> UIImage? {
@@ -87,8 +86,61 @@ class ConnectionsModel
         let profileImage = connection?.profileImage
         
         return profileImage
+    }
+    
+    //MARK: - Filtered Connections
+    
+    func filterContentsForSearch(text: String) {
+
+        filteredConnections = connections.filter({ (user) -> Bool in
+            let name = user.firstName + " " + user.lastName
+            return  name.lowercased().contains(text.lowercased())
+        })
         
+        for connection in filteredConnections {
+            
+            let firstLetter = connection.lastName.firstLetter()
+            if filteredDictionary[firstLetter!]?.append(connection)  == nil {
+                filteredDictionary[firstLetter!] = [connection]
+            }
+        }
+        filteredKeys = Array(filteredDictionary.keys).sorted()
         
+        if filteredConnections.isEmpty {
+            filteredKeys.removeAll()
+            filteredDictionary.removeAll()
+        }
+    }
+    
+    func numberOfFilteredConnections() -> Int {
+        return filteredConnections.count
+    }
+    
+    func numberOfFilteredConnectionSections() -> Int {
+        return filteredKeys.count
+    }
+    
+    func numberOfFilteredConnectionsInSection(_ section: Int) -> Int {
+        let letter = filteredKeys[section]
+        let connectionsWithLastNameOfLetter = filteredDictionary[letter]!
+        return connectionsWithLastNameOfLetter.count
+    }
+    
+    func filtedIndexTitle() -> [String]? {
+        return filteredKeys.count == 0 ? nil : filteredKeys
+    }
+    
+    func filteredTitleForSection(_ section: Int) -> String? {
+        return filteredKeys.count == 0 ? nil : filteredKeys[section]
+    }
+    
+    func filteredConnectionAt(_ indexPath: IndexPath) -> User? {
+        let letter = filteredKeys[indexPath.section]
+        if let _ = filteredDictionary[letter] {
+            return filteredConnections[indexPath.row]
+        }else {
+            return nil
+        }
     }
 }
 
