@@ -79,17 +79,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
         navigationController?.navigationBar.topItem?.title = user.username
         
         
+        
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
         
-        callButton.isHidden = user.phone == nil
-        messageButton.isHidden = user.phone == nil
-        emailButton.isHidden = user.personalEmail == nil
+      
+        updateContactButtons()
         
-        //Set profile image
-        setProfileImage()
-        user.profileImage = profileImageView.image
+        //Get profile image
+        getProfileImage()
         
         profileManager = ProfileManager(user: user, viewController: self)
     
@@ -113,23 +112,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         accountsCollectionView.delegate = self
         
         
-        let birthdate = user.birthdate?.asDate()
-        let age = birthdate?.age
-        
-        if user.location != nil && age != nil {
-            locationLabel.text = "\(user.location!) | \(age!)"
-        }else {
-            locationLabel.text = user.location ?? age
-        }
-        aboutLabel.text = user.about
-        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
-        
-       
-        //Check whether other info is available
-        aboutLabel.isHidden = user.about == nil
-        locationLabel.isHidden = (user.location == nil && age == nil)
-
-        profileHeight = calculateProfileViewHeight()
+        updateUI()
         
         listenForUpdates()
     }
@@ -172,6 +155,12 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func listenForUpdates() {
         
+        //This will get called if the user you are viewing makes a change to his profile as you are viewing it.
+        QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (updatedUser) in
+            self.user = updatedUser
+            self.updateUI()
+        }
+        
         QnClient.sharedInstance.getFollowStatus(user: user) { (status) in
             self.followingStatus = status
             self.updateUI()
@@ -181,6 +170,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     func updateUI() {
         updateFollowButton()
         updateSettingsAlert()
+        updateUserInfoLabels()
+        updateContactButtons()
     }
     
     func updateFollowButton() {
@@ -190,14 +181,14 @@ class ProfileViewControllerOtherUser: UITableViewController {
         var action: Selector
         switch followingStatus {
         case .accepted:
-            buttonText = "Unfollow"
-            action = #selector(ProfileViewControllerOtherUser.unfollow)
+            buttonText = "Following"
+            action = #selector(ProfileViewControllerOtherUser.showUnfollowAction)
         case .pending:
             buttonText = "Pending"
             action = #selector(ProfileViewControllerOtherUser.showCancelRequestAlert)
         case .blocking:
             buttonText = "Blocked"
-            action = #selector(ProfileViewControllerOtherUser.showBlockAction)
+            action = #selector(ProfileViewControllerOtherUser.showUnblockAction)
         case .notFollowing:
             buttonText = "Follow"
             action = #selector(ProfileViewControllerOtherUser.follow)
@@ -229,6 +220,32 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
     }
     
+    func updateUserInfoLabels() {
+        let birthdate = user.birthdate?.asDate()
+        let age = birthdate?.age
+        
+        if user.location != nil && age != nil {
+            locationLabel.text = "\(user.location!) | \(age!)"
+        }else {
+            locationLabel.text = user.location ?? age
+        }
+        aboutLabel.text = user.about
+        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
+        
+        
+        //Check whether other info is available
+        aboutLabel.isHidden = user.about == nil
+        locationLabel.isHidden = (user.location == nil && age == nil)
+        
+        profileHeight = calculateProfileViewHeight()
+    }
+    
+    func updateContactButtons() {
+        callButton.isHidden = user.phone == nil
+        messageButton.isHidden = user.phone == nil
+        emailButton.isHidden = user.personalEmail == nil
+    }
+    
     
     func calculateProfileViewHeight() -> CGFloat
     {
@@ -238,7 +255,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
         return finalPosition
     }
     
-    func setProfileImage() {
+    func getProfileImage() {
+        
+        self.profileImageView.image = ProfileImageCreator.create(user.firstName, last: user.lastName)
+        
         
         if user.profileImage == nil {
             if Reachability.isConnectedToInternet() {
@@ -261,10 +281,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
     func follow() {
     
         QnClient.sharedInstance.follow(user: user)
-    }
-    
-    func unfollow() {
-        QnClient.sharedInstance.unfollow(user: user)
     }
     
     func showCancelRequestAlert() {
@@ -318,7 +334,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
     }
     
-    func showBlockAction() {
+    func showUnblockAction() {
         let alert = UIAlertController(title: self.user.username, message: nil, preferredStyle: .actionSheet)
         
         let unblockAction = UIAlertAction(title: "Unblock", style: .destructive) { (action) in
@@ -330,6 +346,19 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         present(alert, animated: true, completion: nil)
         
+    }
+    
+    func showUnfollowAction() {
+        let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
+        
+        let unfollowAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
+            QnClient.sharedInstance.unfollow(user: self.user)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(unfollowAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
    
