@@ -250,7 +250,6 @@ class QnClient {
                 //current Useer is being blocked by user they want to follow, and we cannot allow them to follow them
                 //show alert or something
             }else {
-//                user.isPrivate = true
                 //Can continue to follow process
                 //If we are scanning directly from their phone private settings do not apply
                 if user.isPrivate {

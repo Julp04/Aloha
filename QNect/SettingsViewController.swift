@@ -31,9 +31,9 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool){
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black,
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black,
                                     NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
-        self.navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
     }
     
     //MARK: Table View Delegate Methods
@@ -55,8 +55,6 @@ class SettingsViewController: UITableViewController {
             
         default:break
         }
-        
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
   
@@ -70,24 +68,18 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Logout", style: UIAlertActionStyle.default, handler: { (action) -> Void in
 
-           QnClient.sharedInstance.signOut()
+            QnClient.sharedInstance.signOut()
 
             self.performSegue(withIdentifier: "LogoutSegue", sender: self)
             
         }))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func resetPassword()
     {
-        
         let alert = FCAlertView()
-        
-      
-        alert.addButton("Cancel", withActionBlock: {
-          
-        })
-        
+        alert.addButton("Cancel") {}
         alert.doneActionBlock {
             let email = FIRAuth.auth()!.currentUser!.email!
             FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
@@ -101,14 +93,6 @@ class SettingsViewController: UITableViewController {
         }
         
         alert.colorScheme = UIColor.qnPurple
-        
         alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "We'll send you a link to your email to reset your password", withCustomImage: #imageLiteral(resourceName: "lock_icon"), withDoneButtonTitle: "Reset Password", andButtons: nil)
-    
     }
-    
-
-
-
-
-
 }

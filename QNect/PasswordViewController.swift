@@ -54,11 +54,7 @@ class PasswordViewController: UIViewController {
     
     func configureViewController(userInfo:UserInfo)
     {
-        #if UI
-            self.userInfo = UserInfo.testUser
-        #else
-            self.userInfo = userInfo
-        #endif
+        self.userInfo = userInfo
     }
     
 

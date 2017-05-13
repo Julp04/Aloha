@@ -26,8 +26,6 @@ class OnboardViewController: UIViewController {
     
     let kvideoURLString = "onboard.mp4"
     
-    //Hey
-    
     //MARK: Properties
     
     var backgroundPlayer : BackgroundVideo? // Declare an instance of BackgroundVideo called backgroundPlayer
@@ -38,7 +36,6 @@ class OnboardViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
     
     //MARK: Outlets
     
@@ -55,14 +52,14 @@ class OnboardViewController: UIViewController {
         
         configureScrollView()
         
-        self.pageControl.numberOfPages = titleArray.count
+        pageControl.numberOfPages = titleArray.count
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         view.backgroundColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         self.navigationController?.setNavigationBarHidden(true, animated: true)
+         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     //MARK: Setup
