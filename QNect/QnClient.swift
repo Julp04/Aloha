@@ -351,6 +351,7 @@ class QnClient {
                             users.append(user)
                         }
                         
+                        
                         completion(users)
                     })
                     
@@ -358,6 +359,41 @@ class QnClient {
                 })
             }
             
+        })
+    }
+    
+    func getFollowers(completion: @escaping (([User]) -> Void)) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).observe(.value, with: { snapshot in
+            var users = [User]()
+            
+            if !snapshot.exists() {
+                completion(users)
+            }
+            
+            for item in snapshot.children {
+                let item = item as! FIRDataSnapshot
+                self.ref.child(DatabaseFields.users.rawValue).child(item.key).observe(.value, with: { (snapshot) in
+                    if let user = User(snapshot: snapshot) {
+                        self.getProfileImageForUser(user: user, completion: { (image, error) in
+                            if image != nil {
+                                user.profileImage = image
+                            }
+                            
+                            let userUID = item.key
+                            let followingStatus = item.value as! String
+                            
+                            users = users.filter { $0.uid != userUID}
+                            if followingStatus == FollowingStatus.accepted.rawValue {
+                                users.append(user)
+                            }
+                            
+                            completion(users)
+                        })
+                    }
+                })
+            }
         })
     }
     
