@@ -90,8 +90,6 @@ class EmailViewController: UIViewController {
             //No active email continue to register
             self.userInfo?.email = self.emailField.text!
            
-        
-
                 FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
                     guard error == nil else {
                         print(error!)
@@ -103,7 +101,6 @@ class EmailViewController: UIViewController {
                         
                         QnClient.sharedInstance.setUserInfo(userInfo: self.userInfo!)
 
-                        
                         guard error == nil else {
                             print(error!)
                             return
@@ -125,7 +122,6 @@ class EmailViewController: UIViewController {
             profileInfoVC.configureViewController(userInfo: self.userInfo!)
         }
     }
-    
 }
 
 extension EmailViewController: UITextFieldDelegate {

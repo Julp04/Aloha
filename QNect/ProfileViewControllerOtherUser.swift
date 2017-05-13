@@ -52,6 +52,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var faceTimeButton: UIButton!
     
     @IBOutlet weak var statsStackView: UIStackView!
     @IBOutlet weak var followStackView: UIStackView!
@@ -91,6 +92,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
+        faceTimeButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.faceTimeUser), for: .touchUpInside)
         
       
         updateContactButtons()
@@ -336,19 +338,21 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     func callUser() {
-        let callAlert = UIAlertController(title: "Call \(user.firstName!) \(user.lastName!)", message: nil, preferredStyle: .alert)
-        let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
-            if let phoneNumber = self.user.phone {
-                let phone = "tel://\(phoneNumber)";
-                let url = URL(string:phone)!;
-                UIApplication.shared.openURL(url);
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        callAlert.addAction(cancelAction)
-        callAlert.addAction(callAction)
         
-        present(callAlert, animated: true, completion: nil)
+        guard let phoneNumber = user.phone else {
+            return
+        }
+        let phone = "tel://\(phoneNumber)"
+        let url = URL(string:phone)!
+        UIApplication.shared.openURL(url)
+    }
+    
+    func faceTimeUser() {
+        if let phoneNumber = self.user.phone {
+            let phone = "facetime://\(phoneNumber)"
+            let url = URL(string: phone)!
+            UIApplication.shared.openURL(url)
+        }
     }
     
     func emailUser() {

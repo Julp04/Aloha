@@ -2450,15 +2450,19 @@
                                                     <rect key="frame" x="16" y="257" width="343" height="43"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-ui-ARh">
-                                                            <rect key="frame" x="0.0" y="0.0" width="114.5" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="86" height="43"/>
                                                             <state key="normal" image="call_button"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76L-uJ-sdy">
-                                                            <rect key="frame" x="114.5" y="0.0" width="114" height="43"/>
+                                                            <rect key="frame" x="86" y="0.0" width="85.5" height="43"/>
                                                             <state key="normal" image="message_button"/>
                                                         </button>
+                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaS-4f-Jjl">
+                                                            <rect key="frame" x="171.5" y="0.0" width="86" height="43"/>
+                                                            <state key="normal" image="video_chat_icon"/>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="717-o8-hSc">
-                                                            <rect key="frame" x="228.5" y="0.0" width="114.5" height="43"/>
+                                                            <rect key="frame" x="257.5" y="0.0" width="85.5" height="43"/>
                                                             <state key="normal" image="email_button"/>
                                                         </button>
                                                     </subviews>
@@ -2608,6 +2612,7 @@
                         <outlet property="callButton" destination="Qg8-ui-ARh" id="TBj-vX-gb5"/>
                         <outlet property="contactButtonsStackView" destination="5Rf-Ww-wxV" id="8HN-w8-QZy"/>
                         <outlet property="emailButton" destination="717-o8-hSc" id="pFD-7k-3NP"/>
+                        <outlet property="faceTimeButton" destination="jaS-4f-Jjl" id="i6N-KM-l2V"/>
                         <outlet property="followOrEditProfileButton" destination="Q5a-Ny-7T6" id="sx5-NN-mUP"/>
                         <outlet property="followStackView" destination="BsS-Fb-B6a" id="3Eb-4Y-0q6"/>
                         <outlet property="locationLabel" destination="Sj8-SA-AWn" id="74c-gj-0uz"/>
@@ -3186,5 +3191,6 @@
         <image name="qnect_logo_white" width="230" height="83"/>
         <image name="settings_icon" width="28" height="28"/>
         <image name="twitter_off" width="46" height="39"/>
+        <image name="video_chat_icon" width="44" height="43"/>
     </resources>
 </document>
