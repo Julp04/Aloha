@@ -25,6 +25,7 @@ class ConnectionsViewController: UITableViewController {
     
     var following = ConnectionsModel(connections: [User]())
     var selectedConnection: User?
+    let searchController = UISearchController(searchResultsController: nil)
     
     //MARK: Outlets
     
@@ -32,7 +33,6 @@ class ConnectionsViewController: UITableViewController {
     
     //MARK: Lifecycle
     
-   
     
     var databaseRef: FIRDatabaseReference! {
         return FIRDatabase.database().reference()
@@ -46,6 +46,18 @@ class ConnectionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+            // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        
+        navigationController?.navigationBar.topItem?.titleView = searchController.searchBar
+        
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UIColor.clear
     
@@ -56,6 +68,8 @@ class ConnectionsViewController: UITableViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        
         
 
         fetchFromDatabase()
@@ -91,6 +105,15 @@ class ConnectionsViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
+        if searchController.isActive && searchController.searchBar.text != "" {
+            if following.numberOfFilteredConnectionSections() == 0 {
+                return 0
+            }else {
+                self.tableView.backgroundView = nil
+                return following.numberOfFilteredConnectionSections()
+            }
+        }
+        
         if following.numberOfConnectionSections() == 0 {
             let emptyView = EmptyView(frame: self.view.frame, image: #imageLiteral(resourceName: "connections_icon"), titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
             
@@ -105,82 +128,120 @@ class ConnectionsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return following.numberOfConnectionsInSection(section)
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return following.numberOfConnectionsInSection(section)
+        }else {
+            return following.numberOfConnectionsInSection(section)
+        }
     }
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConnectionCell") as! ConnectionCell
-//        
-//        if profileImage != nil {
-//            cell.profileImageView.image = profileImage
-//        }else {
-//            cell.profileImageView.image = ProfileImageCreator.create(connection.firstName, last: connection.lastName)
-//        }
+        cell.backgroundColor = .clear
         
-        if let connection = following.connectionAtIndexPath(indexPath) {
-            let firstName = connection.firstName
-            let lastName = connection.lastName
+        var connection: User?
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            connection = following.filteredConnectionAt(indexPath)
+        }else {
+            connection = following.connectionAtIndexPath(indexPath)
+        }
+        
+        
+        if let connection = connection  {
+            let firstName = connection.firstName!
+            let lastName = connection.lastName!
             
-            cell.nameLabel.text = firstName! + " " + lastName!
+            cell.nameLabel.text = firstName + " " + lastName
+            cell.otherLabel.text = connection.username
             
             let profileImage = following.imageForConnectionAt(indexPath: indexPath)
             if profileImage != nil {
                 cell.profileImageView.image = profileImage
+                connection.profileImage = profileImage
             }else {
                 cell.profileImageView.image = ProfileImageCreator.create(connection.firstName, last: connection.lastName)
             }
         }
+    
     
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return following.filteredTitleForSection(section)
+        }
+        
         return following.titleForSection(section)
     }
     
+    
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return following.indexTitle()
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return following.filtedIndexTitle()
+        }else {
+            return following.indexTitle()
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return kCellHeight
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        let cell = cell as! ConnectionCell
-        cell.profileImageView.layer.cornerRadius = (cell.profileImageView.frame.size.width) / 2
-        cell.profileImageView.layer.borderWidth = kProfileBorderWidth
-        cell.profileImageView.layer.borderColor = UIColor.qnPurple.cgColor
-        
-        cell.profileImageView.clipsToBounds = true
-        
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if following.numberOfConnections() != 0 {
-            if let user = following.connectionAtIndexPath(indexPath) {
-    
-                let profileNavController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUserNav") as! UINavigationController
-                let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
-                profileViewController.configureViewController(user: user)
-                present(profileNavController, animated: true, completion: nil)
-            }
-            
-            
+        
+        var connection: User?
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            connection = following.filteredConnectionAt(indexPath)
+        }else {
+            connection = following.connectionAtIndexPath(indexPath)
         }
+
+
+        if let connection = connection{
+
+            let profileNavController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUserNav") as! UINavigationController
+            let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
+            profileViewController.configureViewController(user: connection)
+            present(profileNavController, animated: true, completion: nil)
+        }
+
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
-    func positionForBar(_ bar: UIBarPositioning) -> UIBarPosition {
+    @objc(positionForBar:) func position(for bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.topAttached
     }
     
     
+
 }
+
+extension ConnectionsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        following.filterContentsForSearch(text: searchBar.text!)
+        tableView.reloadData()
+    }
+}
+
+extension ConnectionsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let seachBar = searchController.searchBar
+        following.filterContentsForSearch(text: seachBar.text!)
+        tableView.reloadData()
+    }
+    
+    
+}
+
 
 extension ConnectionsViewController: ImageDownloaderDelegate {
     
@@ -229,7 +290,6 @@ extension ConnectionsViewController: UIGestureRecognizerDelegate {
         }
         
         return true
-        
     }
     
 }
