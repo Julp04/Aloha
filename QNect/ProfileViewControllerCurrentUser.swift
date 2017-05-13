@@ -41,6 +41,11 @@ class ProfileViewControllerCurrentUser: UITableViewController {
    
     //MARK: Outlets
   
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var scansLabel: UILabel!
+    
+    
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -105,6 +110,14 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         locationLabel.isHidden = (user.location == nil && age == nil)
         
         profileHeight = calculateProfileViewHeight()
+        
+        QnClient.sharedInstance.getFollowing { (users) in
+            self.followingLabel.text = "\(users.count)"
+        }
+        
+        QnClient.sharedInstance.getFollowers { (users) in
+            self.followersLabel.text = "\(users.count)"
+        }
     }
     
     //MARK: Lifecycle
