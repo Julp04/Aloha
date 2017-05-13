@@ -65,6 +65,11 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
     
      override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hiding nav bar so we can interact with other view controllers in pageview controller
+        self.navigationController?.navigationBar.isHidden = true
+        
+        
 
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
@@ -90,12 +95,13 @@ class MainController: PageboyViewController, NavgationTransitionable, ModalTrans
         
         
         createCaptureSession()
-      
         createBarButtonItems()
         
         self.dataSource = self
         self.delegate = self
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
           startCaptureSession()
@@ -234,6 +240,9 @@ extension MainController: AVCaptureMetadataOutputObjectsDelegate {
             
             if metadataObj.type == AVMetadataObjectTypeQRCode{
                 if let contact = QnDecoder.decodeQRCode(metadataObj.stringValue) {
+                    //todo:check if user still exists
+                    
+                    //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
                     
                     self.contact = contact
                     let scan = Scan(contact: contact)
@@ -386,6 +395,5 @@ extension MainController: UIGestureRecognizerDelegate {
         return false
     }
 }
-
 
 
