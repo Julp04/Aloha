@@ -27,12 +27,13 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .qnBlue
-        
     }
     
     override func viewWillAppear(_ animated: Bool){
-       
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black,
+                                    NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
+        self.navigationController?.navigationBar.tintColor = .black
     }
     
     //MARK: Table View Delegate Methods
