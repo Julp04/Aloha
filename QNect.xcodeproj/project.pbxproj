@@ -68,7 +68,6 @@
 		14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
 		14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
-		14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
 		14CCB6A01E7C0FB4004B1C3C /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
 		14CCB6A11E7C0FB4004B1C3C /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		14CCB6A21E7C0FB4004B1C3C /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
@@ -81,7 +80,6 @@
 		14CCB6B01E7C0FB4004B1C3C /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
 		14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
-		14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
 		14CCB6B61E7C0FB4004B1C3C /* AddProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* AddProfileInfoViewController.swift */; };
 		14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
@@ -116,7 +114,6 @@
 		14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
 		14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
-		14EC7A8A1E74F27300B3C4E8 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
 		14EC7A8C1E74F27300B3C4E8 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
 		14EC7A8D1E74F27300B3C4E8 /* ImageDownloaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6F8391E5343BB00BBD244 /* ImageDownloaderDelegate.swift */; };
 		14EC7A8E1E74F27300B3C4E8 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
@@ -129,7 +126,6 @@
 		14EC7A9B1E74F27300B3C4E8 /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
 		14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964AE8D1DBA74B400A0162E /* QNect.xcdatamodeld */; };
-		14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		14EC7AA01E74F27300B3C4E8 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
 		14EC7AA11E74F27300B3C4E8 /* AddProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D1DDD1E747F8000254601 /* AddProfileInfoViewController.swift */; };
 		14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE861DBA74B400A0162E /* AppDelegate.swift */; };
@@ -156,7 +152,6 @@
 		614DA7503917362AD3715B3E /* Pods_QNect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E052AF780C1A7562E24533A /* Pods_QNect.framework */; };
 		B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CB1DCFB6B000B73662 /* QNectCode.swift */; };
 		B90968D01DCFC1FB00B73662 /* QnClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968CF1DCFC1FB00B73662 /* QnClient.swift */; };
-		B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D31DCFC79500B73662 /* ContactViewController.swift */; };
 		B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90968D51DCFC83200B73662 /* ConnectionCell.swift */; };
 		B92418041DCFAFDF007C0B3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */; };
 		B92418061DCFB4BD007C0B3B /* QnDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418051DCFB4BD007C0B3B /* QnDecoder.swift */; };
@@ -176,7 +171,6 @@
 		B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
 		B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */; };
 		B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
-		B9C3A8001DD8E66F00CE9D06 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */; };
 		B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
@@ -241,7 +235,6 @@
 		851C301048E826C0D2EE42E4 /* Pods_QNectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QNectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90968CB1DCFB6B000B73662 /* QNectCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNectCode.swift; sourceTree = "<group>"; };
 		B90968CF1DCFC1FB00B73662 /* QnClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnClient.swift; sourceTree = "<group>"; };
-		B90968D31DCFC79500B73662 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		B90968D51DCFC83200B73662 /* ConnectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionCell.swift; sourceTree = "<group>"; };
 		B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B92418051DCFB4BD007C0B3B /* QnDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QnDecoder.swift; sourceTree = "<group>"; };
@@ -265,7 +258,6 @@
 		B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
-		B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsModel.swift; sourceTree = "<group>"; };
 		B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNectAlertView.swift; sourceTree = "<group>"; };
 		B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
@@ -417,7 +409,6 @@
 				B937537F1DD669F8007D50D7 /* ContactManager.swift */,
 				1474176C1EAD171100A9A1E9 /* Scan.swift */,
 				B949FA3F1DBAA55A0071CBD6 /* User.swift */,
-				B9C3A7FF1DD8E66F00CE9D06 /* ContactModel.swift */,
 				B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */,
 			);
 			name = Models;
@@ -455,7 +446,6 @@
 				14855D991E64902500794587 /* PasswordViewController.swift */,
 				14855D9B1E64903A00794587 /* EmailViewController.swift */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
-				B90968D31DCFC79500B73662 /* ContactViewController.swift */,
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
@@ -955,7 +945,6 @@
 				14CCB69A1E7C0FB4004B1C3C /* QnEncoder.swift in Sources */,
 				14CCB69C1E7C0FB4004B1C3C /* PasswordViewController.swift in Sources */,
 				14CCB69D1E7C0FB4004B1C3C /* ConnectionsModel.swift in Sources */,
-				14CCB69E1E7C0FB4004B1C3C /* ContactModel.swift in Sources */,
 				14CCB6A01E7C0FB4004B1C3C /* SphereMenu.swift in Sources */,
 				148522431EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
 				14CCB6A11E7C0FB4004B1C3C /* ImageDownloaderDelegate.swift in Sources */,
@@ -981,7 +970,6 @@
 				14CCB6B21E7C0FB4004B1C3C /* QNectCode.swift in Sources */,
 				1418C0041EA6400E00C5538F /* EmptyView.swift in Sources */,
 				14CCB6B31E7C0FB4004B1C3C /* QNect.xcdatamodeld in Sources */,
-				14CCB6B41E7C0FB4004B1C3C /* ContactViewController.swift in Sources */,
 				14CCB6B51E7C0FB4004B1C3C /* ConnectionCell.swift in Sources */,
 				14CCB6B61E7C0FB4004B1C3C /* AddProfileInfoViewController.swift in Sources */,
 				14CCB6B71E7C0FB4004B1C3C /* AppDelegate.swift in Sources */,
@@ -1011,7 +999,6 @@
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
 				14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */,
-				14EC7A8A1E74F27300B3C4E8 /* ContactModel.swift in Sources */,
 				14EC7A8C1E74F27300B3C4E8 /* SphereMenu.swift in Sources */,
 				148522421EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
 				14EC7A8D1E74F27300B3C4E8 /* ImageDownloaderDelegate.swift in Sources */,
@@ -1037,7 +1024,6 @@
 				14EC7A9D1E74F27300B3C4E8 /* QNectCode.swift in Sources */,
 				1418C0031EA6400E00C5538F /* EmptyView.swift in Sources */,
 				14EC7A9E1E74F27300B3C4E8 /* QNect.xcdatamodeld in Sources */,
-				14EC7A9F1E74F27300B3C4E8 /* ContactViewController.swift in Sources */,
 				14EC7AA01E74F27300B3C4E8 /* ConnectionCell.swift in Sources */,
 				14EC7AA11E74F27300B3C4E8 /* AddProfileInfoViewController.swift in Sources */,
 				14EC7AA21E74F27300B3C4E8 /* AppDelegate.swift in Sources */,
@@ -1068,7 +1054,6 @@
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
 				14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */,
 				B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */,
-				B9C3A8001DD8E66F00CE9D06 /* ContactModel.swift in Sources */,
 				148522411EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
 				B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */,
 				14E6F83A1E5343BB00BBD244 /* ImageDownloaderDelegate.swift in Sources */,
@@ -1092,7 +1077,6 @@
 				B90968CC1DCFB6B000B73662 /* QNectCode.swift in Sources */,
 				B964AE8F1DBA74B400A0162E /* QNect.xcdatamodeld in Sources */,
 				1418C0021EA6400E00C5538F /* EmptyView.swift in Sources */,
-				B90968D41DCFC79500B73662 /* ContactViewController.swift in Sources */,
 				148522371EA153DD00F0BDC4 /* String+Extension.swift in Sources */,
 				B90968D91DCFC83200B73662 /* ConnectionCell.swift in Sources */,
 				149D1DDF1E747F8000254601 /* AddProfileInfoViewController.swift in Sources */,
