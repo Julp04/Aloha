@@ -9,6 +9,7 @@
 import UIKit
 import RKDropdownAlert
 import FCAlertView
+import ReachabilitySwift
 
 class ProfileManager {
     
@@ -47,20 +48,25 @@ class ProfileManager {
     private func twitterButtonCurrentUser() {
         
         if let screenName = user.twitterAccount?.screenName {
+            //User has already linked with Twitter
             twitterButton = SwitchButton(frame: buttonFrame, backgroundColor: .twitter, onTintColor: .white, image: #imageLiteral(resourceName: "twitter_on"), shortText: screenName)
         }else {
             twitterButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add")
             twitterButton.onClick = {
-                TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
-                    
-                    DispatchQueue.main.async {
-                        if error != nil {
-                            RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .qnRed, textColor: .white)
-                        }else {
-                            self.turnOnTwitterButtonCurrentUser()
+                
+                if Reachability.isConnectedToInternet() {
+                    TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
+                        DispatchQueue.main.async {
+                            if error != nil {
+                                RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .qnRed, textColor: .white)
+                            }else {
+                                self.turnOnTwitterButtonCurrentUser()
+                            }
                         }
-                    }
-                })
+                    })
+                }else {
+                    AlertUtility.showConnectionAlert()
+                }
             }
 
         }

@@ -9,44 +9,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QNect/UsernameViewController.swift"
-            timestampString = "515769762.133595"
+            filePath = "QNect/ConnectionsModel.swift"
+            timestampString = "516376473.745334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "filterContentsForSearch(text:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect_dev.UsernameViewController.textField (__ObjC.UITextField, shouldChangeCharactersIn : __C._NSRange, replacementString : Swift.String) -&gt; Swift.Bool"
+                  symbolName = "QNect_dev.ConnectionsModel.filterContentsForSearch (text : Swift.String) -&gt; ()"
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/UsernameViewController.swift"
-                  timestampString = "515768169.381506"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsModel.swift"
+                  timestampString = "516376092.931271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "572">
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "QNect_dev.UsernameViewController.textField (__ObjC.UITextField, shouldChangeCharactersIn : __C._NSRange, replacementString : Swift.String) -&gt; Swift.Bool"
+                  symbolName = "QNect_dev.ConnectionsModel.(filterContentsForSearch (text : Swift.String) -&gt; ()).(closure #1)"
                   moduleName = "QNect dev"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/UsernameViewController.swift"
-                  timestampString = "515768169.383301"
+                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/ConnectionsModel.swift"
+                  timestampString = "516376092.932913"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "2136">
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,95 +55,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/PasswordViewController.swift"
-            timestampString = "515768252.293516"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/String+Extension.swift"
-            timestampString = "515769817.284584"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "isLetter()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/ConnectionsViewController.swift"
-            timestampString = "516234387.114989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "gestureRecognizerShouldBegin(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnClient.swift"
-            timestampString = "516234804.394039"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "getFollowing(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QNect/QnClient.swift"
-            timestampString = "516234804.394039"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
-            landmarkName = "getFollowing(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/ProfileViewControllerOtherUser.swift"
-            timestampString = "516233274.736143"
+            timestampString = "516388738.211999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "emailUser()"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "tableView(_:heightForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,45 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/QnClient.swift"
-            timestampString = "516235269.260721"
+            timestampString = "516390646.487643"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "updateUserInfo(firstName:lastName:personalEmail:phone:location:birthdate:about:)"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "follow(user:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect_dev.QnClient.updateUserInfo (firstName : Swift.String, lastName : Swift.String, personalEmail : Swift.Optional&lt;Swift.String&gt;, phone : Swift.Optional&lt;Swift.String&gt;, location : Swift.Optional&lt;Swift.String&gt;, birthdate : Swift.Optional&lt;Swift.String&gt;, about : Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "QNect dev"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnClient.swift"
-                  timestampString = "516235603.000651"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
-                  offsetFromSymbolStart = "1838">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "QNect_dev.QnClient.updateUserInfo (firstName : Swift.String, lastName : Swift.String, personalEmail : Swift.Optional&lt;Swift.String&gt;, phone : Swift.Optional&lt;Swift.String&gt;, location : Swift.Optional&lt;Swift.String&gt;, birthdate : Swift.Optional&lt;Swift.String&gt;, about : Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "QNect dev"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dks0398255/Desktop/QNect/QNect/QnClient.swift"
-                  timestampString = "516235603.001959"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
-                  offsetFromSymbolStart = "1949">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -202,12 +90,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QNect/QnClient.swift"
-            timestampString = "516235279.341537"
+            timestampString = "516390812.079904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "updateUserInfo(firstName:lastName:personalEmail:phone:location:birthdate:about:)"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "QnClient"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516390898.331977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "unblock(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516390902.373484"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "follow(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516391383.419032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "QnClient"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/QnClient.swift"
+            timestampString = "516391383.419032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "QnClient"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QNect/AddProfileInfoViewController.swift"
+            timestampString = "516396538.97479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "editProfileImage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
