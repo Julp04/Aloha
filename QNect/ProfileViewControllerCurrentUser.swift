@@ -67,6 +67,9 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         //Setup view controller only if we were to view as ourself
         //Ex: Follow button would be EditProfileButton, Common Connections would be Recent Added Connections, Won't show call, message, email buttons, Accounts buttons would link your accounts to your profile
        
+        navigationController?.navigationBar.topItem?.title = user.username
+        
+        tableView.backgroundColor = .clear
         
         //Cannot email, message, or call self...
         callButton.isHidden = true
@@ -161,6 +164,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         headerView.addSubview(headerLabel)
         
        return headerView
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     //MARK: UI Helper
