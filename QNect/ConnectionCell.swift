@@ -11,13 +11,16 @@ import UIKit
 class ConnectionCell: UITableViewCell {
 
     
-    @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var otherLabel: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.frame.size = CGSize(width: 55.5, height: 55.5)
+        profileImageView.borderColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
