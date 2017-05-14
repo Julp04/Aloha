@@ -63,7 +63,6 @@
 		14E7A6A21EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E7A69D1EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift */; };
 		14EC7A831E74F27300B3C4E8 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */; };
 		14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
-		14EC7A851E74F27300B3C4E8 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
 		14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92418071DCFB4CA007C0B3B /* QnEncoder.swift */; };
 		14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14855D991E64902500794587 /* PasswordViewController.swift */; };
 		14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
@@ -119,7 +118,6 @@
 		B964AE911DBA74B400A0162E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964AE901DBA74B400A0162E /* Images.xcassets */; };
 		B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
 		B964AE9F1DBA74B400A0162E /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE9E1DBA74B400A0162E /* StringExtensionTest.swift */; };
-		B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */; };
 		B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */; };
 		B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
 		B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
@@ -207,7 +205,6 @@
 		B964AE9A1DBA74B400A0162E /* QNectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QNectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B964AE9E1DBA74B400A0162E /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
 		B964AEA01DBA74B400A0162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsModel.swift; sourceTree = "<group>"; };
@@ -368,7 +365,6 @@
 				14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */,
 				14AE14201E7F4EFE0035789E /* SnowFlake.swift */,
 				B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */,
-				B99621CA1DE0B0EC00F90144 /* SCLAlertView.swift */,
 				B90968D51DCFC83200B73662 /* ConnectionCell.swift */,
 				B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */,
 				B90968CB1DCFB6B000B73662 /* QNectCode.swift */,
@@ -812,7 +808,6 @@
 				14EC7A831E74F27300B3C4E8 /* SwiftyUserDefaults.swift in Sources */,
 				144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
-				14EC7A851E74F27300B3C4E8 /* SCLAlertView.swift in Sources */,
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
 				14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */,
@@ -869,7 +864,6 @@
 				144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */,
 				B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */,
-				B99621CB1DE0B0EC00F90144 /* SCLAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
 				14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */,
 				B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */,
