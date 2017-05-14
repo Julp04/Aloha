@@ -110,7 +110,6 @@ class ConnectionsModel
         }
         filteredKeys = Array(filteredDictionary.keys).sorted()
         
-       
     }
     
     func numberOfFilteredConnections() -> Int {

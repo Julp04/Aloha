@@ -110,7 +110,6 @@ class ConnectionsViewController: UITableViewController {
                 return 0
             }else {
                 self.tableView.backgroundView = nil
-                print("Sections: \(following.numberOfFilteredConnectionSections())")
                 return following.numberOfFilteredConnectionSections()
              
             }

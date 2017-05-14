@@ -24,6 +24,12 @@
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634B1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
+		1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
+		1446683C1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
+		1446683D1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
+		1446683F1EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
+		144668401EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
+		144668411EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
 		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
 		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		147417691EAD0D5700A9A1E9 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147417681EAD0D5700A9A1E9 /* TransitionManager.swift */; };
@@ -198,6 +204,8 @@
 		1418C0251EA67C2F00C5538F /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		1446683A1EC8A30C0062FA56 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147417681EAD0D5700A9A1E9 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -320,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				141852171E55F2E200471E59 /* TwitterClient.swift */,
+				1446683A1EC8A30C0062FA56 /* Alias.swift */,
 				B90968CF1DCFC1FB00B73662 /* QnClient.swift */,
 			);
 			name = Clients;
@@ -341,6 +350,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				1446683E1EC8A7840062FA56 /* Oops.swift */,
 				147417681EAD0D5700A9A1E9 /* TransitionManager.swift */,
 				1418C0251EA67C2F00C5538F /* ProfileManager.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
@@ -955,6 +965,7 @@
 				14E7A6A31EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */,
 				14CCB6A91E7C0FB4004B1C3C /* NameViewController.swift in Sources */,
 				1418C0241EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1446683D1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0281EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14CCB6AA1E7C0FB4004B1C3C /* EmailViewController.swift in Sources */,
 				14B224A51E8AA7D90027CBA8 /* MainController.swift in Sources */,
@@ -985,6 +996,7 @@
 				14F78E8A1E8C530E00A3D169 /* ProfileImageView.swift in Sources */,
 				14CCB6C01E7C0FB4004B1C3C /* SettingsViewController.swift in Sources */,
 				14CCB6C11E7C0FB4004B1C3C /* TwitterClient.swift in Sources */,
+				144668411EC8A7840062FA56 /* Oops.swift in Sources */,
 				1485223F1EA1541600F0BDC4 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,6 +1021,7 @@
 				14E7A6A21EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
 				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1446683C1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
@@ -1039,6 +1052,7 @@
 				14F78E891E8C530E00A3D169 /* ProfileImageView.swift in Sources */,
 				14EC7AAC1E74F27300B3C4E8 /* SettingsViewController.swift in Sources */,
 				14EC7AAD1E74F27300B3C4E8 /* TwitterClient.swift in Sources */,
+				144668401EC8A7840062FA56 /* Oops.swift in Sources */,
 				1485223E1EA1541600F0BDC4 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1063,6 +1077,7 @@
 				14E7A6A11EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
 				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
+				1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
@@ -1093,6 +1108,7 @@
 				14F78E881E8C530E00A3D169 /* ProfileImageView.swift in Sources */,
 				14B224A31E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				141852181E55F2E200471E59 /* TwitterClient.swift in Sources */,
+				1446683F1EC8A7840062FA56 /* Oops.swift in Sources */,
 				1485223D1EA1541600F0BDC4 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
