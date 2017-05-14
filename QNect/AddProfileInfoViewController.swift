@@ -142,10 +142,6 @@ class AddProfileInfoViewController: UITableViewController {
             alert.addAction(selfieAction)
         }
         
-        if self.profileImageView.image != nil {
-            alert.addAction(removePhotoAction)
-        }
-        
         alert.addAction(photoLibraryAction)
         alert.addAction(cancelAction)
         alert.addAction(removePhotoAction)
