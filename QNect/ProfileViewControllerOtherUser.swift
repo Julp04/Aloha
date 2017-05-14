@@ -290,7 +290,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         self.profileImageView.image = ProfileImageCreator.create(user.firstName, last: user.lastName)
         
-        
         if user.profileImage == nil {
             if Reachability.isConnectedToInternet() {
                 QnClient.sharedInstance.getProfileImageForUser(user: user, completion: { (profileImage, error) in
@@ -394,8 +393,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-   
 }
 
 extension ProfileViewControllerOtherUser: UICollectionViewDataSource {

@@ -251,8 +251,6 @@ class QnClient {
             return
         }
       
-        
-        
         ref.child(DatabaseFields.following.rawValue).child(user.uid).queryEqual(toValue: FollowingStatus.blocking.rawValue, childKey: currentUser.uid).observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 //current Useer is being blocked by user they want to follow, and we cannot allow them to follow them
