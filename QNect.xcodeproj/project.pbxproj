@@ -197,7 +197,6 @@
 
 /* Begin PBXFileReference section */
 		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
-		140D08211E8FE9910091AD62 /* QNect-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNect-Bridge.h"; sourceTree = SOURCE_ROOT; };
 		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -209,6 +208,7 @@
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		144668421EC8AEBB0062FA56 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		144668461EC8AF2C0062FA56 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
+		1446684A1EC8B01F0062FA56 /* QNect-Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNect-Bridge.h"; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147417681EAD0D5700A9A1E9 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -469,8 +469,8 @@
 		B9EF94731DBA78540091D596 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1446684A1EC8B01F0062FA56 /* QNect-Bridge.h */,
 				144668461EC8AF2C0062FA56 /* Dev-Info.plist */,
-				140D08211E8FE9910091AD62 /* QNect-Bridge.h */,
 				14F78E8B1E8C53FA00A3D169 /* headshot.jpg */,
 				147C90B71E5DDCB700D8DE70 /* onboard.mp4 */,
 				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
