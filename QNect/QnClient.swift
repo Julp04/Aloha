@@ -241,9 +241,16 @@ class QnClient {
         
     }
     
-    func follow(user: User)
+    func follow(user: User, completion: ErrorCompletion)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
+        
+        guard user.uid != currentUser.uid else {
+            let error = Oops.customError("You cannot follow yourself 😜")
+            completion(error)
+            return
+        }
+      
         
         
         ref.child(DatabaseFields.following.rawValue).child(user.uid).queryEqual(toValue: FollowingStatus.blocking.rawValue, childKey: currentUser.uid).observe(.value, with: { (snapshot) in

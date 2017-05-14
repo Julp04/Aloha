@@ -310,8 +310,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
     //MARK: Functionality
     
     func follow() {
-    
-        QnClient.sharedInstance.follow(user: user)
+        QnClient.sharedInstance.follow(user: user) { error in
+            if let error = error { AlertUtility.showAlertWith(error.localizedDescription)}
+        }
     }
     
     func showCancelRequestAlert() {
