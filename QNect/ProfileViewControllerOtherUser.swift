@@ -131,7 +131,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         if indexPath.section == 0 {
             
             //todo: calculate this value better
-            return 315.0
+            return 350.0
         }
         
         return 125
@@ -264,6 +264,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         callButton.isHidden = user.phone == nil
         messageButton.isHidden = user.phone == nil
         emailButton.isHidden = user.personalEmail == nil
+        faceTimeButton.isHidden = user.phone == nil
     }
     
     
