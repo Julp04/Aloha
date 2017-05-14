@@ -101,15 +101,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/OAuthSwift/OAuthSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PTPopupWebView/PTPopupWebView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Pageboy/Pageboy.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RAMPaperSwitch/RAMPaperSwitch.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RKDropdownAlert/RKDropdownAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RevealingSplashView/RevealingSplashView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -125,15 +122,12 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/OAuthSwift/OAuthSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PTPopupWebView/PTPopupWebView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Pageboy/Pageboy.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RAMPaperSwitch/RAMPaperSwitch.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RKDropdownAlert/RKDropdownAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReachabilitySwift/ReachabilitySwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RevealingSplashView/RevealingSplashView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

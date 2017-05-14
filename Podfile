@@ -26,9 +26,6 @@ def allPods
     pod 'JPLoadingButton'
     pod 'IQKeyboardManagerSwift'
     pod 'MGCollapsingHeader'
-    pod 'TransitionTreasury'
-    pod 'TransitionAnimation'
-    pod 'RAMPaperSwitch', '~> 2.0.4'
     pod 'LTMorphingLabel'
     pod 'Pageboy'
     pod 'AES256CBC'
@@ -38,13 +35,15 @@ target 'QNect' do
     allPods
 end
 
+target 'QNect dev' do
+    allPods
+end
+
 target 'QNectTests' do
     pod 'Firebase'
 end
 
-target 'QNect dev' do
-    allPods
-end
+
 
 
 

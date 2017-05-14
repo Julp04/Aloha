@@ -9,15 +9,10 @@
 import UIKit
 import Pageboy
 import AVFoundation
-import TransitionTreasury
-import TransitionAnimation
+
 import PTPopupWebView
 
-class MainController: PageboyViewController, NavgationTransitionable, ModalTransitionDelegate  {
-    
-    /// Transiton delegate
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+class MainController: PageboyViewController, ModalTransitionDelegate  {
     
     //MARK: Constants
     let kDismissString = "Dismiss"

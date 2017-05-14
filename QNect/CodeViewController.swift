@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import RKDropdownAlert
-import TransitionTreasury
 
 class CodeViewController: UIViewController {
     

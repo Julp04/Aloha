@@ -53,16 +53,12 @@ PODS:
   - Pageboy (1.0.3)
   - pop (1.0.9)
   - PTPopupWebView (0.4.0)
-  - RAMPaperSwitch (2.0.4)
   - ReachabilitySwift (3)
   - RevealingSplashView (0.2.0)
   - RKDropdownAlert (0.3.0)
   - RSKImageCropper (1.6.1)
   - SkyFloatingLabelTextField (2.0.1)
   - SwiftyJSON (3.0.0)
-  - TransitionAnimation (4.0.0):
-    - TransitionTreasury (~> 4.0)
-  - TransitionTreasury (4.0.0)
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.1):
@@ -86,15 +82,12 @@ DEPENDENCIES:
   - Pageboy
   - pop (from `https://github.com/facebook/pop.git`)
   - PTPopupWebView
-  - RAMPaperSwitch (~> 2.0.4)
   - ReachabilitySwift
   - RevealingSplashView
   - RKDropdownAlert
   - RSKImageCropper
   - SkyFloatingLabelTextField (~> 2.0.0)
   - SwiftyJSON (= 3.0.0)
-  - TransitionAnimation
-  - TransitionTreasury
   - TwitterKit
 
 EXTERNAL SOURCES:
@@ -128,18 +121,15 @@ SPEC CHECKSUMS:
   Pageboy: bbc0d544d9d6be8de8303379700b974c5f03e2fd
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PTPopupWebView: 9db92ddc0629ed735dee23d4388d67b18158d55c
-  RAMPaperSwitch: d24db52c5423c14812d4069073c3159cffcf3992
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   RevealingSplashView: a19962358db66188841c73afd51eb663a29f75cd
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   RSKImageCropper: 0df8c99e77a8ea7ca7a8b83ef468556f31584254
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
-  TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
-  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 09b50837324e23eb81eeabd628fdad0495ea3829
+PODFILE CHECKSUM: c50c6849ae7c0d0c4c712246199e602e83e2a130
 
 COCOAPODS: 1.2.0
