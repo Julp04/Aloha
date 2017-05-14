@@ -15,14 +15,12 @@ import FirebaseAuth
 import Social
 
 
-
 extension DefaultsKeys {
     static let launchCount = DefaultsKey<Int>("launchCount")
     static let color = DefaultsKey<UIColor>("color")
 }
 class TwitterClient {
     
-    typealias ErrorCompletion = (Error?) -> Void
     static let client = TwitterClient()
     var oauthSwift: OAuthSwift?
     let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
@@ -147,6 +145,13 @@ class TwitterClient {
             guard let twitterAccount = user.twitterAccount else {
                 return
             }
+            
+            guard screenName != twitterAccount.screenName else {
+                let error = Oops.customError("You cannot follow yourself 😜")
+                completion(error)
+                return
+            }
+            
             let token = twitterAccount.token
             let tokenSecret = twitterAccount.tokenSecret
             
