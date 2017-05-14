@@ -131,6 +131,7 @@ class QnClient {
         ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observe(.value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
                 completion(user)
+            }else {
             }
             
         })
