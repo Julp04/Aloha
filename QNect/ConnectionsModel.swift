@@ -91,6 +91,10 @@ class ConnectionsModel
     //MARK: - Filtered Connections
     
     func filterContentsForSearch(text: String) {
+        
+        filteredKeys.removeAll()
+        filteredDictionary.removeAll()
+        filteredConnections.removeAll()
 
         filteredConnections = connections.filter({ (user) -> Bool in
             let name = user.firstName + " " + user.lastName
@@ -106,10 +110,7 @@ class ConnectionsModel
         }
         filteredKeys = Array(filteredDictionary.keys).sorted()
         
-        if filteredConnections.isEmpty {
-            filteredKeys.removeAll()
-            filteredDictionary.removeAll()
-        }
+       
     }
     
     func numberOfFilteredConnections() -> Int {
@@ -136,8 +137,8 @@ class ConnectionsModel
     
     func filteredConnectionAt(_ indexPath: IndexPath) -> User? {
         let letter = filteredKeys[indexPath.section]
-        if let _ = filteredDictionary[letter] {
-            return filteredConnections[indexPath.row]
+        if let user = filteredDictionary[letter] {
+            return user[indexPath.row]
         }else {
             return nil
         }

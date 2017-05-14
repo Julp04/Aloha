@@ -110,7 +110,9 @@ class ConnectionsViewController: UITableViewController {
                 return 0
             }else {
                 self.tableView.backgroundView = nil
+                print("Sections: \(following.numberOfFilteredConnectionSections())")
                 return following.numberOfFilteredConnectionSections()
+             
             }
         }
         
@@ -129,7 +131,7 @@ class ConnectionsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return following.numberOfConnectionsInSection(section)
+            return following.numberOfFilteredConnectionsInSection(section)
         }else {
             return following.numberOfConnectionsInSection(section)
         }
@@ -155,9 +157,9 @@ class ConnectionsViewController: UITableViewController {
             
             cell.nameLabel.text = firstName + " " + lastName
             cell.otherLabel.text = connection.username
+        
             
-            let profileImage = following.imageForConnectionAt(indexPath: indexPath)
-            if profileImage != nil {
+            if let profileImage = connection.profileImage {
                 cell.profileImageView.image = profileImage
                 connection.profileImage = profileImage
             }else {
@@ -173,9 +175,10 @@ class ConnectionsViewController: UITableViewController {
         
         if searchController.isActive && searchController.searchBar.text != "" {
             return following.filteredTitleForSection(section)
+        }else {
+            return following.titleForSection(section)
         }
         
-        return following.titleForSection(section)
     }
     
     
@@ -227,8 +230,6 @@ class ConnectionsViewController: UITableViewController {
 extension ConnectionsViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        following.filterContentsForSearch(text: searchBar.text!)
-        tableView.reloadData()
     }
 }
 
