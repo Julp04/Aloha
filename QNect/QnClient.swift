@@ -246,8 +246,8 @@ class QnClient {
                 completion(.notFollowing)
             }
         })
-        
     }
+    
     
     func follow(user: User, completion: ErrorCompletion)
     {
@@ -263,6 +263,7 @@ class QnClient {
             if snapshot.exists() {
                 //current Useer is being blocked by user they want to follow, and we cannot allow them to follow them
                 //show alert or something
+                print("You are blocked from following this user")
             }else {
                 //Can continue to follow process
                 //If we are scanning directly from their phone private settings do not apply
@@ -270,8 +271,11 @@ class QnClient {
                     //Current user is requesting to follow user passed in
                     self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.pending.rawValue])
                     self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).updateChildValues([currentUser.uid: FollowingStatus.pending.rawValue])
+                    
                 }else {
                     //Current user can automatically follow this user
+                    //Because it is accepted right away, increment followingCount for currentUser
+                    
                     self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.accepted.rawValue])
                     self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).updateChildValues([currentUser.uid: FollowingStatus.accepted.rawValue])
                     
@@ -295,7 +299,6 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         
         ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        
         ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
     }
     
@@ -306,8 +309,6 @@ class QnClient {
         //Change status to following
         ref.child(DatabaseFields.following.rawValue).child(user.uid).updateChildValues([currentUser.uid: FollowingStatus.accepted])
         ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.accepted])
-        
-        //Delete Request
     }
     
     func denyFollowRequest(user: User)
@@ -327,6 +328,7 @@ class QnClient {
         //User passed in can still be followed by the current user, but user that is beign blocked can long see current users profile
         ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
         ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        
     }
     
     func unblock(user: User)
@@ -368,7 +370,6 @@ class QnClient {
                         if followingStatus == FollowingStatus.accepted.rawValue {
                             users.append(user)
                         }
-                        
                         
                         completion(users)
                     })
