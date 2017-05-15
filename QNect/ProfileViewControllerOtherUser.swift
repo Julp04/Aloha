@@ -87,14 +87,11 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         navigationController?.navigationBar.topItem?.title = user.username
         
-        
-        
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
         faceTimeButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.faceTimeUser), for: .touchUpInside)
         
-      
         updateContactButtons()
         
         //Get profile image
@@ -116,6 +113,13 @@ class ProfileViewControllerOtherUser: UITableViewController {
         let backgroundView = UIView(frame: tableView.bounds)
         backgroundView.addSubview(colorView)
         tableView.backgroundView = backgroundView
+        
+        
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
         
         
         accountsCollectionView.dataSource = self
