@@ -9,10 +9,9 @@
 import UIKit
 import Pageboy
 import AVFoundation
-
 import PTPopupWebView
 
-class MainController: PageboyViewController, ModalTransitionDelegate  {
+class MainController: PageboyViewController {
     
     //MARK: Constants
     let kDismissString = "Dismiss"
@@ -173,7 +172,7 @@ class MainController: PageboyViewController, ModalTransitionDelegate  {
     /// - Parameter sender: pinch gesture
     func handlePinch(_ sender: AnyObject)
     {
-        let pinchVelocityDividerFactor = kPinchVelocity;
+        let pinchVelocityDividerFactor = kPinchVelocity
         
         
         if (sender.state == UIGestureRecognizerState.changed) {
