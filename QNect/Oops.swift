@@ -13,6 +13,7 @@ import Foundation
 
 public enum Oops: Error {
     case customError(String)
+    case networkError
 }
 
 extension Oops: LocalizedError {
@@ -20,6 +21,8 @@ extension Oops: LocalizedError {
         switch self {
         case .customError(let description):
             return NSLocalizedString(description, comment: "")
+        case .networkError:
+            return NSLocalizedString("You are not connected to the internet", comment: "")
         }
     }
 }
