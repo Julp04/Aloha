@@ -93,6 +93,31 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
         profileImageView.image = profileImage
         
+        
+        
+        profileHeight = calculateProfileViewHeight()
+        
+        //tod
+    }
+    
+    //MARK: Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupViewController()
+        updateUI()
+        
+        QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (user) in
+            self.user = user
+            self.updateUI()
+        }
+        
+        accountsCollectionView.dataSource = self
+        accountsCollectionView.delegate = self
+    }
+    
+    func updateUI() {
         let birthdate = user.birthdate?.asDate()
         let age = birthdate?.age
         
@@ -104,31 +129,13 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         aboutLabel.text = user.about
         nameLabel.text = "\(user.firstName!) \(user.lastName!)"
         
+        followingLabel.text = "\(user.followingCount)"
+        followersLabel.text = "\(user.followersCount)"
+        
         
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
         locationLabel.isHidden = (user.location == nil && age == nil)
-        
-        profileHeight = calculateProfileViewHeight()
-        
-        QnClient.sharedInstance.getFollowing { (users) in
-            self.followingLabel.text = "\(users.count)"
-        }
-        
-        QnClient.sharedInstance.getFollowers { (users) in
-            self.followersLabel.text = "\(users.count)"
-        }
-    }
-    
-    //MARK: Lifecycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViewController()
-        
-        accountsCollectionView.dataSource = self
-        accountsCollectionView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -61,6 +61,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var nameStackView: UIStackView!
     @IBOutlet weak var aboutStackView: UIStackView!
     
+    @IBOutlet weak var scansLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
     
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
@@ -260,6 +263,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
         locationLabel.isHidden = (user.location == nil && age == nil)
+        
+        followersLabel.text = "\(user.followersCount)"
+        followingLabel.text = "\(user.followingCount)"
         
         profileHeight = calculateProfileViewHeight()
     }

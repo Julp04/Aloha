@@ -71,6 +71,8 @@ class QnClient {
                               DatabaseFields.uid.rawValue: currentUser.uid])
         //User will always be public unless changed by user
         currentUserRef.updateChildValues([DatabaseFields.isPrivate.rawValue: false])
+        currentUserRef.updateChildValues([DatabaseFields.following.rawValue: 0])
+        currentUserRef.updateChildValues([DatabaseFields.followers.rawValue: 0])
         
         
         let usernameRef = ref.child(DatabaseFields.usernames.rawValue)
@@ -248,6 +250,43 @@ class QnClient {
         })
     }
     
+    fileprivate func  updateFollowing(value: Int) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).runTransactionBlock { (currentData) -> FIRTransactionResult in
+            if var userInfo = currentData.value as? [String: AnyObject] {
+                if var followingCount = userInfo[DatabaseFields.following.rawValue] as? Int {
+                    followingCount += value
+                    
+                    userInfo[DatabaseFields.following.rawValue] = followingCount as AnyObject?
+                    
+                    currentData.value = userInfo
+                    
+                    
+                }
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }
+    }
+    
+    fileprivate func updateFollower(user: User,value: Int) {
+        ref.child(DatabaseFields.users.rawValue).child(user.uid).runTransactionBlock { (currentData) -> FIRTransactionResult in
+            if var userInfo = currentData.value as? [String: AnyObject] {
+                if var followersCount = userInfo[DatabaseFields.followers.rawValue] as? Int {
+                    followersCount += value
+                    
+                    userInfo[DatabaseFields.followers.rawValue] = followersCount as AnyObject?
+                    
+                    currentData.value = userInfo
+                    
+                }
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }
+    }
+    
     
     func follow(user: User, completion: ErrorCompletion)
     {
@@ -276,12 +315,23 @@ class QnClient {
                     //Current user can automatically follow this user
                     //Because it is accepted right away, increment followingCount for currentUser
                     
-                    self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.accepted.rawValue])
-                    self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).updateChildValues([currentUser.uid: FollowingStatus.accepted.rawValue])
+                    self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.accepted.rawValue], withCompletionBlock: { (error, ref) in
+                        if let error = error {
+                            assertionFailure(error.localizedDescription)
+                        }else {
+                            self.updateFollowing(value: 1)
+                        }
+                    })
+                    self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).updateChildValues([currentUser.uid: FollowingStatus.accepted.rawValue], withCompletionBlock: { (error, ref) in
+                        if let error = error {
+                            assertionFailure(error.localizedDescription)
+                        }else {
+                            self.updateFollower(user: user, value: 1)
+                        }
+                    })
+
                     
                 }
-                
-                
             }
         })
     }
@@ -296,14 +346,32 @@ class QnClient {
     
     func unfollow(user: User)
     {
+        
+        //Decrement following and follower count
+        
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue { (error, ref) in
+            if let error = error {
+                assertionFailure(error.localizedDescription)
+            }else {
+                self.updateFollowing(value: -1)
+            }
+        }
+        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue { (error, ref) in
+            if let error = error {
+                assertionFailure(error.localizedDescription)
+            }else {
+                self.updateFollower(user: user, value: -1)
+            }
+        }
+
     }
     
     func acceptFollowRequest(user: User)
     {
+        
+        //Increment following, and follower count
         
         let currentUser = FIRAuth.auth()!.currentUser!
         //Change status to following
@@ -322,6 +390,20 @@ class QnClient {
     func block(user: User)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
+        
+        //If currently following, decrement following and followers, 
+        //else just remove values
+        
+        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
+            if let status = snapshot.value as? String {
+                if status == FollowingStatus.accepted.rawValue {
+                    //Decrement following and follower count
+                    self.updateFollower(user: user, value: -1)
+                    self.updateFollowing(value: -1)
+                  
+                }
+            }
+        })
         
         ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).updateChildValues([user.uid: FollowingStatus.blocking.rawValue])
         
