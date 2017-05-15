@@ -15,6 +15,7 @@ import FirebaseStorage
 import Fabric
 import TwitterKit
 import OAuthSwift
+import ReachabilitySwift
 
 enum DatabaseFields: String {
     case username = "username"
@@ -174,7 +175,14 @@ class QnClient {
     
     func getProfileImageForUser(user:User, completion:@escaping (UIImage?, Error?) ->Void)
     {
+        
+        guard Reachability.isConnectedToInternet() else {
+            completion(nil, Oops.networkError)
+            return
+        }
+        
         let storageRef = FIRStorage.storage().reference()
+        
         
         
         let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
