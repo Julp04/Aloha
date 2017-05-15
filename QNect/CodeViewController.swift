@@ -28,19 +28,19 @@ class CodeViewController: UIViewController {
     
     //MARK: Actions
     
+    @IBAction func dimissAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         self.view.backgroundColor = UIColor.qnGreenTeal
         
         let gradientView = GradientView(frame: view.bounds)
         gradientView.colors = [ #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1).cgColor, #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).cgColor,]
         view.insertSubview(gradientView, at: 0)
-        
-        
         
         borderView.layer.cornerRadius = kBorderRadius
     }

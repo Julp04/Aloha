@@ -40,6 +40,8 @@ class MainController: PageboyViewController {
     var qrCodeFrameView = UIImageView()
     var transitionManager = TransitionManager(segueIdentifier: "CodeSegue")
     
+    var codeButton: UIButton!
+    
     
     var scannedContact = 0
     var toFromIndex: (Int, Int) = (0, 0)
@@ -77,6 +79,12 @@ class MainController: PageboyViewController {
         
         placeHolderViewController = UIViewController()
         placeHolderViewController.view.backgroundColor = .clear
+        codeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+        codeButton.setImage(#imageLiteral(resourceName: "code_button"), for: .normal)
+        codeButton.addTarget(self, action: #selector(MainController.presentCodeController), for: .touchUpInside)
+        codeButton.center = CGPoint(x: view.center.x, y: view.bounds.height - 40)
+        placeHolderViewController.view.addSubview(codeButton)
+        
         
         profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
@@ -94,6 +102,10 @@ class MainController: PageboyViewController {
         self.dataSource = self
         self.delegate = self
         
+    }
+    
+    func presentCodeController() {
+        self.performSegue(withIdentifier: "CodeSegue", sender: self)
     }
     
     

@@ -740,11 +740,23 @@
                                     <constraint firstItem="RSx-RV-xyS" firstAttribute="centerX" secondItem="Nqg-OU-g47" secondAttribute="centerX" id="tac-Se-PVb"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dus-dO-vm6">
+                                <rect key="frame" x="153" y="593" width="69" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="2vd-Gc-Hvx"/>
+                                </constraints>
+                                <state key="normal" image="scan_button"/>
+                                <connections>
+                                    <action selector="dimissAction:" destination="rI9-Cc-z6b" eventType="touchUpInside" id="bWP-BX-yUI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.083075270790519185" green="0.5647059083" blue="0.51030676888888737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Nqg-OU-g47" firstAttribute="centerX" secondItem="F4L-5d-aFU" secondAttribute="centerX" id="2Ux-SS-kte"/>
+                            <constraint firstAttribute="bottom" secondItem="Dus-dO-vm6" secondAttribute="bottom" constant="20" symbolic="YES" id="hqy-YX-AFg"/>
                             <constraint firstItem="Nqg-OU-g47" firstAttribute="centerY" secondItem="F4L-5d-aFU" secondAttribute="centerY" id="qbo-9s-0MC"/>
+                            <constraint firstItem="Dus-dO-vm6" firstAttribute="centerX" secondItem="Nqg-OU-g47" secondAttribute="centerX" id="tYR-wU-TWV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gG4-kk-hk7">
@@ -994,7 +1006,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3617" y="-3313"/>
+            <point key="canvasLocation" x="3616.8000000000002" y="-3313.4932533733136"/>
         </scene>
         <!--Settings-->
         <scene sceneID="21n-iJ-n9l">
@@ -3168,7 +3180,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dpc-mM-Y0J">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3192,6 +3204,7 @@
         <image name="headshot.jpg" width="253" height="253"/>
         <image name="message_button" width="43" height="43"/>
         <image name="qnect_logo_white" width="230" height="83"/>
+        <image name="scan_button" width="54" height="54"/>
         <image name="settings_icon" width="28" height="28"/>
         <image name="twitter_off" width="46" height="39"/>
         <image name="video_chat_icon" width="44" height="43"/>
