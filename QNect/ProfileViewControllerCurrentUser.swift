@@ -40,6 +40,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
    
     //MARK: Outlets
+    @IBOutlet weak var imageViewSpinner: UIActivityIndicatorView!
   
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
@@ -90,11 +91,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         //ProfileImageView
         imagePicker.delegate = self
         
-        let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
-        profileImageView.image = profileImage
-        
-        
-        
         profileHeight = calculateProfileViewHeight()
         
         //tod
@@ -108,6 +104,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         setupViewController()
         updateUI()
         
+        
         QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (user) in
             self.user = user
             self.updateUI()
@@ -116,6 +113,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
     }
+    
+    
     
     func updateUI() {
         let birthdate = user.birthdate?.asDate()
@@ -139,11 +138,22 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        imageViewSpinner.isHidden = true
         
         //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe 
         //bug i was having (this might be temp fix ?? 😜
         let mainController = self.parent?.parent?.parent as! MainController
         mainController.transitionManager.isEnabled = false
+        
+        
+        QnClient.sharedInstance.getProfileImageForUser(user: user, began: {
+            imageViewSpinner.isHidden = false
+            imageViewSpinner.startAnimating()}) { (image, error) in
+            
+            self.user.profileImage = image
+            self.profileImageView.image = image
+            self.imageViewSpinner.stopAnimating()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

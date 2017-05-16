@@ -171,12 +171,29 @@ class QnClient {
                     _ = metadata!.downloadURL()
                 }
             }
-        } catch { }
+        } catch let error {
+            print(error)
+        }
     }
     
     
-    func getProfileImageForUser(user:User, completion:@escaping (UIImage?, Error?) ->Void)
+    func getProfileImageForUser(user: User, began:(() -> Void), completion:@escaping (UIImage?, Error?) -> Void)
     {
+        
+        began()
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        if currentUser.uid == user.uid {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            let filePath = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue).path
+            if FileManager.default.fileExists(atPath: filePath) {
+                let image = UIImage(contentsOfFile: filePath)
+                completion(image, nil)
+                return
+            }
+        }
         
         guard Reachability.isConnectedToInternet() else {
             completion(nil, Oops.networkError)
@@ -184,8 +201,6 @@ class QnClient {
         }
         
         let storageRef = FIRStorage.storage().reference()
-        
-        
         
         let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
         let userRef = userStorageRef.child(user.email).child(DatabaseFields.profileImage.rawValue)
@@ -195,7 +210,11 @@ class QnClient {
             if error != nil {
                 completion(nil, error)
             }else {
+                
                 let image = UIImage(data: data!)
+                if user.uid == currentUser.uid {
+                    self.setProfileImage(image: image!)
+                }
                 completion(image, nil)
             }
         }
@@ -215,18 +234,7 @@ class QnClient {
             }
         })
     }
-    
-    func getProfileImageForCurrentUser() -> UIImage?
-    {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        let filePath = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue).path
-        if FileManager.default.fileExists(atPath: filePath) {
-            return UIImage(contentsOfFile: filePath)!
-        }else {
-            return nil
-        }
-    }
+
     
     func getFollowStatus(user: User, completion: @escaping (FollowingStatus) -> Void) {
         
@@ -439,7 +447,7 @@ class QnClient {
                     
                     let user = User(snapshot: snapshot)!
                     
-                    self.getProfileImageForUser(user: user, completion: { (image,error) in
+                    self.getProfileImageForUser(user: user, began: {}, completion: { (image,error) in
                         if image != nil {
                             user.profileImage = image
                         }
@@ -477,7 +485,7 @@ class QnClient {
                 let item = item as! FIRDataSnapshot
                 self.ref.child(DatabaseFields.users.rawValue).child(item.key).observe(.value, with: { (snapshot) in
                     if let user = User(snapshot: snapshot) {
-                        self.getProfileImageForUser(user: user, completion: { (image, error) in
+                        self.getProfileImageForUser(user: user, began: {}, completion: { (image, error) in
                             if image != nil {
                                 user.profileImage = image
                             }
@@ -515,7 +523,13 @@ class QnClient {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
 
-//        try! FileManager().removeItem(at: fileURL)
+        
+        
+        do {
+            try FileManager().removeItem(at: fileURL)
+        }catch let error {
+            print(error)
+        }
         
     }
     

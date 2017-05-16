@@ -33,14 +33,19 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-IH-5gU" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
                                                             <rect key="frame" x="129.5" y="0.0" width="100" height="100"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <subviews>
+                                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sdz-3q-C7Q">
+                                                                    <rect key="frame" x="32" y="32" width="37" height="37"/>
+                                                                    <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </activityIndicatorView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.039113976478105987" green="0.20249325157174541" blue="0.3425999365482234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="LTa-VL-7k4"/>
+                                                                <constraint firstItem="sdz-3q-C7Q" firstAttribute="centerY" secondItem="7ZY-IH-5gU" secondAttribute="centerY" id="klI-Uf-tZo"/>
                                                                 <constraint firstAttribute="height" constant="100" id="psM-GV-Bg7"/>
+                                                                <constraint firstItem="sdz-3q-C7Q" firstAttribute="centerX" secondItem="7ZY-IH-5gU" secondAttribute="centerX" id="um1-2y-zRM"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="headshot.jpg"/>
-                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
@@ -123,7 +128,7 @@
                                                                     <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ar9-GG-XsG">
-                                                                            <rect key="frame" x="17.5" y="3" width="91.5" height="51"/>
+                                                                            <rect key="frame" x="17" y="3" width="91.5" height="51"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="404" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV0-ca-c1y">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
@@ -157,7 +162,7 @@
                                                                     <rect key="frame" x="250" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TSM-jx-bp0">
-                                                                            <rect key="frame" x="16" y="4.5" width="94" height="48.5"/>
+                                                                            <rect key="frame" x="16" y="4" width="94" height="48.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGE-ci-xJ7">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
@@ -332,6 +337,7 @@
                         <outlet property="followOrEditProfileButton" destination="G7Z-9l-ciX" id="CNy-FE-dBz"/>
                         <outlet property="followersLabel" destination="QV0-ca-c1y" id="B2M-YY-5x8"/>
                         <outlet property="followingLabel" destination="VGE-ci-xJ7" id="wue-NP-6aj"/>
+                        <outlet property="imageViewSpinner" destination="sdz-3q-C7Q" id="opz-qC-2de"/>
                         <outlet property="locationLabel" destination="hJH-21-dTM" id="2Vn-oM-ZSc"/>
                         <outlet property="messageButton" destination="QI0-tf-8vJ" id="YyA-fO-xXw"/>
                         <outlet property="nameLabel" destination="FTm-l8-6pw" id="5Pq-DJ-bwv"/>
@@ -1307,7 +1313,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2235,7 +2241,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2253,7 +2259,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2271,7 +2277,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2307,16 +2313,24 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CX1-Qy-yL3" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
                                                             <rect key="frame" x="129.5" y="0.0" width="100" height="100"/>
+                                                            <subviews>
+                                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="y3l-6Q-8DM">
+                                                                    <rect key="frame" x="31" y="32" width="37" height="37"/>
+                                                                    <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </activityIndicatorView>
+                                                            </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="3Nh-3J-A1j"/>
+                                                                <constraint firstItem="y3l-6Q-8DM" firstAttribute="centerX" secondItem="CX1-Qy-yL3" secondAttribute="centerX" id="Iz5-eT-uu5"/>
                                                                 <constraint firstAttribute="height" constant="100" id="iP8-tR-did"/>
+                                                                <constraint firstItem="y3l-6Q-8DM" firstAttribute="centerY" secondItem="CX1-Qy-yL3" secondAttribute="centerY" id="vOZ-eK-S79"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BsS-Fb-B6a">
-                                                    <rect key="frame" x="8" y="208" width="359" height="28"/>
+                                                    <rect key="frame" x="8" y="207.5" width="359" height="28"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-Ny-7T6" customClass="JPLoadingButton" customModule="QNect" customModuleProvider="target">
                                                             <rect key="frame" x="79.5" y="0.0" width="200" height="28"/>
@@ -2338,7 +2352,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ey4-Wg-tgW">
-                                                    <rect key="frame" x="0.0" y="322" width="375" height="56"/>
+                                                    <rect key="frame" x="0.0" y="321.5" width="375" height="56"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-qT-8f7">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -2385,7 +2399,7 @@
                                                                     <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LFD-ec-Z9y">
-                                                                            <rect key="frame" x="17" y="3" width="91.5" height="51"/>
+                                                                            <rect key="frame" x="17.5" y="3" width="91.5" height="51"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="404" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRZ-Sx-vxd">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
@@ -2459,7 +2473,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Rf-Ww-wxV">
-                                                    <rect key="frame" x="16" y="257" width="343" height="43"/>
+                                                    <rect key="frame" x="16" y="256.5" width="343" height="43"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-ui-ARh">
                                                             <rect key="frame" x="0.0" y="0.0" width="86" height="43"/>
@@ -2480,7 +2494,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DJJ-Pw-bVA">
-                                                    <rect key="frame" x="8" y="116.5" width="359" height="40"/>
+                                                    <rect key="frame" x="8" y="117" width="359" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Julian Panucci" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7w-9a-mut">
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="25"/>
@@ -2629,6 +2643,7 @@
                         <outlet property="followStackView" destination="BsS-Fb-B6a" id="3Eb-4Y-0q6"/>
                         <outlet property="followersLabel" destination="XRZ-Sx-vxd" id="N50-vg-yFc"/>
                         <outlet property="followingLabel" destination="r6H-fg-BSe" id="krc-BZ-w0d"/>
+                        <outlet property="imageViewSpinner" destination="y3l-6Q-8DM" id="f80-NT-7j4"/>
                         <outlet property="locationLabel" destination="Sj8-SA-AWn" id="74c-gj-0uz"/>
                         <outlet property="messageButton" destination="76L-uJ-sdy" id="ywT-7y-UK5"/>
                         <outlet property="nameLabel" destination="b7w-9a-mut" id="It4-If-3Qa"/>
@@ -3116,7 +3131,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3134,7 +3149,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerOtherUserNav" automaticallyAdjustsScrollViewInsets="NO" id="0Ux-yL-CRM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3182,7 +3197,7 @@
             <objects>
                 <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3201,7 +3216,6 @@
         <image name="cancel_button" width="23" height="22"/>
         <image name="connections_icon" width="109" height="123"/>
         <image name="email_button" width="43" height="43"/>
-        <image name="headshot.jpg" width="253" height="253"/>
         <image name="message_button" width="43" height="43"/>
         <image name="qnect_logo_white" width="230" height="83"/>
         <image name="scan_button" width="54" height="54"/>

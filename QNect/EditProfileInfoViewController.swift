@@ -54,6 +54,7 @@ class EditProfileInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         loadUserInfo()
         
         tableView.tableFooterView = UIView()
@@ -104,8 +105,15 @@ class EditProfileInfoViewController: UITableViewController {
         aboutField.textColor = aboutField.text == "About" ? .lightGray : .black
         
         //Get profile image of user
-        let profileImage = QnClient.sharedInstance.getProfileImageForCurrentUser()
-        profileImageView.image = profileImage
+        QnClient.sharedInstance.getProfileImageForUser(user: currentUser, began: {}) { (image, error) in
+            if let error = error {
+                print(error)
+            }else {
+                self.profileImageView.image = image
+                self.currentUser.profileImage = image
+            }
+        }
+        
         
     }
     

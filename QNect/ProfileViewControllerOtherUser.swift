@@ -44,6 +44,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
    
     //MARK: Outlets
   
+    @IBOutlet weak var imageViewSpinner: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -108,6 +109,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageViewSpinner.isHidden = true
         
         setUpViewController()
     
@@ -302,13 +305,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         if user.profileImage == nil {
             if Reachability.isConnectedToInternet() {
-                QnClient.sharedInstance.getProfileImageForUser(user: user, completion: { (profileImage, error) in
+                QnClient.sharedInstance.getProfileImageForUser(user: user, began: {imageViewSpinner.isHidden = false
+                        imageViewSpinner.startAnimating()
+                        }, completion: { (profileImage, error) in
                     if error != nil {
                         print(error!)
                     }else {
                         self.user.profileImage = profileImage
                         self.profileImageView.image = profileImage
                     }
+                            self.imageViewSpinner.stopAnimating()
                 })
             }
         }else {
