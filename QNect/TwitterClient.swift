@@ -109,6 +109,7 @@ class TwitterClient {
                         if error != nil {
                             completion(error)
                         }
+                        completion(nil)
                     })
                 }
             })
