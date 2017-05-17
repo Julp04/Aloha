@@ -166,9 +166,9 @@ class SwitchButton: UIView {
         layer.masksToBounds = true
         
         if isOn {
-            turnOn()
+            turnOn(animated: false)
         }else {
-            turnOff()
+            turnOff(animated: false)
         }
 
     }
@@ -176,7 +176,7 @@ class SwitchButton: UIView {
     
     
     // MARK: - Animations
-    fileprivate func animateButton(toValue to: CGPath) {
+    fileprivate func animateButton(toValue to: CGPath, animated: Bool = true) {
         
         let animation = CABasicAnimation(keyPath: "path")
         
@@ -188,13 +188,15 @@ class SwitchButton: UIView {
         animation.duration              = duration
         animation.delegate              = self
         
-        rectShape.add(animation, forKey: animation.keyPath)
+        if animated {
+            rectShape.add(animation, forKey: animation.keyPath)
+        }
         rectShape.path = to
     }
     
-    func turnOn() {
+    func turnOn(animated: Bool = true) {
         //If button is off, turn it on
-        animateButton(toValue: endShape)
+        animateButton(toValue: endShape, animated: animated)
         isOn = true
 
         UIView.animate(withDuration: 0.5, animations: { 
@@ -203,8 +205,8 @@ class SwitchButton: UIView {
         })
     }
     
-    func turnOff() {
-        animateButton(toValue: startShape)
+    func turnOff(animated: Bool = true) {
+        animateButton(toValue: startShape, animated: animated)
         isOn = false
         
         
