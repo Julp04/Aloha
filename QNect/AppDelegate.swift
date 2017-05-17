@@ -13,6 +13,7 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 import RevealingSplashView
+import Crashlytics
 
 
 
@@ -26,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //todo:Want to signout of Firebase if app was deleted. Use NSUserDefaults to tell
         
         UIApplication.shared.statusBarStyle = .lightContent
-        //todo: Fabric with Crashlytics
+        
+        Fabric.with([Crashlytics.self])
+        
         
         #if DEVELOPMENT
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-DEV", ofType: "plist")!
