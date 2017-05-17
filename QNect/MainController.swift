@@ -10,6 +10,7 @@ import UIKit
 import Pageboy
 import AVFoundation
 import PTPopupWebView
+import Crashlytics
 
 class MainController: PageboyViewController {
     
@@ -41,21 +42,14 @@ class MainController: PageboyViewController {
     var transitionManager = TransitionManager(segueIdentifier: "CodeSegue")
     
     var codeButton: UIButton!
-    
+    var scanner: Scanner!
     
     var scannedContact = 0
     var toFromIndex: (Int, Int) = (0, 0)
-    var showURLAlert = 0
+
     var scannerCanScan = true
     var message: String?
     
-    
-    
-    //MARK: Actions
-    
-    @IBAction func gesture(_ sender: AnyObject) {
-        handlePinch(sender)
-    }
     
     //MARK: Lifecycle
     
@@ -65,8 +59,10 @@ class MainController: PageboyViewController {
         //Hiding nav bar so we can interact with other view controllers in pageview controller
         self.navigationController?.navigationBar.isHidden = true
         
+        scanner = Scanner(view: view, scanTypes: [.qr])
+        scanner.delegate = self
+        scanner.pinchToZoom = true
         
-
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
         colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
@@ -95,13 +91,8 @@ class MainController: PageboyViewController {
         
         transitionManager.sourceViewController = self
         
-        
-        createCaptureSession()
-        createBarButtonItems()
-        
         self.dataSource = self
         self.delegate = self
-        
     }
     
     func presentCodeController() {
@@ -110,103 +101,7 @@ class MainController: PageboyViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-          startCaptureSession()
-    }
-    
-    //MARK: UI Setup
-    
-    func createBarButtonItems() {
-        //todo: add/find functionality for bar button item
-        
-    }
-    
-    //MARK: Capture Session
-    
-    func createCaptureSession()
-    {
-        var error:NSError?
-        let input:AnyObject!
-        do {
-            input = try AVCaptureDeviceInput(device: captureDevice)
-        } catch let error1 as NSError {
-            error = error1
-            input = nil
-        }
-        
-        if error != nil{
-            print("\(String(describing: error?.localizedDescription))")
-        } else {
-            captureSession = AVCaptureSession()
-            captureSession?.addInput(input as! AVCaptureInput)
-            let captureMetadataOutput = AVCaptureMetadataOutput()
-            captureSession?.addOutput(captureMetadataOutput)
-            
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-            
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            
-            videoPreviewLayer?.frame = view.layer.bounds
-            view.layer.insertSublayer(videoPreviewLayer, at: 0)
-        }
-    }
-    
-    func startCaptureSession()
-    {
-        captureSession?.startRunning()
-    }
-    
-    func stopCaptureSession()
-    {
-        captureSession?.stopRunning()
-    }
-    
-    
-    //MARK: Functionality
-    
-    func handleScannedContact(_ metadataObj:AVMetadataMachineReadableCodeObject, barCodeObject:AVMetadataMachineReadableCodeObject)
-    {
-        
-        self.performSegue(withIdentifier: "ContactProfileSegue", sender: self)
-    }
-    
-    func centerForBarcodeObject(_ barCodeObject:AVMetadataMachineReadableCodeObject) -> CGPoint
-    {
-        let centerX = barCodeObject.bounds.origin.x + (barCodeObject.bounds.size.width / 2.0)
-        let centerY = barCodeObject.bounds.origin.y + (barCodeObject.bounds.size.height / 2.0)
-        let center = CGPoint(x: centerX, y: centerY)
-        return center
-    }
-    
-    /// Pinch to zoom
-    ///
-    /// - Parameter sender: pinch gesture
-    func handlePinch(_ sender: AnyObject)
-    {
-        let pinchVelocityDividerFactor = kPinchVelocity
-        
-        
-        if (sender.state == UIGestureRecognizerState.changed) {
-            let pinch = sender as! UIPinchGestureRecognizer
-            do {
-                try captureDevice?.lockForConfiguration()
-                
-                let desiredZoomFactor = Double((captureDevice?.videoZoomFactor)!) + atan2(Double(pinch.velocity), pinchVelocityDividerFactor)
-                
-                captureDevice?.videoZoomFactor = max(1.0,min(CGFloat(desiredZoomFactor), (captureDevice?.activeFormat.videoMaxZoomFactor)!))
-                
-                captureDevice?.unlockForConfiguration()
-            }catch let error as NSError {
-                print(error)
-            }
-        }
-    }
-    
-    //MARK: Segue
-    
-    func segueToContactViewController() {
-        
+          scanner.startCaptureSession()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -219,89 +114,71 @@ class MainController: PageboyViewController {
             let profileNavController = segue.destination as! UINavigationController
             let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
             profileViewController.configureViewController(user: self.contact)
-            self.stopCaptureSession()
+            scanner.stopCaptureSession()
         }
     }
-    
-
 }
 
 //MARK: Scanner Delegate
 
-extension MainController: AVCaptureMetadataOutputObjectsDelegate {
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        
+extension MainController: ScannerDelegate {
+    
+    func scannerDidScan(qrCode: AVMetadataMachineReadableCodeObject) {
         guard scannerCanScan else {
-            //If scannerCanScan is set to true we must be on a different page where we will not allow scanning
             return
         }
         
-        if metadataObjects == nil || metadataObjects.count == 0 {
-            showURLAlert = 0
-            return
-        } else {
+        if let contact = QnDecoder.decodeQRCode(qrCode.stringValue) {
+            //todo:check if user still exists
+            //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
+            self.contact = contact
+            let scan = Scan(contact: contact)
             
-            let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+            scanner.stopCaptureSession()
+            performSegue(withIdentifier: "ContactProfileSegue", sender: self)
             
-            if metadataObj.type == AVMetadataObjectTypeQRCode{
-                if let contact = QnDecoder.decodeQRCode(metadataObj.stringValue) {
-                    //todo:check if user still exists
-                    
-                    //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
-                    
-                    self.contact = contact
-                    let scan = Scan(contact: contact)
-                    handleScannedContact(metadataObj, barCodeObject: barCodeObject)
-                    
-                    
-                }else if metadataObj.stringValue.contains(".com") {
-                    
-                    
-                    
-                    //Todo: Need to test different QRCodes and handle different strings
-                    var url = ""
-                    if !metadataObj.stringValue.contains("http"){
-                        url = "http://\(metadataObj.stringValue)"
-                    }else {
-                        url = metadataObj.stringValue
-                    }
-                    
-                    let scan = Scan(url: url)
-                    
-                    let popupvc = PTPopupWebViewController()
-                    popupvc.popupView.URL(string: url)
-                    let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
-                    closeButton.handler({
-                        self.startCaptureSession()
-                        popupvc.close()
-                    })
-                    
-                    let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)
-                    safariButton.title("Open in Safari")
-                    safariButton.handler({
-                        UIApplication.shared.openURL(URL(string: url)!)
-                    })
-                    
-                    popupvc.popupView.addButton(safariButton)
-                    popupvc.popupView.addButton(closeButton)
-                    popupvc.show()
-                    self.stopCaptureSession()
-                }
-                else {
-                    let message = metadataObj.stringValue
-                    let scan = Scan(message: message!)
-                    
-                    let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default) {_ in
-                        self.startCaptureSession()
-                        })
-                    self.present(alert, animated: true)
-                    self.stopCaptureSession()
-                }
+        }else if qrCode.stringValue.contains("com") {
+            //Todo: Need to test different QRCodes and handle different strings
+            var url = ""
+            if !qrCode.stringValue.contains("http"){
+                url = "http://\(qrCode.stringValue)"
+            }else {
+                url = qrCode.stringValue
             }
+            
+            let scan = Scan(url: url)
+            
+            let popupvc = PTPopupWebViewController()
+            popupvc.popupView.URL(string: url)
+            let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
+            closeButton.handler({
+                self.scanner.startCaptureSession()
+                popupvc.close()
+            })
+            
+            let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)
+            safariButton.title("Open in Safari")
+            safariButton.handler({
+                UIApplication.shared.openURL(URL(string: url)!)
+            })
+            
+            popupvc.popupView.addButton(safariButton)
+            popupvc.popupView.addButton(closeButton)
+            popupvc.show()
+            scanner.stopCaptureSession()
+        }else {
+            let message = qrCode.stringValue
+            let scan = Scan(message: message!)
+            
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default) {_ in
+                self.scanner.startCaptureSession()
+            })
+            self.present(alert, animated: true)
+            scanner.stopCaptureSession()
         }
     }
+    
 }
 
 //MARK: Pageboy Delegate
@@ -388,18 +265,6 @@ extension MainController: PageboyViewControllerDataSource {
         return PageIndex.at(index: 1)
     }
     
-}
-
-
-//MARK: Gesture Delegate
-
-extension MainController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
-            return ges.translation(in: ges.view).y != 0
-        }
-        return false
-    }
 }
 
 
