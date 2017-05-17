@@ -49,12 +49,17 @@ class ProfileManager {
         
         if let screenName = user.twitterAccount?.screenName {
             //User has already linked with Twitter
-            twitterButton = SwitchButton(frame: buttonFrame, backgroundColor: .twitter, onTintColor: .white, image: #imageLiteral(resourceName: "twitter_on"), shortText: screenName)
+            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: screenName, isOn: true)
         }else {
-            twitterButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add")
+            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
+        }
             twitterButton.onClick = {
+                if !self.twitterButton.isOn {
                 
-                if Reachability.isConnectedToInternet() {
+                    guard Reachability.isConnectedToInternet() else {
+                        AlertUtility.showConnectionAlert()
+                        return
+                    }
                     TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
                         DispatchQueue.main.async {
                             if error != nil {
@@ -65,21 +70,35 @@ class ProfileManager {
                         }
                     })
                 }else {
-                    AlertUtility.showConnectionAlert()
+                    let alert = FCAlertView()
+                    alert.addButton("Unlink", withActionBlock: { 
+                        guard Reachability.isConnectedToInternet() else {
+                            AlertUtility.showConnectionAlert()
+                            return
+                        }
+                        
+                        TwitterClient.client.unlinkTwitter(completion: { (error) in
+                            if let error = error {
+                                AlertUtility.showAlertWith(error.localizedDescription)
+                            }else {
+                                self.turnOffTwitterButtonCurrentUser()
+                            }
+                        })
+                    })
+                    alert.colorScheme = .twitter
+                    alert.showAlert(inView: self.viewController, withTitle: "Unlink from Twitter", withSubtitle: nil, withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
                 }
-            }
-
         }
+        
          buttons.append(twitterButton)
     }
     private func contactButtonCurrentUser() {
         
         switch ContactManager.contactStoreStatus() {
         case .authorized:
-            contactButton = SwitchButton(frame: buttonFrame, backgroundColor: .qnGreen, onTintColor: .white, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Contacts \n Linked")
-            contactButton.isEnabled = false
+            contactButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Contacts \n Linked", isOn: true)
         default:
-            contactButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Link Contacts")
+            contactButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Link Contacts", isOn: false)
             contactButton.onClick =  {
                 ContactManager().requestAccessToContacts(completion: { (accessGranted) in
                     if accessGranted {
@@ -107,9 +126,7 @@ class ProfileManager {
     }
     
     private func turnOnTwitterButtonCurrentUser() {
-        
         twitterButton.turnOn()
-        self.twitterButton.isEnabled = false
         self.twitterButton.animationDidStartClosure = {_ in
             QnClient.sharedInstance.currentUser {user in
                 self.twitterButton.shortText = user.twitterAccount!.screenName
@@ -117,6 +134,20 @@ class ProfileManager {
             
         }
     }
+    
+    private func turnOffTwitterButtonCurrentUser() {
+    
+        DispatchQueue.main.async {
+            self.twitterButton.turnOff()
+        }
+        
+        self.twitterButton.animationDidStartClosure = { _ in
+            self.twitterButton.shortText = "Add"
+        }
+        
+    }
+    
+    
     private func turnOnContactButtonCurrentUser() {
         DispatchQueue.main.async {
             self.contactButton.turnOn()
@@ -136,7 +167,7 @@ class ProfileManager {
     
     private func twitterButtonOtherUser() {
         if let screenName = user.twitterAccount?.screenName {
-            twitterButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow")
+            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
             twitterButton.onClick = {
                 TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
                     if error != nil {
@@ -154,9 +185,9 @@ class ProfileManager {
         
         if ContactManager.contactsAutorized(){
             if ContactManager().contactExists(user: user) {
-                contactButton = SwitchButton(frame: buttonFrame, backgroundColor: .qnGreen, onTintColor: .white, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Saved In Contacts")
+                contactButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Saved In Contacts", isOn: true)
             }else {
-                contactButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts")
+                contactButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts", isOn: false)
                 contactButton.onClick =  {
                     ContactManager().addContact(self.user, image: self.user.profileImage, completion: { (success) in
                         if success {
@@ -166,7 +197,7 @@ class ProfileManager {
                 }
             }
         }else {
-            contactButton = SwitchButton(frame: buttonFrame, backgroundColor: .white, onTintColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts")
+            contactButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts", isOn: false)
             contactButton.onClick = {
                 ContactManager().requestAccessToContacts(completion: { (acessGranted) in
                     if acessGranted {

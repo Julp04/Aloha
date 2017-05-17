@@ -61,17 +61,13 @@ class SwitchButton: UIView {
     open var isEnabled: Bool = true
     
 
-    override func draw(_ rect: CGRect) {
-        layer.cornerRadius = cornerRadius
-        commonInit()
-    }
-    
-    init(frame: CGRect, backgroundColor: UIColor,onTintColor: UIColor, image: UIImage, shortText: String) {
+   
+    init(frame: CGRect, offColor: UIColor, onColor: UIColor, image: UIImage, shortText: String, isOn: Bool) {
         super.init(frame: frame)
 
         self.image = image.withRenderingMode(.alwaysTemplate)
-        self.onTintColor = onTintColor
-        self.offColor = backgroundColor
+        self.onTintColor = onColor
+        self.offColor = offColor
         
         //Add image view and label
         let labelWidth = 0.575 * frame.width
@@ -103,11 +99,11 @@ class SwitchButton: UIView {
         
        
         
-        self.backgroundColor = backgroundColor
-        imageView?.tintColor = self.onTintColor
-        shortDescriptionLabel?.textColor = self.onTintColor
+        self.backgroundColor = offColor
+        layer.cornerRadius = cornerRadius
         
-        
+        self.isOn = isOn
+       
         commonInit()
         
     }
@@ -168,6 +164,12 @@ class SwitchButton: UIView {
         
         layer.insertSublayer(rectShape, at: 0)
         layer.masksToBounds = true
+        
+        if isOn {
+            turnOn()
+        }else {
+            turnOff()
+        }
 
     }
     
@@ -191,32 +193,26 @@ class SwitchButton: UIView {
     }
     
     func turnOn() {
-        if !isOn {
-            //If button is off, turn it on
-            animateButton(toValue: endShape)
-            isOn = !isOn
-            
-            
-            UIView.animate(withDuration: 0.5, animations: { 
-                self.imageView?.tintColor = self.offColor
-                self.labelColor = self.offColor
-            })
-            
-        }
+        //If button is off, turn it on
+        animateButton(toValue: endShape)
+        isOn = true
+
+        UIView.animate(withDuration: 0.5, animations: { 
+            self.imageView?.tintColor = self.offColor
+            self.labelColor = self.offColor
+        })
     }
     
     func turnOff() {
-        if isOn {
-            animateButton(toValue: startShape)
-            isOn = !isOn
-            
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.imageView?.tintColor = self.onTintColor
-                self.labelColor = self.onTintColor
-            })
-            
-        }
+        animateButton(toValue: startShape)
+        isOn = false
+        
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.imageView?.tintColor = self.onTintColor
+            self.labelColor = self.onTintColor
+        })
+
     }
     
     func switchState() {
@@ -228,9 +224,7 @@ class SwitchButton: UIView {
         if isEnabled {
             onClick()
         }
-        
         unShrink()
-        
     }
     
     internal func shrink()
