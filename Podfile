@@ -16,6 +16,7 @@ def allPods
     pod 'RKDropdownAlert'
     pod 'FCAlertView'
     pod 'Fabric'
+    pod 'Crashlytics'
     pod 'TwitterKit'
     pod 'OAuthSwift', '~> 1.1.0'
     pod 'PTPopupWebView'

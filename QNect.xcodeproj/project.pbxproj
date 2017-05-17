@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
+		140BCD0B1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
+		140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		14184CF11EA1AB410068E01C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14184CF01EA1AB410068E01C /* UserTest.swift */; };
 		141852181E55F2E200471E59 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* TwitterClient.swift */; };
 		1418C0021EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
@@ -138,6 +140,7 @@
 
 /* Begin PBXFileReference section */
 		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
+		140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */,
 				1446683E1EC8A7840062FA56 /* Oops.swift */,
 				147417681EAD0D5700A9A1E9 /* TransitionManager.swift */,
 				1418C0251EA67C2F00C5538F /* ProfileManager.swift */,
@@ -810,6 +814,7 @@
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
+				140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */,
 				14EC7A891E74F27300B3C4E8 /* ConnectionsModel.swift in Sources */,
 				14EC7A8C1E74F27300B3C4E8 /* SphereMenu.swift in Sources */,
 				148522421EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
@@ -865,6 +870,7 @@
 				148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */,
 				B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
+				140BCD0B1ECBC37C000FE0E5 /* Scanner.swift in Sources */,
 				14855D9A1E64902500794587 /* PasswordViewController.swift in Sources */,
 				B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */,
 				148522411EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
