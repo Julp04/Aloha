@@ -11,6 +11,7 @@ import Pageboy
 import AVFoundation
 import PTPopupWebView
 import Crashlytics
+import FirebaseAuth
 
 class MainController: PageboyViewController {
     
@@ -24,6 +25,7 @@ class MainController: PageboyViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
 
     var placeHolderViewController: UIViewController!
     var profileNavController: UINavigationController!
@@ -59,16 +61,16 @@ class MainController: PageboyViewController {
         //Hiding nav bar so we can interact with other view controllers in pageview controller
         self.navigationController?.navigationBar.isHidden = true
         
-        scanner = Scanner(view: view, scanTypes: [.qr])
-        scanner.delegate = self
-        scanner.pinchToZoom = true
-        
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
         colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
         colorView.alpha = 0.0
         
+        scanner = Scanner(view: view, scanTypes: [.qr])
+        scanner.delegate = self
+        scanner.pinchToZoom = true
         
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
         connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
@@ -115,6 +117,11 @@ class MainController: PageboyViewController {
             let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
             profileViewController.configureViewController(user: self.contact)
             scanner.stopCaptureSession()
+        }else if segue.identifier == "ProfileSegue" {
+                let user = sender as! User
+                let profileNavController = segue.destination as! UINavigationController
+                let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
+                profileViewController.configureViewController(currentUser: user)
         }
     }
 }
@@ -131,7 +138,7 @@ extension MainController: ScannerDelegate {
         if let contact = QnDecoder.decodeQRCode(qrCode.stringValue) {
             //todo:check if user still exists
             //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
-            self.contact = contact
+            
             let scan = Scan(contact: contact)
             
             scanner.stopCaptureSession()
