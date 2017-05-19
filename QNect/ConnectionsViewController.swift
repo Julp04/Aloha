@@ -66,7 +66,7 @@ class ConnectionsViewController: UITableViewController {
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.qnPurple
+        self.navigationController?.navigationBar.barTintColor = UIColor.main
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         

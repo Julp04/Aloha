@@ -18,7 +18,7 @@ class QNectCode
     
     var size = CGSize(width: kCodeLength, height: kCodeLength)
     let scale = 3 * UIScreen.main.scale
-    var color = UIColor.qnPurple
+    var color = UIColor.main
     var backgroundColor = UIColor.white
     var data: Data?
     

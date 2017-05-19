@@ -48,11 +48,22 @@ class NameViewController: UIViewController {
         continueButton.enable = false
         
         firstnameField.becomeFirstResponder()
+        firstnameField.textColor = .main
+        firstnameField.selectedTitleColor = .main
+        firstnameField.selectedLineColor = .main
+        
+        lastnameField.textColor = .main
+        lastnameField.selectedTitleColor = .main
+        lastnameField.selectedLineColor = .main
+        
+        continueButton.normalBackgroundColor = .main
+        continueButton.highlightedBackgroundColor = .alohaGreen
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.tintColor = UIColor.qnPurple
+        self.navigationController?.navigationBar.tintColor = UIColor.main
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
     }
 

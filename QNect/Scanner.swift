@@ -20,6 +20,7 @@ class Scanner: NSObject {
     
     //MARK: - Constants
     
+    
     let kPinchVelocity = 8.0
     
     private let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)

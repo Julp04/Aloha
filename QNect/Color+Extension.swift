@@ -14,6 +14,25 @@ extension UIColor {
         self.init(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: CGFloat(a))
     }
     
+    
+    @nonobjc class var main: UIColor {
+        get {
+            return .alohaOrange
+        }
+    }
+    
+    @nonobjc class var alohaOrange: UIColor {
+        get {
+            return UIColor(r: 250, g: 100, b: 13, a: 1)
+        }
+    }
+    
+    @nonobjc class var alohaGreen: UIColor {
+        get {
+            return UIColor(r: 56, g: 193, b: 126, a: 1)
+        }
+    }
+    
     @nonobjc class var qnTeal: UIColor {
         get{
             return UIColor(r: 59, g: 199, b: 216, a: 1)

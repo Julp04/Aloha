@@ -25,6 +25,7 @@ class UsernameViewController: UIViewController{
     
     //MARK: Outlets
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var usernameField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             usernameField.iconFont = UIFont.fontAwesome(ofSize: 15)
@@ -52,13 +53,18 @@ class UsernameViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if UI
-            self.userInfo = UserInfo.testUser
-        #endif
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         usernameField.becomeFirstResponder()
+        usernameField.selectedLineColor = .main
+        usernameField.textColor = .main
+        usernameField.selectedTitleColor = .main
+        usernameField.selectedIconColor = .main
+        
+        continueButton.normalBackgroundColor = .main
+        continueButton.highlightedBackgroundColor = .alohaGreen
+        
+        descriptionLabel.textColor = .main
     }
     
     func configureViewController(userInfo: UserInfo)

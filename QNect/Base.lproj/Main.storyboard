@@ -656,7 +656,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Log In">
-                                    <color key="titleColor" red="0.23921568630000001" green="0.027450980390000001" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.98039215690000003" green="0.3921568627" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
@@ -677,7 +677,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.24107628934042002" green="0.0" blue="0.30474885471204194" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.21960784310000001" green="0.75686274509999996" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Y2Q-mh-BOP" secondAttribute="trailing" id="6Jl-bc-bS5"/>
                             <constraint firstItem="KmQ-GL-tIn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="47" id="6xa-GQ-K3N"/>
@@ -800,7 +800,7 @@
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="cz5-Lq-SsO">
                                 <rect key="frame" x="16" y="581" width="351" height="37"/>
                             </pageControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qnect_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="xxe-YM-235">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aloha_logo" translatesAutoresizingMaskIntoConstraints="NO" id="xxe-YM-235">
                                 <rect key="frame" x="89" y="79" width="197" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="SsP-RY-ntp"/>
@@ -808,7 +808,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ8-fX-ZV8">
                                 <rect key="frame" x="-4" y="624" width="191.5" height="43"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" red="0.21960784310000001" green="0.75686274509999996" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="rdu-Jl-eBq"/>
                                 </constraints>
@@ -822,7 +822,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC1-zz-Z7L">
                                 <rect key="frame" x="187.5" y="624" width="191.5" height="43"/>
-                                <color key="backgroundColor" red="0.23827278796680285" green="0.028901109920143744" blue="0.41313184212639698" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.39215686274509803" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="SIGN UP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1313,7 +1313,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1436,6 +1436,7 @@
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="a7D-3H-uFu" id="idh-PK-lWd"/>
+                        <outlet property="descriptionLabel" destination="6ON-jp-hiG" id="8ne-Y5-MyG"/>
                         <outlet property="usernameField" destination="BBt-SP-lB8" id="Wx4-AB-PQe"/>
                         <segue destination="56e-or-ycf" kind="show" identifier="PasswordSegue" id="TYf-uz-oLm"/>
                     </connections>
@@ -1554,6 +1555,7 @@
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="qXE-y1-GXh" id="1Rp-V6-meq"/>
+                        <outlet property="descriptionLabel" destination="Rmf-XR-d0b" id="5bu-mH-Uvo"/>
                         <outlet property="passwordField" destination="DZg-qj-Y7o" id="W2d-yZ-OVu"/>
                         <segue destination="3fU-0h-Z0J" kind="show" identifier="EmailSegue" id="nQn-Bx-C4a"/>
                     </connections>
@@ -2171,13 +2173,13 @@
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
-                                                        <color key="value" red="0.58843259160000005" green="0.077542554829999999" blue="0.51917798000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedBackgroundColor">
-                                                        <color key="value" red="0.9699707031" green="0.35451219779999998" blue="0.51824238580000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" red="0.21960784310000001" green="0.75686274509999996" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedBackgroundColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -2226,6 +2228,7 @@
                         <outlet property="contactDescriptionLabel" destination="MF8-tf-3mA" id="uwv-Cx-qvi"/>
                         <outlet property="contactImageView" destination="p6d-Ne-R3W" id="oDS-cV-9Dp"/>
                         <outlet property="contactTitleLabel" destination="MoT-hX-Xgu" id="cop-Bi-baN"/>
+                        <outlet property="descriptionLabel" destination="C62-ES-YvM" id="6Ov-ge-jRq"/>
                         <outlet property="twitterButton" destination="nS8-VU-kRI" id="pAj-o9-XZo"/>
                         <outlet property="twitterDescriptionLabel" destination="4rh-co-2g4" id="66o-rG-D0r"/>
                         <outlet property="twitterImageView" destination="81o-ax-ZpH" id="imy-kL-7Ac"/>
@@ -2241,7 +2244,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2259,7 +2262,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2277,7 +2280,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3131,7 +3134,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3149,7 +3152,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerOtherUserNav" automaticallyAdjustsScrollViewInsets="NO" id="0Ux-yL-CRM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3197,7 +3200,7 @@
             <objects>
                 <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3212,12 +3215,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="aloha_logo" width="228" height="58"/>
         <image name="call_button" width="43" height="43"/>
         <image name="cancel_button" width="23" height="22"/>
         <image name="connections_icon" width="109" height="123"/>
         <image name="email_button" width="43" height="43"/>
         <image name="message_button" width="43" height="43"/>
-        <image name="qnect_logo_white" width="230" height="83"/>
         <image name="scan_button" width="54" height="54"/>
         <image name="settings_icon" width="28" height="28"/>
         <image name="twitter_off" width="46" height="39"/>

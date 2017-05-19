@@ -22,6 +22,7 @@ class PasswordViewController: UIViewController {
 
     //MARK: Outlets
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var passwordField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
             self.passwordField.iconFont = UIFont.fontAwesome(ofSize: 15)
@@ -48,6 +49,15 @@ class PasswordViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         passwordField.becomeFirstResponder()
+        passwordField.textColor = .main
+        passwordField.selectedLineColor = .main
+        passwordField.selectedTitleColor = .main
+        passwordField.selectedIconColor = .main
+        
+        continueButton.normalBackgroundColor = .main
+        continueButton.highlightedBackgroundColor = .alohaGreen
+        
+        descriptionLabel.textColor = .main
     }
 
     //MARK: Functionality

@@ -655,7 +655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
+			shellScript = "#python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
 		};
 		14CCB6DF1E7C2C7B004B1C3C /* Sketch Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -669,7 +669,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
+			shellScript = "#python \"$PROJECT_DIR/Design/slice.py\" \"$PROJECT_DIR/Design/UI.sketch\" \"$PROJECT_DIR/QNect/Images.xcassets\"";
 		};
 		14EC7A811E74F27300B3C4E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

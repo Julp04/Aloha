@@ -48,9 +48,18 @@ class EmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailField.becomeFirstResponder()
+        
         
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        
+        emailField.becomeFirstResponder()
+        emailField.textColor = .main
+        emailField.selectedTitleColor = .main
+        emailField.selectedLineColor = .main
+        emailField.selectedIconColor = .main
+        
+        continueButton.normalBackgroundColor = .main
+        continueButton.highlightedBackgroundColor = .alohaGreen
     }
     
     //MARK: Functionality

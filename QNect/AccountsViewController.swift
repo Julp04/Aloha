@@ -23,6 +23,7 @@ class AccountsViewController: UIViewController {
     }
     
     //MARK: Outlets
+    @IBOutlet weak var descriptionLabel: LTMorphingLabel!
     @IBOutlet weak var twitterTitleLabel: LTMorphingLabel! {
         didSet {
             twitterTitleLabel.morphingEffect = .evaporate
@@ -87,7 +88,7 @@ class AccountsViewController: UIViewController {
         
         setupTwitterButton()
         setupContactButton()
-        view.backgroundColor = .qnPurple
+        view.backgroundColor = .main
     }
     
     
@@ -107,6 +108,7 @@ class AccountsViewController: UIViewController {
         let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
         
         self.present(mainVC, animated: true, completion: nil)
+
     }
     
   

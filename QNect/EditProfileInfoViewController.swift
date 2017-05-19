@@ -64,7 +64,7 @@ class EditProfileInfoViewController: UITableViewController {
         profileImageView.onClick = {
             self.editProfileImage()
         }
-        profileImageView.borderColor = .qnPurple
+        profileImageView.borderColor = .main
         
         //Textview delegate setup
         firstNameField.delegate = self
@@ -82,6 +82,32 @@ class EditProfileInfoViewController: UITableViewController {
         }
         
         aboutField.delegate = self
+        
+        firstNameField.textColor = .main
+        firstNameField.selectedLineColor = .main
+        firstNameField.selectedTitleColor = .main
+        
+        lastNameField.textColor = .main
+        lastNameField.selectedTitleColor = .main
+        lastNameField.selectedLineColor = .main
+        
+        emailField.textColor = .main
+        emailField.selectedLineColor = .main
+        emailField.selectedTitleColor = .main
+        
+        phoneField.textColor = .main
+        phoneField.selectedTitleColor = .main
+        phoneField.selectedLineColor = .main
+        
+        locationField.textColor = .main
+        locationField.selectedTitleColor = .main
+        locationField.selectedLineColor = .main
+        
+        birthdateField.textColor = .main
+        birthdateField.selectedLineColor = .main
+        birthdateField.selectedTitleColor = .main
+        
+        navigationController?.navigationBar.tintColor = .main
     }
     
     func configureViewController(currentUser: User, listener: PresentedControllerListener) {
@@ -201,7 +227,7 @@ extension EditProfileInfoViewController: UITextViewDelegate {
         }else {
             textView.textColor = .black
             saveButton.isEnabled = true
-            saveButton.tintColor = .qnPurple
+            saveButton.tintColor = .main
         }
     }
 }
@@ -218,7 +244,7 @@ extension EditProfileInfoViewController: UITextFieldDelegate {
         }
         
         saveButton.isEnabled = true
-        saveButton.tintColor = .qnPurple
+        saveButton.tintColor = .main
         return true
     }
     

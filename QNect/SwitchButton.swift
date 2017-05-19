@@ -61,6 +61,10 @@ class SwitchButton: UIView {
     open var isEnabled: Bool = true
     
 
+    override func draw(_ rect: CGRect) {
+        layer.cornerRadius = cornerRadius
+        commonInit()
+    }
    
     init(frame: CGRect, offColor: UIColor, onColor: UIColor, image: UIImage, shortText: String, isOn: Bool) {
         super.init(frame: frame)

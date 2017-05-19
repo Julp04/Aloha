@@ -41,7 +41,7 @@ class ProfileImageCreator
         
         let view = UIView(frame: rect)
         
-        view.backgroundColor = UIColor.qnPurple
+        view.backgroundColor = UIColor.main
         view.addSubview(firstInitial)
         firstInitial.center = (firstInitial.superview?.center)!
         

@@ -74,6 +74,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +88,31 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         
-        self.view.backgroundColor = UIColor.qnPurple
+        self.view.backgroundColor = .alohaGreen
+        
+        emailField.selectedLineColor = .white
+        emailField.selectedIconColor = .white
+        emailField.selectedTitleColor = .white
+        emailField.textColor = .white
+        emailField.lineColor = .white
+        emailField.titleColor = .white
+        emailField.placeholderColor = .white
+        emailField.iconColor = .white
+        
+        passwordField.selectedIconColor = .white
+        passwordField.selectedTitleColor = .white
+        passwordField.textColor = .white
+        passwordField.lineColor = .white
+        passwordField.titleColor = .white
+        passwordField.placeholderColor = .white
+        passwordField.iconColor = .white
+        
+        loginButton.normalBackgroundColor = .white
+        loginButton.highlightedBackgroundColor = .alohaOrange
+        loginButton.spinnerColor = .alohaOrange
+        
+    
+        
     }
     
     //MARK: User Interaction
@@ -197,7 +223,7 @@ class LoginViewController: UIViewController {
         alert.doneActionBlock {
             hitReset = 1
         }
-        alert.colorScheme = UIColor.qnPurple
+        alert.colorScheme = UIColor.main
         alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "Please enter your email and we'll send a link to reset it!", withCustomImage: #imageLiteral(resourceName: "lock_icon"), withDoneButtonTitle: "Reset Password", andButtons: nil)
     }
     

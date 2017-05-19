@@ -32,6 +32,7 @@ class AddProfileInfoViewController: UITableViewController {
     @IBOutlet weak var birthdateField: SkyFloatingLabelTextField!
     @IBOutlet weak var aboutField: UITextView!
    
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -57,6 +58,9 @@ class AddProfileInfoViewController: UITableViewController {
         profileImageView.onClick = {
             self.editProfileImage()
         }
+        profileImageView.backgroundColor = .main
+        
+        descriptionLabel.textColor = .main
         
         self.tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.clear
@@ -79,6 +83,23 @@ class AddProfileInfoViewController: UITableViewController {
         
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        
+        emailField.textColor = .main
+        emailField.selectedLineColor = .main
+        emailField.selectedTitleColor = .main
+        
+        phoneField.textColor = .main
+        phoneField.selectedTitleColor = .main
+        phoneField.selectedLineColor = .main
+        
+        locationField.textColor = .main
+        locationField.selectedTitleColor = .main
+        locationField.selectedLineColor = .main
+        
+        birthdateField.textColor = .main
+        birthdateField.selectedLineColor = .main
+        birthdateField.selectedTitleColor = .main
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,7 +206,7 @@ extension AddProfileInfoViewController: UITextViewDelegate {
         }else {
             textView.textColor = .black
             continueButton.isEnabled = true
-            continueButton.tintColor = .qnPurple
+            continueButton.tintColor = .main
         }
     }
 }

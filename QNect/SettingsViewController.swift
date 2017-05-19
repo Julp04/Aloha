@@ -97,7 +97,7 @@ class SettingsViewController: UITableViewController {
 
         }
         
-        alert.colorScheme = UIColor.qnPurple
+        alert.colorScheme = UIColor.main
         alert.showAlert(inView: self, withTitle: "Reset Password", withSubtitle: "We'll send you a link to your email to reset your password", withCustomImage: #imageLiteral(resourceName: "lock_icon"), withDoneButtonTitle: "Reset Password", andButtons: nil)
     }
 }

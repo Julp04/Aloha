@@ -61,10 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             checkForCurrentUser()
         }
         
-        let q = UIImage(named: "qnect_logo_white")!
+        let flowerLogo = #imageLiteral(resourceName: "aloha_flower")
         let qSize = CGSize(width: 240.0, height: 128.0)
         
-        let splashView = RevealingSplashView(iconImage: q , iconInitialSize: qSize, backgroundColor: UIColor.qnPurple)
+        let splashView = RevealingSplashView(iconImage: flowerLogo, iconInitialSize: qSize, backgroundColor: UIColor.main)
         splashView.iconColor = UIColor.white
         splashView.duration = 1.5
         splashView.animationType = .twitter
