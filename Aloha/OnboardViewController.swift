@@ -31,7 +31,7 @@ class OnboardViewController: UIViewController {
     var backgroundPlayer : BackgroundVideo? // Declare an instance of BackgroundVideo called backgroundPlayer
     
     let titleArray = ["Welcome", "Create", "Scan", "Connect"]
-    let subtitleArray = ["Connecting with friends has never been so easy. Use QNectcodes to quickly exchange info with friends", "Add contact info and other details to easily create your personal QNectcode", "Retreive users' info by quickly scanning their QNectcode. No internet connection required!", "Link different accounts like Twitter to easily follow other users without leaving the app"]
+    let subtitleArray = ["Connecting with friends has never been so easy. Use tiki codes to quickly exchange info with friends", "Add contact info and other details to easily create your personal tiki code", "Retreive users' info by quickly scanning their tiki code. No internet connection required!", "Link different accounts like Twitter to easily follow other users without leaving the app"]
     
     override var prefersStatusBarHidden: Bool {
         return true
