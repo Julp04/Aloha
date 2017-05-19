@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_QNect_devVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_QNect_devVersionString[];
+FOUNDATION_EXPORT double Pods_AlohaVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_AlohaVersionString[];
 

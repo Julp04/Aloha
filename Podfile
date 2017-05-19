@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
-workspace 'QNect'
+workspace 'Aloha'
 
 
 def allPods
@@ -32,15 +32,15 @@ def allPods
     pod 'AES256CBC'
 end
 
-target 'QNect' do
+target 'Aloha' do
     allPods
 end
 
-target 'QNect dev' do
+target 'Aloha dev' do
     allPods
 end
 
-target 'QNectTests' do
+target 'AlohaTests' do
     pod 'Firebase'
 end
 

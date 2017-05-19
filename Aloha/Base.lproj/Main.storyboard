@@ -13,7 +13,7 @@
         <!--Profile View Controller Current User-->
         <scene sceneID="pDZ-sd-hwv">
             <objects>
-                <tableViewController id="vPk-MS-rIt" customClass="ProfileViewControllerCurrentUser" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vPk-MS-rIt" customClass="ProfileViewControllerCurrentUser" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g6N-YX-WEg">
                         <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppA-Nl-QAQ">
                                                     <rect key="frame" x="8" y="9" width="359" height="100"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-IH-5gU" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-IH-5gU" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
                                                             <rect key="frame" x="129.5" y="0.0" width="100" height="100"/>
                                                             <subviews>
                                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sdz-3q-C7Q">
@@ -64,7 +64,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9fG-5p-5av">
                                                     <rect key="frame" x="8" y="202.5" width="359" height="28"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7Z-9l-ciX" customClass="JPLoadingButton" customModule="QNect" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7Z-9l-ciX" customClass="JPLoadingButton" customModule="Aloha" customModuleProvider="target">
                                                             <rect key="frame" x="79.5" y="0.0" width="200" height="28"/>
                                                             <color key="backgroundColor" red="0.98964872724317021" green="1" blue="0.98972718941775628" alpha="0.69095141267123283" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -353,7 +353,7 @@
         <!--Name View Controller-->
         <scene sceneID="ggf-bo-RHZ">
             <objects>
-                <viewController id="LWC-g1-Nhs" customClass="NameViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LWC-g1-Nhs" customClass="NameViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QBz-L4-mpE"/>
                         <viewControllerLayoutGuide type="bottom" id="VpC-7i-FgE"/>
@@ -507,7 +507,7 @@
         <!--Log In-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -718,7 +718,7 @@
         <!--Code View Controller-->
         <scene sceneID="pRo-Qi-AmD">
             <objects>
-                <viewController storyboardIdentifier="CodeController" id="rI9-Cc-z6b" customClass="CodeViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CodeController" id="rI9-Cc-z6b" customClass="CodeViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ede-Gn-d8Y"/>
                         <viewControllerLayoutGuide type="bottom" id="Mqj-Cv-IWZ"/>
@@ -785,7 +785,7 @@
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
             <objects>
-                <viewController id="Pcd-EO-vxy" customClass="OnboardViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pcd-EO-vxy" customClass="OnboardViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mpI-08-eVw"/>
                         <viewControllerLayoutGuide type="bottom" id="hRd-JI-gRR"/>
@@ -866,7 +866,7 @@
         <!--Connections View Controller-->
         <scene sceneID="Y5e-LO-eV9">
             <objects>
-                <tableViewController storyboardIdentifier="ConnectionsViewController" id="vdH-fS-tNn" customClass="ConnectionsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConnectionsViewController" id="vdH-fS-tNn" customClass="ConnectionsViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Va4-8M-pBB">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -874,7 +874,7 @@
                         <color key="separatorColor" red="0.54413864209999996" green="0.54413864209999996" blue="0.54413864209999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConnectionCell" rowHeight="75" id="4XF-iY-y5Q" customClass="ConnectionCell" customModule="QNect" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConnectionCell" rowHeight="75" id="4XF-iY-y5Q" customClass="ConnectionCell" customModule="Aloha" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4XF-iY-y5Q" id="viA-VB-lTX">
@@ -888,7 +888,7 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9E1-CE-yUq" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9E1-CE-yUq" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
                                             <rect key="frame" x="8" y="10" width="55.5" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -985,7 +985,7 @@
         <!--Main Controller-->
         <scene sceneID="V5d-OM-RjA">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="KlM-A4-FMv" customClass="MainController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="KlM-A4-FMv" customClass="MainController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1dy-TA-Hp8"/>
                         <viewControllerLayoutGuide type="bottom" id="GaH-Bd-B7q"/>
@@ -1017,7 +1017,7 @@
         <!--Settings-->
         <scene sceneID="21n-iJ-n9l">
             <objects>
-                <tableViewController id="BlF-UI-7RL" customClass="SettingsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BlF-UI-7RL" customClass="SettingsViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OLH-st-4AY">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1313,7 +1313,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1329,7 +1329,7 @@
         <!--Username View Controller-->
         <scene sceneID="pqa-7k-cK7">
             <objects>
-                <viewController storyboardIdentifier="UsernameVC" id="NZ1-RP-GkX" customClass="UsernameViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsernameVC" id="NZ1-RP-GkX" customClass="UsernameViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hse-fL-U1W"/>
                         <viewControllerLayoutGuide type="bottom" id="nNE-Fl-jbJ"/>
@@ -1448,7 +1448,7 @@
         <!--Password View Controller-->
         <scene sceneID="AWQ-Id-adX">
             <objects>
-                <viewController storyboardIdentifier="PasswordVC" id="56e-or-ycf" customClass="PasswordViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordVC" id="56e-or-ycf" customClass="PasswordViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QEd-ry-sfq"/>
                         <viewControllerLayoutGuide type="bottom" id="L7D-Tw-sPs"/>
@@ -1567,7 +1567,7 @@
         <!--Email View Controller-->
         <scene sceneID="qgY-Bg-ZgG">
             <objects>
-                <viewController storyboardIdentifier="EmailVC" id="3fU-0h-Z0J" customClass="EmailViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmailVC" id="3fU-0h-Z0J" customClass="EmailViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pSB-JC-YkB"/>
                         <viewControllerLayoutGuide type="bottom" id="MV1-rB-dxY"/>
@@ -1674,7 +1674,7 @@
         <!--Add Profile Info View Controller-->
         <scene sceneID="vx8-R6-MEH">
             <objects>
-                <tableViewController storyboardIdentifier="AddProfileInfoViewController" id="nJ0-dh-6ow" customClass="AddProfileInfoViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddProfileInfoViewController" id="nJ0-dh-6ow" customClass="AddProfileInfoViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CQq-ci-zup">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1721,7 +1721,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1WV-Hg-pMR" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1WV-Hg-pMR" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
                                                     <rect key="frame" x="137" y="78" width="100" height="100"/>
                                                     <color key="backgroundColor" red="0.23827278800000001" green="0.028901109920000001" blue="0.41313184209999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -2027,7 +2027,7 @@
         <!--Accounts View Controller-->
         <scene sceneID="GWI-6J-q7I">
             <objects>
-                <viewController storyboardIdentifier="AccountsViewController" id="kjt-Wf-QYp" customClass="AccountsViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountsViewController" id="kjt-Wf-QYp" customClass="AccountsViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9bu-em-KVc"/>
                         <viewControllerLayoutGuide type="bottom" id="bHJ-eP-FFq"/>
@@ -2042,7 +2042,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK7-ry-kuK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nS8-VU-kRI" customClass="SwitchButton" customModule="QNect" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nS8-VU-kRI" customClass="SwitchButton" customModule="Aloha" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="124" width="331" height="126"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Twitter Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go8-WU-hxx" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
@@ -2097,7 +2097,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="of5-qC-U4b" customClass="SwitchButton" customModule="QNect" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="of5-qC-U4b" customClass="SwitchButton" customModule="Aloha" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="303" width="331" height="126"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Contacts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoT-hX-Xgu" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
@@ -2244,7 +2244,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2262,7 +2262,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2280,7 +2280,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2296,7 +2296,7 @@
         <!--Profile View Controller Other User-->
         <scene sceneID="bj9-rw-uMC">
             <objects>
-                <tableViewController id="h0r-OT-G9p" customClass="ProfileViewControllerOtherUser" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="h0r-OT-G9p" customClass="ProfileViewControllerOtherUser" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7eL-HD-S0N">
                         <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2314,7 +2314,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-fX-Pp7">
                                                     <rect key="frame" x="8" y="9" width="359" height="100"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CX1-Qy-yL3" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CX1-Qy-yL3" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
                                                             <rect key="frame" x="129.5" y="0.0" width="100" height="100"/>
                                                             <subviews>
                                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="y3l-6Q-8DM">
@@ -2335,7 +2335,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BsS-Fb-B6a">
                                                     <rect key="frame" x="8" y="207.5" width="359" height="28"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-Ny-7T6" customClass="JPLoadingButton" customModule="QNect" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-Ny-7T6" customClass="JPLoadingButton" customModule="Aloha" customModuleProvider="target">
                                                             <rect key="frame" x="79.5" y="0.0" width="200" height="28"/>
                                                             <color key="backgroundColor" red="0.98964872719999997" green="1" blue="0.98972718940000004" alpha="0.69095141270000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -2682,7 +2682,7 @@
         <!--Edit Profile Info View Controller-->
         <scene sceneID="ruW-bz-r8d">
             <objects>
-                <tableViewController storyboardIdentifier="EditProfileInfoViewController" id="0tZ-iO-tz6" customClass="EditProfileInfoViewController" customModule="QNect" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileInfoViewController" id="0tZ-iO-tz6" customClass="EditProfileInfoViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ExN-3I-WgS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2708,7 +2708,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bO5-0Y-vMQ" customClass="ProfileImageView" customModule="QNect" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bO5-0Y-vMQ" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
                                                     <rect key="frame" x="137" y="56" width="100" height="100"/>
                                                     <color key="backgroundColor" red="0.1168564659" green="0.59704801649999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -3134,7 +3134,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3152,7 +3152,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerOtherUserNav" automaticallyAdjustsScrollViewInsets="NO" id="0Ux-yL-CRM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3200,7 +3200,7 @@
             <objects>
                 <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="QNect" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

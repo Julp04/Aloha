@@ -1,0 +1,6 @@
+framework module Pods_Aloha_dev {
+  umbrella header "Pods-Aloha dev-umbrella.h"
+
+  export *
+  module * { export * }
+}
