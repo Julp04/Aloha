@@ -31,9 +31,9 @@ class Scanner: NSObject {
     private var metaDataObjectTypes = [String]()
     var delegate: ScannerDelegate?
     
-    private var pinchGesture: UIPinchGestureRecognizer!
+    var pinchGesture: UIPinchGestureRecognizer!
     
-    var pinchToZoom = false {
+    var pinchToZoom = true {
         didSet {
             pinchGesture.isEnabled = pinchToZoom
         }
@@ -48,7 +48,8 @@ class Scanner: NSObject {
         super.init()
         self.createCaptureSession()
         self.pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(Scanner.handlePinch(_:)))
-        self.pinchGesture.delegate = self
+        self.view.addGestureRecognizer(pinchGesture)
+        
     }
     
     private func createCaptureSession() {
