@@ -105,7 +105,7 @@ class TwitterClient {
                 if error != nil {
                     completion(error)
                 }else {
-                    ref.child("users").child(currentUser.uid).child("twitterScreenName").removeValue(completionBlock: { (error, ref) in
+                    ref.child("users").child(currentUser.uid).child("accounts").child("twitter").removeValue(completionBlock: { (error, ref) in
                         if error != nil {
                             completion(error)
                         }
