@@ -70,6 +70,16 @@ class MainController: PageboyViewController {
         scanner.delegate = self
         scanner.pinchToZoom = true
         
+        if !Platform.isSimulator {
+            //Check if user allowed to use camera, if not show controller that prohibits use of app unless given access too
+            guard isCameraAuthorized() else {
+                let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
+                
+                present(accessCameraController, animated: true, completion: nil)
+                return
+            }
+        }
+        
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
@@ -97,13 +107,25 @@ class MainController: PageboyViewController {
         self.delegate = self
     }
     
+    func isCameraAuthorized() -> Bool {
+        
+        let cameraMediaType = AVMediaTypeVideo
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: cameraMediaType)
+        
+        switch cameraAuthorizationStatus {
+        case .authorized: return true
+        case .notDetermined, .denied, .restricted: return false
+        }
+        
+    }
+    
     func presentCodeController() {
         self.performSegue(withIdentifier: "CodeSegue", sender: self)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-          scanner.startCaptureSession()
+          scanner?.startCaptureSession()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -32,6 +32,8 @@
 		1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B964AE951DBA74B400A0162E /* Info.plist */; };
 		1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
 		1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
+		1466C63D1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */; };
+		1466C63E1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */; };
 		1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */; };
 		1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */; };
 		147417691EAD0D5700A9A1E9 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147417681EAD0D5700A9A1E9 /* TransitionManager.swift */; };
@@ -153,6 +155,7 @@
 		144668461EC8AF2C0062FA56 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1466C6391ECF75DB00C01CF0 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
+		1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessCameraController.swift; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147417681EAD0D5700A9A1E9 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -372,6 +375,7 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */,
 				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
 				149D1DDD1E747F8000254601 /* AddProfileInfoViewController.swift */,
 				B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */,
@@ -840,6 +844,7 @@
 				14EC7AA71E74F27300B3C4E8 /* CodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImageCreator.swift in Sources */,
 				14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */,
+				1466C63E1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */,
 				14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */,
 				14B224A61E8AABD20027CBA8 /* TransparentNavigationBar.swift in Sources */,
 				14F78E891E8C530E00A3D169 /* ProfileImageView.swift in Sources */,
@@ -895,6 +900,7 @@
 				B9570E121DCF9A3A00685718 /* ProfileImageCreator.swift in Sources */,
 				14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */,
 				B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */,
+				1466C63D1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */,
 				14B224A11E8AA4380027CBA8 /* TransparentNavigationBar.swift in Sources */,
 				B92418041DCFAFDF007C0B3B /* SettingsViewController.swift in Sources */,
 				14F78E881E8C530E00A3D169 /* ProfileImageView.swift in Sources */,

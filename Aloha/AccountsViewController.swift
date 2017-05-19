@@ -78,7 +78,7 @@ class AccountsViewController: UIViewController {
     //MARK: Actions
     
     @IBAction func continuAction(_ sender: Any) {
-        continueToMainVC()
+        isCameraAuthorized()
     }
     
     //MARK: Lifecycle
@@ -104,11 +104,34 @@ class AccountsViewController: UIViewController {
     
     //MARK: Functionality
     
-    func continueToMainVC() {
-        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+    
+    func isCameraAuthorized() {
         
-        self.present(mainVC, animated: true, completion: nil)
-
+        if Platform.isSimulator {
+            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+            self.present(mainVC, animated: true, completion: nil)
+       
+        } else {
+            let cameraMediaType = AVMediaTypeVideo
+            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: cameraMediaType)
+            
+            switch cameraAuthorizationStatus {
+            case .authorized:
+                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+                self.present(mainVC, animated: true, completion: nil)
+            case .notDetermined, .restricted, .denied:
+                // Prompting user for the permission to use the camera.
+                AVCaptureDevice.requestAccess(forMediaType: cameraMediaType) { granted in
+                    if granted {
+                        self.isCameraAuthorized()
+                    }else {
+                        let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
+                        
+                        self.present(accessCameraController, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
   
