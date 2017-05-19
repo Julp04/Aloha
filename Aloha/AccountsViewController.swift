@@ -89,6 +89,10 @@ class AccountsViewController: UIViewController {
         setupTwitterButton()
         setupContactButton()
         view.backgroundColor = .main
+        
+        let flowerSnowflake = Snowflake(view: view, particleImages: [#imageLiteral(resourceName: "aloha_flower_sm")])
+        view.layer.insertSublayer(flowerSnowflake, at: 0)
+        flowerSnowflake.start()
     }
     
     
