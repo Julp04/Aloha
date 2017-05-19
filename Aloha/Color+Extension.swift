@@ -33,6 +33,12 @@ extension UIColor {
         }
     }
     
+    @nonobjc class var alohaYellow: UIColor {
+        get {
+            return UIColor(r: 250, g: 217, b: 97, a: 1)
+        }
+    }
+    
     @nonobjc class var qnTeal: UIColor {
         get{
             return UIColor(r: 59, g: 199, b: 216, a: 1)
