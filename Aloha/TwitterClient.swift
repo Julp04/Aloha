@@ -13,7 +13,9 @@ import Accounts
 import FirebaseDatabase
 import FirebaseAuth
 import Social
+import SwiftyJSON
 
+typealias ErrorCompletion = (Error?) -> Void
 
 extension DefaultsKeys {
     static let launchCount = DefaultsKey<Int>("launchCount")
@@ -22,10 +24,13 @@ extension DefaultsKeys {
 class TwitterClient {
     
     static let client = TwitterClient()
+    
     var oauthSwift: OAuthSwift?
     let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
     let consumerSecret = "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq"
+    
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
+    let lookUpURL = "https://api.twitter.com/1.1/friendships/lookup.json?screen_name="
     
     func linkTwitterIn(viewController:UIViewController, completion:@escaping ErrorCompletion){
         let oauthswift = OAuth1Swift(
@@ -167,6 +172,50 @@ class TwitterClient {
                     completion(error)
                 })
         })
+    }
+    
+    func isFollowing(screenName: String, completion: @escaping (_ isFollowing: Bool, Error?) -> Void) {
+
+            let currentUser = FIRAuth.auth()!.currentUser!
+            let ref = FIRDatabase.database().reference()
+            
+            let url = lookUpURL + screenName
+        
+            ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                let user = User(snapshot: snapshot)!
+                
+                guard let twitterAccount = user.twitterAccount else {
+                    return
+                }
+                
+                let token = twitterAccount.token
+                let tokenSecret = twitterAccount.tokenSecret
+                
+                let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+                
+                _ = client.get(url, success: { (response) in
+                    do {
+                        let json = try response.jsonObject()
+                        let swiftyJSON = JSON(json)
+                        if let connections = swiftyJSON[0]["connections"].arrayObject as? [String] {
+                            print(connections)
+                            for status in connections {
+                                if status == "following" {
+                                    completion(true, nil)
+                                    return
+                                }
+                            }
+                            completion(false, nil)
+                        }
+                    }catch let error {
+                        completion(false, error)
+                    }
+                    
+                }, failure: { (error) in
+                    completion(false, error)
+                })
+                
+            })
     }
     
     

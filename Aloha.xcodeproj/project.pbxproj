@@ -259,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				141852171E55F2E200471E59 /* TwitterClient.swift */,
-				1446683A1EC8A30C0062FA56 /* Alias.swift */,
 				B90968CF1DCFC1FB00B73662 /* QnClient.swift */,
 			);
 			name = Clients;
@@ -279,6 +278,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				1446683A1EC8A30C0062FA56 /* Alias.swift */,
 				140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */,
 				1446683E1EC8A7840062FA56 /* Oops.swift */,
 				147417681EAD0D5700A9A1E9 /* TransitionManager.swift */,

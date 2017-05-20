@@ -15,6 +15,7 @@ class ProfileManager {
     
     var user: User
     var viewController: UIViewController
+    var delegate: ProfileManagerDelegate?
     
     var contactButton: SwitchButton!
     var twitterButton: SwitchButton!
@@ -170,32 +171,54 @@ class ProfileManager {
     }
     
     private func twitterButtonOtherUser() {
-        
-        
         guard twitterButton == nil else {
             //if twitterButton has already been created then we do not create it again.
             //todo: twitter follow buttton. 
             //We might not need to do this if we update each time and figure out if the current user is currently following the other user
             //Will have to make changes to how twitterButton works
-            
             return
         }
         
         if let screenName = user.twitterAccount?.screenName {
-            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
-            twitterButton.onClick = {
-                TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
-                    if error != nil {
-                        RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .gray, textColor: .white)
-                    }else {
-                        //Follow successful
-                        self.turnOnTwitterButtonOtherUser()
+            self.twitterButton = SwitchButton(frame: self.buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
+
+            TwitterClient.client.isFollowing(screenName: screenName, completion: { (isFollowing, error) in
+                if isFollowing {
+                    self.turnOnTwitterButtonOtherUser()
+                }else {
+                    //Current user is not following user, present button to allow them to follow
+                    self.twitterButton.onClick = {
+                        guard Reachability.isConnectedToInternet() else {
+                            AlertUtility.showConnectionAlert()
+                            return
+                        }
+                        
+                        TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
+                            if error != nil {
+                                RKDropdownAlert.title("Oops!", message: "We could not handle your request", backgroundColor: .gray, textColor: .white)
+                            }else {
+                                //Follow successful
+                                self.turnOnTwitterButtonOtherUser()
+                            }
+                        })
                     }
-                })
-            }
-            buttons.append(twitterButton)
+                }
+                
+//                self.delegate?.profileManagerUpdated()
+            })
+            self.buttons.append(self.twitterButton)
         }
     }
+    
+    private func turnOnTwitterButtonOtherUser() {
+        DispatchQueue.main.async {
+            self.twitterButton.turnOn()
+            self.twitterButton.animationDidStartClosure = { _ in
+                self.twitterButton.shortText = "Following"
+            }
+        }
+    }
+    
     private func contactButtonOtherUser() {
         
         guard contactButton == nil else {
@@ -243,14 +266,7 @@ class ProfileManager {
         buttons.append(contactButton)
     }
     
-    private func turnOnTwitterButtonOtherUser() {
-        DispatchQueue.main.async {
-            self.twitterButton.turnOn()
-            self.twitterButton.animationDidStartClosure = { _ in
-                self.twitterButton.shortText = "Following"
-            }
-        }
-    }
+
     private func turnOnContactButtonOtherUser() {
         self.contactButton.turnOn()
         self.contactButton.animationDidStartClosure = { _ in
@@ -273,3 +289,11 @@ class ProfileManager {
     }
     
 }
+
+
+
+@objc protocol ProfileManagerDelegate {
+   @objc func profileManagerUpdated()
+}
+
+

@@ -131,7 +131,7 @@ class QnClient {
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observe(.value, with: { (snapshot) in
+        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
                 completion(user)
             }else {

@@ -132,6 +132,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         accountsCollectionView.delegate = self
         
         self.profileManager = ProfileManager(user: self.user, viewController: self)
+        profileManager.delegate = self
         
         updateUI()
         listenForUpdates()
@@ -415,6 +416,12 @@ class ProfileViewControllerOtherUser: UITableViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewControllerOtherUser: ProfileManagerDelegate {
+    func profileManagerUpdated() {
+        accountsCollectionView.reloadData()
     }
 }
 

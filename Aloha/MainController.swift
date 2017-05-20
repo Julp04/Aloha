@@ -57,6 +57,7 @@ class MainController: PageboyViewController {
     
      override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         //Hiding nav bar so we can interact with other view controllers in pageview controller
         self.navigationController?.navigationBar.isHidden = true
