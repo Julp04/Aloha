@@ -203,8 +203,6 @@ class ProfileManager {
                         })
                     }
                 }
-                
-//                self.delegate?.profileManagerUpdated()
             })
             self.buttons.append(self.twitterButton)
         }
