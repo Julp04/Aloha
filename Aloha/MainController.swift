@@ -162,6 +162,7 @@ extension MainController: ScannerDelegate {
             //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
             
             let scan = Scan(contact: contact)
+            self.contact = contact
             
             scanner.stopCaptureSession()
             performSegue(withIdentifier: "ContactProfileSegue", sender: self)

@@ -21,12 +21,14 @@ class ProfileManager {
     var facebookButton: SwitchButton!
     var instagramButton: SwitchButton!
     
-    var buttons = [SwitchButton]()
+    var buttons: [SwitchButton]
     let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
     
     init(currentUser: User, viewController: UIViewController) {
         self.user = currentUser
         self.viewController = viewController
+        
+        buttons = [SwitchButton]()
         
         createButtonsForCurrentUser()
     }
@@ -34,6 +36,8 @@ class ProfileManager {
     init(user: User, viewController: UIViewController) {
         self.user = user
         self.viewController = viewController
+        
+        buttons = [SwitchButton]()
         
         createButtonsForUser()
     }
@@ -166,6 +170,17 @@ class ProfileManager {
     }
     
     private func twitterButtonOtherUser() {
+        
+        
+        guard twitterButton == nil else {
+            //if twitterButton has already been created then we do not create it again.
+            //todo: twitter follow buttton. 
+            //We might not need to do this if we update each time and figure out if the current user is currently following the other user
+            //Will have to make changes to how twitterButton works
+            
+            return
+        }
+        
         if let screenName = user.twitterAccount?.screenName {
             twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
             twitterButton.onClick = {
@@ -182,6 +197,10 @@ class ProfileManager {
         }
     }
     private func contactButtonOtherUser() {
+        
+        guard contactButton == nil else {
+            return
+        }
         
         if ContactManager.contactsAutorized(){
             if ContactManager().contactExists(user: user) {
@@ -246,6 +265,11 @@ class ProfileManager {
     
     func numberOfLinkedAccounts() -> Int {
         return buttons.count
+    }
+    
+    func update(user: User) {
+        self.user = user
+        createButtonsForUser()
     }
     
 }
