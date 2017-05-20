@@ -101,7 +101,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Get profile image
         getProfileImage()
         
-        profileManager = ProfileManager(user: user, viewController: self)
+        
     
     }
     
@@ -131,9 +131,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         
+        self.profileManager = ProfileManager(user: self.user, viewController: self)
         
         updateUI()
-        
         listenForUpdates()
     }
     
@@ -179,6 +179,11 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //This will get called if the user you are viewing makes a change to his profile as you are viewing it.
         QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (updatedUser) in
             self.user = updatedUser
+            
+            
+            //Set profileManager again with updated user,to see account buttons
+            self.profileManager.update(user: self.user)
+            self.accountsCollectionView.reloadData()
             self.updateUI()
         }
         
@@ -194,6 +199,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         updateUserInfoLabels()
         updateContactButtons()
     }
+    
+    
     
     func updateFollowButton() {
         self.followOrEditProfileButton.removeTarget(nil, action: nil, for: .allEvents)
@@ -425,12 +432,14 @@ extension ProfileViewControllerOtherUser: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
         
         let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
-        button.tag = 111
+//        button.tag = 111
+//        
+//        if (cell.contentView.viewWithTag(111)) != nil {
+//        }else {
+//            cell.contentView.addSubview(button)
+//        }
         
-        if (cell.contentView.viewWithTag(111)) != nil {
-        }else {
-            cell.contentView.addSubview(button)
-        }
+        cell.contentView.addSubview(button)
         
         return cell
     }
