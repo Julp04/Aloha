@@ -77,27 +77,27 @@ class UsernameViewController: UIViewController{
     func continueSignup()
     {
         if continueButton.isEnabled {
-        
-            if Reachability.isConnectedToInternet() {
-                continueButton.startLoadingAnimation()
-                
-                doesUsernameExist(completion: { (usernameExists) in
-                    if usernameExists {
-                        self.usernameField.errorMessage = "Username already exists"
-                        self.continueButton.enable = false
-                    }else {
-                        self.usernameField.errorMessage = ""
-                        self.continueButton.enable = true
-                        self.userInfo?.userName = self.usernameField.text
-                        
-                        self.performSegue(withIdentifier: "PasswordSegue", sender: self)
-                    }
-                    self.continueButton.stopLoadingAnimation()
-                })
-            }else {
-                
+            
+            guard Reachability.isConnectedToInternet() else {
                 AlertUtility.showConnectionAlert()
+                return
             }
+            
+            continueButton.startLoadingAnimation()
+            
+            doesUsernameExist(completion: { (usernameExists) in
+                if usernameExists {
+                    self.usernameField.errorMessage = "Username already exists"
+                    self.continueButton.enable = false
+                }else {
+                    self.usernameField.errorMessage = ""
+                    self.continueButton.enable = true
+                    self.userInfo?.userName = self.usernameField.text
+                    
+                    self.performSegue(withIdentifier: "PasswordSegue", sender: self)
+                }
+                self.continueButton.stopLoadingAnimation()
+            })
         }
     }
     
