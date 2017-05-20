@@ -29,7 +29,18 @@ class SwitchButton: UIView {
     private var imageView: UIImageView?
     var shortText: String? {
         didSet {
+            
+            guard let shortText = shortText else {
+                return
+            }
+            
             shortDescriptionLabel?.text = shortText
+            shortDescriptionLabel?.font = shortText.characters.count > 7 ? UIFont(name: "Futura", size: kLabelFontSizeSmall) : UIFont(name: "Futura", size: kLabelFontSizeLarge)
+            shortDescriptionLabel?.numberOfLines = shortText.contains(" ") ? 0 : 1
+            shortDescriptionLabel?.lineBreakMode = .byWordWrapping
+            shortDescriptionLabel?.adjustsFontSizeToFitWidth = true
+            shortDescriptionLabel?.text = shortText
+            shortDescriptionLabel?.textAlignment = .center
         }
     }
     
