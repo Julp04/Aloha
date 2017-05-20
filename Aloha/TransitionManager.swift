@@ -42,7 +42,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.3
+        return 0.6
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -67,7 +67,20 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             toView.alpha = 0.0
             
             
+            
+            
             UIView.animate(withDuration: duration, animations: {
+                
+                if let fromView = self.sourceViewController as? MainController {
+                
+                    
+                    fromView.colorView.colors = [UIColor.alohaYellow.cgColor, UIColor.alohaOrange.cgColor,]
+                    fromView.colorView.alpha = 1.0
+//                    fromView.codeButton.alpha = 0.0
+                    fromView.codeButton.layer.transform = CATransform3DMakeScale(0.0001, 0.0001, 1)
+                   
+                }
+                
                 toView.transform = .identity
                 toView.alpha = 1.0
                 
@@ -92,6 +105,14 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             
         
             UIView.animate(withDuration: duration, animations: {
+                
+                if let fromView = self.sourceViewController as? MainController {
+                    fromView.colorView.alpha = 0.0
+                    fromView.codeButton.alpha = 1.0
+                    fromView.codeButton.layer.transform = CATransform3DMakeScale(1.0, 1.0, 1)
+                    
+                }
+                
                 snapshotView?.transform = screenUp
                 snapshotView?.layer.cornerRadius = 20.0
                 snapshotView?.alpha = 0.0

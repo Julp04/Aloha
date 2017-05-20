@@ -36,11 +36,7 @@ class CodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.qnGreenTeal
-        
-        let gradientView = GradientView(frame: view.bounds)
-        gradientView.colors = [ UIColor.alohaYellow.cgColor, UIColor.alohaOrange.cgColor,]
-        view.insertSubview(gradientView, at: 0)
+        self.view.backgroundColor = UIColor.clear
         
         borderView.layer.cornerRadius = kBorderRadius
     }
