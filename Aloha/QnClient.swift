@@ -469,10 +469,10 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 self.ref.child(DatabaseFields.users.rawValue).child(item.key).observe(.value, with: {snapshot in
-                    print(item.key)
                     
-                    
-                    let user = User(snapshot: snapshot)!
+                    guard let user = User(snapshot: snapshot) else {
+                        return
+                    }
                     
                     self.getProfileImageForUser(user: user, began: {}, completion: { (image,error) in
                         if image != nil {
