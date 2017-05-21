@@ -13,6 +13,7 @@ import Firebase
 import ReachabilitySwift
 import RSKImageCropper
 import MessageUI
+import FontAwesome_swift
 
 
 
@@ -35,11 +36,14 @@ class ProfileViewControllerOtherUser: UITableViewController {
     let connectionsHeaderTitle = "Common Connections"
     var colorView: GradientView!
     var profileManager: ProfileManager!
+    var isBlocked: Bool = false
     
     var profileHeight: CGFloat = 0.0
     var twitterButton: SwitchButton?
     var followingStatus: FollowingStatus = .notFollowing
     var settingsAlert: UIAlertController!
+    
+    var backgroundView: UIView!
     
    
     //MARK: Outlets
@@ -66,7 +70,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var accountsCollectionView: UICollectionView!
+    
     //MARK: Actions
     
     @IBAction func settingsAction(_ sender: Any) {
@@ -113,9 +119,13 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
         colorView = GradientView(frame: tableView.bounds)
         colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
-        let backgroundView = UIView(frame: tableView.bounds)
+        
+        backgroundView = UIView(frame: tableView.bounds)
         backgroundView.addSubview(colorView)
+        
         tableView.backgroundView = backgroundView
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.separatorStyle = .none
         
         
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1)
@@ -191,11 +201,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
             self.updateUI()
             self.tableView.reloadData()
         }
+        
+        
+        QnClient.sharedInstance.isBlockedBy(user: user) { (isBlocked) in
+            self.isBlocked = isBlocked
+            self.tableView.reloadData()
+        }
     }
     
     func updateUI() {
         
-       
         updateFollowButton()
         updateSettingsAlert()
         updateUserInfoLabels()
@@ -206,6 +221,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func updateFollowButton() {
         self.followOrEditProfileButton.removeTarget(nil, action: nil, for: .allEvents)
+        
         
         var buttonText = ""
         var action: Selector
@@ -445,6 +461,23 @@ extension ProfileViewControllerOtherUser: ProfileManagerDelegate {
 extension ProfileViewControllerOtherUser {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        settingsButton.isEnabled = true
+        self.tableView.backgroundView = backgroundView
+        self.navigationItem.title = user.username
+        
+        guard self.isBlocked == false else {
+            let empytImage = #imageLiteral(resourceName: "tiki_guy")
+            let emptyView = EmptyView(frame: self.view.frame, image: empytImage, titleText: "Bummer", descriptionText: "Looks like that user does not exist")
+            
+            self.tableView.backgroundView = emptyView
+            
+            self.navigationItem.title = ""
+            self.settingsButton.isEnabled = false
+            
+            return 0
+        }
+        
         guard followingStatus == .accepted || !user.isPrivate else {
             //Only show profile view( which is section 1) if your are not following or the user is private
             //Thus hiding accounts and common connections
