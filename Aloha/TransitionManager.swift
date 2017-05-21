@@ -76,7 +76,6 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                     
                     fromView.colorView.colors = [UIColor.alohaYellow.cgColor, UIColor.alohaOrange.cgColor,]
                     fromView.colorView.alpha = 1.0
-//                    fromView.codeButton.alpha = 0.0
                     fromView.codeButton.layer.transform = CATransform3DMakeScale(0.0001, 0.0001, 1)
                    
                 }
