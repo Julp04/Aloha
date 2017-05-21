@@ -429,6 +429,33 @@ class QnClient {
         ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
     }
     
+    func isBeingBlockedBy(user: User, completion: @escaping (Bool) -> Void) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        print(user.uid)
+        print(currentUser.uid)
+        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard snapshot.exists() else {
+                completion(false)
+                return
+            }
+            
+            if let status = snapshot.value as? String {
+                if status == "blocking" {
+                    completion(true)
+                    return
+                }else {
+                    completion(false)
+                    return
+                }
+            }
+            completion(false)
+            return
+        
+        })
+        
+    }
+    
+    
     func getFollowing(completion: @escaping (([User]) -> Void))  {
         let currentUser = FIRAuth.auth()!.currentUser!
         
