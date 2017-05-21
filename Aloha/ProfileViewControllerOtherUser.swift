@@ -100,9 +100,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         //Get profile image
         getProfileImage()
-        
-        
-    
     }
     
     //MARK: Lifecycle
@@ -186,15 +183,19 @@ class ProfileViewControllerOtherUser: UITableViewController {
             self.profileManager.update(user: self.user)
             self.accountsCollectionView.reloadData()
             self.updateUI()
+            self.tableView.reloadData()
         }
         
         QnClient.sharedInstance.getFollowStatus(user: user) { (status) in
             self.followingStatus = status
             self.updateUI()
+            self.tableView.reloadData()
         }
     }
     
     func updateUI() {
+        
+       
         updateFollowButton()
         updateSettingsAlert()
         updateUserInfoLabels()
@@ -268,8 +269,14 @@ class ProfileViewControllerOtherUser: UITableViewController {
             locationLabel.text = user.location ?? age
         }
         aboutLabel.text = user.about
-        nameLabel.text = "\(user.firstName!) \(user.lastName!)"
         
+        let name = "\(user.firstName!) \(user.lastName!)"
+        if user.isPrivate {
+            nameLabel.font = UIFont.fontAwesome(ofSize: 17)
+            nameLabel.text = name + " " + String.fontAwesomeIcon(name: .lock)
+        }else {
+            nameLabel.text = name
+        }
         
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
@@ -282,6 +289,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     func updateContactButtons() {
+        
+        guard followingStatus == .accepted || !user.isPrivate else {
+            //if you are not following the user, or they are private then everything should be hidden from this person
+            callButton.isHidden = true
+            messageButton.isHidden = true
+            emailButton.isHidden = true
+            faceTimeButton.isHidden = true
+            return
+        }
+    
         callButton.isHidden = user.phone == nil
         messageButton.isHidden = user.phone == nil
         emailButton.isHidden = user.personalEmail == nil
@@ -425,6 +442,20 @@ extension ProfileViewControllerOtherUser: ProfileManagerDelegate {
     }
 }
 
+extension ProfileViewControllerOtherUser {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard followingStatus == .accepted || !user.isPrivate else {
+            //Only show profile view( which is section 1) if your are not following or the user is private
+            //Thus hiding accounts and common connections
+            return 1
+        }
+        
+        return 3
+    }
+    
+}
+
 extension ProfileViewControllerOtherUser: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -476,10 +507,6 @@ extension ProfileViewControllerOtherUser: UICollectionViewDelegateFlowLayout {
         return 0
     }
 
-}
-
-extension ProfileViewControllerOtherUser: UICollectionViewDelegate {
-    
 }
 
 extension ProfileViewControllerOtherUser: MFMessageComposeViewControllerDelegate {
