@@ -25,6 +25,7 @@ class SwitchButton: UIView {
     @IBInspectable var onTintColor: UIColor = .blue
     @IBInspectable var isOn = false
     
+    private var longPressGesture: UILongPressGestureRecognizer!
     private var shortDescriptionLabel: UILabel?
     private var imageView: UIImageView?
     var shortText: String? {
@@ -69,6 +70,7 @@ class SwitchButton: UIView {
     open var animationDidStartClosure = {(onAnimation: Bool) -> Void in }
     open var animationDidStopClosure  = {(onAnimation: Bool, finished: Bool) -> Void in }
     open var onClick = { () -> Void in }
+    open var onLongPress = { () -> Void in }
     open var isEnabled: Bool = true
     
 
@@ -112,7 +114,6 @@ class SwitchButton: UIView {
         self.addSubview(imageView!)
         self.addSubview(shortDescriptionLabel!)
         
-       
         
         self.backgroundColor = offColor
         layer.cornerRadius = cornerRadius
@@ -134,9 +135,6 @@ class SwitchButton: UIView {
         commonInit()
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
     
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -152,6 +150,10 @@ class SwitchButton: UIView {
         button.addTarget(self, action: #selector(SwitchButton.unShrink), for: .touchDragExit)
         button.addTarget(self, action: #selector(SwitchButton.shrink), for: .touchDown)
         self.addSubview(button)
+        
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(SwitchButton.longPress(sender:)))
+        longPressGesture.delegate = self
+        self.addGestureRecognizer(longPressGesture)
         
         
         
@@ -244,6 +246,13 @@ class SwitchButton: UIView {
         unShrink()
     }
     
+    internal func longPress(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == .began {
+            onLongPress()
+        }
+    }
+    
     internal func shrink()
     {
         UIView.animate(withDuration: 0.5) { 
@@ -258,6 +267,9 @@ class SwitchButton: UIView {
     }
 }
 
+extension SwitchButton: UIGestureRecognizerDelegate {
+    
+}
 
 extension SwitchButton: CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
