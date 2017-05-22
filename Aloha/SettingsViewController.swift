@@ -20,13 +20,23 @@ class SettingsViewController: UITableViewController {
     
     //MARK: Outlets
     
+    @IBOutlet weak var privateModeSwitch: UISwitch!
     //MARK: Actions
     
+    @IBAction func privateModeChanged(_ sender: Any) {
+        let privateModeSwitch = sender as! UISwitch
+    
+        QnClient.sharedInstance.updatePrivateMode(isPrivate: privateModeSwitch.isOn)
+    }
   
     //MARK: LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        QnClient.sharedInstance.currentUser { (user) in
+            self.privateModeSwitch.isOn = user.isPrivate
+        }
     }
     
     override func viewWillAppear(_ animated: Bool){
