@@ -76,6 +76,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         navigationController?.navigationBar.topItem?.title = user.username
         
         tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         
         //Cannot email, message, or call self...
         callButton.isHidden = true
