@@ -537,7 +537,13 @@ class QnClient {
     
     //MARK: User Stuff
     
+    func updatePrivateMode(isPrivate: Bool) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["isPrivate": isPrivate])
+    }
     
+
     func signOut()
     {
         do {
