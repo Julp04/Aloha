@@ -52,62 +52,89 @@ class ProfileManager {
     
     private func twitterButtonCurrentUser() {
         
-        if let screenName = user.twitterAccount?.screenName {
-            //User has already linked with Twitter
-            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: screenName, isOn: true)
-            twitterButton.onLongPress = {
-                //Opens profile in Twitter application
-                if let url = URL(string: "twitter://user?screen_name=\(screenName)") {
+        twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
+        
+        twitterButton.onLongPress = {
+            if self.twitterButton.isOn  {
+            //Opens profile in Twitter application
+                if let url = URL(string: "twitter://user?screen_name=\(self.user.twitterAccount!.screenName)") {
                     if UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.openURL(url)
                     }else {
-                        let url = URL(string: "https://twitter.com/\(screenName)")
+                        let url = URL(string: "https://twitter.com/\(self.user.twitterAccount!.screenName)")
                         UIApplication.shared.openURL(url!)
                     }
                 }
             }
-        }else {
-            twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
         }
-            twitterButton.onClick = {
-                if !self.twitterButton.isOn {
+        twitterButton.onClick = {
+            if !self.twitterButton.isOn {
                 
+                guard Reachability.isConnectedToInternet() else {
+                    AlertUtility.showConnectionAlert()
+                    return
+                }
+                TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .qnRed, textColor: .white)
+                        }else {
+                            self.turnOnTwitterButtonCurrentUser()
+                        }
+                    }
+                })
+            }else {
+                let alert = FCAlertView()
+                alert.addButton("Unlink", withActionBlock: {
                     guard Reachability.isConnectedToInternet() else {
                         AlertUtility.showConnectionAlert()
                         return
                     }
-                    TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
-                        DispatchQueue.main.async {
-                            if error != nil {
-                                RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .qnRed, textColor: .white)
-                            }else {
-                                self.turnOnTwitterButtonCurrentUser()
-                            }
+                    
+                    TwitterClient.client.unlinkTwitter(completion: { (error) in
+                        if let error = error {
+                            AlertUtility.showAlertWith(error.localizedDescription)
+                        }else {
+                            self.turnOffTwitterButtonCurrentUser()
                         }
                     })
-                }else {
-                    let alert = FCAlertView()
-                    alert.addButton("Unlink", withActionBlock: { 
-                        guard Reachability.isConnectedToInternet() else {
-                            AlertUtility.showConnectionAlert()
-                            return
-                        }
-                        
-                        TwitterClient.client.unlinkTwitter(completion: { (error) in
-                            if let error = error {
-                                AlertUtility.showAlertWith(error.localizedDescription)
-                            }else {
-                                self.turnOffTwitterButtonCurrentUser()
-                            }
-                        })
-                    })
-                    alert.colorScheme = .twitter
-                    alert.showAlert(inView: self.viewController, withTitle: "Unlink from Twitter", withSubtitle: nil, withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
-                }
+                })
+                alert.colorScheme = .twitter
+                alert.showAlert(inView: self.viewController, withTitle: "Unlink from Twitter", withSubtitle: nil, withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
+            }
         }
+        
+        if (self.user.twitterAccount?.screenName) != nil {
+            //User has already linked with Twitter
+            self.turnOnTwitterButtonCurrentUser()
+        }
+        
         
          buttons.append(twitterButton)
     }
+    
+    private func turnOnTwitterButtonCurrentUser() {
+        twitterButton.turnOn()
+        self.twitterButton.animationDidStartClosure = {_ in
+            QnClient.sharedInstance.currentUser {user in
+                self.twitterButton.shortText = user.twitterAccount!.screenName
+            }
+            
+        }
+    }
+    
+    private func turnOffTwitterButtonCurrentUser() {
+        
+        DispatchQueue.main.async {
+            self.twitterButton.turnOff()
+        }
+        
+        self.twitterButton.animationDidStartClosure = { _ in
+            self.twitterButton.shortText = "Add"
+        }
+        
+    }
+    
     private func contactButtonCurrentUser() {
         
         switch ContactManager.contactStoreStatus() {
@@ -141,27 +168,9 @@ class ProfileManager {
         buttons.append(contactButton)
     }
     
-    private func turnOnTwitterButtonCurrentUser() {
-        twitterButton.turnOn()
-        self.twitterButton.animationDidStartClosure = {_ in
-            QnClient.sharedInstance.currentUser {user in
-                self.twitterButton.shortText = user.twitterAccount!.screenName
-            }
-            
-        }
-    }
+  
     
-    private func turnOffTwitterButtonCurrentUser() {
-    
-        DispatchQueue.main.async {
-            self.twitterButton.turnOff()
-        }
-        
-        self.twitterButton.animationDidStartClosure = { _ in
-            self.twitterButton.shortText = "Add"
-        }
-        
-    }
+   
     
     
     private func turnOnContactButtonCurrentUser() {
