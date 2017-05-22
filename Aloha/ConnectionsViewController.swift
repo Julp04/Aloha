@@ -105,6 +105,8 @@ class ConnectionsViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
+        searchController.searchBar.isHidden = false
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             if following.numberOfFilteredConnectionSections() == 0 {
                 return 0
@@ -120,6 +122,7 @@ class ConnectionsViewController: UITableViewController {
             let emptyView = EmptyView(frame: self.view.frame, image: empytImage, titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
             
             self.tableView.backgroundView = emptyView
+            self.searchController.searchBar.isHidden = true
             
             return 0
         }else {
