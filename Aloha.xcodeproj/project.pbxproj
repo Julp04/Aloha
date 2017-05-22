@@ -400,10 +400,10 @@
 			children = (
 				1466C6391ECF75DB00C01CF0 /* onboard.mp4 */,
 				144668461EC8AF2C0062FA56 /* Dev-Info.plist */,
+				B964AE951DBA74B400A0162E /* Info.plist */,
 				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
 				1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */,
 				B964AE901DBA74B400A0162E /* Images.xcassets */,
-				B964AE951DBA74B400A0162E /* Info.plist */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";

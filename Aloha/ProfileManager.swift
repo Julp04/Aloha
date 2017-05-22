@@ -55,6 +55,17 @@ class ProfileManager {
         if let screenName = user.twitterAccount?.screenName {
             //User has already linked with Twitter
             twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: screenName, isOn: true)
+            twitterButton.onLongPress = {
+                //Opens profile in Twitter application
+                if let url = URL(string: "twitter://user?screen_name=\(screenName)") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.openURL(url)
+                    }else {
+                        let url = URL(string: "https://twitter.com/\(screenName)")
+                        UIApplication.shared.openURL(url!)
+                    }
+                }
+            }
         }else {
             twitterButton = SwitchButton(frame: buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
         }
@@ -180,7 +191,20 @@ class ProfileManager {
         }
         
         if let screenName = user.twitterAccount?.screenName {
+            
             self.twitterButton = SwitchButton(frame: self.buttonFrame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
+            
+            twitterButton.onLongPress =  {
+                //Opens profile in Twitter application
+                if let url = URL(string: "twitter://user?screen_name=\(screenName)") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.openURL(url)
+                    }else {
+                        let url = URL(string: "https://twitter.com/\(screenName)")
+                        UIApplication.shared.openURL(url!)
+                    }
+                }
+            }
 
             TwitterClient.client.isFollowing(screenName: screenName, completion: { (isFollowing, error) in
                 if isFollowing {
