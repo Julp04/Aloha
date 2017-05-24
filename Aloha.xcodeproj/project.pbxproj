@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
+		140306941ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */; };
+		140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */; };
+		140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306961ED5D9D800D03359 /* FollowRequestCell.swift */; };
+		140306981ED5D9D800D03359 /* FollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306961ED5D9D800D03359 /* FollowRequestCell.swift */; };
 		140BCD0B1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		14184CF11EA1AB410068E01C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14184CF01EA1AB410068E01C /* UserTest.swift */; };
@@ -28,6 +32,8 @@
 		144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144668421EC8AEBB0062FA56 /* Color+Extension.swift */; };
 		144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144668421EC8AEBB0062FA56 /* Color+Extension.swift */; };
 		144668481EC8AF2C0062FA56 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 144668461EC8AF2C0062FA56 /* Dev-Info.plist */; };
+		14497B411ED35E4900764670 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14497B401ED35E4900764670 /* FollowersViewController.swift */; };
+		14497B421ED35E4900764670 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14497B401ED35E4900764670 /* FollowersViewController.swift */; };
 		1466C6321ECF3B5500C01CF0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */; };
 		1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B964AE951DBA74B400A0162E /* Info.plist */; };
 		1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
@@ -141,6 +147,8 @@
 		07D3DB2AAEEF968784A9D881 /* Pods_AlohaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlohaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F57608E22CC33BB7CF0626C /* Pods-Aloha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aloha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aloha/Pods-Aloha.release.xcconfig"; sourceTree = "<group>"; };
 		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
+		140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestsViewController.swift; sourceTree = "<group>"; };
+		140306961ED5D9D800D03359 /* FollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestCell.swift; sourceTree = "<group>"; };
 		140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		144668421EC8AEBB0062FA56 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		144668461EC8AF2C0062FA56 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
+		14497B401ED35E4900764670 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1466C6391ECF75DB00C01CF0 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
 		1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessCameraController.swift; sourceTree = "<group>"; };
@@ -358,6 +367,7 @@
 		B964AEAB1DBA74E300A0162E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				140306961ED5D9D800D03359 /* FollowRequestCell.swift */,
 				1418C0211EA6728800C5538F /* SwitchButton.swift */,
 				142163481E8ED4C600CF6FF4 /* GradientView.swift */,
 				14F78E871E8C530E00A3D169 /* ProfileImageView.swift */,
@@ -375,6 +385,8 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */,
+				14497B401ED35E4900764670 /* FollowersViewController.swift */,
 				1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */,
 				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
 				149D1DDD1E747F8000254601 /* AddProfileInfoViewController.swift */,
@@ -804,6 +816,7 @@
 			files = (
 				14EC7A831E74F27300B3C4E8 /* SwiftyUserDefaults.swift in Sources */,
 				144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
+				140306981ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
@@ -820,10 +833,12 @@
 				14E7A6A21EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */,
 				14EC7A951E74F27300B3C4E8 /* NameViewController.swift in Sources */,
 				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
+				140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
 				1446683C1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
+				14497B421ED35E4900764670 /* FollowersViewController.swift in Sources */,
 				14EC7A981E74F27300B3C4E8 /* LoginViewController.swift in Sources */,
 				14AE14221E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				14E7A69F1EA7B97700F1BB15 /* ProfileViewControllerCurrentUser.swift in Sources */,
@@ -860,6 +875,7 @@
 			files = (
 				B9570E021DCF8A2900685718 /* SwiftyUserDefaults.swift in Sources */,
 				144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
+				140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */,
 				B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
@@ -876,10 +892,12 @@
 				14E7A6A11EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift in Sources */,
 				14855D961E64900600794587 /* NameViewController.swift in Sources */,
 				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
+				140306941ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
 				1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
+				14497B411ED35E4900764670 /* FollowersViewController.swift in Sources */,
 				14AE14211E7F4EFE0035789E /* SnowFlake.swift in Sources */,
 				B93753801DD669F8007D50D7 /* ContactManager.swift in Sources */,
 				14E7A69E1EA7B97700F1BB15 /* ProfileViewControllerCurrentUser.swift in Sources */,
