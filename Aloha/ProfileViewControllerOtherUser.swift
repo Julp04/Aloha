@@ -47,6 +47,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
    
     //MARK: Outlets
+    
+    @IBOutlet weak var followRequestImageView: ProfileImageView!
   
     @IBOutlet weak var imageViewSpinner: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: ProfileImageView!
@@ -348,13 +350,16 @@ class ProfileViewControllerOtherUser: UITableViewController {
             if Reachability.isConnectedToInternet() {
                 QnClient.sharedInstance.getProfileImageForUser(user: user, began: {imageViewSpinner.isHidden = false
                         imageViewSpinner.startAnimating()
-                        }, completion: { (profileImage, error) in
-                    if error != nil {
-                        print(error!)
-                    }else {
-                        self.user.profileImage = profileImage
-                        self.profileImageView.image = profileImage
-                    }
+                        }, completion: { (result) in
+                            
+                            switch result {
+                            case .success(let image):
+                                self.user.profileImage = image
+                                self.profileImageView.image = image
+                            case .failure(let error):
+                                assertionFailure(error.localizedDescription)
+                            }
+                            
                             self.imageViewSpinner.stopAnimating()
                 })
             }
