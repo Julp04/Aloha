@@ -106,6 +106,7 @@ class MainController: PageboyViewController {
         
         self.dataSource = self
         self.delegate = self
+        self.bounces = false
     }
     
     func isCameraAuthorized() -> Bool {
