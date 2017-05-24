@@ -131,12 +131,13 @@ class EditProfileInfoViewController: UITableViewController {
         aboutField.textColor = aboutField.text == "About" ? .lightGray : .black
         
         //Get profile image of user
-        QnClient.sharedInstance.getProfileImageForUser(user: currentUser, began: {}) { (image, error) in
-            if let error = error {
-                print(error)
-            }else {
+        QnClient.sharedInstance.getProfileImageForUser(user: currentUser, began: {}) { (result) in
+            switch result {
+            case .success(let image):
                 self.profileImageView.image = image
                 self.currentUser.profileImage = image
+            case .failure(let error):
+                assertionFailure(error.localizedDescription)
             }
         }
         
