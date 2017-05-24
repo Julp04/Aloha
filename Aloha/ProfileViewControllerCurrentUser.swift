@@ -38,14 +38,21 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     let imagePicker = UIImagePickerController()
     var profileManager: ProfileManager!
     
+    var followRequests = [User]()
+    
    
     //MARK: Outlets
+    @IBOutlet weak var followRequestImageView: ProfileImageView!
     @IBOutlet weak var imageViewSpinner: UIActivityIndicatorView!
   
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var scansLabel: UILabel!
     
+    @IBOutlet weak var scansView: UIView!
+    @IBOutlet weak var followersView: UIView!
+    @IBOutlet weak var followingView: UIView!
+   
     
     @IBOutlet weak var profileImageView: ProfileImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -59,7 +66,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
     
-    
+  
     //MARK: Configure Before Load
     
     
@@ -102,6 +109,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        
         setupViewController()
         updateUI()
         
@@ -113,6 +122,99 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
+        
+        let followersTappedGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewControllerCurrentUser.followersViewTapped))
+        let followingTappedGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewControllerCurrentUser.followingViewTapped))
+        let scansTappedGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewControllerCurrentUser.scansViewTapped))
+        
+        followersView.addGestureRecognizer(followersTappedGesture)
+        followingView.addGestureRecognizer(followingTappedGesture)
+        scansView.addGestureRecognizer(scansTappedGesture)
+        
+        
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        imageViewSpinner.isHidden = true
+        
+        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
+        //bug i was having (this might be temp fix ?? 😜
+        
+        
+        navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.topItem?.titleView = nil
+        navigationController?.navigationBar.topItem?.title = user.username
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationController?.delegate = self
+        
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = false
+        
+        
+        QnClient.sharedInstance.getProfileImageForUser(user: user, began: {
+            imageViewSpinner.isHidden = false
+            imageViewSpinner.startAnimating()}) { (result) in
+                
+                switch result {
+                case .success(let image):
+                    self.user.profileImage = image
+                    self.profileImageView.image = image
+                case .failure(let error):
+                    assertionFailure(error.localizedDescription)
+                }
+                
+                self.imageViewSpinner.stopAnimating()
+        }
+        
+        QnClient.sharedInstance.getFollowRequests { (followRequests) in
+            let oldRequests = self.followRequests.count
+            let newRequests = followRequests.count
+            
+            self.followRequests = followRequests
+            
+            if newRequests > 0 {
+                self.followRequestImageView.image = followRequests[0].profileImage
+            }
+            
+            
+            
+            self.tableView.reloadData()
+            
+            if newRequests > oldRequests {
+                let indexPath = IndexPath(row: 1, section: 0)
+                self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
+            }
+        }
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Enable the transition manager when we leave this view controler
+        let mainController = self.parent?.parent?.parent as! MainController
+        mainController.transitionManager.isEnabled = true
+    }
+    
+    
+    func followersViewTapped() {
+//        let followersNavController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewControllerNav") as! UINavigationController
+        
+        let followersController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
+        
+        
+//        self.present(followersNavController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(followersController, animated: true)
+    }
+    
+    func followingViewTapped() {
+        
+    }
+    
+    func scansViewTapped() {
+        
     }
     
     
@@ -138,37 +240,18 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         locationLabel.isHidden = (user.location == nil && age == nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        imageViewSpinner.isHidden = true
-        
-        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe 
-        //bug i was having (this might be temp fix ?? 😜
-        let mainController = self.parent?.parent?.parent as! MainController
-        mainController.transitionManager.isEnabled = false
-        
-        
-        QnClient.sharedInstance.getProfileImageForUser(user: user, began: {
-            imageViewSpinner.isHidden = false
-            imageViewSpinner.startAnimating()}) { (image, error) in
-            
-            self.user.profileImage = image
-            self.profileImageView.image = image
-            self.imageViewSpinner.stopAnimating()
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //Enable the transition manager when we leave this view controler
-        let mainController = self.parent?.parent?.parent as! MainController
-        mainController.transitionManager.isEnabled = true
-    }
+ 
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             
+            if indexPath.row == 1 {
+                return 66
+            }
             //todo: calculate this height better
             return 350
         }
+    
         
         return 125
     }
@@ -199,8 +282,34 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            if followRequests.isEmpty {
+                return 1
+            }else {
+                return 2
+            }
+        }
+        
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 1 {
+            //Selected follow requests cell
+            let followRequestsViewController = self.storyboard?.instantiateViewController(withIdentifier: "FollowRequestsViewController") as! FollowRequestsViewController
+            followRequestsViewController.configureViewController(requests: followRequests)
+            
+            navigationController?.pushViewController(followRequestsViewController, animated: true)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
     
     //MARK: UI Helper
 
