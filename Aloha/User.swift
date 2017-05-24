@@ -113,6 +113,10 @@ class User
         
     }
     
+    func fullName() -> String {
+        return "\(firstName!) \(lastName!)"
+    }
+    
     
     init(username: String, firstName: String, lastName: String, personalEmail: String?, phone: String?, uid: String, email: String, birthdate: String?, location: String?) {
         
