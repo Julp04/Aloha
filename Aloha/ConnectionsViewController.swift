@@ -33,12 +33,7 @@ class ConnectionsViewController: UITableViewController {
     
     //MARK: Lifecycle
     
-    
-    var databaseRef: FIRDatabaseReference! {
-        return FIRDatabase.database().reference()
-    }
-    
-    
+
     //MARK: Lifecycle
 
     
@@ -68,36 +63,32 @@ class ConnectionsViewController: UITableViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor.main
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
-        
-        
-
-        fetchFromDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
         //bug i was having (this might be temp fix ?? 😜
-        let mainController = self.parent?.parent?.parent as! MainController
+        guard let mainController = self.parent?.parent?.parent as? MainController else {
+            return
+        }
+        
         mainController.transitionManager.isEnabled = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //Enable the transition manager when we leave this view controler
-        let mainController = self.parent?.parent?.parent as! MainController
-        mainController.transitionManager.isEnabled = true
-    }
-    
-    func fetchFromDatabase()
-    {
         
         QnClient.sharedInstance.getFollowing { (users) in
             self.following = ConnectionsModel(connections: users)
             self.tableView.reloadData()
         }
-    
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Enable the transition manager when we leave this view controler
+        guard let mainController = self.parent?.parent?.parent as? MainController else {
+            return
+        }
+        mainController.transitionManager.isEnabled = true
+    }
+    
 
     
 
@@ -226,8 +217,6 @@ class ConnectionsViewController: UITableViewController {
         return UIBarPosition.topAttached
     }
     
-    
-
 }
 
 extension ConnectionsViewController: UISearchBarDelegate {
@@ -265,33 +254,8 @@ extension ConnectionsViewController: UIGestureRecognizerDelegate {
             return false
         }
         
-        
-        if following.numberOfConnections() != 0 {
-            
-            
-            if following.numberOfConnections() != 0 {
-                
-                let connection = following.connectionAtIndexPath(indexPath)
-                let name = (connection?.firstName)! + " " + (connection?.lastName)!
-                let message = QnEncoder(user: connection!).encodeUserInfo()
-                let qrImage = QNectCode(message: message).image
-                
-                let qnectAlertView = QNectAlertView()
-                
-                qnectAlertView.addButton("Delete Connection") {
-                    
-                    
-                    let currentUser = FIRAuth.auth()!.currentUser!
-                    
-                    self.databaseRef.child("following").child(currentUser.uid).child(connection!.uid).removeValue()
-                    
-                    RKDropdownAlert.title("You have deleted \(connection!.firstName!) \(connection!.lastName!) as a connection", backgroundColor: UIColor.gray, textColor: UIColor.white)
-                    
-                }
-                
-                qnectAlertView.showTitle(name, subTitle: "\(connection!.username!)", duration: 0.0, completeText: nil, style: .contact, colorStyle: 0xA429FF, colorTextButton: 0xFFFFFF, contactImage: qrImage)
-            }
-        }
+        let connection = following.connectionAtIndexPath(indexPath)
+        print(connection ?? "no connection")
         
         return true
     }
