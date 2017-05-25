@@ -241,16 +241,44 @@ class QnClient {
             }
         })
     }
+    
+    func getUpdatedInfoForUserOnce(user: User, completion:@escaping (User) -> Void) {
+        
+        ref.child(DatabaseFields.users.rawValue).child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
+            if let updatedUser = User(snapshot: snapshot) {
+                completion(updatedUser)
+            }
+        })
+    }
 
+    func getFollowStatusOnce(user: User, completion:@escaping (FollowingStatus) -> Void) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: {snapshot in
+            if let values = snapshot.value as? NSDictionary {
+                if let status = values["status"] as? String {
+                    switch status {
+                    case FollowingStatus.accepted.rawValue:
+                        completion(.accepted)
+                    case FollowingStatus.blocking.rawValue:
+                        completion(.blocking)
+                    case FollowingStatus.pending.rawValue:
+                        completion(.pending)
+                    default:
+                        completion(.notFollowing)
+                    }
+                }
+            }else {
+                completion(.notFollowing)
+            }
+        })
+    }
     
     func getFollowStatus(user: User, completion: @escaping (FollowingStatus) -> Void) {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        
-    
-
-        self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).observe(.value, with: {snapshot in
+        self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observe(.value, with: {snapshot in
             if let values = snapshot.value as? NSDictionary {
                 if let status = values["status"] as? String {
                     switch status {
@@ -281,7 +309,6 @@ class QnClient {
                     
                     currentData.value = userInfo
                     
-                    
                 }
                 return FIRTransactionResult.success(withValue: currentData)
             }
@@ -307,7 +334,7 @@ class QnClient {
     }
     
     
-    func follow(user: User, completion: ErrorCompletion)
+    func follow(user: User, completion: @escaping ErrorCompletion)
     {
         let date = Date().timeIntervalSince1970
         let currentUser = FIRAuth.auth()!.currentUser!
@@ -331,9 +358,13 @@ class QnClient {
                     
                     
                     
-
                     self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.pending.rawValue,
                                                                                                                                 DatabaseFields.time.rawValue: date])
+                    self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.pending.rawValue,
+                                                                                                                                DatabaseFields.time.rawValue: date], withCompletionBlock: { (error, ref) in
+                                                                                                                                completion(error)
+        
+                    })
                     
                 }else {
                     //Current user can automatically follow this user
@@ -347,6 +378,7 @@ class QnClient {
                                 self.updateFollowing(user: currentUser, value: 1)
                             })
                         }
+                        completion(nil)
                     })
                     self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date], withCompletionBlock: { (error, ref) in
                         if let error = error {
@@ -362,15 +394,17 @@ class QnClient {
         })
     }
     
-    func cancelFollow(user: User)
+    func cancelFollow(user: User, completion: @escaping ErrorCompletion)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
         self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue { (error, ref) in
+            completion(error)
+        }
     }
     
-    func unfollow(user: User)
+    func unfollow(user: User, completion: @escaping ErrorCompletion)
     {
         
         //Decrement following and follower count
@@ -385,6 +419,7 @@ class QnClient {
                     self.updateFollowing(user: currentUser, value: -1)
                 })
             }
+            completion(error)
         }
         ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue { (error, ref) in
             if let error = error {
@@ -396,7 +431,7 @@ class QnClient {
 
     }
     
-    func acceptFollowRequest(user: User)
+    func acceptFollowRequest(user: User, completion: @escaping () -> Void)
     {
         let date = Date().timeIntervalSince1970
         
@@ -410,10 +445,16 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         //Change status to following
         ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date])
-        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date])
+        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date]) { (error, ref) in
+            if let error = error {
+                assertionFailure(error.localizedDescription)
+            }else {
+                completion()
+            }
+        }
     }
     
-    func denyFollowRequest(user: User)
+    func denyFollowRequest(user: User, completion: () -> Void)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         //Do not change following status
@@ -421,6 +462,7 @@ class QnClient {
         //Delete request
         ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
         ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).removeValue()
+        completion()
     }
     
     func block(user: User)
@@ -446,11 +488,11 @@ class QnClient {
         
        
         
-        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.blocking.rawValue])
+        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.blocking.rawValue])
         
         //User passed in can still be followed by the current user, but user that is beign blocked can long see current users profile
-//        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
-//        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        
         
     }
     
@@ -465,29 +507,21 @@ class QnClient {
     func isBlockedBy(user: User, completion: @escaping (Bool) -> Void) {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-//        
-//        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).queryOrdered(byChild: DatabaseFields.status.rawValue).queryEqual(toValue: FollowingStatus.blocking.rawValue).observe(.value, with: { (snapshot) in
-//            guard snapshot.exists() else {
-//                completion(false)
-//                return
-//            }
-//            
-//            completion(true)
-//        })
-        
-        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).observe(.value, with: { (snapshot) in
+        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard snapshot.exists() else {
                 completion(false)
                 return
             }
             
-            if let status = snapshot.value as? String {
-                if status == "blocking" {
-                    completion(true)
-                    return
-                }else {
-                    completion(false)
-                    return
+            if let value = snapshot.value as? NSDictionary {
+                if let status = value["status"] as? String {
+                    if status == "blocking" {
+                        completion(true)
+                        return
+                    }else {
+                        completion(false)
+                        return
+                    }
                 }
             }
             completion(false)
