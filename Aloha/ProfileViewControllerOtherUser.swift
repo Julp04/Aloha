@@ -380,7 +380,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         let cancelRequestAction = UIAlertAction(title: "Cancel follow request", style: .destructive) { (action) in
-            QnClient.sharedInstance.cancelFollow(user: self.user)
+            QnClient.sharedInstance.cancelFollow(user: self.user) { error in
+                print(error)
+            }
         }
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alert.addAction(cancelRequestAction)
@@ -447,7 +449,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         
         let unfollowAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
-            QnClient.sharedInstance.unfollow(user: self.user)
+            QnClient.sharedInstance.unfollow(user: self.user) { error in
+                print(error)
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(unfollowAction)
