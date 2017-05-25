@@ -71,13 +71,14 @@ class MainController: PageboyViewController {
         scanner.delegate = self
         scanner.pinchToZoom = true
         
-        if !Platform.isSimulator {
-            //Check if user allowed to use camera, if not show controller that prohibits use of app unless given access too
-            guard isCameraAuthorized() else {
-                let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
-                
-                present(accessCameraController, animated: true, completion: nil)
-                return
+        
+        PermissonUtility.isCameraAuthorized { (success) in
+            if !success {
+                DispatchQueue.main.async {
+                    let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
+                    self.present(accessCameraController, animated: true, completion: nil)
+                    return
+                }
             }
         }
         
@@ -109,17 +110,6 @@ class MainController: PageboyViewController {
         self.bounces = false
     }
     
-    func isCameraAuthorized() -> Bool {
-        
-        let cameraMediaType = AVMediaTypeVideo
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: cameraMediaType)
-        
-        switch cameraAuthorizationStatus {
-        case .authorized: return true
-        case .notDetermined, .denied, .restricted: return false
-        }
-        
-    }
     
     func presentCodeController() {
         self.performSegue(withIdentifier: "CodeSegue", sender: self)

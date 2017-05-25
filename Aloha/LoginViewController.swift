@@ -152,7 +152,19 @@ class LoginViewController: UIViewController {
                 //Animate to main view controller
                 //todo: Fix storyboard animation
                 let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
-                self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+            
+                PermissonUtility.isCameraAuthorized(completion: { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                        }
+                    }else {
+                        DispatchQueue.main.async {
+                            let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
+                            self.present(accessCameraController, animated: true, completion: nil)
+                        }
+                    }
+                })
             }
         }
     }
@@ -184,7 +196,20 @@ class LoginViewController: UIViewController {
                         print(error!)
                     }else {
                         let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
-                        self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                        
+                        PermissonUtility.isCameraAuthorized(completion: { (success) in
+                            if success {
+                                DispatchQueue.main.async {
+                                    self.loginButton.startFinishAnimationWith(currentVC: self, viewController: mainVC)
+                                }
+                            }else {
+                                DispatchQueue.main.async {
+                                    let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
+                                    self.present(accessCameraController, animated: true, completion: nil)
+                                }
+                            }
+                        })
+                        
                     }
                 }
             })
