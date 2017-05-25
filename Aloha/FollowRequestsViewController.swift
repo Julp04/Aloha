@@ -87,7 +87,7 @@ class FollowRequestsViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FollowRequestCell
         
         //This might have to be observed only once
-        QnClient.sharedInstance.getFollowStatus(user: user) { (status) in
+        QnClient.sharedInstance.getFollowStatusOnce(user: user) { (status) in
             cell.statusButton.removeTarget(nil, action: nil, for: .allEvents)
             switch status {
             case .accepted:
@@ -121,16 +121,17 @@ class FollowRequestsViewController: UITableViewController {
       
         let index = sender.tag
         let user = followRequests[index]
-        QnClient.sharedInstance.acceptFollowRequest(user: user)
-//        updateStatusButton(sender: sender)
-
+        QnClient.sharedInstance.acceptFollowRequest(user: user) {
+         self.updateStatusButton(sender: sender)
+        }
     }
     
     func declineRequest(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
-        QnClient.sharedInstance.denyFollowRequest(user: user)
-//        updateStatusButton(sender: sender)
+        QnClient.sharedInstance.denyFollowRequest(user: user) {
+            updateStatusButton(sender: sender)
+        }
     }
     
     func followUser(sender: UIButton) {
@@ -138,11 +139,14 @@ class FollowRequestsViewController: UITableViewController {
         
         let user = followRequests[index]
         
-        QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (user) in
+        QnClient.sharedInstance.getUpdatedInfoForUserOnce(user: user) { (user) in
             QnClient.sharedInstance.follow(user: user) { (error) in
                 if error != nil {
                     print(error!)
                 }
+                
+                self.updateStatusButton(sender: sender)
+              
             }
         }
         
@@ -155,7 +159,9 @@ class FollowRequestsViewController: UITableViewController {
         
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         let unfollowAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
-            QnClient.sharedInstance.unfollow(user: user)
+            QnClient.sharedInstance.unfollow(user: user) { error in
+                self.updateStatusButton(sender: sender)
+            }
         }
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alert.addAction(unfollowAction)
@@ -170,7 +176,9 @@ class FollowRequestsViewController: UITableViewController {
         
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         let cancelRequestAction = UIAlertAction(title: "Cancel follow request", style: .destructive) { (action) in
-            QnClient.sharedInstance.cancelFollow(user: user)
+            QnClient.sharedInstance.cancelFollow(user: user) { error in
+                self.updateStatusButton(sender: sender)
+            }
         }
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alert.addAction(cancelRequestAction)
