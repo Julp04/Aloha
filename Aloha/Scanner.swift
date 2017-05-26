@@ -144,15 +144,16 @@ extension Scanner: AVCaptureMetadataOutputObjectsDelegate {
    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        if let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
        
-        switch metadataObj.type {
-        case AVMetadataObjectTypeQRCode:
-            delegate?.scannerDidScan?(qrCode: metadataObj)
-        case AVMetadataObjectTypeCode128Code:
-            delegate?.code128DidScan?(code: metadataObj)
-        default:
-            break
+            switch metadataObj.type {
+            case AVMetadataObjectTypeQRCode:
+                delegate?.scannerDidScan?(qrCode: metadataObj)
+            case AVMetadataObjectTypeCode128Code:
+                delegate?.code128DidScan?(code: metadataObj)
+            default:
+                break
+            }
         }
     
     }
