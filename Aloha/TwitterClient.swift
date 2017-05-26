@@ -97,7 +97,7 @@ class TwitterClient {
         })
     }
     
-    func unlinkTwitter(completion: @escaping ErrorCompletion)
+    func unlinkTwitter(completion: @escaping (Result<Any?>) -> Void)
     {
     
         let ref = FIRDatabase.database().reference()
@@ -108,13 +108,14 @@ class TwitterClient {
             if let screenName = user.twitterAccount?.screenName {
             ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
                 if error != nil {
-                    completion(error)
+                    completion(.success(nil))
                 }else {
                     ref.child("users").child(currentUser.uid).child("accounts").child("twitter").removeValue(completionBlock: { (error, ref) in
-                        if error != nil {
-                            completion(error)
+                        if let error = error {
+                            completion(.failure(error))
+                        }else {
+                            completion(.success(nil))
                         }
-                        completion(nil)
                     })
                 }
             })
