@@ -254,22 +254,23 @@ class QnClient {
     func getFollowStatusOnce(user: User, completion:@escaping (FollowingStatus) -> Void) {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: {snapshot in
-            if let values = snapshot.value as? NSDictionary {
-                if let status = values["status"] as? String {
-                    switch status {
-                    case FollowingStatus.accepted.rawValue:
-                        completion(.accepted)
-                    case FollowingStatus.blocking.rawValue:
-                        completion(.blocking)
-                    case FollowingStatus.pending.rawValue:
-                        completion(.pending)
-                    default:
-                        completion(.notFollowing)
-                    }
+        self.ref.child("people").child(currentUser.uid).child("following").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            
+            if let status = snapshot.value as? Bool {
+                if status {
+                    completion(.accepted)
+                }else {
+                    completion(.pending)
                 }
             }else {
-                completion(.notFollowing)
+                self.ref.child("people").child(currentUser.uid).child("blocking").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        completion(.blocking)
+                    }else {
+                        completion(.notFollowing)
+                    }
+                })
             }
         })
     }
@@ -278,22 +279,23 @@ class QnClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observe(.value, with: {snapshot in
-            if let values = snapshot.value as? NSDictionary {
-                if let status = values["status"] as? String {
-                    switch status {
-                    case FollowingStatus.accepted.rawValue:
-                        completion(.accepted)
-                    case FollowingStatus.blocking.rawValue:
-                        completion(.blocking)
-                    case FollowingStatus.pending.rawValue:
-                        completion(.pending)
-                    default:
-                        completion(.notFollowing)
-                    }
+        self.ref.child("people").child(currentUser.uid).child("following").child(user.uid).observe(.value, with: { (snapshot) in
+           
+            
+            if let status = snapshot.value as? Bool {
+                if status {
+                    completion(.accepted)
+                }else {
+                    completion(.pending)
                 }
             }else {
-                completion(.notFollowing)
+                self.ref.child("people").child(currentUser.uid).child("blocking").child(user.uid).observe(.value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        completion(.blocking)
+                    }else {
+                        completion(.notFollowing)
+                    }
+                })
             }
         })
     }
@@ -344,62 +346,38 @@ class QnClient {
             completion(error)
             return
         }
-      
-        ref.child(DatabaseFields.following.rawValue).child(user.uid).queryEqual(toValue: FollowingStatus.blocking.rawValue, childKey: currentUser.uid).observe(.value, with: { (snapshot) in
-            if snapshot.exists() {
-                //current Useer is being blocked by user they want to follow, and we cannot allow them to follow them
-                //show alert or something
-                print("You are blocked from following this user")
-            }else {
-                //Can continue to follow process
-                //If we are scanning directly from their phone private settings do not apply
-                if user.isPrivate {
-                    //Current user is requesting to follow user passed in
-                    
-                    
-                    
-                    self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.pending.rawValue,
-                                                                                                                                DatabaseFields.time.rawValue: date])
-                    self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.pending.rawValue,
-                                                                                                                                DatabaseFields.time.rawValue: date], withCompletionBlock: { (error, ref) in
-                                                                                                                                completion(error)
-        
-                    })
-                    
-                }else {
-                    //Current user can automatically follow this user
-                    //Because it is accepted right away, increment followingCount for currentUser
-                    
-                    self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date], withCompletionBlock: { (error, ref) in
-                        if let error = error {
-                            assertionFailure(error.localizedDescription)
-                        }else {
-                            self.currentUser(completion: { (currentUser) in
-                                self.updateFollowing(user: currentUser, value: 1)
-                            })
-                        }
-                        completion(nil)
-                    })
-                    self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date], withCompletionBlock: { (error, ref) in
-                        if let error = error {
-                            assertionFailure(error.localizedDescription)
-                        }else {
-                            self.updateFollower(user: user, value: 1)
-                        }
-                    })
-
-                    
-                }
-            }
-        })
-    }
     
+        //If we are scanning directly from their phone private settings do not apply
+        if user.isPrivate {
+            //Current user is requesting to follow user passed in
+            
+            self.ref.child("people").child(currentUser.uid).child("following").updateChildValues([user.uid: false])
+            self.ref.child("people").child(user.uid).child("followers").updateChildValues([currentUser.uid: false], withCompletionBlock: { (error, ref) in
+                completion(error)
+            })
+            
+        }else {
+            //Current user can automatically follow this user
+            //Because it is accepted right away, increment followingCount for currentUser
+            
+            self.ref.child("people").child(currentUser.uid).child("following").updateChildValues([user.uid: true]) {error, ref in
+                self.currentUser(completion: { (currentUser) in
+                    self.updateFollowing(user: currentUser, value: 1)
+                })
+            }
+            self.ref.child("people").child(user.uid).child("followers").updateChildValues([currentUser.uid: true], withCompletionBlock: { (error, ref) in
+                completion(nil)
+                self.updateFollower(user: user, value: 1)
+            })
+        }
+    }
+
     func cancelFollow(user: User, completion: @escaping ErrorCompletion)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        self.ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue { (error, ref) in
+        self.ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue()
+        self.ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue { (error, ref) in
             completion(error)
         }
     }
@@ -411,7 +389,7 @@ class QnClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue { (error, ref) in
+        ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue { (error, ref) in
             if let error = error {
                 assertionFailure(error.localizedDescription)
             }else {
@@ -421,7 +399,7 @@ class QnClient {
             }
             completion(error)
         }
-        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue { (error, ref) in
+        ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue { (error, ref) in
             if let error = error {
                 assertionFailure(error.localizedDescription)
             }else {
@@ -431,10 +409,8 @@ class QnClient {
 
     }
     
-    func acceptFollowRequest(user: User, completion: @escaping () -> Void)
+    func acceptFollowRequest(user: User, completion: @escaping (Error?) -> Void)
     {
-        let date = Date().timeIntervalSince1970
-        
         //Increment following, and follower count
         self.currentUser { (currentUser) in
             self.updateFollower(user: currentUser, value: 1)
@@ -444,25 +420,22 @@ class QnClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         //Change status to following
-        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date])
-        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.accepted.rawValue, DatabaseFields.time.rawValue: date]) { (error, ref) in
-            if let error = error {
-                assertionFailure(error.localizedDescription)
-            }else {
-                completion()
-            }
+        ref.child("people").child(user.uid).child("following").updateChildValues([currentUser.uid: true])
+        ref.child("people").child(currentUser.uid).child("followers").updateChildValues([user.uid: true]) { (error, ref) in
+            completion(error)
         }
     }
     
-    func denyFollowRequest(user: User, completion: () -> Void)
+    func denyFollowRequest(user: User, completion: @escaping (Error?) -> Void)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         //Do not change following status
         
         //Delete request
-        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
-        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        completion()
+        ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue()
+        ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue { (error, ref) in
+            completion(error)
+        }
     }
     
     func block(user: User)
@@ -487,49 +460,33 @@ class QnClient {
         }
         
        
+        ref.child("people").child(currentUser.uid).child("blocking").updateChildValues([user.uid: true])
         
-        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).updateChildValues([DatabaseFields.status.rawValue: FollowingStatus.blocking.rawValue])
+        ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue()
+        ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue()
         
-        //User passed in can still be followed by the current user, but user that is beign blocked can long see current users profile
-        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
-        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
-        
-        
+        //user being blocked is not allowed to follow current user anymore
+        ref.child("people").child(user.uid).child("following").child(currentUser.uid).removeValue()
     }
     
     func unblock(user: User)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).removeValue()
-        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        ref.child("people").child(currentUser.uid).child("blocking").child(user.uid).removeValue()
     }
     
     func isBlockedBy(user: User, completion: @escaping (Bool) -> Void) {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("people").child(user.uid).child("blocking").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard snapshot.exists() else {
                 completion(false)
                 return
             }
-            
-            if let value = snapshot.value as? NSDictionary {
-                if let status = value["status"] as? String {
-                    if status == "blocking" {
-                        completion(true)
-                        return
-                    }else {
-                        completion(false)
-                        return
-                    }
-                }
-            }
-            completion(false)
-            return
-        
+
+            completion(true)
         })
-        
     }
     
     
@@ -537,7 +494,7 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).queryOrdered(byChild: DatabaseFields.status.rawValue).queryEqual(toValue: FollowingStatus.accepted.rawValue).observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("following").observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 completion(users)
                 return
@@ -546,6 +503,13 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 let userID = item.key
+                let status = item.value as! Bool
+                
+                //IF status is false that means it is pending and not actually following
+                guard status else {
+                    completion(users)
+                    return
+                }
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
@@ -574,7 +538,7 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        ref.child(DatabaseFields.followers.rawValue).child(currentUser.uid).queryOrdered(byChild: DatabaseFields.status.rawValue).queryEqual(toValue: FollowingStatus.accepted.rawValue).observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("followers").observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 completion(users)
                 return
@@ -583,6 +547,13 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 let userID = item.key
+                let status = item.value as! Bool
+                
+                //If status is false that means it is pending and not actually following
+                guard status else {
+                    completion(users)
+                    return
+                }
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
@@ -614,8 +585,7 @@ class QnClient {
         
         
         
-        let userRef = ref1.child(DatabaseFields.followers.rawValue).child(currentUser.uid)
-        userRef.queryOrdered(byChild: DatabaseFields.status.rawValue).queryEqual(toValue: FollowingStatus.pending.rawValue).observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("followers").observe(.value, with: { (snapshot) in
             var users = [User]()
             
             if !snapshot.exists() {
@@ -624,8 +594,15 @@ class QnClient {
             }
             
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                let userID = user.key
+                let item = item as! FIRDataSnapshot
+                let userID = item.key
+                let status = item.value as! Bool
+                
+                //If status is false then it is a pending follow
+                guard status == false else {
+                    completion(users)
+                    return
+                }
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let user = User(snapshot: snapshot) {
@@ -683,35 +660,47 @@ class QnClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        QnClient.sharedInstance.currentUser { (user) in
+        self.currentUser { (user) in
             let userName = user.username!
             let uid = user.uid!
             
+//            
+//            currentUser.delete(completion: { (error) in
+//                guard error == nil else {
+//                    completion(error!)
+//                    return
+//                }
+//                
+//                TwitterClient().unlinkTwitter(completion: { (error) in
+//                    if error != nil {
+//                        completion(error!)
+//                    }
+//                })
+//                
+//                //No error remove, all other traces of this user from database
+//                let ref = FIRDatabase.database().reference()
+//                ref.child(DatabaseFields.usernames.rawValue).child(userName).removeValue()
+//                
+//                //Remove profile picture locally and on database
+//                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//                let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
+//                do {
+//                    try FileManager().removeItem(at: fileURL)
+//                }catch let error {
+//                    print(error)
+//                }
+//                
+//                ref.child(DatabaseFields.users.rawValue).child(uid).removeValue()
+//                ref.child(DatabaseFields.followers.rawValue).child(uid).removeValue()
+//                ref.child(DatabaseFields.following.rawValue).child(uid).removeValue()
             
-            currentUser.delete(completion: { (error) in
-                guard error == nil else {
-                    completion(error!)
-                    return
-                }
-                
-                TwitterClient().unlinkTwitter(completion: { (error) in
-                    if error != nil {
-                        completion(error!)
-                    }
-                })
-                
-                //No error remove, all other traces of this user from database
-                let ref = FIRDatabase.database().reference()
-                ref.child(DatabaseFields.usernames.rawValue).child(userName).removeValue()
-                
-                //Remove profile picture locally and on database
-                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
-                try! FileManager().removeItem(at: fileURL)
-                
-                ref.child(DatabaseFields.users.rawValue).child(uid).removeValue()
-                
-            })
+              self.ref.child("people").queryOrdered(byChild: "2").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
+                print(snapshot)
+              })
+            
+            
+            
+            
         }
     }
 }
