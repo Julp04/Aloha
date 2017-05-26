@@ -57,9 +57,7 @@ class User
     var key: String?
     
     var profileImage: UIImage?
-
-    
-    weak var delegate: ImageDownloaderDelegate?
+    var profileImageURL: String?
     
     init?(snapshot:FIRDataSnapshot) {
         
@@ -89,6 +87,9 @@ class User
         
         self.key = snapshot.key
         self.ref = snapshot.ref
+        if let url = values["photoURL"] as? String {
+            self.profileImageURL = url
+        }
         
         setAccounts()
     }
