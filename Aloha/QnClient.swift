@@ -150,6 +150,8 @@ class QnClient {
     
     func setProfileImage(image:UIImage)
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
@@ -175,7 +177,10 @@ class QnClient {
                     print(error)
                 } else {
                     // Metadata contains file metadata such as size, content-type, and download URL.
-                    _ = metadata!.downloadURL()
+                    
+                    let url = metadata!.downloadURL()!.absoluteString
+                    self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["photoURL": url])
+                    
                 }
             }
         } catch let error {
@@ -207,26 +212,18 @@ class QnClient {
             return
         }
         
-        let storageRef = FIRStorage.storage().reference()
-        
-        let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
-        let userRef = userStorageRef.child(user.email).child(DatabaseFields.profileImage.rawValue)
-        
-        userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
-            
-            if error != nil {
-                completion(.failure(error!))
-            }else {
-                
-                let image = UIImage(data: data!)
-                if user.uid == currentUser.uid {
-                    self.setProfileImage(image: image!)
+        if let url = user.profileImageURL {
+            ImageDownloader.downloadImage(url: url, completion: { (result) in
+                switch result {
+                case .success(let image):
+                    completion(.success(image))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                completion(.success(image))
-            }
+            })
         }
     }
-    
+//
     
     /// Gets most recent info of user passed in.
     ///
@@ -494,7 +491,7 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        ref.child("people").child(currentUser.uid).child("following").observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("following").queryOrderedByValue().queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 completion(users)
                 return
@@ -513,22 +510,19 @@ class QnClient {
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
-                        self.getProfileImageForUser(user: user, began: {}, completion: { (result) in
+                        ImageDownloader.downloadImage(url: user.profileImageURL!, completion: { (result) in
                             switch result {
                             case .success(let image):
                                 user.profileImage = image
-                            case .failure( _):
+                            case .failure(_):
                                 break
                             }
-                            
+                        })
                             //Do not re-add users
                             users = users.filter() {$0.uid != userID }
                             users.append(user)
                             completion(users)
-                        })
-                    }else {
-                        assertionFailure()
-                    }
+                        }
                 })
             }
         })
@@ -538,7 +532,7 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        ref.child("people").child(currentUser.uid).child("followers").observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("followers").queryOrderedByValue().queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 completion(users)
                 return
@@ -547,13 +541,6 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 let userID = item.key
-                let status = item.value as! Bool
-                
-                //If status is false that means it is pending and not actually following
-                guard status else {
-                    completion(users)
-                    return
-                }
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
@@ -580,12 +567,9 @@ class QnClient {
     }
     
     func getFollowRequests(completion: @escaping (([User]) -> Void)) {
-        let ref1 = FIRDatabase.database().reference()
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        
-        
-        ref.child("people").child(currentUser.uid).child("followers").observe(.value, with: { (snapshot) in
+        ref.child("people").child(currentUser.uid).child("followers").queryOrderedByValue().queryEqual(toValue: false).observe(.value, with: { (snapshot) in
             var users = [User]()
             
             if !snapshot.exists() {
@@ -596,13 +580,6 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 let userID = item.key
-                let status = item.value as! Bool
-                
-                //If status is false then it is a pending follow
-                guard status == false else {
-                    completion(users)
-                    return
-                }
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let user = User(snapshot: snapshot) {
@@ -694,16 +671,27 @@ class QnClient {
 //                ref.child(DatabaseFields.followers.rawValue).child(uid).removeValue()
 //                ref.child(DatabaseFields.following.rawValue).child(uid).removeValue()
             
-              self.ref.child("people").queryOrdered(byChild: "2").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
-                print(snapshot)
-              })
-            
-            
             
             
         }
     }
+    
+    func unlinkAllAccounts() {
+        
+        TwitterClient.client.unlinkTwitter { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success:
+                break
+            }
+        }
+        
+        
+    }
 }
+
+
 
 
 
