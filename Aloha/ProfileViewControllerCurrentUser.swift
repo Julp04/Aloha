@@ -44,6 +44,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     //MARK: Outlets
     @IBOutlet weak var followRequestImageView: ProfileImageView!
     @IBOutlet weak var imageViewSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var requestBlipView: UIView!
+    @IBOutlet weak var requestsCountLabel: UILabel!
   
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
@@ -131,6 +133,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         followingView.addGestureRecognizer(followingTappedGesture)
         scansView.addGestureRecognizer(scansTappedGesture)
         
+        requestBlipView.layer.cornerRadius = requestBlipView.bounds.width / 2.0
+        
         
        
     }
@@ -177,6 +181,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             
             if newRequests > 0 {
                 self.followRequestImageView.image = followRequests[0].profileImage
+                self.requestsCountLabel.text = "\(newRequests)"
             }
             
             
