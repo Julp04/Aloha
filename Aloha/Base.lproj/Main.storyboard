@@ -267,7 +267,7 @@
                                         <rect key="frame" x="0.0" y="404" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tjY-TC-Rp7" id="WhO-kC-W1r">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iiX-IL-SnT" customClass="ProfileImageView" customModule="Aloha" customModuleProvider="target">
@@ -1091,7 +1091,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gz0-Ey-3BS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6324" y="-2380.6596701649178"/>
+            <point key="canvasLocation" x="7263.1999999999998" y="-2380.6596701649178"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LX0-aZ-6sb">
@@ -2454,6 +2454,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowRequestCell" rowHeight="75" id="o4l-Mh-bCb" customClass="FollowRequestCell" customModule="Aloha" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
@@ -2551,7 +2553,7 @@
                                         <constraint firstItem="8MS-70-01L" firstAttribute="leading" secondItem="3B0-us-AFK" secondAttribute="trailing" constant="18.5" id="zyY-C5-iRq"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.59293702410000004" blue="0.1599473397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="acceptButton" destination="yky-Tg-epq" id="Xne-nW-IDa"/>
                                     <outlet property="declineButton" destination="aRI-jM-Lw2" id="55B-Qk-71i"/>
@@ -3574,6 +3576,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUB-K0-BO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4389.6000000000004" y="-4042.1289355322342"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9J8-fO-etm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x4R-pk-IEC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fzl-7k-e4D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UfV-gO-dq7" kind="relationship" relationship="rootViewController" id="zAl-BF-bzH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FT7-f5-CHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6324" y="-2380.6596701649178"/>
         </scene>
     </scenes>
     <resources>

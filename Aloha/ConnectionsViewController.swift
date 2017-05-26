@@ -54,14 +54,17 @@ class ConnectionsViewController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
+        tableView.sectionIndexColor = .white
+        tableView.sectionIndexBackgroundColor = .clear
+        
     
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.main
+        self.navigationController?.navigationBar.barTintColor = .main
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
@@ -173,6 +176,12 @@ class ConnectionsViewController: UITableViewController {
             return following.titleForSection(section)
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
     }
     
     

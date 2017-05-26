@@ -48,7 +48,9 @@ class FollowersViewController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
+        tableView.sectionIndexColor = .white
+        tableView.sectionIndexBackgroundColor = .clear
         
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
@@ -109,7 +111,7 @@ class FollowersViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConnectionCell") as! ConnectionCell
-        cell.backgroundColor = .clear
+        cell.backgroundColor = .lightGray
         
         var connection: User?
         
@@ -149,6 +151,14 @@ class FollowersViewController: UITableViewController {
         }
         
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+        header.backgroundColor = .white
+    }
+    
     
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {

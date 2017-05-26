@@ -27,10 +27,6 @@ class FollowRequestsViewController: UITableViewController {
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.allowsSelection = false
-        tableView.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
-        
-        navigationController?.navigationItem.title = "Follower Requests"
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
     }
     
