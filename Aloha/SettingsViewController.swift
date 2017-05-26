@@ -67,10 +67,40 @@ class SettingsViewController: UITableViewController {
             case 0: break
             default:break
             }
-            
+        case 2:
+            switch indexPath.row {
+            case 0:
+                break
+            case 1:
+                break
+            case 2:
+                break
+            case 3:
+                break
+            case 4:
+                //Delete account
+                showDeleteAccountAlert()
+            default:
+                break
+            }
         default:break
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func showDeleteAccountAlert() {
+        let alert = UIAlertController(title: "Delete your account?", message: "Deleting your account will completely remove all user data. Is this really good-bye? 😢", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
+            
+//            QnClient.sharedInstance.deleteCurrentUser(completion: { (error) in
+//                print(error)
+//            })
+            
+//            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+            
+        }))
+        present(alert, animated: true, completion: nil)
     }
   
     
