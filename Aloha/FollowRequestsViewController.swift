@@ -120,7 +120,7 @@ class FollowRequestsViewController: UITableViewController {
       
         let index = sender.tag
         let user = followRequests[index]
-        QnClient.sharedInstance.acceptFollowRequest(user: user) {
+        QnClient.sharedInstance.acceptFollowRequest(user: user) {_ in 
          self.updateStatusButton(sender: sender)
         }
     }
@@ -128,8 +128,8 @@ class FollowRequestsViewController: UITableViewController {
     func declineRequest(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
-        QnClient.sharedInstance.denyFollowRequest(user: user) {
-            updateStatusButton(sender: sender)
+        QnClient.sharedInstance.denyFollowRequest(user: user) {_ in 
+            self.updateStatusButton(sender: sender)
         }
     }
     
