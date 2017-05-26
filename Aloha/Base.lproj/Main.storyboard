@@ -293,50 +293,43 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtV-MH-Erk">
-                                                    <rect key="frame" x="172" y="-38" width="25" height="25"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kwv-lq-ks7">
-                                                    <rect key="frame" x="285" y="7" width="50" height="50"/>
+                                                    <rect key="frame" x="306" y="7" width="35" height="35"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qca-AU-0c8">
-                                                            <rect key="frame" x="19" y="15" width="14" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                            <rect key="frame" x="5" y="0.0" width="24" height="35"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.81832963199999997" green="0.02533760283" blue="0.044971749159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="Qca-AU-0c8" firstAttribute="centerY" secondItem="Kwv-lq-ks7" secondAttribute="centerY" id="0lU-oD-zNa"/>
-                                                        <constraint firstAttribute="height" constant="50" id="J8M-uc-FM5"/>
-                                                        <constraint firstItem="Qca-AU-0c8" firstAttribute="top" secondItem="Kwv-lq-ks7" secondAttribute="top" constant="15" id="MBT-55-mbY"/>
-                                                        <constraint firstItem="Qca-AU-0c8" firstAttribute="leading" secondItem="Kwv-lq-ks7" secondAttribute="leading" constant="19" id="W2u-zA-N0O"/>
-                                                        <constraint firstAttribute="width" constant="50" id="bJq-2J-YcI"/>
+                                                        <constraint firstAttribute="height" constant="35" id="J8M-uc-FM5"/>
+                                                        <constraint firstItem="Qca-AU-0c8" firstAttribute="leading" secondItem="Kwv-lq-ks7" secondAttribute="leading" constant="5" id="UD5-M3-Qvn"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Qca-AU-0c8" secondAttribute="bottom" id="Zud-vf-rhK"/>
+                                                        <constraint firstAttribute="width" constant="35" id="bJq-2J-YcI"/>
+                                                        <constraint firstItem="Qca-AU-0c8" firstAttribute="top" secondItem="Kwv-lq-ks7" secondAttribute="top" id="hdI-4L-R5i"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Qca-AU-0c8" secondAttribute="trailing" constant="6" id="uDV-Zp-bfG"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="bYe-97-TuZ" firstAttribute="top" secondItem="WhO-kC-W1r" secondAttribute="topMargin" id="4gU-0n-KcA"/>
-                                                <constraint firstItem="dtV-MH-Erk" firstAttribute="top" secondItem="WhO-kC-W1r" secondAttribute="topMargin" constant="-46" id="5FO-6o-RV4"/>
-                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="leading" secondItem="bYe-97-TuZ" secondAttribute="trailing" constant="8" id="5hr-mD-tDs"/>
-                                                <constraint firstAttribute="trailing" secondItem="dtV-MH-Erk" secondAttribute="trailing" constant="145" id="7UM-Bb-LU8"/>
-                                                <constraint firstItem="bYe-97-TuZ" firstAttribute="top" secondItem="dtV-MH-Erk" secondAttribute="bottom" constant="21" id="8kP-e7-T4m"/>
-                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="centerY" secondItem="WhO-kC-W1r" secondAttribute="centerY" id="EfF-sr-M4p"/>
+                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="leading" secondItem="bYe-97-TuZ" secondAttribute="trailing" constant="29" id="5hr-mD-tDs"/>
+                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="centerY" secondItem="WhO-kC-W1r" secondAttribute="centerY" constant="-8.25" id="EfF-sr-M4p"/>
                                                 <constraint firstItem="bYe-97-TuZ" firstAttribute="leading" secondItem="iiX-IL-SnT" secondAttribute="trailing" constant="19" id="Q2g-fO-tLz"/>
-                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="leading" secondItem="zed-wQ-9Mc" secondAttribute="trailing" constant="8" id="QYm-yF-MJA"/>
+                                                <constraint firstItem="Kwv-lq-ks7" firstAttribute="leading" secondItem="zed-wQ-9Mc" secondAttribute="trailing" constant="29" id="QYm-yF-MJA"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="iiX-IL-SnT" secondAttribute="leading" id="Yc5-fm-wza"/>
                                                 <constraint firstItem="zed-wQ-9Mc" firstAttribute="leading" secondItem="bYe-97-TuZ" secondAttribute="leading" id="d6m-po-snh"/>
                                                 <constraint firstItem="iiX-IL-SnT" firstAttribute="top" secondItem="WhO-kC-W1r" secondAttribute="topMargin" constant="-1" id="dbJ-eM-cR0"/>
                                                 <constraint firstItem="zed-wQ-9Mc" firstAttribute="top" secondItem="bYe-97-TuZ" secondAttribute="bottom" constant="7" id="hCr-a1-YFS"/>
-                                                <constraint firstItem="dtV-MH-Erk" firstAttribute="leading" secondItem="WhO-kC-W1r" secondAttribute="leading" constant="172" id="qMu-Mn-3tE"/>
                                                 <constraint firstItem="iiX-IL-SnT" firstAttribute="centerY" secondItem="WhO-kC-W1r" secondAttribute="centerY" id="uVd-ZT-Aaq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Kwv-lq-ks7" secondAttribute="trailing" constant="40" id="ZRQ-WD-UJU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kwv-lq-ks7" secondAttribute="trailing" constant="34" id="ZRQ-WD-UJU"/>
                                         </constraints>
                                     </tableViewCell>
                                 </cells>
@@ -1491,7 +1484,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2422,7 +2415,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="wJ7-66-wft" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uH6-DO-lIC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH6-DO-lIC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2440,7 +2433,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2584,7 +2577,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3503,7 +3496,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3521,7 +3514,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerOtherUserNav" automaticallyAdjustsScrollViewInsets="NO" id="0Ux-yL-CRM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="abP-ou-3DQ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -3569,7 +3562,7 @@
             <objects>
                 <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
