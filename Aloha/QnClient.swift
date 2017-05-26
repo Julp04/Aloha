@@ -492,6 +492,7 @@ class QnClient {
         
         //User passed in can still be followed by the current user, but user that is beign blocked can long see current users profile
         ref.child(DatabaseFields.following.rawValue).child(user.uid).child(currentUser.uid).removeValue()
+        ref.child(DatabaseFields.followers.rawValue).child(user.uid).child(currentUser.uid).removeValue()
         
         
     }
