@@ -21,7 +21,7 @@ class EmptyView: UIView {
     
     let kLabelOffset: CGFloat = 8.0
     
-    var image: UIImage
+    var image: UIImage?
     var titleText: String
     var descriptionText: String?
     
@@ -41,7 +41,7 @@ class EmptyView: UIView {
         }
     }
     
-    required init(frame: CGRect, image: UIImage, titleText: String, descriptionText: String?) {
+    required init(frame: CGRect, image: UIImage?, titleText: String, descriptionText: String?) {
         self.image = image
         self.titleText = titleText
         self.descriptionText = descriptionText
