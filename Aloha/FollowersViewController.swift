@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum ConnectionType {
+    case followers
+    case following
+    case none
+}
+
 class FollowersViewController: UITableViewController {
     
     //MARK: Constants
@@ -17,9 +23,10 @@ class FollowersViewController: UITableViewController {
     
     //MARK: Properties
     
-    var followers = ConnectionsModel(connections: [User]())
+    var connections = ConnectionsModel(connections: [User]())
     var selectedConnection: User?
     let searchController = UISearchController(searchResultsController: nil)
+    var type: ConnectionType = .none
     
     //MARK: Outlets
     
@@ -27,9 +34,9 @@ class FollowersViewController: UITableViewController {
     
     //MARK: Lifecycle
     
-    
-    //MARK: Lifecycle
-    
+    func configureViewController(type: ConnectionType) {
+        self.type = type
+    }
     
     
     override func viewDidLoad() {
@@ -51,20 +58,32 @@ class FollowersViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
         tableView.sectionIndexColor = .white
         tableView.sectionIndexBackgroundColor = .clear
+        tableView.tableHeaderView = searchController.searchBar
         
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
         longPressGesture.delegate = self
         tableView.addGestureRecognizer(longPressGesture)
-        
-        
-        navigationController?.navigationBar.topItem?.titleView = searchController.searchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        QnClient.sharedInstance.getFollowers { (users) in
-            self.followers = ConnectionsModel(connections: users)
-            self.tableView.reloadData()
+        
+        let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: "Loading...", descriptionText: "")
+        self.tableView.backgroundView = emptyView
+        
+        switch self.type {
+        case .followers:
+            QnClient.sharedInstance.getFollowers(completion: { (users) in
+                self.connections = ConnectionsModel(connections: users)
+                self.tableView.reloadData()
+            })
+        case .following:
+            QnClient.sharedInstance.getFollowing(completion: { (users) in
+                self.connections = ConnectionsModel(connections: users)
+                self.tableView.reloadData()
+            })
+        default:
+            break
         }
     }
     
@@ -76,18 +95,17 @@ class FollowersViewController: UITableViewController {
         searchController.searchBar.isHidden = false
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            if followers.numberOfFilteredConnectionSections() == 0 {
+            if connections.numberOfFilteredConnectionSections() == 0 {
                 return 0
             }else {
                 self.tableView.backgroundView = nil
-                return followers.numberOfFilteredConnectionSections()
+                return connections.numberOfFilteredConnectionSections()
                 
             }
         }
         
-        if followers.numberOfConnectionSections() == 0 {
-            let empytImage = #imageLiteral(resourceName: "tiki_guy")
-            let emptyView = EmptyView(frame: self.view.frame, image: empytImage, titleText: "No Followers", descriptionText: "When you follow a new connection you will see them here")
+        if connections.numberOfConnectionSections() == 0 {
+            let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: "No Followers", descriptionText: "😢")
             
             self.tableView.backgroundView = emptyView
             self.searchController.searchBar.isHidden = true
@@ -96,15 +114,15 @@ class FollowersViewController: UITableViewController {
         }else {
             
             self.tableView.backgroundView = nil
-            return followers.numberOfConnectionSections()
+            return connections.numberOfConnectionSections()
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return followers.numberOfFilteredConnectionsInSection(section)
+            return connections.numberOfFilteredConnectionsInSection(section)
         }else {
-            return followers.numberOfConnectionsInSection(section)
+            return connections.numberOfConnectionsInSection(section)
         }
     }
     
@@ -116,9 +134,9 @@ class FollowersViewController: UITableViewController {
         var connection: User?
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            connection = followers.filteredConnectionAt(indexPath)
+            connection = connections.filteredConnectionAt(indexPath)
         }else {
-            connection = followers.connectionAtIndexPath(indexPath)
+            connection = connections.connectionAtIndexPath(indexPath)
         }
         
         
@@ -145,9 +163,9 @@ class FollowersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            return followers.filteredTitleForSection(section)
+            return connections.filteredTitleForSection(section)
         }else {
-            return followers.titleForSection(section)
+            return connections.titleForSection(section)
         }
         
     }
@@ -163,9 +181,9 @@ class FollowersViewController: UITableViewController {
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return followers.filtedIndexTitle()
+            return connections.filtedIndexTitle()
         }else {
-            return followers.indexTitle()
+            return connections.indexTitle()
         }
     }
     
@@ -179,9 +197,9 @@ class FollowersViewController: UITableViewController {
         var connection: User?
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            connection = followers.filteredConnectionAt(indexPath)
+            connection = connections.filteredConnectionAt(indexPath)
         }else {
-            connection = followers.connectionAtIndexPath(indexPath)
+            connection = connections.connectionAtIndexPath(indexPath)
         }
         
         
@@ -213,7 +231,7 @@ extension FollowersViewController: UISearchBarDelegate {
 extension FollowersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let seachBar = searchController.searchBar
-        followers.filterContentsForSearch(text: seachBar.text!)
+        connections.filterContentsForSearch(text: seachBar.text!)
         tableView.reloadData()
     }
     
@@ -221,13 +239,6 @@ extension FollowersViewController: UISearchResultsUpdating {
 }
 
 
-extension FollowersViewController: ImageDownloaderDelegate {
-    
-    func imageDownloaded(image: UIImage?) {
-        self.tableView.reloadData()
-    }
-    
-}
 
 extension FollowersViewController: UIGestureRecognizerDelegate {
     
@@ -239,7 +250,7 @@ extension FollowersViewController: UIGestureRecognizerDelegate {
             return false
         }
         
-        let connection = followers.connectionAtIndexPath(indexPath)
+        let connection = connections.connectionAtIndexPath(indexPath)
         print(connection ?? "no connection")
         
         return true
