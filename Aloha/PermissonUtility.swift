@@ -28,6 +28,8 @@ class PermissonUtility {
                     completion(success)
                 })
             }
+        }else {
+            completion(true)
         }
     }
     
