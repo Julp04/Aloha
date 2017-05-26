@@ -112,8 +112,7 @@ class ConnectionsViewController: UITableViewController {
         }
         
         if following.numberOfConnectionSections() == 0 {
-            let empytImage = #imageLiteral(resourceName: "tiki_guy")
-            let emptyView = EmptyView(frame: self.view.frame, image: empytImage, titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
+            let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: "No Connections", descriptionText: "When you follow a new connection you will see them here")
             
             self.tableView.backgroundView = emptyView
             self.searchController.searchBar.isHidden = true
@@ -241,15 +240,6 @@ extension ConnectionsViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
     
-    
-}
-
-
-extension ConnectionsViewController: ImageDownloaderDelegate {
-    
-    func imageDownloaded(image: UIImage?) {
-        self.tableView.reloadData()
-    }
     
 }
 
