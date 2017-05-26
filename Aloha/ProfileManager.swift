@@ -91,11 +91,12 @@ class ProfileManager {
                         return
                     }
                     
-                    TwitterClient.client.unlinkTwitter(completion: { (error) in
-                        if let error = error {
-                            AlertUtility.showAlertWith(error.localizedDescription)
-                        }else {
+                    TwitterClient.client.unlinkTwitter(completion: { (result) in
+                        switch result {
+                        case .success(_):
                             self.turnOffTwitterButtonCurrentUser()
+                        case .failure(let error):
+                            AlertUtility.showAlertWith(error.localizedDescription)
                         }
                     })
                 })
