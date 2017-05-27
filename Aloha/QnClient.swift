@@ -148,7 +148,7 @@ class QnClient {
     }
     
     
-    func setProfileImage(image:UIImage)
+    func setProfileImage(image: UIImage)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
@@ -192,7 +192,7 @@ class QnClient {
     func getProfileImageForUser(user: User, began:(() -> Void), completion:@escaping (Result<UIImage?>) -> Void)
     {
         
-        began()
+        
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
@@ -212,10 +212,14 @@ class QnClient {
             return
         }
         
+        began()
         if let url = user.profileImageURL {
             ImageDownloader.downloadImage(url: url, completion: { (result) in
                 switch result {
                 case .success(let image):
+                    if user.uid == currentUser.uid {
+                        self.setProfileImage(image: image!)
+                    }
                     completion(.success(image))
                 case .failure(let error):
                     completion(.failure(error))
