@@ -84,7 +84,7 @@ class MainController: PageboyViewController {
         
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerNav") as! UINavigationController
+        profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerCurrentUserNav") as! UINavigationController
         connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
         
         placeHolderViewController = UIViewController()
