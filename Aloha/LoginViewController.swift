@@ -151,7 +151,7 @@ class LoginViewController: UIViewController {
             }else {
                 //Animate to main view controller
                 //todo: Fix storyboard animation
-                let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+                let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! UINavigationController
             
                 PermissonUtility.isCameraAuthorized(completion: { (success) in
                     if success {
@@ -195,7 +195,7 @@ class LoginViewController: UIViewController {
                         self.passwordField.errorMessage = "Invalid Password"
                         print(error!)
                     }else {
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! UINavigationController
                         
                         PermissonUtility.isCameraAuthorized(completion: { (success) in
                             if success {

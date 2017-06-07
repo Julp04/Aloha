@@ -41,7 +41,7 @@ class MainController: PageboyViewController {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var contact: User!
     var qrCodeFrameView = UIImageView()
-    var transitionManager = TransitionManager(segueIdentifier: "CodeSegue")
+    static var transitionManager = TransitionManager(segueIdentifier: "CodeSegue")
     
     var codeButton: UIButton!
     var scanner: Scanner!
@@ -60,7 +60,7 @@ class MainController: PageboyViewController {
        
         
         //Hiding nav bar so we can interact with other view controllers in pageview controller
-        self.navigationController?.navigationBar.isHidden = true
+//        self.navigationController?.navigationBar.isHidden = true
         
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
@@ -87,7 +87,7 @@ class MainController: PageboyViewController {
         profileNavController = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerCurrentUserNav") as! UINavigationController
         connectionsNavController = storyboard.instantiateViewController(withIdentifier: "ConnectionsViewControllerNav") as! UINavigationController
         
-        placeHolderViewController = UIViewController()
+        placeHolderViewController = PlaceHolderViewController()
         placeHolderViewController.view.backgroundColor = .clear
         codeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         codeButton.setImage(#imageLiteral(resourceName: "code_button"), for: .normal)
@@ -103,7 +103,7 @@ class MainController: PageboyViewController {
             self.profileViewController.configureViewController(currentUser: currentUser)
         }
         
-        transitionManager.sourceViewController = self
+        MainController.transitionManager.sourceViewController = self
         
         self.dataSource = self
         self.delegate = self
@@ -118,14 +118,15 @@ class MainController: PageboyViewController {
     
     override func viewWillAppear(_ animated: Bool) {
           scanner?.startCaptureSession()
+        MainController.transitionManager.isEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "CodeSegue" {
             let codeViewController = segue.destination
-            codeViewController.transitioningDelegate = transitionManager
-            transitionManager.presentedViewController = codeViewController
+            codeViewController.transitioningDelegate = MainController.transitionManager
+            MainController.transitionManager.presentedViewController = codeViewController
         }else if segue.identifier == "ContactProfileSegue" {
             let profileNavController = segue.destination as! UINavigationController
             let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
@@ -213,8 +214,6 @@ extension MainController: PageboyViewControllerDelegate {
                                animated: Bool) {
         //If we are scrolling then disable scanning
         scannerCanScan = false
-        self.navigationController?.navigationBar.barTintColor = .clear
-        
         toFromIndex = calculateToFromIndexTuple(direction: direction, index: index)
     }
     

@@ -46,7 +46,7 @@ class ContactManager
         
         //Phone numbers
         if let phoneNumber = connection.phone {
-            let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber))
+            let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber)!)
             contact.phoneNumbers = [homePhone]
         }
         

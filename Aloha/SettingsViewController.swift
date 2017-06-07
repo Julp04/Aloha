@@ -41,6 +41,8 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool){
         
+        MainController.transitionManager.isEnabled = false
+        
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black,
                                     NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
         navigationController?.navigationBar.tintColor = .black

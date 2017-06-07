@@ -72,11 +72,7 @@ class ConnectionsViewController: UITableViewController {
         
         //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
         //bug i was having (this might be temp fix ?? 😜
-        guard let mainController = self.parent?.parent?.parent as? MainController else {
-            return
-        }
-        
-        mainController.transitionManager.isEnabled = false
+        MainController.transitionManager.isEnabled = false
         
         QnClient.sharedInstance.getFollowing { (users) in
             self.following = ConnectionsModel(connections: users)
@@ -86,10 +82,7 @@ class ConnectionsViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         //Enable the transition manager when we leave this view controler
-        guard let mainController = self.parent?.parent?.parent as? MainController else {
-            return
-        }
-        mainController.transitionManager.isEnabled = true
+        MainController.transitionManager.isEnabled = true
     }
     
 

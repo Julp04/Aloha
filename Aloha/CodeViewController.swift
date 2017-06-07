@@ -43,6 +43,7 @@ class CodeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         createQRCode()
+        MainController.transitionManager.isEnabled = true
         
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]

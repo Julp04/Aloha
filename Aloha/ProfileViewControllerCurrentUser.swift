@@ -154,9 +154,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationController?.delegate = self
         
-        let mainController = self.parent?.parent?.parent as! MainController
-        mainController.transitionManager.isEnabled = false
         
+        MainController.transitionManager.isEnabled = false
         
         QnClient.sharedInstance.getProfileImageForUser(user: user, began: {
             imageViewSpinner.isHidden = false
@@ -195,12 +194,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         }
         
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //Enable the transition manager when we leave this view controler
-        let mainController = self.parent?.parent?.parent as! MainController
-        mainController.transitionManager.isEnabled = true
     }
     
     
