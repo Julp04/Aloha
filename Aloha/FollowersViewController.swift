@@ -28,6 +28,8 @@ class FollowersViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var type: ConnectionType = .none
     
+    var emptyText = ""
+    
     //MARK: Outlets
     
     //MARK: Actions
@@ -52,13 +54,14 @@ class FollowersViewController: UITableViewController {
         
         
         
-        self.extendedLayoutIncludesOpaqueBars = true
+//        self.extendedLayoutIncludesOpaqueBars = true
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
         tableView.sectionIndexColor = .white
         tableView.sectionIndexBackgroundColor = .clear
         tableView.tableHeaderView = searchController.searchBar
+        
         
         let longPressGesture = UILongPressGestureRecognizer()
         longPressGesture.minimumPressDuration = kPressDuration
@@ -68,16 +71,17 @@ class FollowersViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: "Loading...", descriptionText: "")
-        self.tableView.backgroundView = emptyView
-        
         switch self.type {
         case .followers:
+            emptyText = "No followers"
             QnClient.sharedInstance.getFollowers(completion: { (users) in
-                self.connections = ConnectionsModel(connections: users)
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.connections = ConnectionsModel(connections: users)
+                    self.tableView.reloadData()
+                }
             })
         case .following:
+            emptyText = "You are not following anyone"
             QnClient.sharedInstance.getFollowing(completion: { (users) in
                 self.connections = ConnectionsModel(connections: users)
                 self.tableView.reloadData()
@@ -105,9 +109,9 @@ class FollowersViewController: UITableViewController {
         }
         
         if connections.numberOfConnectionSections() == 0 {
-            let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: "No Followers", descriptionText: "😢")
-            
+            let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: emptyText, descriptionText: "😢")
             self.tableView.backgroundView = emptyView
+            
             self.searchController.searchBar.isHidden = true
             
             return 0
