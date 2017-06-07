@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         if FIRAuth.auth()?.currentUser != nil {
             
-            let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+            let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController
             self.window?.rootViewController = mainVCNav
         }else {
             let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController")
