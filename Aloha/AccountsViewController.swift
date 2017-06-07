@@ -108,7 +108,7 @@ class AccountsViewController: UIViewController {
     func isCameraAuthorized() {
         
         if Platform.isSimulator {
-            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! UINavigationController
             self.present(mainVC, animated: true, completion: nil)
        
         } else {
@@ -117,7 +117,7 @@ class AccountsViewController: UIViewController {
             
             switch cameraAuthorizationStatus {
             case .authorized:
-                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainControllerNav") as! UINavigationController
+                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! UINavigationController
                 self.present(mainVC, animated: true, completion: nil)
             case .notDetermined, .restricted, .denied:
                 // Prompting user for the permission to use the camera.
