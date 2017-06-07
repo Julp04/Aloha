@@ -446,28 +446,27 @@ class QnClient {
         //If currently following, decrement following and followers, 
         //else just remove values
         self.currentUser { (currentUser) in
-            self.ref.child(DatabaseFields.following.rawValue).child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
-                if let values = snapshot.value as? NSDictionary {
-                    if let status = values["status"] as? String {
-                        if status == FollowingStatus.accepted.rawValue {
-                            //Decrement following and follower count
-                            self.updateFollower(user: user, value: -1)
-                            self.updateFollowing(user: currentUser, value: -1)
-                            
-                        }
+            self.ref.child("people").child(currentUser.uid).child("following").child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
+                if let status = snapshot.value as? Bool {
+                    if status {
+                        //Decrement following and follower count
+                        self.updateFollower(user: user, value: -1)
+                        self.updateFollowing(user: currentUser, value: -1)
                     }
                 }
+                
+                self.ref.child("people").child(currentUser.uid).child("blocking").updateChildValues([user.uid: true])
+                
+                self.ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue()
+                self.ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue()
+                
+                //user being blocked is not allowed to follow current user anymore
+                self.ref.child("people").child(user.uid).child("following").child(currentUser.uid).removeValue()
             })
         }
         
        
-        ref.child("people").child(currentUser.uid).child("blocking").updateChildValues([user.uid: true])
         
-        ref.child("people").child(currentUser.uid).child("following").child(user.uid).removeValue()
-        ref.child("people").child(user.uid).child("followers").child(currentUser.uid).removeValue()
-        
-        //user being blocked is not allowed to follow current user anymore
-        ref.child("people").child(user.uid).child("following").child(currentUser.uid).removeValue()
     }
     
     func unblock(user: User)
