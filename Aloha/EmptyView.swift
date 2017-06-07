@@ -13,13 +13,13 @@ class EmptyView: UIView {
     
     //MARK: Constants
     let kImageViewSize: CGFloat = 200.0
-    let kTitleLabelHeight: CGFloat = 21.0
+    let kTitleLabelHeight: CGFloat = 30.0
     let kDescriptionLabelHeight: CGFloat = 70.0
     let kTitleLabelFontSize: CGFloat = 24.0
     let kDescriptionLabelFontSize: CGFloat = 14.0
     let kDescriptionLabelOffset: CGFloat = 16.0
     
-    let kLabelOffset: CGFloat = 8.0
+    let kLabelOffset: CGFloat = 4.0
     
     var image: UIImage?
     var titleText: String
@@ -70,11 +70,15 @@ class EmptyView: UIView {
         descriptionLabel.text = descriptionText
         descriptionLabel.textColor = descriptionColor
         
-        titleLabel = UILabel(frame: CGRect(x: 0, y: descriptionLabel.frame.origin.y - kTitleLabelHeight - kLabelOffset, width: frame.size.width, height: kTitleLabelHeight))
+        titleLabel = UILabel(frame: CGRect(x: 0, y: descriptionLabel.frame.origin.y - kTitleLabelHeight - kLabelOffset , width: frame.size.width, height: kTitleLabelHeight))
         titleLabel.font = UIFont(name: "Futura", size: kTitleLabelFontSize)
         titleLabel.text = titleText
         titleLabel.textAlignment = .center
         titleLabel.textColor = titleColor
+        
+        titleLabel.numberOfLines = 1;
+        titleLabel.adjustsFontSizeToFitWidth = true;
+        titleLabel.minimumScaleFactor = 0.7
         
         addSubview(imageView)
         addSubview(descriptionLabel)
