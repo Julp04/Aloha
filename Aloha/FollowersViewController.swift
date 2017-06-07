@@ -83,8 +83,10 @@ class FollowersViewController: UITableViewController {
         case .following:
             emptyText = "You are not following anyone"
             QnClient.sharedInstance.getFollowing(completion: { (users) in
-                self.connections = ConnectionsModel(connections: users)
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.connections = ConnectionsModel(connections: users)
+                    self.tableView.reloadData()
+                }
             })
         default:
             break
