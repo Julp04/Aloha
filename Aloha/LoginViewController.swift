@@ -195,7 +195,7 @@ class LoginViewController: UIViewController {
                         self.passwordField.errorMessage = "Invalid Password"
                         print(error!)
                     }else {
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! UINavigationController
+                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController
                         
                         PermissonUtility.isCameraAuthorized(completion: { (success) in
                             if success {
