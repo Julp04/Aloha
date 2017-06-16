@@ -26,16 +26,16 @@ class TwitterClient {
     static let client = TwitterClient()
     
     var oauthSwift: OAuthSwift?
-    let consumerKey = "m9VCFFsoERuNegQQygfBRXIuB"
-    let consumerSecret = "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq"
+    let consumerKey = "rMvSDvQczHRVz4jLPPvXpmCve"
+    let consumerSecret = "cJGcPvVsNh3dRopxI1NHhMsFJFDtNCVQKuIraxpo4zxg4KmTiu"
     
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
     let lookUpURL = "https://api.twitter.com/1.1/friendships/lookup.json?screen_name="
     
     func linkTwitterIn(viewController:UIViewController, completion:@escaping ErrorCompletion){
         let oauthswift = OAuth1Swift(
-            consumerKey:    "m9VCFFsoERuNegQQygfBRXIuB",
-            consumerSecret: "e3j6KgdXJIdudqcfa3K53rxmfuimQodmquTOdKNR0AHCyFL9kq",
+            consumerKey:    "rMvSDvQczHRVz4jLPPvXpmCve",
+            consumerSecret: "cJGcPvVsNh3dRopxI1NHhMsFJFDtNCVQKuIraxpo4zxg4KmTiu",
             requestTokenUrl: "https://api.twitter.com/oauth/request_token",
             authorizeUrl:    "https://api.twitter.com/oauth/authorize",
             accessTokenUrl:  "https://api.twitter.com/oauth/access_token"
@@ -43,7 +43,7 @@ class TwitterClient {
         self.oauthSwift = oauthswift
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: viewController, oauthSwift: self.oauthSwift!)
         let _ = oauthswift.authorize(
-            withCallbackURL: URL(string: "qnect://")!,
+            withCallbackURL: URL(string: "aloha://")!,
             success: { credential, response, parameters in
             
                 let token = credential.oauthToken

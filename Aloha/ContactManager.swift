@@ -3,7 +3,7 @@
 //  QNect
 //
 //  Created by Julian on 11/11/2016
-//  Copyright (c) 2016 QNect. All rights reserved.
+//  Copyright (c) 2016 Aloha. All rights reserved.
 //
 
 import UIKit
@@ -46,7 +46,7 @@ class ContactManager
         
         //Phone numbers
         if let phoneNumber = connection.phone {
-            let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber)!)
+            let homePhone = CNLabeledValue(label: CNLabelHome,value: CNPhoneNumber(stringValue: phoneNumber))
             contact.phoneNumbers = [homePhone]
         }
         
@@ -87,7 +87,7 @@ class ContactManager
         }
         
         //Set QNect username
-        contact.note = "Added through QNect"
+        contact.note = "Added through Aloha"
         
         //Save Contact
         let request = CNSaveRequest()
@@ -111,7 +111,7 @@ class ContactManager
         do {
             let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: fetchResults as [CNKeyDescriptor])
             for contact in contacts {
-                if contact.note == "Added through QNect" {
+                if contact.note == "Added through Aloha" {
                     contactExists = true
                 }
             }

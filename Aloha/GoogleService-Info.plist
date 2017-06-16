@@ -2,26 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_KEY</key>
-	<string>AIzaSyB28WBLeaelhx8jnMpWBPPRTurGN6u2dMU</string>
 	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
 	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>870797666273-o34iv70brgnapkb9f624qj65lhoamkbg.apps.googleusercontent.com</string>
+	<string>946399752153-2hbir2n9lre2ilhom0fr8adj3kohbnbj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.870797666273-o34iv70brgnapkb9f624qj65lhoamkbg</string>
+	<string>com.googleusercontent.apps.946399752153-2hbir2n9lre2ilhom0fr8adj3kohbnbj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCAk7Ap0ND7sLfN5ZBO-aptG3okS8ZBP-8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>870797666273</string>
+	<string>946399752153</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>io.QNect.QNect</string>
+	<string>io.aloha.aloha</string>
 	<key>PROJECT_ID</key>
-	<string>qnect-668c3</string>
+	<string>aloha-e64b7</string>
 	<key>STORAGE_BUCKET</key>
-	<string>qnect-668c3.appspot.com</string>
+	<string>aloha-e64b7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:870797666273:ios:130449725c224006</string>
+	<string>1:946399752153:ios:874d8a8e0fefb974</string>
 	<key>DATABASE_URL</key>
-	<string>https://qnect-668c3.firebaseio.com</string>
+	<string>https://aloha-e64b7.firebaseio.com</string>
 </dict>
 </plist>

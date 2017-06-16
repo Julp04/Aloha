@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */; };
 		140306941ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */; };
 		140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */; };
 		140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306961ED5D9D800D03359 /* FollowRequestCell.swift */; };
@@ -24,7 +23,6 @@
 		1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
 		1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
-		142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
@@ -38,7 +36,6 @@
 		14497B421ED35E4900764670 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14497B401ED35E4900764670 /* FollowersViewController.swift */; };
 		144BCF711EE4799600E2E4C6 /* PlaceHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */; };
 		144BCF721EE4799600E2E4C6 /* PlaceHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */; };
-		1466C6321ECF3B5500C01CF0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */; };
 		1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B964AE951DBA74B400A0162E /* Info.plist */; };
 		1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
 		1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
@@ -71,6 +68,8 @@
 		14B224A61E8AABD20027CBA8 /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */; };
 		14BF0DF71ED8910000657680 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF0DF61ED8910000657680 /* ImageDownloader.swift */; };
 		14BF0DF81ED8910000657680 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF0DF61ED8910000657680 /* ImageDownloader.swift */; };
+		14C5A0AC1EF4A0000054D51D /* GoogleService-Info-DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14C5A0AB1EF4A0000054D51D /* GoogleService-Info-DEV.plist */; };
+		14C5A0AE1EF4A00B0054D51D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14C5A0AD1EF4A00B0054D51D /* GoogleService-Info.plist */; };
 		14CBE9431ECF384200A852EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBE9421ECF384200A852EA /* AppDelegate.swift */; };
 		14CBE9441ECF384200A852EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBE9421ECF384200A852EA /* AppDelegate.swift */; };
 		14CCB6DA1E7C2630004B1C3C /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */; };
@@ -150,7 +149,6 @@
 /* Begin PBXFileReference section */
 		07D3DB2AAEEF968784A9D881 /* Pods_AlohaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlohaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F57608E22CC33BB7CF0626C /* Pods-Aloha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aloha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aloha/Pods-Aloha.release.xcconfig"; sourceTree = "<group>"; };
-		1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
 		140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestsViewController.swift; sourceTree = "<group>"; };
 		140306961ED5D9D800D03359 /* FollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestCell.swift; sourceTree = "<group>"; };
 		140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		1418C0251EA67C2F00C5538F /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
-		1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1446683A1EC8A30C0062FA56 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
@@ -188,6 +185,8 @@
 		14B224A01E8AA4380027CBA8 /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
 		14B224A21E8AA7D90027CBA8 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		14BF0DF61ED8910000657680 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		14C5A0AB1EF4A0000054D51D /* GoogleService-Info-DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-DEV.plist"; sourceTree = "<group>"; };
+		14C5A0AD1EF4A00B0054D51D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14CBE9421ECF384200A852EA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
@@ -418,11 +417,11 @@
 		B9EF94731DBA78540091D596 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				14C5A0AD1EF4A00B0054D51D /* GoogleService-Info.plist */,
+				14C5A0AB1EF4A0000054D51D /* GoogleService-Info-DEV.plist */,
 				1466C6391ECF75DB00C01CF0 /* onboard.mp4 */,
 				144668461EC8AF2C0062FA56 /* Dev-Info.plist */,
 				B964AE951DBA74B400A0162E /* Info.plist */,
-				1421336F1E4F5CA700098F99 /* GoogleService-Info.plist */,
-				1401D9C71E75EA5E00F1299D /* GoogleService-Info-DEV.plist */,
 				B964AE901DBA74B400A0162E /* Images.xcassets */,
 			);
 			name = SupportingFiles;
@@ -566,12 +565,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C5A0AC1EF4A0000054D51D /* GoogleService-Info-DEV.plist in Resources */,
 				14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */,
 				1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
-				1401D9C81E75EA5E00F1299D /* GoogleService-Info-DEV.plist in Resources */,
 				14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */,
 				144668481EC8AF2C0062FA56 /* Dev-Info.plist in Resources */,
-				1466C6321ECF3B5500C01CF0 /* Default-568h@2x.png in Resources */,
 				14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,10 +580,10 @@
 			files = (
 				B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */,
 				1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
-				142133701E4F5CA700098F99 /* GoogleService-Info.plist in Resources */,
 				B964AE911DBA74B400A0162E /* Images.xcassets in Resources */,
 				B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */,
 				1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */,
+				14C5A0AE1EF4A00B0054D51D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +653,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "TAGS=\"todo:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}/QNect\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+			shellScript = "";
 		};
 		14CCB6DD1E7C2B41004B1C3C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -992,7 +990,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.QNect.QNect-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.aloha.aloha-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";
@@ -1013,7 +1011,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.QNect.QNect-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.aloha.aloha-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";
@@ -1116,11 +1114,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Aloha/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.M;
+				PRODUCT_BUNDLE_IDENTIFIER = io.aloha.aloha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";
@@ -1135,11 +1134,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Aloha/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.M;
+				PRODUCT_BUNDLE_IDENTIFIER = io.aloha.aloha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";

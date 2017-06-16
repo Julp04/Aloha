@@ -118,6 +118,7 @@ class ProfileManager {
         twitterButton.turnOn()
         self.twitterButton.animationDidStartClosure = {_ in
             QnClient.sharedInstance.currentUser {user in
+                self.user = user
                 self.twitterButton.shortText = user.twitterAccount!.screenName
             }
             
