@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14EC7A801E74F27300B3C4E8"
-            BuildableName = "Aloha dev.app"
-            BlueprintName = "Aloha dev"
+            BlueprintIdentifier = "B964AE821DBA74B400A0162E"
+            BuildableName = "Aloha.app"
+            BlueprintName = "Aloha"
             ReferencedContainer = "container:Aloha.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14EC7A801E74F27300B3C4E8"
-            BuildableName = "Aloha dev.app"
-            BlueprintName = "Aloha dev"
+            BlueprintIdentifier = "B964AE821DBA74B400A0162E"
+            BuildableName = "Aloha.app"
+            BlueprintName = "Aloha"
             ReferencedContainer = "container:Aloha.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

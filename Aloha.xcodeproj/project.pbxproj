@@ -31,12 +31,10 @@
 		144668401EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
 		144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144668421EC8AEBB0062FA56 /* Color+Extension.swift */; };
 		144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144668421EC8AEBB0062FA56 /* Color+Extension.swift */; };
-		144668481EC8AF2C0062FA56 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 144668461EC8AF2C0062FA56 /* Dev-Info.plist */; };
 		14497B411ED35E4900764670 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14497B401ED35E4900764670 /* FollowersViewController.swift */; };
 		14497B421ED35E4900764670 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14497B401ED35E4900764670 /* FollowersViewController.swift */; };
 		144BCF711EE4799600E2E4C6 /* PlaceHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */; };
 		144BCF721EE4799600E2E4C6 /* PlaceHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */; };
-		1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B964AE951DBA74B400A0162E /* Info.plist */; };
 		1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
 		1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1466C6391ECF75DB00C01CF0 /* onboard.mp4 */; };
 		1466C63D1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */; };
@@ -569,7 +567,6 @@
 				14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */,
 				1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
 				14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */,
-				144668481EC8AF2C0062FA56 /* Dev-Info.plist in Resources */,
 				14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,7 +579,6 @@
 				1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
 				B964AE911DBA74B400A0162E /* Images.xcassets in Resources */,
 				B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */,
-				1466C6331ECF3DB900C01CF0 /* Info.plist in Resources */,
 				14C5A0AE1EF4A00B0054D51D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
