@@ -9,7 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import RSKImageCropper
-
+import Crashlytics
 
 protocol PresentedControllerListener {
     func presentedControllerDismissed()
@@ -43,6 +43,7 @@ class EditProfileInfoViewController: UITableViewController {
     
     
     @IBAction func saveAction(_ sender: Any) {
+        Crashlytics.sharedInstance().crash()
         saveInfo()
     }
     @IBAction func dismissAction(_ sender: Any) {

@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        Fabric.with([Crashlytics.self])
+        
         
         
         #if DEVELOPMENT
@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
             let options = FIROptions(contentsOfFile: filePath)
             FIRApp.configure(with: options!)
+            Fabric.with([Crashlytics.self])
         #endif
         
         FIRDatabase.database().persistenceEnabled = true
@@ -46,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
             
-            if let currentUser = FIRAuth.auth()?.currentUser {
+            if let _ = FIRAuth.auth()?.currentUser {
                 QnClient.sharedInstance.signOut()
             }
            
@@ -80,6 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate func checkForCurrentUser()
     {
+//        Crashlytics().crash()
+        
         if FIRAuth.auth()?.currentUser != nil {
             
             let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController

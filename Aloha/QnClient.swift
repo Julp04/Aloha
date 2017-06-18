@@ -227,7 +227,6 @@ class QnClient {
             })
         }
     }
-//
     
     /// Gets most recent info of user passed in.
     ///
