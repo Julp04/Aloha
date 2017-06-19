@@ -21,14 +21,17 @@ struct QnDecoder
     
     static func decodeQRCode(_ message:String) -> User?
     {
-
-        let decryptedString = AES256CBC.decryptString(message, password: Encyrptor.password.rawValue)
         
-        if (decryptedString?.contains("qn"))! {
-            return decodeSocialCode(decryptedString!)
+        guard let decryptedString = AES256CBC.decryptString(message, password: Encyrptor.password.rawValue) else {
+            return nil
+        }
+        
+        if(decryptedString.contains("qn:")) {
+            return decodeSocialCode(decryptedString)
         }else {
             return nil
         }
+       
     }
 
     fileprivate static func decodeSocialCode(_ message:String) -> User

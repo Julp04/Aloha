@@ -120,7 +120,7 @@ final public class AES256CBC {
                 let decryptedString = try aesDecrypt(encryptedString, key: password, iv: iv)
                 return decryptedString
             } catch let err as NSError {
-                print(err.localizedDescription)
+                return nil
             }
         }
         return nil
@@ -188,9 +188,14 @@ final public class AES256CBC {
     /// returns decrypted string, IV must be 16 chars long
     fileprivate class func aesDecrypt(_ str: String, key: String, iv: String) throws -> String {
         let keyData = key.data(using: String.Encoding.utf8)!
-        let ivData = iv.data(using: String.Encoding.utf8)!
+        guard let ivData = iv.data(using: String.Encoding.utf8) else {
+            throw NSError()
+        }
+//        let ivData = iv.data(using: String.Encoding.utf8)!
         //let data = Data(base64Encoded: str, options: NSData.Base64DecodingOptions(rawValue: 0))!
-        let data = Data(base64Encoded: str)!
+        guard let data = Data(base64Encoded: str) else {
+            throw NSError()
+        }
         let dec = try Data(bytes: AESCipher(key: keyData.bytes,
                                             iv: ivData.bytes).decrypt(bytes: data.bytes))
         return String(data: dec, encoding: String.Encoding.utf8)!
