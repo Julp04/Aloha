@@ -150,11 +150,13 @@ extension MainController: ScannerDelegate {
             return
         }
         
+        let scan = Scan(data: qrCode.stringValue)
+        QnClient.sharedInstance.add(scan: scan)
+        
         if let contact = QnDecoder.decodeQRCode(qrCode.stringValue) {
             //todo:check if user still exists
             //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
             
-            let scan = Scan(contact: contact)
             self.contact = contact
             
             scanner.stopCaptureSession()
@@ -169,7 +171,6 @@ extension MainController: ScannerDelegate {
                 url = qrCode.stringValue
             }
             
-            let scan = Scan(url: url)
             
             let popupvc = PTPopupWebViewController()
             popupvc.popupView.URL(string: url)
@@ -191,7 +192,6 @@ extension MainController: ScannerDelegate {
             scanner.stopCaptureSession()
         }else {
             let message = qrCode.stringValue
-            let scan = Scan(message: message!)
             
             let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: kDismissString, style: UIAlertActionStyle.default) {_ in

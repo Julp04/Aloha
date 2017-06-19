@@ -678,6 +678,12 @@ class QnClient {
         }
     }
     
+    func add(scan: Scan) {
+        let id = ref.childByAutoId()
+        let currentUser = FIRAuth.auth()!.currentUser!
+        ref.child("people").child(currentUser.uid).child("scans").childByAutoId().updateChildValues(["data": scan.data, "date": scan.date.asString()])
+    }
+    
     func unlinkAllAccounts() {
         
         TwitterClient.client.unlinkTwitter { (result) in

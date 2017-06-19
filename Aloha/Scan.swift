@@ -17,36 +17,14 @@ enum ScanType  {
 
 struct Scan {
     
-    var type: ScanType
     var date: Date
-    var url: String?
-    var contact: User?
-    var message: String?
+    var data: String
     
-    private init(type: ScanType) {
-        self.type = type
-        self.date = Date()
-        
+
+    init(data: String) {
+        self.data = data;
+        self.date = Date();
     }
-    
-    init(url: String) {
-        let type = ScanType.url
-        self.init(type: type)
-        self.url = url
-    }
-    
-    init(contact: User) {
-        let type = ScanType.contact
-        self.init(type: type)
-        self.contact = contact
-    }
-    
-    init(message: String) {
-        let type = ScanType.message
-        self.init(type: type)
-        self.message = message
-    }
-    
     
     
 }
