@@ -30,6 +30,7 @@ def allPods
     pod 'LTMorphingLabel'
     pod 'Pageboy'
     pod 'AES256CBC'
+    pod 'EasyTipView'
 end
 
 target 'Aloha' do

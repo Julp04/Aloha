@@ -11,6 +11,8 @@
 		140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */; };
 		140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306961ED5D9D800D03359 /* FollowRequestCell.swift */; };
 		140306981ED5D9D800D03359 /* FollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140306961ED5D9D800D03359 /* FollowRequestCell.swift */; };
+		1409E7FC1EFAB4AE0088A297 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409E7FB1EFAB4AE0088A297 /* Tutorial.swift */; };
+		1409E7FD1EFAB4AE0088A297 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409E7FB1EFAB4AE0088A297 /* Tutorial.swift */; };
 		140BCD0B1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		14148BDC1ED76A5900B8021D /* PermissonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14148BDB1ED76A5900B8021D /* PermissonUtility.swift */; };
@@ -149,6 +151,7 @@
 		0F57608E22CC33BB7CF0626C /* Pods-Aloha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aloha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aloha/Pods-Aloha.release.xcconfig"; sourceTree = "<group>"; };
 		140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestsViewController.swift; sourceTree = "<group>"; };
 		140306961ED5D9D800D03359 /* FollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRequestCell.swift; sourceTree = "<group>"; };
+		1409E7FB1EFAB4AE0088A297 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		14148BDB1ED76A5900B8021D /* PermissonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissonUtility.swift; sourceTree = "<group>"; };
 		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 				B92418051DCFB4BD007C0B3B /* QnDecoder.swift */,
 				B92418071DCFB4CA007C0B3B /* QnEncoder.swift */,
 				B9570E011DCF8A2900685718 /* SwiftyUserDefaults.swift */,
+				1409E7FB1EFAB4AE0088A297 /* Tutorial.swift */,
 			);
 			name = Utitilities;
 			sourceTree = "<group>";
@@ -820,6 +824,7 @@
 				144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				140306981ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
+				1409E7FD1EFAB4AE0088A297 /* Tutorial.swift in Sources */,
 				14EC7A861E74F27300B3C4E8 /* QnEncoder.swift in Sources */,
 				14EC7A881E74F27300B3C4E8 /* PasswordViewController.swift in Sources */,
 				140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */,
@@ -881,6 +886,7 @@
 				144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */,
+				1409E7FC1EFAB4AE0088A297 /* Tutorial.swift in Sources */,
 				B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */,
 				B92418081DCFB4CA007C0B3B /* QnEncoder.swift in Sources */,
 				140BCD0B1ECBC37C000FE0E5 /* Scanner.swift in Sources */,

@@ -2,6 +2,7 @@ PODS:
   - AES256CBC (1.1.1)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
+  - EasyTipView (1.0.2)
   - Fabric (1.6.11)
   - FCAlertView (1.3.1)
   - Firebase (3.16.0):
@@ -69,6 +70,7 @@ PODS:
 DEPENDENCIES:
   - AES256CBC
   - Crashlytics
+  - EasyTipView
   - Fabric
   - FCAlertView
   - Firebase
@@ -105,6 +107,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AES256CBC: 22b584fbea28b46ab3c52d44213902ab5c6f801f
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FCAlertView: 083c067bfd98f147abf5a66fe0e31cefac7bc809
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
@@ -134,6 +137,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: a2b7626a9810218c5400d142ca86460e90e35779
+PODFILE CHECKSUM: 370fdb1077463632f82f9c2a9e25e4c1d78b78aa
 
 COCOAPODS: 1.2.0

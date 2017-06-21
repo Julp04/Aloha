@@ -119,7 +119,7 @@ final public class AES256CBC {
             do {
                 let decryptedString = try aesDecrypt(encryptedString, key: password, iv: iv)
                 return decryptedString
-            } catch let err as NSError {
+            } catch {
                 return nil
             }
         }
