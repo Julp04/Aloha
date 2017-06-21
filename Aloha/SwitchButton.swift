@@ -44,7 +44,6 @@ class SwitchButton: UIView {
             shortDescriptionLabel?.textAlignment = .center
         }
     }
-    var buttonType: ButtonType = .none
     
     var labelColor: UIColor = .white {
         didSet {
