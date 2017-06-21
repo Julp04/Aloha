@@ -12,9 +12,6 @@ import UIKit
 
 class PermissonUtility {
     
-    
-    
-    
     static func isCameraAuthorized(completion: @escaping (Bool) -> Void) {
         
         if !Platform.isSimulator {

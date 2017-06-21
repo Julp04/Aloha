@@ -27,8 +27,6 @@
 		1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
-		1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
-		1446683C1EC8A30C0062FA56 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683A1EC8A30C0062FA56 /* Alias.swift */; };
 		1446683F1EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
 		144668401EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
 		144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144668421EC8AEBB0062FA56 /* Color+Extension.swift */; };
@@ -160,7 +158,6 @@
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
 		1418C0251EA67C2F00C5538F /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		1446683A1EC8A30C0062FA56 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		144668421EC8AEBB0062FA56 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		144668461EC8AF2C0062FA56 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
@@ -294,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				14148BDB1ED76A5900B8021D /* PermissonUtility.swift */,
-				1446683A1EC8A30C0062FA56 /* Alias.swift */,
 				140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */,
 				1446683E1EC8A7840062FA56 /* Oops.swift */,
 				147417681EAD0D5700A9A1E9 /* TransitionManager.swift */,
@@ -841,7 +837,6 @@
 				14BF0DF81ED8910000657680 /* ImageDownloader.swift in Sources */,
 				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
 				140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
-				1446683C1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
@@ -903,7 +898,6 @@
 				14BF0DF71ED8910000657680 /* ImageDownloader.swift in Sources */,
 				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
 				140306941ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
-				1446683B1EC8A30C0062FA56 /* Alias.swift in Sources */,
 				1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
