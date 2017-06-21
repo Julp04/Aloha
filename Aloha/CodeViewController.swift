@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import RKDropdownAlert
+import EasyTipView
 
 class CodeViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class CodeViewController: UIViewController {
     let kBorderRadius: CGFloat = 20.0
 
     //MARK: Properties
+    var qrCodeTip: EasyTipView!
     
     //MARK: Outlets
 
@@ -35,6 +37,8 @@ class CodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        qrCodeTip = EasyTipView(text: "Present your QR code for others to scan, to quickly swap info!")
 
         self.view.backgroundColor = UIColor.clear
         
@@ -47,6 +51,18 @@ class CodeViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Defaults[Tutorial.qrCodeShown].bool == false || Defaults[Tutorial.qrCodeShown].bool == nil {
+            qrCodeTip.showTip(animated: true, for: qnCodeImageView, within: nil)
+            Defaults[Tutorial.qrCodeShown] = true
+            Defaults.synchronize()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        qrCodeTip.dismiss()
     }
     
     

@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 import RKDropdownAlert
+import EasyTipView
 
 class ConnectionsViewController: UITableViewController {
 
@@ -26,6 +27,7 @@ class ConnectionsViewController: UITableViewController {
     var following = ConnectionsModel(connections: [User]())
     var selectedConnection: User?
     let searchController = UISearchController(searchResultsController: nil)
+    var noConnectionsTip: EasyTipView!
     
     //MARK: Outlets
     
@@ -40,6 +42,7 @@ class ConnectionsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
             // Setup the Search Controller
         searchController.searchResultsUpdater = self

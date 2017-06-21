@@ -10,6 +10,7 @@ import UIKit
 import SkyFloatingLabelTextField
 import IQKeyboardManagerSwift
 import RSKImageCropper
+import EasyTipView
 
 class AddProfileInfoViewController: UITableViewController {
 
@@ -22,6 +23,7 @@ class AddProfileInfoViewController: UITableViewController {
     let imagePicker = UIImagePickerController()
     var saveButton: UIBarButtonItem!
     var datePicker = UIDatePicker()
+    var profileImageTip: EasyTipView!
    
     //MARK: Outlets
     
@@ -48,6 +50,8 @@ class AddProfileInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileImageTip = EasyTipView(text: "Tap to add a profile image!")
+        
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
@@ -57,6 +61,7 @@ class AddProfileInfoViewController: UITableViewController {
         }
         profileImageView.onClick = {
             self.editProfileImage()
+            self.profileImageTip.dismiss()
         }
         profileImageView.backgroundColor = .main
         
@@ -108,6 +113,17 @@ class AddProfileInfoViewController: UITableViewController {
         
       
         super.viewWillAppear(true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Defaults[Tutorial.addProfilePicture].bool == false || Defaults[Tutorial.addProfilePicture].bool == nil {
+            profileImageTip.showTip(animated: true, for: profileImageView, within: nil)
+            Defaults[Tutorial.addProfilePicture] = true
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        profileImageTip.dismiss()
     }
     
     

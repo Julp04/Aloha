@@ -12,12 +12,14 @@ import AVFoundation
 import PTPopupWebView
 import Crashlytics
 import FirebaseAuth
+import EasyTipView
 
 class MainController: PageboyViewController {
     
     //MARK: Constants
     let kDismissString = "Dismiss"
     let kPinchVelocity = 8.0
+    var showQRCodeTip: EasyTipView!
     
 
     //MARK: Properties
@@ -59,8 +61,8 @@ class MainController: PageboyViewController {
         super.viewDidLoad()
        
         
-        //Hiding nav bar so we can interact with other view controllers in pageview controller
-//        self.navigationController?.navigationBar.isHidden = true
+        showQRCodeTip = EasyTipView(text: "Tap here to share your QR code!")
+        
         
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
@@ -95,7 +97,6 @@ class MainController: PageboyViewController {
         codeButton.center = CGPoint(x: view.center.x, y: view.bounds.height - 40)
         placeHolderViewController.view.addSubview(codeButton)
         
-        
         profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
         
@@ -110,9 +111,18 @@ class MainController: PageboyViewController {
         self.bounces = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if Defaults[Tutorial.revealQRCode].bool == false || Defaults[Tutorial.revealQRCode].bool == nil {
+            showQRCodeTip.showTip(animated: true, for: codeButton, within: nil)
+            Defaults[Tutorial.revealQRCode] = true
+            Defaults.synchronize()
+        }
+    }
+    
     
     func presentCodeController() {
         self.performSegue(withIdentifier: "CodeSegue", sender: self)
+        showQRCodeTip.dismiss()
     }
     
     
