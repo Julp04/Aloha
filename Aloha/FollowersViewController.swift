@@ -135,7 +135,7 @@ class FollowersViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConnectionCell") as! ConnectionCell
-        cell.backgroundColor = .lightGray
+        cell.backgroundColor = .clear
         
         var connection: User?
         
