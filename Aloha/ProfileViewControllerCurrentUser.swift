@@ -198,13 +198,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
     
     func followersViewTapped() {
-//        let followersNavController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewControllerNav") as! UINavigationController
         
         let followersController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
         followersController.configureViewController(type: .followers)
         
-        
-//        self.present(followersNavController, animated: true, completion: nil)
         self.navigationController?.pushViewController(followersController, animated: true)
     }
     
@@ -212,8 +209,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         let followersController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
         followersController.configureViewController(type: .following)
         
-        
-        //        self.present(followersNavController, animated: true, completion: nil)
         self.navigationController?.pushViewController(followersController, animated: true)
     }
     

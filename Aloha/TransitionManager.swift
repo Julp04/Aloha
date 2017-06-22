@@ -14,7 +14,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     var shouldCompleteTransition = false
     var presenting = true
     
-    var isEnabled = true
+    var isEnabled = false
     
     var segueIdentifier: String
     
