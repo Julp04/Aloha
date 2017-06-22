@@ -278,7 +278,9 @@ class ProfileManager {
                     if acessGranted {
                         ContactManager().addContact(self.user, image: self.user.profileImage, completion: { (success) in
                             if success {
-                                self.turnOnContactButtonOtherUser()
+                                DispatchQueue.main.async {
+                                    self.turnOnContactButtonOtherUser()
+                                }
                             }
                         })
                     }else {
