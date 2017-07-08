@@ -109,10 +109,8 @@ class UsernameViewController: UIViewController{
     {
         let ref = FIRDatabase.database().reference()
         
-        let usernamesRef = ref.child("usernames")
-        let currentTypedUserRef = usernamesRef.child(usernameField.text!)
-        
-        currentTypedUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        let usernamesRef = ref.child("users")
+        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: usernameField.text!).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {

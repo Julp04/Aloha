@@ -117,8 +117,11 @@ class AccountsViewController: UIViewController {
             
             switch cameraAuthorizationStatus {
             case .authorized:
-                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
-                self.present(mainVC, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
+                    self.present(mainVC, animated: true, completion: nil)
+                }
+               
             case .notDetermined, .restricted, .denied:
                 // Prompting user for the permission to use the camera.
                 AVCaptureDevice.requestAccess(forMediaType: cameraMediaType) { granted in

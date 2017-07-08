@@ -186,6 +186,7 @@ class TwitterClient {
                 let user = User(snapshot: snapshot)!
                 
                 guard let twitterAccount = user.twitterAccount else {
+                    completion(false, nil)
                     return
                 }
                 

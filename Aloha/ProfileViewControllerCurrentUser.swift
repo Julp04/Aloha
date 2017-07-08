@@ -122,6 +122,13 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             self.updateUI()
         }
         
+        QnClient.sharedInstance.getFollowers { (users) in
+        }
+        
+        QnClient.sharedInstance.getFollowing { (users) in
+            
+        }
+        
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         
@@ -166,7 +173,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                     self.user.profileImage = image
                     self.profileImageView.image = image
                 case .failure(let error):
-                    assertionFailure(error.localizedDescription)
+                    break
                 }
                 
                 self.imageViewSpinner.stopAnimating()
@@ -177,21 +184,23 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             let newRequests = followRequests.count
             
             self.followRequests = followRequests
-            
-            if newRequests > 0 {
-                self.followRequestImageView.image = followRequests[0].profileImage
-                self.requestsCountLabel.text = "\(newRequests)"
+            DispatchQueue.main.async {
+                if newRequests > 0 {
+                    self.followRequestImageView.image = followRequests[0].profileImage
+                    self.requestsCountLabel.text = "\(newRequests)"
+                }
+                self.tableView.reloadData()
+                
+                if newRequests > oldRequests {
+                    let indexPath = IndexPath(row: 1, section: 0)
+                    self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                }
             }
-            
-            
-            
-            self.tableView.reloadData()
-            
-            if newRequests > oldRequests {
-                let indexPath = IndexPath(row: 1, section: 0)
-                self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
-            }
+           
         }
+        
+        profileManager.update(user: user)
+        accountsCollectionView.reloadData()
         
         
     }
@@ -324,8 +333,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     //MARK: Functionality
     
     func editProfile() {
-        
-       //todo: EditProfile
         
         let editProfileNavController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileInfoNavController") as! UINavigationController
         let editProfileInfoViewController = editProfileNavController.viewControllers.first as! EditProfileInfoViewController

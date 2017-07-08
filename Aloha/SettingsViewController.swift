@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import FCAlertView
 import RKDropdownAlert
+import Firebase
+
 
 class SettingsViewController: UITableViewController {
 
@@ -43,10 +45,9 @@ class SettingsViewController: UITableViewController {
         
         MainController.transitionManager.isEnabled = false
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black,
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white,
                                     NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
-        navigationController?.navigationBar.tintColor = .black
-        UIApplication.shared.statusBarStyle = .default
+        navigationController?.navigationBar.tintColor = .white
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,16 +73,35 @@ class SettingsViewController: UITableViewController {
         case 2:
             switch indexPath.row {
             case 0:
+                //Privacy Policy
+               
+                let value = FIRRemoteConfig.remoteConfig().configValue(forKey: "privacypolicyurl")
+                if let urlString = value.stringValue, let url = URL(string: urlString) {
+                    UIApplication.shared.openURL(url)
+                }
                 break
             case 1:
+                let value = FIRRemoteConfig.remoteConfig().configValue(forKey: "termsurl")
+                if let urlString = value.stringValue, let url = URL(string: urlString) {
+                    UIApplication.shared.openURL(url)
+                }
                 break
             case 2:
+                let value = FIRRemoteConfig.remoteConfig().configValue(forKey: "supporturl")
+                if let urlString = value.stringValue, let url = URL(string: urlString) {
+                    UIApplication.shared.openURL(url)
+                }
                 break
             case 3:
+                let value = FIRRemoteConfig.remoteConfig().configValue(forKey: "thirdpartyurl")
+                if let urlString = value.stringValue, let url = URL(string: urlString) {
+                    UIApplication.shared.openURL(url)
+                }
                 break
             case 4:
                 //Delete account
                 showDeleteAccountAlert()
+                break;
             default:
                 break
             }
@@ -95,9 +115,9 @@ class SettingsViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
             
-//            QnClient.sharedInstance.deleteCurrentUser(completion: { (error) in
-//                print(error)
-//            })
+            QnClient.sharedInstance.deleteCurrentUser(completion: { (error) in
+                print(error)
+            })
             
 //            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
             

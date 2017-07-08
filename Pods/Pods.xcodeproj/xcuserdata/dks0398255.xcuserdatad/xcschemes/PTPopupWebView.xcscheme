@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2B3DFAC4D183AB6C66E8C93DAC35CAFD'
+               BlueprintIdentifier = 'EC22270F1D6F5B3F15B91E48878C28F0'
                BlueprintName = 'PTPopupWebView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PTPopupWebView.framework'>

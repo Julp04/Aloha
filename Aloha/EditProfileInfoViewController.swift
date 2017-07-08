@@ -137,7 +137,7 @@ class EditProfileInfoViewController: UITableViewController {
                 self.profileImageView.image = image
                 self.currentUser.profileImage = image
             case .failure(let error):
-                assertionFailure(error.localizedDescription)
+                break
             }
         }
         

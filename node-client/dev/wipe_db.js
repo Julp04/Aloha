@@ -4,7 +4,8 @@ var serviceAccount = require("./aloha-dev-firebase-adminsdk-k5no5-be14dec376");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://aloha-dev.firebaseio.com"
+  databaseURL: "https://aloha-dev.firebaseio.com",
+  storageBucket: "gs://aloha-dev.appspot.com"
 });
 
 

@@ -853,7 +853,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings_icon" id="umK-bK-YtJ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="BlF-UI-7RL" kind="show" id="z9x-44-mPY"/>
+                                <action selector="settingsAction:" destination="rI9-Cc-z6b" id="VR4-IU-UgB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -864,7 +864,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15m-ki-hfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5328.8000000000002" y="-4042.1289355322342"/>
+            <point key="canvasLocation" x="5558" y="-3913"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="4vr-Wm-ig8">
@@ -1172,12 +1172,12 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4208.8000000000002" y="-3394.4527736131936"/>
+            <point key="canvasLocation" x="4559" y="-3308"/>
         </scene>
         <!--Settings-->
         <scene sceneID="21n-iJ-n9l">
             <objects>
-                <tableViewController id="BlF-UI-7RL" customClass="SettingsViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsViewController" id="BlF-UI-7RL" customClass="SettingsViewController" customModule="Aloha" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OLH-st-4AY">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1517,7 +1517,7 @@
                             <outlet property="delegate" destination="BlF-UI-7RL" id="cRT-4q-rrE"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="PhT-rT-UPz"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1530,7 +1530,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEL-ao-Pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5744" y="-5165.217391304348"/>
+            <point key="canvasLocation" x="6683.1999999999998" y="-5165.217391304348"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zbO-VV-lsY">

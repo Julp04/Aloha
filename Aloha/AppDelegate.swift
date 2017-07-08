@@ -28,8 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        
-        
+        //Activate remoteconfig to get different values which we can update on firebase, such as urls that might need to change. See SettingsViewController
+        FIRRemoteConfig.remoteConfig().fetch(completionHandler: { (status, error) in
+            if error == nil {
+                FIRRemoteConfig.remoteConfig().activateFetched()
+            }
+        })
         
         #if DEVELOPMENT
             let filePath = Bundle.main.path(forResource: "GoogleService-Info-DEV", ofType: "plist")!

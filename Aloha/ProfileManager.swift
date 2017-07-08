@@ -228,6 +228,26 @@ class ProfileManager {
                             return
                         }
                         
+                        QnClient.sharedInstance.currentUser(completion: { (user) in
+                            if user.twitterAccount == nil {
+                                let alert = FCAlertView()
+                                alert.addButton("Link", withActionBlock: {
+                                    guard Reachability.isConnectedToInternet() else {
+                                        AlertUtility.showConnectionAlert()
+                                        return
+                                    }
+                                    TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
+                                        if error != nil {
+                                            print(error!)
+                                        }
+                                    })
+                                })
+                                alert.colorScheme = .twitter
+                                alert.showAlert(inView: self.viewController, withTitle: "Not linked with Twitter!", withSubtitle: "You need to link with Twitter to follow this user!", withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
+                                return 
+                            }
+                        })
+                        
                         TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
                             if error != nil {
                                 RKDropdownAlert.title("Oops!", message: "We could not handle your request", backgroundColor: .gray, textColor: .white)

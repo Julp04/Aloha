@@ -174,21 +174,28 @@ class LoginViewController: UIViewController {
         //User is loggin in with username
         
         let ref = FIRDatabase.database().reference()
-        let usernamesRef = ref.child("usernames")
-        let currentTypedUserRef = usernamesRef.child(emailField.text!)
-        
-        currentTypedUserRef.observeSingleEvent(of: .value, with: { snapshot in
+        let usernamesRef = ref.child("users")
+        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: emailField.text!).observeSingleEvent(of: .value, with: { snapshot in
             
             guard snapshot.exists() else {
                 self.emailField.errorMessage = "Invalid Username"
                 self.loginButton.stopLoadingAnimation()
                 return
             }
+        
+            let values = snapshot.value as! NSDictionary
+            let key = values.allKeys.first as! String
+        
             
-            usernamesRef.observeSingleEvent(of: .value, with: {snapshot in
-                let values = snapshot.value as! NSDictionary
-                let email = values[self.emailField.text!] as! String
-                
+            guard let values2 = values[key] as? NSDictionary else {
+                return
+            }
+            
+            guard let email = values2["email"] as? String else {
+                return
+            }
+            
+            
                 FIRAuth.auth()?.signIn(withEmail: email, password: self.passwordField.text!) {user, error in
                     if error != nil {
                         self.loginButton.stopLoadingAnimation()
@@ -213,7 +220,6 @@ class LoginViewController: UIViewController {
                     }
                 }
             })
-        })
 
     }
 

@@ -13,6 +13,7 @@ def allPods
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
+    pod 'Firebase/RemoteConfig'
     pod 'RKDropdownAlert'
     pod 'FCAlertView'
     pod 'Fabric'

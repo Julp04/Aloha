@@ -357,7 +357,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
                                 self.user.profileImage = image
                                 self.profileImageView.image = image
                             case .failure(let error):
-                                assertionFailure(error.localizedDescription)
+                                break
                             }
                             
                             self.imageViewSpinner.stopAnimating()

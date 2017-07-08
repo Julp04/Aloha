@@ -161,7 +161,7 @@ class SwitchButton: UIView {
         
         startShape = UIBezierPath(roundedRect: rectBounds, cornerRadius: 50).cgPath
         
-        let height = layer.bounds.height * 3.0
+        let height = layer.bounds.height * 5.0
         let width = height
         
         let x = height / -2.4 - 20

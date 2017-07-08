@@ -65,6 +65,12 @@ class CodeViewController: UIViewController {
         qrCodeTip.dismiss()
     }
     
+    @IBAction func settingsAction(_ sender: Any) {
+        
+        let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        
+        self.navigationController?.pushViewController(settingsVC, animated: true)
+    }
     
     //MARK: Functionality
     
