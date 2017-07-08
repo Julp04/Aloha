@@ -581,7 +581,6 @@ class QnClient {
         }
     }
     func add(scan: Scan) {
-        let id = ref.childByAutoId()
         let currentUser = FIRAuth.auth()!.currentUser!
         ref.child("scans").child(currentUser.uid).childByAutoId().updateChildValues(["data": scan.data, "date": scan.date.asString()])
     }

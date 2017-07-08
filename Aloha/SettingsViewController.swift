@@ -17,6 +17,7 @@ class SettingsViewController: UITableViewController {
 
 
     //MARK: Constants
+    let kContactSupport = "support@sayaloha.io"
     
     //MARK: Properties
     
@@ -113,15 +114,49 @@ class SettingsViewController: UITableViewController {
     func showDeleteAccountAlert() {
         let alert = UIAlertController(title: "Delete your account?", message: "Deleting your account will completely remove all user data. Is this really good-bye? 😢", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addTextField { (textField) in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
             
-            QnClient.sharedInstance.deleteCurrentUser(completion: { (error) in
-                print(error)
-            })
-            
-//            self.performSegue(withIdentifier: "LogoutSegue", sender: self)
-            
+            if let password = alert.textFields?[0].text {
+                let currentUser = FIRAuth.auth()!.currentUser!
+                FIRAuth.auth()?.signIn(withEmail: currentUser.email!, password: password, completion: { (user, error) in
+                    if error != nil {
+                        self.showIncorrectPasswordAlert()
+                    }else {
+                        QnClient.sharedInstance.deleteCurrentUser(completion: { (result) in
+                            switch result {
+                            case .failure(let error):
+                                //Unable to delete your account
+                                print(error)
+                                break
+                            case .success(nil):
+                                self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+                                break
+                            default:
+                                break
+                            }
+                        })
+                    }
+                })
+            }
         }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func showIncorrectPasswordAlert() {
+        let alert = UIAlertController(title: "Unable to delete account", message: "Password entered was incorrect", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showUnableToDeleteAccountAlert() {
+        let alert = UIAlertController(title: "Oops we were unable to delete your account", message: "Please contact us at \(kContactSupport)", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        
         present(alert, animated: true, completion: nil)
     }
   

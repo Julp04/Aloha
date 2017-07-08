@@ -119,6 +119,8 @@ class TwitterClient {
                     })
                 }
             })
+            }else {
+                completion(.success(nil))
             }
         })
     }
