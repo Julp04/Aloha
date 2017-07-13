@@ -294,21 +294,26 @@ class QnClient {
         
         followingRef.observe(.value, with: { (snapshot) in
 
-            if let status = snapshot.value as? Bool {
-                if status {
-                    completion(.accepted)
-                }else {
-                    completion(.pending)
-                }
-            }else {
-                blockingRef.observe(.value, with: { (snapshot) in
-                    if snapshot.exists() {
-                        completion(.blocking)
+            if let values = snapshot.value as? NSDictionary {
+                if let status = values["following"] as? Bool {
+                    if status {
+                        completion(.accepted)
+                        return
                     }else {
-                        completion(.notFollowing)
+                        completion(.pending)
+                        return
                     }
-                })
+                }
             }
+            blockingRef.observe(.value, with: { (snapshot) in
+                if snapshot.exists() {
+                    completion(.blocking)
+                    return
+                }else {
+                    completion(.notFollowing)
+                    return
+                }
+            })
         })
     }
     
@@ -328,12 +333,14 @@ class QnClient {
         //If we are scanning directly from their phone private settings do not apply
         if user.isPrivate {
             //Current user is requesting to follow user passed in
-            followingRef.updateChildValues([user.uid: false])
-            followersRef.updateChildValues([currentUser.uid: false])
+            
+            followingRef.child(user.uid).updateChildValues(["following": false])
+            followersRef.child(currentUser.uid).updateChildValues(["follower": false])
+            
         }else {
             //Current user can automatically follow this user
-            followingRef.updateChildValues([user.uid: true])
-            followersRef.updateChildValues([currentUser.uid: true])
+            followingRef.child(user.uid).updateChildValues(["following": true, "date": Date().asString()])
+            followersRef.child(currentUser.uid).updateChildValues(["follower": false, "date": Date().asString()])
         }
         
         completion(nil)
@@ -360,8 +367,8 @@ class QnClient {
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         //Change status to following
-        ref.child("following").child(user.uid).updateChildValues([currentUser.uid: true])
-        ref.child("followers").child(currentUser.uid).updateChildValues([user.uid: true])
+        ref.child("following").child(user.uid).child(currentUser.uid).updateChildValues(["following": true, "date": Date().asString()])
+        ref.child("followers").child(currentUser.uid).child(user.uid).updateChildValues(["follower": true, "date": Date().asString()])
         completion(nil)
     }
     
@@ -387,6 +394,7 @@ class QnClient {
         
         //user being blocked is not allowed to follow current user anymore
         self.ref.child("following").child(user.uid).child(currentUser.uid).removeValue()
+        self.ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
  
     }
     
@@ -415,7 +423,7 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        ref.child("following").child(currentUser.uid).queryOrderedByValue().queryEqual(toValue: true).observe(.value, with: { (snapshot) in
+        ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             //Update following count
             self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["following": Int(snapshot.childrenCount)])
@@ -429,7 +437,9 @@ class QnClient {
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
                 let userID = item.key
-                let status = item.value as! Bool
+                
+                let values = item.value as! NSDictionary
+                let status = values["following"] as! Bool
                 
                 //IF status is false that means it is pending and not actually following
                 guard status else {
@@ -467,7 +477,7 @@ class QnClient {
         
        
         
-        ref.child("followers").child(currentUser.uid).queryOrderedByValue().queryEqual(toValue: true).observe(.value, with: { (snapshot) in
+        ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             //Update follower count
             self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["followers": Int(snapshot.childrenCount)])
@@ -514,7 +524,7 @@ class QnClient {
     func getFollowRequests(completion: @escaping (([User]) -> Void)) {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child("followers").child(currentUser.uid).queryOrderedByValue().queryEqual(toValue: false).observe(.value, with: { (snapshot) in
+        ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: false).observe(.value, with: { (snapshot) in
             var users = [User]()
             
             if !snapshot.exists() {
