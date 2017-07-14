@@ -49,7 +49,6 @@ class EmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         emailField.becomeFirstResponder()
@@ -95,7 +94,6 @@ class EmailViewController: UIViewController {
                 return
             }
             
-            print("No active email")
             //No active email continue to register
             self.userInfo?.email = self.emailField.text!
            
@@ -119,8 +117,6 @@ class EmailViewController: UIViewController {
                     }
                 }
         }
-        
-        
     }
     
     //MARK: Segue
