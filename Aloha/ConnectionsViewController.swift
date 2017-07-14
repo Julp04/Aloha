@@ -44,28 +44,12 @@ class ConnectionsViewController: UITableViewController {
         super.viewDidLoad()
         
         
-            // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        
-        navigationController?.navigationBar.topItem?.titleView = searchController.searchBar
-        
-        self.extendedLayoutIncludesOpaqueBars = true
+ 
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = .clear
         tableView.sectionIndexColor = .white
         tableView.sectionIndexBackgroundColor = .clear
-        
-    
-        let longPressGesture = UILongPressGestureRecognizer()
-        longPressGesture.minimumPressDuration = kPressDuration
-        longPressGesture.delegate = self
-        tableView.addGestureRecognizer(longPressGesture)
         
         self.navigationController?.navigationBar.barTintColor = .main
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -73,23 +57,25 @@ class ConnectionsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
-        //bug i was having (this might be temp fix ?? 😜
-        MainController.transitionManager.isEnabled = false
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        
+        navigationItem.titleView = searchController.searchBar
+        
+        self.extendedLayoutIncludesOpaqueBars = true
         
         QnClient.sharedInstance.getFollowing { (users) in
+            
             self.following = ConnectionsModel(connections: users)
             self.tableView.reloadData()
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //Enable the transition manager when we leave this view controler
-        MainController.transitionManager.isEnabled = true
-    }
-    
 
-    
 
     // MARK: - Table view data source
 
@@ -103,7 +89,6 @@ class ConnectionsViewController: UITableViewController {
             }else {
                 self.tableView.backgroundView = nil
                 return following.numberOfFilteredConnectionSections()
-             
             }
         }
         
@@ -205,11 +190,9 @@ class ConnectionsViewController: UITableViewController {
 
 
         if let connection = connection{
-
-            let profileNavController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUserNav") as! UINavigationController
-            let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
+            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUser") as! ProfileViewControllerOtherUser
             profileViewController.configureViewController(user: connection)
-            present(profileNavController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(profileViewController, animated: true)
         }
 
         
