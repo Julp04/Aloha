@@ -260,26 +260,33 @@ class QnClient {
     func getFollowStatusOnce(user: User, completion:@escaping (FollowingStatus) -> Void) {
         let currentUser = FIRAuth.auth()!.currentUser!
 
+        let followingRef = ref.child("following").child(currentUser.uid).child(user.uid)
+        let blockingRef = ref.child("blocking").child(currentUser.uid).child(user.uid)
         
-        self.ref.child("following").child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        followingRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            
-            if let status = snapshot.value as? Bool {
-                if status {
-                    completion(.accepted)
-                }else {
-                    completion(.pending)
-                }
-            }else {
-                self.ref.child("blocking").child(currentUser.uid).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if snapshot.exists() {
-                        completion(.blocking)
+            if let values = snapshot.value as? NSDictionary {
+                if let status = values["following"] as? Bool {
+                    if status {
+                        completion(.accepted)
+                        return
                     }else {
-                        completion(.notFollowing)
+                        completion(.pending)
+                        return
                     }
-                })
+                }
             }
+            blockingRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    completion(.blocking)
+                    return
+                }else {
+                    completion(.notFollowing)
+                    return
+                }
+            })
         })
+
     }
     
     func getFollowStatus(user: User, completion: @escaping (FollowingStatus) -> Void) {
@@ -340,7 +347,7 @@ class QnClient {
         }else {
             //Current user can automatically follow this user
             followingRef.child(user.uid).updateChildValues(["following": true, "date": Date().asString()])
-            followersRef.child(currentUser.uid).updateChildValues(["follower": false, "date": Date().asString()])
+            followersRef.child(currentUser.uid).updateChildValues(["follower": true, "date": Date().asString()])
         }
         
         completion(nil)
@@ -352,6 +359,8 @@ class QnClient {
         
         self.ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
         self.ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
+        
+        completion(nil)
     }
     
     func unfollow(user: User, completion: @escaping ErrorCompletion)
@@ -360,6 +369,7 @@ class QnClient {
         
         ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
         ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
+        completion(nil)
 
     }
     
