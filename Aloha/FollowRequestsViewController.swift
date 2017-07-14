@@ -28,6 +28,9 @@ class FollowRequestsViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.allowsSelection = false
         
+        tableView.backgroundColor = .lightGray
+        tableView.separatorStyle = .none
+        
     }
     
     
@@ -69,11 +72,8 @@ class FollowRequestsViewController: UITableViewController {
         cell.declineButton.addTarget(self, action: #selector(FollowRequestsViewController.declineRequest(sender:)), for: .touchUpInside)
         
         cell.statusButton.isHidden = true
-     
-        
-        
-       
-        
+        cell.backgroundColor = .clear
+
         return cell
     }
     
@@ -86,7 +86,8 @@ class FollowRequestsViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FollowRequestCell
         
         //This might have to be observed only once
-        QnClient.sharedInstance.getFollowStatusOnce(user: user) { (status) in
+        let client = QnClient()
+        client.getFollowStatus(user: user) { (status) in
             cell.statusButton.removeTarget(nil, action: nil, for: .allEvents)
             switch status {
             case .accepted:
@@ -113,6 +114,7 @@ class FollowRequestsViewController: UITableViewController {
                 cell.acceptButton.isHidden = true
                 cell.declineButton.isHidden = true
             }
+            client.removeAllObservers()
         }
     }
     
