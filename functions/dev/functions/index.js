@@ -29,12 +29,14 @@ exports.deleteUser = functions.auth.user().onDelete(event => {
           console.log(key) 
         }
 			 admin.database().ref("followers").child(key).child(uid).remove();
+			 admin.database().ref("following").child(key).child(uid).remove();
   		}
       console.log("Deleting " + uid);
-  		admin.database().ref("users").child(uid).remove();
-  		admin.database().ref("snaps").child(uid).remove();
+  		
+  		admin.database().ref("scans").child(uid).remove();
   		admin.database().ref("followers").child(uid).remove();
       admin.database().ref("following").child(uid).remove();
+      admin.database().ref("users").child(uid).remove();
   });
 });
 
@@ -42,26 +44,66 @@ exports.wipeDB = functions.https.onRequest((request, response) => {
 	wipeDatabase();
 });
 
-   // Wipe the database by removing the root node
-    function wipeDatabase() {
-        console.log("Wiping database... ");
-        admin.database().ref().remove()
-            .then( () => {
-                console.log('DONE!');
-                process.exit();
-            })
-            .catch( e => {
-                console.log(e.message);
-                process.exit();
-            });
+function wipeDatabase() {
+    let user, users = [];
+    let usersRef = admin.database().ref('/users');
+   
+    usersRef.once('value').then( (snapshot) => {
+      snapshot.forEach( (childSnapshot) => {
+        user = childSnapshot.val();
+        users.push(user);
+      });
 
-            admin.storage().ref('user').remove()
-                .then( () => {
-                    console.log('Removed all files!');
-                    process.exit();
-                })
-                .catch( e => {
-                    console.log(e.message);
-                    process.exit();
-                })
-    };
+      console.log(users.length + " users retrieved");
+
+      if (users.length > 0) {
+        console.log("Deleting users...");
+
+        let promises = users.map(user => deleteUser(user));
+
+        Promise.all(promises)
+          .then(clearDatabase)
+          .catch( e => console.log(e.message) );
+      }else {
+        clearDatabase();
+      }
+    });
+}
+
+
+   // Wipe the database by removing the root node
+
+
+
+function deleteUser(user) {
+      return new Promise((resolve, reject) => {
+          console.log("Delete user: " + user.username + "");
+          admin.auth()
+              .deleteUser(user.uid)
+              .then( () => {
+                  console.log(user.uid + " deleted.");
+                  resolve(user);
+              })
+              .catch( e => {
+                  console.log([e.message, user.name, "could not be deleted!"].join(' '));
+                  resolve(user);
+              });
+          admin.database().ref("/users").remove();
+          admin.database().ref("/usernames").remove();
+      });
+  }
+
+
+ // Wipe the database by removing the root node
+function clearDatabase() {
+    console.log("Wiping database... ");
+    admin.database().ref().remove()
+        .then( () => {
+            console.log('DONE!');
+            process.exit();
+        })
+        .catch( e => {
+            console.log(e.message);
+            process.exit();
+        });
+}

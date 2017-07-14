@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //todo:Want to signout of Firebase if app was deleted. Use NSUserDefaults to tell
-        
         UIApplication.shared.statusBarStyle = .lightContent
         
         //Activate remoteconfig to get different values which we can update on firebase, such as urls that might need to change. See SettingsViewController
@@ -84,9 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     fileprivate func checkForCurrentUser()
-    {
-//        Crashlytics().crash()
-        
+    {   
         if FIRAuth.auth()?.currentUser != nil {
             
             let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController

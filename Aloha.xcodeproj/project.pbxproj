@@ -163,7 +163,6 @@
 		144668461EC8AF2C0062FA56 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		14497B401ED35E4900764670 /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHolderViewController.swift; sourceTree = "<group>"; };
-		1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1466C6391ECF75DB00C01CF0 /* onboard.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboard.mp4; sourceTree = "<group>"; };
 		1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessCameraController.swift; sourceTree = "<group>"; };
 		1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -310,7 +309,6 @@
 		B964AE7A1DBA74B400A0162E = {
 			isa = PBXGroup;
 			children = (
-				1466C6311ECF3B5500C01CF0 /* Default-568h@2x.png */,
 				B964AE851DBA74B400A0162E /* Aloha */,
 				B964AE9D1DBA74B400A0162E /* AlohaTests */,
 				B964AE841DBA74B400A0162E /* Products */,
