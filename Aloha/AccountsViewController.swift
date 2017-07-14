@@ -246,9 +246,6 @@ class AccountsViewController: UIViewController {
         }
     }
     
-    //MARK: UI
-    
-
 }
 
 
