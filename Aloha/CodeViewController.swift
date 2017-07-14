@@ -19,6 +19,7 @@ class CodeViewController: UIViewController {
 
     //MARK: Properties
     var qrCodeTip: EasyTipView!
+    var client = QnClient()
     
     //MARK: Outlets
 
@@ -63,6 +64,7 @@ class CodeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         qrCodeTip.dismiss()
+        client.removeAllObservers()
     }
     
     @IBAction func settingsAction(_ sender: Any) {
@@ -79,8 +81,8 @@ class CodeViewController: UIViewController {
      */
     fileprivate func createQRCode()
     {        
-        QnClient.sharedInstance.currentUser { (user) in
-            let encoder = QnEncoder(user: user)
+        client.currentUser { (user) in
+            let encoder = QnEncoder(user: user!)
             let qrCode = QNectCode(message: encoder.encodeUserInfo())
             qrCode.color = .black
             qrCode.backgroundColor = .white

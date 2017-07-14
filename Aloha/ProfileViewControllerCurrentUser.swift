@@ -123,11 +123,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         updateUI()
         
         
-        client.getUpdatedInfoForUser(user: user) { (user) in
-            self.user = user
-            self.updateUI()
-        }
-        
         client.getFollowers { (users) in
         }
         
@@ -159,6 +154,11 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         navigationController?.navigationBar.topItem?.title = user.username
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationController?.delegate = self
+        
+        client.getUpdatedInfoForUser(user: user) { (user) in
+            self.user = user
+            self.updateUI()
+        }
         
         
         client.getProfileImageForUser(user: user, began: {
@@ -206,6 +206,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         client.removeAllObservers()
     }
+    
     
     
     func followersViewTapped() {

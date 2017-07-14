@@ -18,6 +18,8 @@ class AccountsViewController: UIViewController {
 
     //MARK: Properties
     
+    var client = QnClient()
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -94,6 +96,10 @@ class AccountsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        client.removeAllObservers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -213,8 +219,8 @@ class AccountsViewController: UIViewController {
         self.twitterButton.isEnabled = false
         self.twitterButton.animationDidStartClosure = {_ in
             
-            QnClient.sharedInstance.currentUser {user in
-                self.twitterTitleLabel.text = user.twitterAccount!.screenName
+            self.client.currentUser {user in
+                self.twitterTitleLabel.text = user!.twitterAccount!.screenName
             }
             self.twitterImageView.tintColor = .white
             self.twitterTitleLabel.textColor = .white

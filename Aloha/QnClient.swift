@@ -139,14 +139,20 @@ class QnClient {
         }
     }
 
-    func currentUser(completion: @escaping (User) -> Void)
+    func currentUser(completion: @escaping (User?) -> Void)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        let userRef = ref.child(DatabaseFields.users.rawValue).child(currentUser.uid)
+        allRefs.append(userRef)
+        
+        userRef.observe(.value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
                 completion(user)
             }else {
+                print("User not available")
+                QnClient.sharedInstance.signOut()
+                completion(nil)
             }
             
         })

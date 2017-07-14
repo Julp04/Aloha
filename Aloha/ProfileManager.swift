@@ -13,6 +13,7 @@ import ReachabilitySwift
 
 class ProfileManager {
     
+    var client = QnClient()
     var user: User
     var viewController: UIViewController
     var delegate: ProfileManagerDelegate?
@@ -41,6 +42,10 @@ class ProfileManager {
         buttons = [SwitchButton]()
         
         createButtonsForUser()
+    }
+    
+    deinit {
+        client.removeAllObservers()
     }
     
     //Setup for current user
@@ -117,9 +122,9 @@ class ProfileManager {
     private func turnOnTwitterButtonCurrentUser() {
         twitterButton.turnOn()
         self.twitterButton.animationDidStartClosure = {_ in
-            QnClient.sharedInstance.currentUser {user in
-                self.user = user
-                self.twitterButton.shortText = user.twitterAccount!.screenName
+            self.client.currentUser {user in
+                self.user = user!
+                self.twitterButton.shortText = user!.twitterAccount!.screenName
             }
             
         }
@@ -228,8 +233,8 @@ class ProfileManager {
                             return
                         }
                         
-                        QnClient.sharedInstance.currentUser(completion: { (user) in
-                            if user.twitterAccount == nil {
+                        self.client.currentUser(completion: { (user) in
+                            if user!.twitterAccount == nil {
                                 let alert = FCAlertView()
                                 alert.addButton("Link", withActionBlock: {
                                     guard Reachability.isConnectedToInternet() else {

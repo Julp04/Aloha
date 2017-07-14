@@ -23,6 +23,7 @@ class MainController: PageboyViewController {
     
 
     //MARK: Properties
+    var client = QnClient()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -100,7 +101,16 @@ class MainController: PageboyViewController {
         profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
         
-        QnClient.sharedInstance.currentUser { (currentUser) in
+        client.currentUser { (currentUser) in
+            
+            guard let currentUser = currentUser else {
+                self.client.signOut()
+                let onboardNav = self.storyboard?.instantiateViewController(withIdentifier: "OnboardNavController") as! UINavigationController
+                self.present(onboardNav, animated: false, completion: nil)
+                return
+            }
+            
+            
             self.profileViewController.configureViewController(currentUser: currentUser)
         }
         
@@ -156,7 +166,7 @@ extension MainController: ScannerDelegate {
         }
         
         let scan = Scan(data: qrCode.stringValue)
-        QnClient.sharedInstance.add(scan: scan)
+        client.add(scan: scan)
         
         if let contact = QnDecoder.decodeQRCode(qrCode.stringValue) {
             //todo:check if user still exists

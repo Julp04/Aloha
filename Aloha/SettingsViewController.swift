@@ -20,6 +20,7 @@ class SettingsViewController: UITableViewController {
     let kContactSupport = "support@sayaloha.io"
     
     //MARK: Properties
+    var client = QnClient()
     
     //MARK: Outlets
     
@@ -29,7 +30,7 @@ class SettingsViewController: UITableViewController {
     @IBAction func privateModeChanged(_ sender: Any) {
         let privateModeSwitch = sender as! UISwitch
     
-        QnClient.sharedInstance.updatePrivateMode(isPrivate: privateModeSwitch.isOn)
+        client.updatePrivateMode(isPrivate: privateModeSwitch.isOn)
     }
   
     //MARK: LifeCycle Methods
@@ -37,8 +38,8 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        QnClient.sharedInstance.currentUser { (user) in
-            self.privateModeSwitch.isOn = user.isPrivate
+        client.currentUser { (user) in
+            self.privateModeSwitch.isOn = user!.isPrivate
         }
     }
     
@@ -53,6 +54,7 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = .lightContent
+        client.removeAllObservers()
     }
     
     //MARK: Table View Delegate Methods
