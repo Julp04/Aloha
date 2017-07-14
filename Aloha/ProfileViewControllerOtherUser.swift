@@ -24,6 +24,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     let kHeaderHeight: CGFloat = 30.0
     let kHeaderFontSize: CGFloat = 13.0
     let kHeaderFontName = "Futura"
+     let kNavigationBarHeight: CGFloat = 64
     
     let collectionTopInset: CGFloat = 0
     let collectionBottomInset: CGFloat = 0
@@ -32,6 +33,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     
     //MARK: Properties
+    var client: QnClient = QnClient()
     var user: User!
     let connectionsHeaderTitle = "Common Connections"
     var colorView: GradientView!
@@ -44,6 +46,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     var settingsAlert: UIAlertController!
     
     var backgroundView: UIView!
+    var settingsButton: UIBarButtonItem!
     
    
     //MARK: Outlets
@@ -72,13 +75,14 @@ class ProfileViewControllerOtherUser: UITableViewController {
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var accountsCollectionView: UICollectionView!
+    
+    
     
     //MARK: Actions
     
-    @IBAction func settingsAction(_ sender: Any) {
-        present(settingsAlert, animated: true, completion: nil)
+    func settingsAction(_ sender: Any) {
+        present(settingsAlert, animated: true)
     }
     
     @IBAction func dimissAction(_ sender: Any) {
@@ -97,7 +101,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Setup view controller as if we were viewing someone else's profile
         //Ex: Follow button would be displayed, we could see call, message, email buttons (only if user had those), Show common connections with current user, Accounts button would change so you could follow or add the contact
         
-        navigationController?.navigationBar.topItem?.title = user.username
+        
         
         callButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.callUser), for: .touchUpInside)
         messageButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.messageUser), for: .touchUpInside)
@@ -115,6 +119,13 @@ class ProfileViewControllerOtherUser: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_icon"), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(ProfileViewControllerOtherUser.settingsAction(_:)))
+        navigationItem.setRightBarButton(settingsButton, animated: false)
+        navigationItem.title = user.username
+        navigationItem.titleView?.tintColor = .white
+        
         imageViewSpinner.isHidden = true
         
         setUpViewController()
@@ -129,12 +140,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .none
         
-        
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1)
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.delegate = self
         
         
         accountsCollectionView.dataSource = self
@@ -151,7 +157,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         if indexPath.section == 0 {
             
             //todo: calculate this value better
-            return 350.0
+            return calculateProfileViewHeight() + kNavigationBarHeight
         }
         
         return 125
@@ -186,29 +192,34 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func listenForUpdates() {
         
-        //This will get called if the user you are viewing makes a change to his profile as you are viewing it.
-        QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (updatedUser) in
-            self.user = updatedUser
-            
-            
+//        This will get called if the user you are viewing makes a change to his profile as you are viewing it.
+        client.getUpdatedInfoForUser(user: user) { (updatedUser) in
+          
             //Set profileManager again with updated user,to see account buttons
-            self.profileManager.update(user: self.user)
-            self.accountsCollectionView.reloadData()
-            self.updateUI()
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.user = updatedUser
+                self.profileManager.update(user: self.user)
+                self.accountsCollectionView.reloadData()
+                self.updateUI()
+                self.tableView.reloadData()
+            }
         }
         
-        QnClient.sharedInstance.getFollowStatus(user: user) { (status) in
+        client.getFollowStatus(user: user) { (status) in
             self.followingStatus = status
             self.updateUI()
             self.tableView.reloadData()
         }
         
         
-        QnClient.sharedInstance.isBlockedBy(user: user) { (isBlocked) in
+        client.isBlockedBy(user: user) { (isBlocked) in
             self.isBlocked = isBlocked
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        client.removeAllObservers()
     }
     
     func updateUI() {
@@ -321,25 +332,18 @@ class ProfileViewControllerOtherUser: UITableViewController {
         messageButton.isHidden = user.phone == nil
         emailButton.isHidden = user.personalEmail == nil
         faceTimeButton.isHidden = user.phone == nil
+        tableView.reloadData()
+    }
+    
+    func dismissController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
     func calculateProfileViewHeight() -> CGFloat
     {
-        
-        let imageHeight = profileImageStackView.frame.height
-        let nameHeight = nameStackView.frame.height
-        let aboutHeight = aboutStackView.frame.height
-        let followHeight = followStackView.frame.height
-        let contactButtonsHeight = contactButtonsStackView.frame.height
-        let statsHeight = statsStackView.frame.height
-        
-        let total = imageHeight + nameHeight + aboutHeight + followHeight + contactButtonsHeight + statsHeight
-        
         let y = statsStackView.frame.origin.y
-        let finalPosition = y
-        
-        return finalPosition
+        return y
     }
     
     func getProfileImage() {
@@ -356,7 +360,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
                             case .success(let image):
                                 self.user.profileImage = image
                                 self.profileImageView.image = image
-                            case .failure(let error):
+                            case .failure( _):
                                 break
                             }
                             
@@ -496,6 +500,27 @@ extension ProfileViewControllerOtherUser {
         return 3
     }
     
+    
+}
+
+extension ProfileViewControllerOtherUser: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.viewControllers.count != 1 {
+            return
+        }else {
+            navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1)
+            navigationController.navigationBar.isTranslucent = false
+            navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController.navigationBar.shadowImage = UIImage()
+            navigationController.navigationBar.tintColor = .white
+            
+
+            let cancelButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cancel_button"), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(ProfileViewControllerOtherUser.dismissController))
+            navigationItem.leftBarButtonItem = cancelButton
+            navigationItem.titleView?.tintColor = .white
+            
+        }
+    }
 }
 
 extension ProfileViewControllerOtherUser: UICollectionViewDataSource {
@@ -536,7 +561,7 @@ extension ProfileViewControllerOtherUser: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tableViewCellHeight: CGFloat = tableView.rowHeight
         let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
-        let collectionViewHeight: CGFloat = collectionItemWidth
+        let _: CGFloat = collectionItemWidth
         
         return CGSize(width: 125.0, height: 75.0)
     }
