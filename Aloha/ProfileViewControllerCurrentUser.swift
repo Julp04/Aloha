@@ -22,6 +22,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     let kHeaderHeight: CGFloat = 30.0
     let kHeaderFontSize: CGFloat = 13.0
     let kHeaderFontName = "Futura"
+    let kNavigationBarHeight: CGFloat = 64
     
     let collectionTopInset: CGFloat = 0
     let collectionBottomInset: CGFloat = 0
@@ -39,6 +40,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     var profileManager: ProfileManager!
     
     var followRequests = [User]()
+    var client = QnClient()
     
    
     //MARK: Outlets
@@ -84,6 +86,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
        
         navigationController?.navigationBar.topItem?.title = user.username
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .black
+        
+        
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
@@ -117,16 +123,15 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         updateUI()
         
         
-        QnClient.sharedInstance.getUpdatedInfoForUser(user: user) { (user) in
+        client.getUpdatedInfoForUser(user: user) { (user) in
             self.user = user
             self.updateUI()
         }
         
-        QnClient.sharedInstance.getFollowers { (users) in
+        client.getFollowers { (users) in
         }
         
-        QnClient.sharedInstance.getFollowing { (users) in
-            
+        client.getFollowing { (users) in
         }
         
         accountsCollectionView.dataSource = self
@@ -142,16 +147,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         requestBlipView.layer.cornerRadius = requestBlipView.bounds.width / 2.0
         
-        
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         imageViewSpinner.isHidden = true
-        
-        //Disable transition manager so we cannot transition to code view controllwer when we hold on buttons and swipe
-        //bug i was having (this might be temp fix ?? 😜
-        
         
         navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
         navigationController?.navigationBar.tintColor = .white
@@ -162,9 +161,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         navigationController?.delegate = self
         
         
-        MainController.transitionManager.isEnabled = false
-        
-        QnClient.sharedInstance.getProfileImageForUser(user: user, began: {
+        client.getProfileImageForUser(user: user, began: {
             imageViewSpinner.isHidden = false
             imageViewSpinner.startAnimating()}) { (result) in
                 
@@ -172,14 +169,14 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                 case .success(let image):
                     self.user.profileImage = image
                     self.profileImageView.image = image
-                case .failure(let error):
+                case .failure(_):
                     break
                 }
                 
                 self.imageViewSpinner.stopAnimating()
         }
         
-        QnClient.sharedInstance.getFollowRequests { (followRequests) in
+        client.getFollowRequests { (followRequests) in
             let oldRequests = self.followRequests.count
             let newRequests = followRequests.count
             
@@ -188,6 +185,9 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                 if newRequests > 0 {
                     self.followRequestImageView.image = followRequests[0].profileImage
                     self.requestsCountLabel.text = "\(newRequests)"
+                    self.tableView.allowsSelection = true
+                }else {
+                    self.tableView.allowsSelection = false
                 }
                 self.tableView.reloadData()
                 
@@ -201,8 +201,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         profileManager.update(user: user)
         accountsCollectionView.reloadData()
-        
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        client.removeAllObservers()
     }
     
     
@@ -257,7 +259,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                 return 66
             }
             //todo: calculate this height better
-            return 350
+            
+            return calculateProfileViewHeight() + kNavigationBarHeight
         }
     
         
@@ -324,10 +327,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
     func calculateProfileViewHeight() -> CGFloat
     {
-        let y = statsStackView.frame.origin.y
-        let finalPosition = y
-        
-        return finalPosition
+        return statsStackView.frame.origin.y
     }
     
     //MARK: Functionality
@@ -418,7 +418,7 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tableViewCellHeight: CGFloat = tableView.rowHeight
         let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
-        let collectionViewHeight: CGFloat = collectionItemWidth
+        let _: CGFloat = collectionItemWidth
         
         return CGSize(width: 125.0, height: 75.0)
     }
