@@ -53,9 +53,6 @@ class FollowersViewController: UITableViewController {
         searchController.searchBar.sizeToFit()
         
         
-        
-//        self.extendedLayoutIncludesOpaqueBars = true
-        
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
         tableView.sectionIndexColor = .white
@@ -70,6 +67,9 @@ class FollowersViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
+        navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
         
         switch self.type {
         case .followers:
@@ -111,7 +111,9 @@ class FollowersViewController: UITableViewController {
         }
         
         if connections.numberOfConnectionSections() == 0 {
-            let emptyView = EmptyView(frame: self.view.frame, image: nil, titleText: emptyText, descriptionText: "😢")
+           
+            let emptyFrame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height)
+            let emptyView = EmptyView(frame: emptyFrame, image: nil, titleText: emptyText, descriptionText: "😢")
             self.tableView.backgroundView = emptyView
             
             self.searchController.searchBar.isHidden = true
@@ -210,11 +212,9 @@ class FollowersViewController: UITableViewController {
         
         
         if let connection = connection{
-            
-            let profileNavController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUserNav") as! UINavigationController
-            let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
+            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUser") as! ProfileViewControllerOtherUser
             profileViewController.configureViewController(user: connection)
-            present(profileNavController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(profileViewController, animated: true)
         }
         
         
