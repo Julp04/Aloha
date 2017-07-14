@@ -175,7 +175,7 @@ class LoginViewController: UIViewController {
         
         let ref = FIRDatabase.database().reference()
         let usernamesRef = ref.child("users")
-        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: emailField.text!).observeSingleEvent(of: .value, with: { snapshot in
+        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: emailField.text!).observe(.value, with: { snapshot in
             
             guard snapshot.exists() else {
                 self.emailField.errorMessage = "Invalid Username"
@@ -194,7 +194,6 @@ class LoginViewController: UIViewController {
             guard let email = values2["email"] as? String else {
                 return
             }
-            
             
                 FIRAuth.auth()?.signIn(withEmail: email, password: self.passwordField.text!) {user, error in
                     if error != nil {
@@ -220,7 +219,6 @@ class LoginViewController: UIViewController {
                     }
                 }
             })
-
     }
 
     func forgotPassword()
