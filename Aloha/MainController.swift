@@ -128,20 +128,15 @@ class MainController: PageboyViewController {
     
     override func viewWillAppear(_ animated: Bool) {
           scanner?.startCaptureSession()
-        MainController.transitionManager.isEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        
         if segue.identifier == "CodeSegue" {
             let codeViewController = segue.destination
             codeViewController.transitioningDelegate = MainController.transitionManager
             MainController.transitionManager.presentedViewController = codeViewController
-        }else if segue.identifier == "ContactProfileSegue" {
-            let profileNavController = segue.destination as! UINavigationController
-            let profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerOtherUser
-            profileViewController.configureViewController(user: self.contact)
-            scanner.stopCaptureSession()
         }else if segue.identifier == "ProfileSegue" {
                 let user = sender as! User
                 let profileNavController = segue.destination as! UINavigationController
@@ -170,7 +165,13 @@ extension MainController: ScannerDelegate {
             self.contact = contact
             
             scanner.stopCaptureSession()
-            performSegue(withIdentifier: "ContactProfileSegue", sender: self)
+          
+            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUser") as! ProfileViewControllerOtherUser
+            profileViewController.configureViewController(user: self.contact)
+    
+            let navController = UINavigationController(rootViewController: profileViewController)
+            self.present(navController, animated: true, completion: nil)
+            
             
         }else if qrCode.stringValue.contains("com") {
             //Todo: Need to test different QRCodes and handle different strings
@@ -241,6 +242,7 @@ extension MainController: PageboyViewControllerDelegate {
         
         //If not on the scanner page then we do not allow scanning
         scannerCanScan = index != 1 ? false : true
+        MainController.transitionManager.isEnabled = index != 1 ? false: true
     }
     
     func calculateToFromIndexTuple(direction: PageboyViewController.NavigationDirection, index: Int) -> (Int, Int)
