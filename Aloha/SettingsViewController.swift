@@ -89,8 +89,8 @@ class SettingsViewController: UITableViewController {
                 break
             case 2:
                 let value = FIRRemoteConfig.remoteConfig().configValue(forKey: "supporturl")
-                if let urlString = value.stringValue, let url = URL(string: urlString) {
-                    UIApplication.shared.openURL(url)
+                if let urlString = value.stringValue {
+                    showSupportAlert(url: urlString)
                 }
                 break
             case 3:
@@ -163,6 +163,12 @@ class SettingsViewController: UITableViewController {
     
     
     //MARK: Cell Actions
+    
+    func showSupportAlert(url: String) {
+        let alert = UIAlertController(title: "Need help?", message: "Contact \(url) for questions and concerns", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
     
     fileprivate func showLogoutAlert()
     {
