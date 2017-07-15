@@ -16,6 +16,22 @@ admin.initializeApp({
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
+exports.reportUser = functions.https.onRequest((request, response) => {
+	var uid = request.body.uid;
+	var reportingType = request.body.reportingType;
+
+	console.log(request.body);
+	console.log(uid);
+	console.log(reportingType)
+
+
+	var updates = {};
+	updates["type"] = reportingType;
+	admin.database().ref("reporting").child(uid).update(updates);
+
+	response.status(200).send("success");
+});
+
 exports.deleteUser = functions.auth.user().onDelete(event => {
   // Get the uid of the deleted user.
 
@@ -72,9 +88,6 @@ function wipeDatabase() {
 
 
    // Wipe the database by removing the root node
-
-
-
 function deleteUser(user) {
       return new Promise((resolve, reject) => {
           console.log("Delete user: " + user.username + "");
