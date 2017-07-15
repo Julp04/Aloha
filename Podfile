@@ -8,6 +8,7 @@ def allPods
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
     pod 'SwiftyJSON', '3.0.0'
     pod 'ReachabilitySwift'
+    pod 'Alamofire'
     
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
