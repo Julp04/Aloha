@@ -43,7 +43,12 @@ class ConnectionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        QnClient.sharedInstance.getFollowing { (users) in
+            DispatchQueue.main.async {
+                self.following = ConnectionsModel(connections: users)
+                self.tableView.reloadData()
+            }
+        }
  
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -68,12 +73,6 @@ class ConnectionsViewController: UITableViewController {
         navigationItem.titleView = searchController.searchBar
         
         self.extendedLayoutIncludesOpaqueBars = true
-        
-        QnClient.sharedInstance.getFollowing { (users) in
-            
-            self.following = ConnectionsModel(connections: users)
-            self.tableView.reloadData()
-        }
     }
 
 
@@ -134,13 +133,24 @@ class ConnectionsViewController: UITableViewController {
             
             cell.nameLabel.text = firstName + " " + lastName
             cell.otherLabel.text = connection.username
-        
+            
+            cell.profileImageView.image = ProfileImageCreator.create(firstName, last: lastName)
             
             if let profileImage = connection.profileImage {
                 cell.profileImageView.image = profileImage
                 connection.profileImage = profileImage
             }else {
-                cell.profileImageView.image = ProfileImageCreator.create(connection.firstName, last: connection.lastName)
+                QnClient.sharedInstance.getProfileImageForUser(user: connection, began: { 
+                    
+                }, completion: { (result) in
+                    switch result {
+                    case .success(let image):
+                        cell.profileImageView.image = image
+                        connection.profileImage = image
+                    default:
+                        break
+                    }
+                })
             }
         }
     
