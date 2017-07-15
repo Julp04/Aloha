@@ -16,6 +16,7 @@ import Fabric
 import TwitterKit
 import OAuthSwift
 import ReachabilitySwift
+import Alamofire
 
 public enum Result <T> {
     case success(T)
@@ -435,21 +436,12 @@ class QnClient {
     }
     
     
-    //todo: Don't like this name ugh
+    //todo: Don't like this name because its not like added but following..
     func getRecentlyAdded(completion: @escaping (([User]) -> Void)) {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-        let endDate = Date()
-        
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-        print("Start date is " + startDate.asString())
-        print("End date is " + endDate.asString())
-        
-        let fallsBetween = (startDate...endDate).contains(Date())
-        print(fallsBetween)
-        
-        ref.child("following").child(currentUser.uid).queryOrdered(byChild: "date").queryEqual(toValue: startDate.asString()).observe(.value, with: { (snapshot) in
+        ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             //Update following count
             self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["following": Int(snapshot.childrenCount)])
@@ -466,6 +458,28 @@ class QnClient {
                 
                 let values = item.value as! NSDictionary
                 let status = values["following"] as! Bool
+                let dateAddedString = values["date"] as! String
+                
+                
+                guard let dateAdded = dateAddedString.asDate() else {
+                    completion(users)
+                    return
+                }
+                
+                
+                
+                let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+                let endDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())!
+                
+                print("Start date is " + startDate.asString())
+                print("End date is " + endDate.asString())
+                
+                //If the date they were added does not fall in between these dates, then that means they were not recently added.
+                //In our case recently added is within one week from the current day
+                guard (startDate...endDate).contains(dateAdded) else {
+                    completion(users)
+                    return
+                }
                 
                 //IF status is false that means it is pending and not actually following
                 guard status else {
@@ -475,22 +489,10 @@ class QnClient {
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
-                        ImageDownloader.downloadImage(url: user.profileImageURL!, completion: { (result) in
-                            switch result {
-                            case .success(let image):
-                                user.profileImage = image
-                            case .failure(_):
-                                break
-                            }
-                            
-                            //Do not re-add users
                             users = users.filter() {$0.uid != userID }
                             users.append(user)
                             
                             completion(users)
-                            
-                        })
-                        
                     }
                 })
             }
@@ -529,22 +531,10 @@ class QnClient {
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
-                        ImageDownloader.downloadImage(url: user.profileImageURL!, completion: { (result) in
-                            switch result {
-                            case .success(let image):
-                                user.profileImage = image
-                            case .failure(_):
-                                break
-                            }
-                            
-                            //Do not re-add users
                             users = users.filter() {$0.uid != userID }
                             users.append(user)
                             
                             completion(users)
-                            
-                        })
-                        
                         }
                 })
             }
