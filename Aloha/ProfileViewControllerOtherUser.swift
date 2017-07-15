@@ -14,6 +14,7 @@ import ReachabilitySwift
 import RSKImageCropper
 import MessageUI
 import FontAwesome_swift
+import RKDropdownAlert
 
 
 
@@ -80,10 +81,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     
     //MARK: Actions
-    
-    func settingsAction(_ sender: Any) {
-        present(settingsAlert, animated: true)
-    }
+  
     
     @IBAction func dimissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -286,6 +284,17 @@ class ProfileViewControllerOtherUser: UITableViewController {
             settingsAlert.addAction(unblockAction)
         }
         
+        let reportingAction = UIAlertAction(title: "Report", style: .destructive) { (action) in
+            self.showReportingAction()
+        }
+        
+        settingsAlert.addAction(reportingAction)
+        
+    }
+    
+    
+    func settingsAction(_ sender: Any) {
+        present(settingsAlert, animated: true)
     }
     
     func updateUserInfoLabels() {
@@ -385,7 +394,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         let cancelRequestAction = UIAlertAction(title: "Cancel follow request", style: .destructive) { (action) in
             QnClient.sharedInstance.cancelFollow(user: self.user) { error in
-                print(error)
             }
         }
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
@@ -446,7 +454,32 @@ class ProfileViewControllerOtherUser: UITableViewController {
         alert.addAction(unblockAction)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showReportingAction() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        let spamAction = UIAlertAction(title: "It's spam", style: .destructive) { (action) in
+            QnClient.sharedInstance.reportUser(user: self.user, type: .spam, completion: { (result) in
+                switch result {
+                case .failure:
+                    RKDropdownAlert.title("We were unable to send your report. Please try again", backgroundColor: .qnRed, textColor: .white)
+                case .success:
+                     RKDropdownAlert.title("Your report has been sent", backgroundColor: .lightGray, textColor: .white)
+                    break
+                }
+            })
+        }
+        let inappropriateAction = UIAlertAction(title: "It's inappropriate", style: .destructive) { (action) in
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(spamAction)
+        alert.addAction(inappropriateAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func showUnfollowAction() {
@@ -454,7 +487,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         let unfollowAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
             QnClient.sharedInstance.unfollow(user: self.user) { error in
-                print(error)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
