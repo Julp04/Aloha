@@ -13,7 +13,19 @@ import Firebase
 import ReachabilitySwift
 import RSKImageCropper
 
+enum CollectionType:Int {
+    case accounts = 0
+    case recentlyAdded = 1
+}
 
+extension UICollectionView {
+    
+    var collectionType: CollectionType {
+        get {
+            return CollectionType(rawValue: tag)!
+        }
+    }
+}
 
 class ProfileViewControllerCurrentUser: UITableViewController {
     
@@ -40,6 +52,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     var profileManager: ProfileManager!
     
     var followRequests = [User]()
+    var recentlyAddedUsers = [User]()
     var client = QnClient()
     
    
@@ -67,6 +80,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var statsStackView: UIStackView!
+    
+    @IBOutlet weak var recentlyAddedCollectionView: UICollectionView!
     @IBOutlet weak var accountsCollectionView: UICollectionView!
     //MARK: Actions
     
@@ -129,8 +144,22 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         client.getFollowing { (users) in
         }
         
+        client.getRecentlyAdded { (users) in
+            DispatchQueue.main.async {
+                self.recentlyAddedUsers = users
+                self.recentlyAddedCollectionView.reloadData()
+            }
+        }
+        
+      
+        
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
+        accountsCollectionView.tag = 0
+        
+        recentlyAddedCollectionView.dataSource = self
+        recentlyAddedCollectionView.delegate = self
+        recentlyAddedCollectionView.tag = 1
         
         let followersTappedGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewControllerCurrentUser.followersViewTapped))
         let followingTappedGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewControllerCurrentUser.followingViewTapped))
@@ -159,7 +188,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             self.user = user
             self.updateUI()
         }
-        
         
         client.getProfileImageForUser(user: user, began: {
             imageViewSpinner.isHidden = false
@@ -390,21 +418,58 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return profileManager.numberOfLinkedAccounts()
+        switch collectionView.collectionType {
+        case .accounts:
+            return profileManager.numberOfLinkedAccounts()
+        case .recentlyAdded:
+            return recentlyAddedUsers.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
         
-        let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
-        button.tag = 111
-        
-        if (cell.contentView.viewWithTag(111)) != nil {
-        }else {
-            cell.contentView.addSubview(button)
+        switch collectionView.collectionType {
+        case .accounts:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCell", for: indexPath)
+            
+            let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
+            button.tag = 111
+            
+            if (cell.contentView.viewWithTag(111)) != nil {
+            }else {
+                cell.contentView.addSubview(button)
+            }
+            
+            return cell
+        case .recentlyAdded:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionCell", for: indexPath)
+            
+            let user = recentlyAddedUsers[indexPath.row]
+            let profileImageView = ProfileImageView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+            
+            let tmpImg = ProfileImageCreator.create(user.firstName, last: user.lastName)
+            profileImageView.image = tmpImg
+            cell.contentView.addSubview(profileImageView)
+            if user.profileImage == nil {
+                client.getProfileImageForUser(user: user, began: {
+                }, completion: { (result) in
+                    switch result {
+                    case .success(let image):
+                        user.profileImage = image
+                        profileImageView.image = image
+                    default:
+                        break
+                        user.profileImage = tmpImg
+                    }
+                    DispatchQueue.main.async {
+                        cell.contentView.addSubview(profileImageView)
+                    }
+                })
+            }
+            return cell
         }
         
-        return cell
+      
     }
 
     
@@ -413,15 +478,28 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
 extension ProfileViewControllerCurrentUser: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+        
+        switch collectionView.collectionType {
+        case .accounts:
+            return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+        case .recentlyAdded:
+            return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tableViewCellHeight: CGFloat = tableView.rowHeight
-        let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
-        let _: CGFloat = collectionItemWidth
         
-        return CGSize(width: 125.0, height: 75.0)
+        switch collectionView.collectionType {
+        case .accounts:
+            return CGSize(width: 125.0, height: 75.0)
+        
+        case .recentlyAdded:
+//            let tableViewCellHeight: CGFloat = tableView.rowHeight
+//            let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
+//            let _: CGFloat = collectionItemWidth
+            return CGSize(width: 80, height: 75.0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
