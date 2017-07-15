@@ -707,9 +707,24 @@ class QnClient {
                 break
             }
         }
-        
-        
     }
+    
+    
+    func reportUser(user: User, type: ReportType, completion: @escaping (Result<Any>) -> Void) {
+        Alamofire.request("https://us-central1-aloha-dev.cloudfunctions.net/reportUser", method: .post, parameters: ["uid": user.uid, "reportingType": type.rawValue], encoding: JSONEncoding.default, headers: nil).responseString { (response) in
+            
+            if let error = response.result.error {
+                completion(.failure(error))
+            }else {
+                completion(.success("success"))
+            }
+        }
+    }
+}
+
+enum ReportType: String {
+    case spam = "Spam"
+    case inappropriate = "Inappropriate"
 }
 
 
