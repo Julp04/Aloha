@@ -44,6 +44,28 @@ class FollowersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        switch self.type {
+        case .followers:
+            emptyText = "No followers"
+            QnClient.sharedInstance.getFollowers(completion: { (users) in
+                DispatchQueue.main.async {
+                    self.connections = ConnectionsModel(connections: users)
+                    self.tableView.reloadData()
+                }
+            })
+        case .following:
+            emptyText = "You are not following anyone"
+            QnClient.sharedInstance.getFollowing(completion: { (users) in
+                DispatchQueue.main.async {
+                    self.connections = ConnectionsModel(connections: users)
+                    self.tableView.reloadData()
+                }
+            })
+        default:
+            break
+        }
+        
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -67,30 +89,7 @@ class FollowersViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
-        
-        switch self.type {
-        case .followers:
-            emptyText = "No followers"
-            QnClient.sharedInstance.getFollowers(completion: { (users) in
-                DispatchQueue.main.async {
-                    self.connections = ConnectionsModel(connections: users)
-                    self.tableView.reloadData()
-                }
-            })
-        case .following:
-            emptyText = "You are not following anyone"
-            QnClient.sharedInstance.getFollowing(completion: { (users) in
-                DispatchQueue.main.async {
-                    self.connections = ConnectionsModel(connections: users)
-                    self.tableView.reloadData()
-                }
-            })
-        default:
-            break
-        }
     }
     
     
