@@ -47,8 +47,6 @@ class User
     var birthdate: String?
     var about: String?
     var isPrivate: Bool
-    var followingCount: Int = 0
-    var followersCount: Int = 0
     
     var accounts: [Account]?
     var twitterAccount: Account?
@@ -64,9 +62,6 @@ class User
         guard let values = snapshot.value as? NSDictionary else {
             return nil
         }
-        
-        self.followingCount = values[DatabaseFields.following.rawValue] as! Int
-        self.followersCount = values[DatabaseFields.followers.rawValue] as! Int
         
         self.isPrivate = values[DatabaseFields.isPrivate.rawValue] as! Bool
         self.username = values[DatabaseFields.username.rawValue] as! String

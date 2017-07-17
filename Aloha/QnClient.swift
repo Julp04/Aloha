@@ -88,8 +88,6 @@ class QnClient {
                               DatabaseFields.uid.rawValue: currentUser.uid])
         //User will always be public unless changed by user
         currentUserRef.updateChildValues([DatabaseFields.isPrivate.rawValue: false])
-        currentUserRef.updateChildValues([DatabaseFields.following.rawValue: 0])
-        currentUserRef.updateChildValues([DatabaseFields.followers.rawValue: 0])
     }
     
     func changePrivacySettingsForUser(isPrivate: Bool) {
@@ -177,7 +175,7 @@ class QnClient {
             
             // Create a storage reference from our storage service
             let userStorageRef = storageRef.child(DatabaseFields.users.rawValue)
-            let userRef = userStorageRef.child((FIRAuth.auth()?.currentUser?.uid)!)
+            let userRef = userStorageRef.child((FIRAuth.auth()!.currentUser!.uid))
             let profileImageRef = userRef.child(DatabaseFields.profileImage.rawValue)
             
             
@@ -377,7 +375,6 @@ class QnClient {
         ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
         ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
         completion(nil)
-
     }
     
     func acceptFollowRequest(user: User, completion: @escaping (Error?) -> Void)
@@ -418,7 +415,6 @@ class QnClient {
     func unblock(user: User)
     {
         let currentUser = FIRAuth.auth()!.currentUser!
-        
         ref.child("blocking").child(currentUser.uid).child(user.uid).removeValue()
     }
     
@@ -430,7 +426,6 @@ class QnClient {
                 completion(false)
                 return
             }
-
             completion(true)
         })
     }
@@ -439,13 +434,10 @@ class QnClient {
     //todo: Don't like this name because its not like added but following..
     func getRecentlyAdded(completion: @escaping (([User]) -> Void)) {
         let currentUser = FIRAuth.auth()!.currentUser!
-        var users = [User]()
-        
+    
         ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
-            //Update following count
-            self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["following": Int(snapshot.childrenCount)])
-            
+            var users = [User]()
             if !snapshot.exists() {
                 
                 completion(users)
@@ -501,14 +493,49 @@ class QnClient {
     }
     
     
-    func getFollowing(completion: @escaping (([User]) -> Void))  {
-        let currentUser = FIRAuth.auth()!.currentUser!
-        var users = [User]()
+    func getFollowing(forUser user: User, completion: @escaping (([User]) -> Void))  {
+       
         
+        ref.child("following").child(user.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
+             var users = [User]()
+            
+            if !snapshot.exists() {
+                
+                completion(users)
+                return
+            }
+            
+            for item in snapshot.children {
+                let item = item as! FIRDataSnapshot
+                let userID = item.key
+                
+                let values = item.value as! NSDictionary
+                let status = values["following"] as! Bool
+                
+                //IF status is false that means it is pending and not actually following
+                guard status else {
+                    completion(users)
+                    return
+                }
+                
+                self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { snapshot in
+                    if let user = User(snapshot: snapshot) {
+                        users = users.filter() {$0.uid != userID }
+                        users.append(user)
+                        
+                        completion(users)
+                    }
+                })
+            }
+        })
+    }
+    
+    func getFollowing(completion: @escaping (([User]) -> Void))  {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
         ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
-            //Update following count
-            self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["following": Int(snapshot.childrenCount)])
+            var users = [User]()
             
             if !snapshot.exists() {
                 
@@ -541,16 +568,49 @@ class QnClient {
         })
     }
     
+    func getFollowers(forUser user: User, completion: @escaping (([User]) -> Void)) {
+        
+        
+        ref.child("followers").child(user.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
+
+            var users = [User]()
+            if !snapshot.exists() {
+                completion(users)
+                return
+            }
+            
+            for item in snapshot.children {
+                let item = item as! FIRDataSnapshot
+                let userID = item.key
+                
+                let userRef = self.ref.child(DatabaseFields.users.rawValue).child(userID)
+                self.allRefs.append(userRef)
+                
+                userRef.observe(.value, with: { snapshot in
+                    if let user = User(snapshot: snapshot) {
+                            //Do not re-add users
+                            users = users.filter() {$0.uid != userID }
+                            users.append(user)
+                            
+                            
+                            completion(users)
+                    }else {
+                        assertionFailure()
+                    }
+                })
+            }
+        })
+    }
+    
+    
     func getFollowers(completion: @escaping (([User]) -> Void)) {
         let currentUser = FIRAuth.auth()!.currentUser!
         var users = [User]()
         
-       
-        
         ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             //Update follower count
-            self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["followers": Int(snapshot.childrenCount)])
+//            self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["followers": Int(snapshot.childrenCount)])
             
             if !snapshot.exists() {
                 completion(users)
@@ -567,22 +627,12 @@ class QnClient {
                 
                 userRef.observe(.value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
-                        self.getProfileImageForUser(user: user, began: {}, completion: { (result) in
-                            switch result {
-                            case .success(let image):
-                                user.profileImage = image
-                            case .failure( _):
-                                break
-                            }
-                            
                             //Do not re-add users
-                            users = users.filter() {$0.uid != userID }
-                            users.append(user)
+                        users = users.filter() {$0.uid != userID }
+                        users.append(user)
                             
                             
-                            completion(users)
-                            
-                        })
+                        completion(users)
                     }else {
                         assertionFailure()
                     }
