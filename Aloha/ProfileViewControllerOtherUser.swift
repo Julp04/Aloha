@@ -25,7 +25,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     let kHeaderHeight: CGFloat = 30.0
     let kHeaderFontSize: CGFloat = 13.0
     let kHeaderFontName = "Futura"
-     let kNavigationBarHeight: CGFloat = 64
+    let kNavigationBarHeight: CGFloat = 64
     
     let collectionTopInset: CGFloat = 0
     let collectionBottomInset: CGFloat = 0
@@ -48,6 +48,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     var backgroundView: UIView!
     var settingsButton: UIBarButtonItem!
+    
+    var contactButtons = [UIButton]()
     
    
     //MARK: Outlets
@@ -106,6 +108,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         emailButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.emailUser), for: .touchUpInside)
         faceTimeButton.addTarget(self, action: #selector(ProfileViewControllerOtherUser.faceTimeUser), for: .touchUpInside)
         
+        contactButtons = [callButton, messageButton, emailButton, faceTimeButton]
+        
         updateContactButtons()
         
         //Get profile image
@@ -124,6 +128,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         navigationItem.title = user.username
         navigationItem.titleView?.tintColor = .white
         
+        navigationController?.delegate = self
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
         imageViewSpinner.isHidden = true
         
         setUpViewController()
@@ -138,9 +145,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorStyle = .none
         
-        navigationController?.delegate = self
-        
-        
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         
@@ -153,12 +157,17 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
+            let height = calculateProfileViewHeight() + kNavigationBarHeight + 5
             
-            //todo: calculate this value better
-            return calculateProfileViewHeight() + kNavigationBarHeight
+            for button in contactButtons {
+                if !button.isHidden {
+                    return height + 30.0
+                }
+            }
+            return height
         }
         
-        return 125
+        return 115
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -192,10 +201,28 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
 //        This will get called if the user you are viewing makes a change to his profile as you are viewing it.
         client.getUpdatedInfoForUser(user: user) { (updatedUser) in
-          
+            if let profileImage = self.user.profileImage {
+                DispatchQueue.main.async {
+                    self.profileImageView.image = profileImage
+                }
+            }else {
+                self.user = updatedUser
+                //The profile image has not been loaded
+                //Download user profile image
+                ImageDownloader.downloadImage(url: updatedUser.profileImageURL) { (result) in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let image):
+                            self.user.profileImage = image
+                            self.profileImageView.image = image
+                        case .failure:
+                            break
+                        }
+                    }
+                }
+            }
             //Set profileManager again with updated user,to see account buttons
             DispatchQueue.main.async {
-                self.user = updatedUser
                 self.profileManager.update(user: self.user)
                 self.accountsCollectionView.reloadData()
                 self.updateUI()
@@ -208,7 +235,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
             self.updateUI()
             self.tableView.reloadData()
         }
-        
         
         client.isBlockedBy(user: user) { (isBlocked) in
             self.isBlocked = isBlocked
@@ -319,9 +345,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         //Check whether other info is available
         aboutLabel.isHidden = user.about == nil
         locationLabel.isHidden = (user.location == nil && age == nil)
-        
-        followersLabel.text = "\(user.followersCount)"
-        followingLabel.text = "\(user.followingCount)"
         
         profileHeight = calculateProfileViewHeight()
     }
