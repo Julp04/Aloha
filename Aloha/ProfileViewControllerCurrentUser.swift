@@ -138,10 +138,16 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         updateUI()
         
         
-        client.getFollowers { (users) in
+        client.getFollowers { (followers) in
+            DispatchQueue.main.async {
+                self.followersLabel.text = "\(followers.count)"
+            }
         }
         
-        client.getFollowing { (users) in
+        client.getFollowing { (following) in
+            DispatchQueue.main.async {
+                self.followingLabel.text = "\(following.count)"
+            }
         }
         
         client.getRecentlyAdded { (users) in
@@ -150,8 +156,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                 self.recentlyAddedCollectionView.reloadData()
             }
         }
-        
-      
         
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
@@ -269,9 +273,6 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         }
         aboutLabel.text = user.about
         nameLabel.text = "\(user.firstName!) \(user.lastName!)"
-        
-        followingLabel.text = "\(user.followingCount)"
-        followersLabel.text = "\(user.followersCount)"
         
         
         //Check whether other info is available
