@@ -240,6 +240,18 @@ class ProfileViewControllerOtherUser: UITableViewController {
             self.isBlocked = isBlocked
             self.tableView.reloadData()
         }
+        
+        client.getFollowing(forUser: self.user) { (following) in
+            DispatchQueue.main.async {
+                self.followingLabel.text = "\(following.count)"
+            }
+        }
+        
+        client.getFollowers(forUser: self.user) { (followers) in
+            DispatchQueue.main.async {
+                self.followersLabel.text = "\(followers.count)"
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -247,14 +259,11 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     func updateUI() {
-        
         updateFollowButton()
         updateSettingsAlert()
         updateUserInfoLabels()
         updateContactButtons()
     }
-    
-    
     
     func updateFollowButton() {
         self.followOrEditProfileButton.removeTarget(nil, action: nil, for: .allEvents)
