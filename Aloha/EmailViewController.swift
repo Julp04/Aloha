@@ -49,7 +49,7 @@ class EmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         emailField.becomeFirstResponder()
         emailField.textColor = .main
@@ -104,7 +104,6 @@ class EmailViewController: UIViewController {
                     }
                     
                     FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
-                        
                         
                         QnClient.sharedInstance.setUserInfo(userInfo: self.userInfo!)
 
