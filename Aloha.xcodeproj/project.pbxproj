@@ -45,6 +45,8 @@
 		1474176A1EAD0D5700A9A1E9 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147417681EAD0D5700A9A1E9 /* TransitionManager.swift */; };
 		1474176D1EAD171100A9A1E9 /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1474176C1EAD171100A9A1E9 /* Scan.swift */; };
 		1474176E1EAD171100A9A1E9 /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1474176C1EAD171100A9A1E9 /* Scan.swift */; };
+		147BBE7D1F1D854E0062AC4D /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */; };
+		147BBE7E1F1D854E0062AC4D /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */; };
 		147CB3261EB109C300BDAF5B /* EditProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */; };
 		147CB3271EB109C300BDAF5B /* EditProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */; };
 		148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148522341EA1538D00F0BDC4 /* Date+Extension.swift */; };
@@ -169,6 +171,7 @@
 		1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
 		147417681EAD0D5700A9A1E9 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		1474176C1EAD171100A9A1E9 /* Scan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
+		147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedTextView.swift; path = ../AttributedTextView.swift; sourceTree = "<group>"; };
 		147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileInfoViewController.swift; sourceTree = "<group>"; };
 		148522341EA1538D00F0BDC4 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		148522361EA153DD00F0BDC4 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -369,6 +372,7 @@
 		B964AEAB1DBA74E300A0162E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */,
 				140306961ED5D9D800D03359 /* FollowRequestCell.swift */,
 				1418C0211EA6728800C5538F /* SwitchButton.swift */,
 				142163481E8ED4C600CF6FF4 /* GradientView.swift */,
@@ -815,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14EC7A831E74F27300B3C4E8 /* SwiftyUserDefaults.swift in Sources */,
+				147BBE7E1F1D854E0062AC4D /* AttributedTextView.swift in Sources */,
 				144668441EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				140306981ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				14EC7A841E74F27300B3C4E8 /* QNectAlertView.swift in Sources */,
@@ -876,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9570E021DCF8A2900685718 /* SwiftyUserDefaults.swift in Sources */,
+				147BBE7D1F1D854E0062AC4D /* AttributedTextView.swift in Sources */,
 				144668431EC8AEBB0062FA56 /* Color+Extension.swift in Sources */,
 				140306971ED5D9D800D03359 /* FollowRequestCell.swift in Sources */,
 				148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */,

@@ -1559,7 +1559,7 @@
             <objects>
                 <navigationController storyboardIdentifier="OnboardNavController" automaticallyAdjustsScrollViewInsets="NO" id="SSh-E7-aco" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="haj-X0-6k1" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1600,7 +1600,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7D-3H-uFu" customClass="JPLoadingButton" customModule="JPLoadingButton">
-                                <rect key="frame" x="16" y="241" width="343" height="42"/>
+                                <rect key="frame" x="16" y="225" width="343" height="42"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="QX9-mp-WgT"/>
@@ -1663,33 +1663,54 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jOj-Xu-Lub" customClass="AttrTextView" customModule="Aloha" customModuleProvider="target">
+                                <rect key="frame" x="16" y="275" width="343" height="74"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="Rhb-8H-edV"/>
+                                </constraints>
+                                <string key="text">By signing up you agree to the Terms of Service and Privacy Policy. Others wills be able to find you by username, or phone number when provided</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="linkColor">
+                                        <color key="value" red="0.21363827055300655" green="0.73695272844670046" blue="0.67244226199919099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="6ON-jp-hiG" secondAttribute="leading" id="8rv-VQ-EwW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jOj-Xu-Lub" secondAttribute="trailing" id="Aqx-fF-jcp"/>
                             <constraint firstAttribute="leadingMargin" secondItem="LUg-Zm-xvN" secondAttribute="leading" id="DG8-GI-myN"/>
                             <constraint firstAttribute="leadingMargin" secondItem="a7D-3H-uFu" secondAttribute="leading" id="GS9-bs-9pF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LUg-Zm-xvN" secondAttribute="trailing" id="MM2-8y-bHP"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="jOj-Xu-Lub" secondAttribute="leading" id="Pu0-Ch-jQz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a7D-3H-uFu" secondAttribute="trailing" id="UZ2-VD-Rmv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6ON-jp-hiG" secondAttribute="trailing" id="XrN-KS-Ach"/>
                             <constraint firstItem="LUg-Zm-xvN" firstAttribute="top" secondItem="hse-fL-U1W" secondAttribute="bottom" constant="5" id="clP-AW-9Sf"/>
                             <constraint firstItem="6ON-jp-hiG" firstAttribute="top" secondItem="LUg-Zm-xvN" secondAttribute="bottom" constant="8" id="dNh-5y-lFL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BBt-SP-lB8" secondAttribute="trailing" id="eFB-gh-14X"/>
-                            <constraint firstItem="a7D-3H-uFu" firstAttribute="top" secondItem="BBt-SP-lB8" secondAttribute="bottom" constant="36" id="fRA-Zd-Ui5"/>
+                            <constraint firstItem="a7D-3H-uFu" firstAttribute="top" secondItem="BBt-SP-lB8" secondAttribute="bottom" constant="20" id="fRA-Zd-Ui5"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BBt-SP-lB8" secondAttribute="leading" id="gpJ-og-bqq"/>
+                            <constraint firstItem="jOj-Xu-Lub" firstAttribute="top" secondItem="a7D-3H-uFu" secondAttribute="bottom" constant="8" id="tse-ro-KHJ"/>
                             <constraint firstItem="BBt-SP-lB8" firstAttribute="top" secondItem="6ON-jp-hiG" secondAttribute="bottom" constant="28" id="wAA-5S-Wj1"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="a7D-3H-uFu" id="idh-PK-lWd"/>
                         <outlet property="descriptionLabel" destination="6ON-jp-hiG" id="8ne-Y5-MyG"/>
+                        <outlet property="termsTextView" destination="jOj-Xu-Lub" id="QRw-pb-3ma"/>
                         <outlet property="usernameField" destination="BBt-SP-lB8" id="Wx4-AB-PQe"/>
                         <segue destination="56e-or-ycf" kind="show" identifier="PasswordSegue" id="TYf-uz-oLm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HiI-bj-fBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="-910"/>
+            <point key="canvasLocation" x="576.79999999999995" y="-910.79460269865069"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="AWQ-Id-adX">
@@ -2490,7 +2511,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ConnectionsViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="MTb-og-dz8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dsc-tZ-dEM" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2636,7 +2657,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewControllerCurrentUserNav" automaticallyAdjustsScrollViewInsets="NO" id="zWK-Qx-NPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kD1-dq-McG" userLabel="NavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kD1-dq-McG" userLabel="NavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3525,7 +3546,7 @@
             <objects>
                 <navigationController storyboardIdentifier="EditProfileInfoNavController" automaticallyAdjustsScrollViewInsets="NO" id="cgl-y5-fcq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="i3n-Dc-WwZ" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3544,7 +3565,7 @@
                 <navigationController storyboardIdentifier="CodeViewControllerNav" automaticallyAdjustsScrollViewInsets="NO" id="p9j-Fr-J66" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="4Rl-kq-776"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JgT-La-NdF" customClass="TransparentNavigationBar" customModule="Aloha" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3562,7 +3583,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dMI-Gg-837" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MrO-tM-h9C">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MrO-tM-h9C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3580,7 +3601,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T5j-mv-fiH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="U7p-cF-7oi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="U7p-cF-7oi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
