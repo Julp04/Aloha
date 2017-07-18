@@ -25,6 +25,7 @@ class UsernameViewController: UIViewController{
     
     //MARK: Outlets
     
+    @IBOutlet weak var termsTextView: AttrTextView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var usernameField: SkyFloatingLabelTextFieldWithIcon! {
         didSet {
@@ -65,6 +66,13 @@ class UsernameViewController: UIViewController{
         continueButton.highlightedBackgroundColor = .alohaGreen
         
         descriptionLabel.textColor = .main
+        
+        let termsText = "By signing up you agree to the Terms of Service and Privacy Policy. Others wills be able to find you by username, or phone number when provided"
+        termsTextView.text = termsText
+        termsTextView.setWords(words: "Terms of Service", forLink: "http://sayaloha.io/terms", color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
+        termsTextView.setWords(words: "Privacy Policy", forLink: "http://sayaloha.io/privacy-policy", color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
+        UITextView.appearance().linkTextAttributes = [NSForegroundColorAttributeName: UIColor.alohaGreen]
+        
     }
     
     func configureViewController(userInfo: UserInfo)
