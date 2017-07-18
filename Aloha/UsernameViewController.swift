@@ -14,6 +14,7 @@ import Firebase
 import RKDropdownAlert
 import JPLoadingButton
 
+
 class UsernameViewController: UIViewController{
 
     //MARK: Properties
@@ -69,8 +70,15 @@ class UsernameViewController: UIViewController{
         
         let termsText = "By signing up you agree to the Terms of Service and Privacy Policy. Others wills be able to find you by username, or phone number when provided"
         termsTextView.text = termsText
-        termsTextView.setWords(words: "Terms of Service", forLink: "http://sayaloha.io/terms", color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
-        termsTextView.setWords(words: "Privacy Policy", forLink: "http://sayaloha.io/privacy-policy", color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
+        
+        if let termsURL = FIRRemoteConfig.remoteConfig().configValue(forKey: "termsurl").stringValue {
+            termsTextView.setWords(words: "Terms of Service", forLink: termsURL, color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
+        }
+        
+        if let privacyURL = FIRRemoteConfig.remoteConfig().configValue(forKey: "privacypolicyurl").stringValue {
+            termsTextView.setWords(words: "Privacy Policy", forLink: privacyURL, color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
+        }
+        
         UITextView.appearance().linkTextAttributes = [NSForegroundColorAttributeName: UIColor.alohaGreen]
         
     }
