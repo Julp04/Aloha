@@ -609,14 +609,10 @@ class QnClient {
         
         ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
-            //Update follower count
-//            self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["followers": Int(snapshot.childrenCount)])
-            
             if !snapshot.exists() {
                 completion(users)
                 return
             }
-            
             
             for item in snapshot.children {
                 let item = item as! FIRDataSnapshot
