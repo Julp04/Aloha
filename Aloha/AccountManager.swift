@@ -68,7 +68,6 @@ class AccountManager {
             break
         }
         button.onClick = {
-            self.listenForButtonUpdates()
             ContactManager().requestAccessToContacts { accessGranted in
                 if accessGranted {
                     DispatchQueue.main.async {
@@ -138,16 +137,6 @@ class AccountManager {
         
         return button
     }
-    
-    public func listenForButtonUpdates() {
-        for button in buttons {
-            if !button.isOn {
-                return
-            }
-        }
-        print("All buttons on!")
-    }
-    
 }
 
 
