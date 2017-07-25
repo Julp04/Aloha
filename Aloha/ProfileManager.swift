@@ -124,7 +124,7 @@ class ProfileManager {
         self.twitterButton.animationDidStartClosure = {_ in
             self.client.currentUser {user in
                 self.user = user!
-                self.twitterButton.shortText = user!.twitterAccount!.screenName
+                self.twitterButton.shortText = user!.twitterAccount?.screenName
             }
             
         }
