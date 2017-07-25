@@ -15,22 +15,26 @@ import UIKit
 
 enum AccountsIdentifiers: String {
     case twitter = "twitter"
+    case snapchat = "snapchat"
     
-    static let allIdentifiers = [twitter]
+    static let allIdentifiers = [twitter, snapchat]
 }
 
 class Account {
     var screenName: String
-    var token: String
-    var tokenSecret: String
+    var token: String?
+    var tokenSecret: String?
     var identifier: AccountsIdentifiers
     
     init(accountDetails: NSDictionary, identifier: AccountsIdentifiers)
     {
         self.screenName = accountDetails["screenName"] as! String
-        self.token = accountDetails["token"] as! String
-        self.tokenSecret = accountDetails["tokenSecret"] as! String
         self.identifier = identifier
+        
+        if let token = accountDetails["token"] as? String, let tokenSecret = accountDetails["tokenSecret"] as? String {
+            self.token = token
+            self.tokenSecret = tokenSecret
+        }
     }
 }
 
