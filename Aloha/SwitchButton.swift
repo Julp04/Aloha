@@ -27,14 +27,58 @@ class SwitchButton: UIView {
     
     private var longPressGesture: UILongPressGestureRecognizer!
     private var shortDescriptionLabel: UILabel?
+    private var titleLabel: UILabel?
+    private var descriptionLabel: UILabel?
     private var imageView: UIImageView?
+    
+    override var frame: CGRect  {
+        didSet {
+            let imageSize = 0.14 * frame.width
+            let imageY = (frame.height - imageSize) / 2
+            let imageX: CGFloat = 8.0
+            let imageFrame = CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize)
+            imageView?.frame = imageFrame
+            
+            let fontSize = sqrt(self.frame.width * self.frame.height) / 10.0
+            let titleLabelFrame = CGRect(x: 8, y: 5, width: Int(self.frame.width - 16), height: 20)
+            titleLabel?.frame = titleLabelFrame
+            titleLabel?.font = UIFont(name: "Futura", size: fontSize)
+            
+            let labelHeight = self.frame.height - titleLabelFrame.height
+            let labelWidth = self.frame.width - imageFrame.size.width - 16
+            let labelY  = titleLabelFrame.height + 5
+            let labelX = imageFrame.size.width + 15
+            
+            let font = sqrt(self.frame.width * self.frame.height) / 11.5
+            let descriptionLabelFrame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
+            descriptionLabel?.frame = descriptionLabelFrame
+            descriptionLabel?.font = UIFont(name: "Futura", size: font)
+            
+        }
+    }
+    
+    override func layoutSubviews() {
+        layer.frame = self.bounds
+        commonInit()
+    }
+    
+    var buttonTitle: String? {
+        didSet {
+            self.titleLabel?.text = buttonTitle
+        }
+    }
+    
+    var buttonDescription: String? {
+        didSet {
+            self.descriptionLabel?.text = buttonDescription
+        }
+    }
+    
     var shortText: String? {
         didSet {
-            
             guard let shortText = shortText else {
                 return
             }
-            
             shortDescriptionLabel?.text = shortText
             shortDescriptionLabel?.font = shortText.characters.count > 7 ? UIFont(name: "Futura", size: kLabelFontSizeSmall) : UIFont(name: "Futura", size: kLabelFontSizeLarge)
             shortDescriptionLabel?.numberOfLines = shortText.contains(" ") ? 0 : 1
@@ -48,6 +92,8 @@ class SwitchButton: UIView {
     var labelColor: UIColor = .white {
         didSet {
             shortDescriptionLabel?.textColor = labelColor
+            titleLabel?.textColor = labelColor
+            descriptionLabel?.textColor = labelColor
         }
     }
     var imageColor: UIColor = .white {
@@ -78,6 +124,66 @@ class SwitchButton: UIView {
         layer.cornerRadius = cornerRadius
         commonInit()
     }
+    
+    init(frame: CGRect, offColor: UIColor, onColor: UIColor, image: UIImage?, title: String?, description: String?, isOn: Bool = false) {
+        super.init(frame: frame)
+        
+        buttonTitle = title
+        buttonDescription = description
+        
+        if let image = image {
+            self.image = image.withRenderingMode(.alwaysTemplate)
+        }
+        
+        self.onTintColor = onColor
+        self.offColor = offColor
+        
+        //Add image view
+        let imageSize = 0.14 * frame.width
+        let imageY = (frame.height - imageSize) / 2
+        let imageX: CGFloat = 8.0
+        imageView = UIImageView(frame: CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize))
+        imageView?.image = self.image
+        imageView?.contentMode = .scaleAspectFit
+        self.addSubview(imageView!)
+        
+        //Add title label
+        let fontSize = sqrt(self.frame.width * self.frame.height) / 10.0
+        let titleLabelFrame = CGRect(x: 8, y: 5, width: Int(self.frame.width - 16), height: 20)
+        titleLabel = UILabel(frame: titleLabelFrame)
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.textAlignment = .center
+        titleLabel?.font = UIFont(name: "Futura", size: fontSize)
+        titleLabel?.minimumScaleFactor = 0.5
+        titleLabel?.text = title
+        titleLabel?.numberOfLines = 1
+        titleLabel?.lineBreakMode = .byWordWrapping
+        addSubview(titleLabel!)
+        
+        //Add description label
+        let labelHeight = self.frame.height - titleLabelFrame.height
+        let labelWidth = self.frame.width - (imageView?.frame.size.width)! - 16
+        let labelY  = titleLabelFrame.height + 5
+        let labelX = (imageView?.bounds.size.width)! + 8
+        let font = sqrt(self.frame.width * self.frame.height) / 11.5
+        let descriptionLabelFrame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
+        descriptionLabel = UILabel(frame: descriptionLabelFrame)
+        descriptionLabel?.adjustsFontSizeToFitWidth = true
+        descriptionLabel?.numberOfLines = 0
+        descriptionLabel?.lineBreakMode = .byWordWrapping
+        descriptionLabel?.font = UIFont(name: "Futura", size: font)
+        descriptionLabel?.text = description
+        descriptionLabel?.textAlignment = .center
+        descriptionLabel?.minimumScaleFactor = 0.5
+        addSubview(descriptionLabel!)
+    
+        self.backgroundColor = offColor
+        layer.cornerRadius = cornerRadius
+        
+        self.isOn = isOn
+        
+        commonInit()
+    }
    
     init(frame: CGRect, offColor: UIColor, onColor: UIColor, image: UIImage, shortText: String, isOn: Bool) {
         super.init(frame: frame)
@@ -89,19 +195,14 @@ class SwitchButton: UIView {
         //Add image view and label
         let labelWidth = 0.575 * frame.width
         let imageSize = 0.25 * frame.width
-        
         let imageY = (frame.height - imageSize) / 2
         let imageX: CGFloat = 8.0
-        
         let labelX = labelWidth - imageSize + 10
-        
         imageView = UIImageView(frame: CGRect(x: imageX, y: imageY, width: imageSize, height: imageSize))
             imageView?.image = self.image
         imageView?.contentMode = .scaleAspectFit
         
         shortDescriptionLabel = UILabel(frame: CGRect(x: labelX, y: (imageView?.center.y)! - kLabelHeight / 2.0, width: labelWidth, height: kLabelHeight))
-        
-        
         shortDescriptionLabel?.font = shortText.characters.count > 7 ? UIFont(name: "Futura", size: kLabelFontSizeSmall) : UIFont(name: "Futura", size: kLabelFontSizeLarge)
         shortDescriptionLabel?.numberOfLines = shortText.contains(" ") ? 0 : 1
         shortDescriptionLabel?.lineBreakMode = .byWordWrapping
@@ -109,19 +210,14 @@ class SwitchButton: UIView {
         shortDescriptionLabel?.text = shortText
         shortDescriptionLabel?.textAlignment = .center
         
-        
-        
         self.addSubview(imageView!)
         self.addSubview(shortDescriptionLabel!)
-        
         
         self.backgroundColor = offColor
         layer.cornerRadius = cornerRadius
         
         self.isOn = isOn
-       
         commonInit()
-        
     }
     
     init(frame: CGRect ,color: UIColor) {
@@ -155,20 +251,14 @@ class SwitchButton: UIView {
         longPressGesture.delegate = self
         self.addGestureRecognizer(longPressGesture)
         
-        
-        
         let rectBounds = CGRect(x: 0, y: 0, width: 0, height: 0)
-        
         startShape = UIBezierPath(roundedRect: rectBounds, cornerRadius: 50).cgPath
         
         let height = layer.bounds.height * 5.0
         let width = height
-        
         let x = height / -2.4 - 20
         let y = x
-        
         let radius = CGFloat(height / 2.0)
-        
         
         endShape = UIBezierPath(roundedRect: CGRect(x: x, y: y, width: width, height: height), cornerRadius: radius).cgPath
         
@@ -177,7 +267,6 @@ class SwitchButton: UIView {
         rectShape.bounds = rectBounds
         rectShape.position = CGPoint(x: layer.bounds.midX, y: layer.bounds.midY)
         rectShape.cornerRadius = rectBounds.width / 2
-        
         
         layer.insertSublayer(rectShape, at: 0)
         layer.masksToBounds = true
@@ -238,8 +327,7 @@ class SwitchButton: UIView {
         isOn ? turnOff() : turnOn()
     }
     
-    internal func buttonAction()
-    {
+    internal func buttonAction() {
         if isEnabled {
             onClick()
         }
@@ -253,8 +341,7 @@ class SwitchButton: UIView {
         }
     }
     
-    internal func shrink()
-    {
+    internal func shrink() {
         UIView.animate(withDuration: 0.5) { 
              self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }
