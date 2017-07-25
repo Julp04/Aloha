@@ -49,6 +49,8 @@
 		147BBE7E1F1D854E0062AC4D /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */; };
 		147CB3261EB109C300BDAF5B /* EditProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */; };
 		147CB3271EB109C300BDAF5B /* EditProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */; };
+		147E1B651F255C3900C4CF8E /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E1B641F255C3900C4CF8E /* AccountManager.swift */; };
+		147E1B661F255C3900C4CF8E /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E1B641F255C3900C4CF8E /* AccountManager.swift */; };
 		148522351EA1538D00F0BDC4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148522341EA1538D00F0BDC4 /* Date+Extension.swift */; };
 		148522371EA153DD00F0BDC4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148522361EA153DD00F0BDC4 /* String+Extension.swift */; };
 		148522381EA153DD00F0BDC4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148522361EA153DD00F0BDC4 /* String+Extension.swift */; };
@@ -173,6 +175,7 @@
 		1474176C1EAD171100A9A1E9 /* Scan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		147BBE7C1F1D854E0062AC4D /* AttributedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedTextView.swift; path = ../AttributedTextView.swift; sourceTree = "<group>"; };
 		147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileInfoViewController.swift; sourceTree = "<group>"; };
+		147E1B641F255C3900C4CF8E /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		148522341EA1538D00F0BDC4 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		148522361EA153DD00F0BDC4 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		148522401EA1544800F0BDC4 /* JPLoadingButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JPLoadingButton+Extension.swift"; sourceTree = "<group>"; };
@@ -391,6 +394,7 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				147E1B641F255C3900C4CF8E /* AccountManager.swift */,
 				140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */,
 				14497B401ED35E4900764670 /* FollowersViewController.swift */,
 				1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */,
@@ -832,6 +836,7 @@
 				148522421EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
 				14EC7A8E1E74F27300B3C4E8 /* BackgroundVideo.swift in Sources */,
 				14CBE9441ECF384200A852EA /* AppDelegate.swift in Sources */,
+				147E1B661F255C3900C4CF8E /* AccountManager.swift in Sources */,
 				14EC7A8F1E74F27300B3C4E8 /* OnboardViewController.swift in Sources */,
 				148522381EA153DD00F0BDC4 /* String+Extension.swift in Sources */,
 				14EC7A931E74F27300B3C4E8 /* User.swift in Sources */,
@@ -894,6 +899,7 @@
 				148522411EA1544800F0BDC4 /* JPLoadingButton+Extension.swift in Sources */,
 				B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */,
 				14CBE9431ECF384200A852EA /* AppDelegate.swift in Sources */,
+				147E1B651F255C3900C4CF8E /* AccountManager.swift in Sources */,
 				1471D9211E5CEC7C00293728 /* BackgroundVideo.swift in Sources */,
 				1471D91B1E5CE5EC00293728 /* OnboardViewController.swift in Sources */,
 				B949FA401DBAA55A0071CBD6 /* User.swift in Sources */,

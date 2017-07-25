@@ -84,41 +84,41 @@ class TwitterClient {
     private func doesUserExist(screenName:String, completion:@escaping (Bool) ->Void)
     {
         let ref = FIRDatabase.database().reference()
-
         ref.keepSynced(true)
+        let doesUserExistRef = ref.child("accounts").child("twitter").child(screenName)
       
-        ref.child("accounts").child("twitter").child(screenName).observeSingleEvent(of:.value, with: { (snapshot) in
-            
+        let handle = doesUserExistRef.observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {
                 completion(false)
             }
         })
+        
+        doesUserExistRef.removeObserver(withHandle: handle)
     }
     
     func unlinkTwitter(completion: @escaping (Result<Any?>) -> Void)
     {
-    
         let ref = FIRDatabase.database().reference()
         let currentUser = FIRAuth.auth()!.currentUser!
         
         ref.child("users").child(currentUser.uid).observeSingleEvent(of:.value, with: { (snapshot) in
             let user = User(snapshot: snapshot)!
             if let screenName = user.twitterAccount?.screenName {
-            ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
-                if error != nil {
-                    completion(.success(nil))
-                }else {
-                    ref.child("users").child(currentUser.uid).child("accounts").child("twitter").removeValue(completionBlock: { (error, ref) in
-                        if let error = error {
-                            completion(.failure(error))
-                        }else {
-                            completion(.success(nil))
-                        }
-                    })
-                }
-            })
+                ref.child("accounts").child("twitter").child(screenName).removeValue(completionBlock: { (error, tw) in
+                    if let error = error {
+                        completion(.failure(error))
+                    }else {
+                        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").removeValue(completionBlock: { (error, ref) in
+                            if let error = error {
+                                completion(.failure(error))
+                            }else {
+                                completion(.success(nil))
+                            }
+                        })
+                    }
+                })
             }else {
                 completion(.success(nil))
             }
@@ -128,11 +128,11 @@ class TwitterClient {
     
     func isUserLinkedWithTwitter(completion:@escaping (Bool) -> Void)
     {
-     
-        let ref = FIRDatabase.database().reference()
-        
         let currentUser = FIRAuth.auth()!.currentUser!
-        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").observeSingleEvent(of: .value, with: { (snapshot) in
+        let ref = FIRDatabase.database().reference()
+        let isUserLinkedWithTwitterRef = ref.child("users").child(currentUser.uid).child("accounts").child("twitter")
+        
+        isUserLinkedWithTwitterRef.observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {
@@ -164,7 +164,7 @@ class TwitterClient {
             let token = twitterAccount.token
             let tokenSecret = twitterAccount.tokenSecret
             
-            let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+            let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token!, oauthTokenSecret: tokenSecret!, version: OAuthSwiftCredential.Version.oauth1)
             
             _ = client.post(self.followURL, parameters: ["screen_name":screenName],success: { (response) in
                 let json = try? response.jsonObject()
@@ -195,7 +195,7 @@ class TwitterClient {
                 let token = twitterAccount.token
                 let tokenSecret = twitterAccount.tokenSecret
                 
-                let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token, oauthTokenSecret: tokenSecret, version: OAuthSwiftCredential.Version.oauth1)
+                let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token!, oauthTokenSecret: tokenSecret!, version: OAuthSwiftCredential.Version.oauth1)
                 
                 _ = client.get(url, success: { (response) in
                     do {
