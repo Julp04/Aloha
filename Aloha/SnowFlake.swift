@@ -25,6 +25,13 @@ class Snowflake: CAEmitterLayer {
     
     //MARK: Overrides
     
+    override var frame: CGRect {
+        didSet {
+            emitterSize = CGSize(width: frame.size.width, height: frame.size.height)
+            position = CGPoint(x: frame.width / 2, y: frame.origin.y - 50)
+        }
+    }
+    
     override var emitterZPosition: CGFloat {
         get {
             return 10.0
