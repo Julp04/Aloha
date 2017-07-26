@@ -197,15 +197,17 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             imageViewSpinner.isHidden = false
             imageViewSpinner.startAnimating()}) { (result) in
                 
-                switch result {
-                case .success(let image):
-                    self.user.profileImage = image
-                    self.profileImageView.image = image
-                case .failure(_):
-                    break
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let image):
+                        self.user.profileImage = image
+                        self.profileImageView.image = image
+                    case .failure(_):
+                        break
+                    }
+                    
+                    self.imageViewSpinner.stopAnimating()
                 }
-                
-                self.imageViewSpinner.stopAnimating()
         }
         
         client.getFollowRequests { (followRequests) in
