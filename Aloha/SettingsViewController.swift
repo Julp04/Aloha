@@ -54,7 +54,6 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = .lightContent
-        client.removeAllObservers()
     }
     
     //MARK: Table View Delegate Methods

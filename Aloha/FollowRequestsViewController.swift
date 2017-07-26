@@ -114,7 +114,6 @@ class FollowRequestsViewController: UITableViewController {
                 cell.acceptButton.isHidden = true
                 cell.declineButton.isHidden = true
             }
-            client.removeAllObservers()
         }
     }
     

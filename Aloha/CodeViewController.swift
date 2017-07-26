@@ -64,7 +64,6 @@ class CodeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         qrCodeTip.dismiss()
-        client.removeAllObservers()
     }
     
     @IBAction func settingsAction(_ sender: Any) {
