@@ -104,8 +104,9 @@ class AccountsViewController: UIViewController {
                         self.isCameraAuthorized()
                     }else {
                         let accessCameraController = self.storyboard?.instantiateViewController(withIdentifier: "AccessCameraController") as! AccessCameraController
-                        
-                        self.present(accessCameraController, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self.present(accessCameraController, animated: true, completion: nil)
+                        }
                     }
                 }
             }
