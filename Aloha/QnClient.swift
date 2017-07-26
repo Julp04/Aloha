@@ -60,18 +60,10 @@ class QnClient {
     
     private var ref: FIRDatabaseReference
     
-    private var allRefs = [FIRDatabaseReference]()
-    
     static let sharedInstance = QnClient()
     
     init() {
         ref = FIRDatabase.database().reference()
-    }
-    
-    func removeAllObservers() {
-        for ref in allRefs {
-            ref.removeAllObservers()
-        }
     }
     
      func setUserInfo(userInfo: UserInfo)
@@ -143,7 +135,6 @@ class QnClient {
         let currentUser = FIRAuth.auth()!.currentUser!
         
         let userRef = ref.child(DatabaseFields.users.rawValue).child(currentUser.uid)
-        allRefs.append(userRef)
         
         userRef.observe(.value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
@@ -244,7 +235,6 @@ class QnClient {
     func getUpdatedInfoForUser(user: User, completion:@escaping (User) -> Void) {
         
         let userRef = ref.child(DatabaseFields.users.rawValue).child(user.uid)
-        self.allRefs.append(userRef)
         
         userRef.observe(.value, with: { snapshot in
             if let updatedUser = User(snapshot: snapshot) {
@@ -300,9 +290,6 @@ class QnClient {
         
         let followingRef = ref.child("following").child(currentUser.uid).child(user.uid)
         let blockingRef = ref.child("blocking").child(currentUser.uid).child(user.uid)
-        
-        allRefs.append(followingRef)
-        allRefs.append(blockingRef)
         
         followingRef.observe(.value, with: { (snapshot) in
 
@@ -408,7 +395,7 @@ class QnClient {
         
         //user being blocked is not allowed to follow current user anymore
         self.ref.child("following").child(user.uid).child(currentUser.uid).removeValue()
-        self.ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
+        self.ref.child("followers").child(currentUser.uid).child(user.uid).removeValue()
  
     }
     
@@ -584,7 +571,7 @@ class QnClient {
                 let userID = item.key
                 
                 let userRef = self.ref.child(DatabaseFields.users.rawValue).child(userID)
-                self.allRefs.append(userRef)
+//                self.allRefs.append(userRef)
                 
                 userRef.observe(.value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
@@ -619,7 +606,7 @@ class QnClient {
                 let userID = item.key
                 
                 let userRef = self.ref.child(DatabaseFields.users.rawValue).child(userID)
-                self.allRefs.append(userRef)
+//                self.allRefs.append(userRef)
                 
                 userRef.observe(.value, with: { snapshot in
                     if let user = User(snapshot: snapshot) {
