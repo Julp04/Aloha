@@ -30,6 +30,7 @@ class TwitterClient {
     let consumerSecret = "cJGcPvVsNh3dRopxI1NHhMsFJFDtNCVQKuIraxpo4zxg4KmTiu"
     
     let followURL = "https://api.twitter.com/1.1/friendships/create.json"
+    let unfollowURL = "https://api.twitter.com/1.1/friendships/destroy.json"
     let lookUpURL = "https://api.twitter.com/1.1/friendships/lookup.json?screen_name="
     
     func linkTwitterIn(viewController:UIViewController, completion:@escaping ErrorCompletion){
@@ -144,10 +145,9 @@ class TwitterClient {
     func followUserWith(screenName:String, completion:@escaping ErrorCompletion) {
         
         let ref = FIRDatabase.database().reference()
+        let currentUser = FIRAuth.auth()!.currentUser!
         ref.keepSynced(true)
         
-        let currentUser = FIRAuth.auth()!.currentUser!
-       
         ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let user = User(snapshot: snapshot)!
             
@@ -174,6 +174,34 @@ class TwitterClient {
                 }, failure: { (error) in
                     completion(error)
                 })
+        })
+    }
+    
+    func unFollowUserWith(screenName: String, completion: @escaping ErrorCompletion) {
+        let ref = FIRDatabase.database().reference()
+        let currentUser = FIRAuth.auth()!.currentUser!
+        ref.keepSynced(true)
+        
+        ref.child("users").child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)!
+            
+            guard let twitterAccount = user.twitterAccount else {
+                return
+            }
+            
+            let token = twitterAccount.token
+            let tokenSecret = twitterAccount.tokenSecret
+            
+            let client = OAuthSwiftClient(consumerKey: self.consumerKey, consumerSecret: self.consumerSecret, oauthToken: token!, oauthTokenSecret: tokenSecret!, version: OAuthSwiftCredential.Version.oauth1)
+            
+            _ = client.post(self.unfollowURL, parameters: ["screen_name":screenName],success: { (response) in
+                let json = try? response.jsonObject()
+                print(json!)
+                
+                completion(nil)
+            }, failure: { (error) in
+                completion(error)
+            })
         })
     }
     
