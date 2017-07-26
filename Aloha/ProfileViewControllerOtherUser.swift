@@ -117,6 +117,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     //MARK: Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        listenForUpdates()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,7 +156,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         accountManager.delegate = self
         
         updateUI()
-        listenForUpdates()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -201,12 +204,12 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
 //        This will get called if the user you are viewing makes a change to his profile as you are viewing it.
         client.getUpdatedInfoForUser(user: user) { (updatedUser) in
+            self.user = updatedUser
             if let profileImage = self.user.profileImage {
                 DispatchQueue.main.async {
                     self.profileImageView.image = profileImage
                 }
             }else {
-                self.user = updatedUser
                 //The profile image has not been loaded
                 //Download user profile image
                 ImageDownloader.downloadImage(url: updatedUser.profileImageURL) { (result) in
