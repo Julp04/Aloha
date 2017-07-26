@@ -49,7 +49,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
     var profileHeight: CGFloat = 0.0
     let imagePicker = UIImagePickerController()
-    var profileManager: ProfileManager!
+    var accountManager: CurrentUserAccountManager!
     
     var followRequests = [User]()
     var recentlyAddedUsers = [User]()
@@ -92,7 +92,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     func configureViewController(currentUser: User)
     {
         self.user = currentUser
-        profileManager = ProfileManager(currentUser: currentUser, viewController: self)
+        accountManager = CurrentUserAccountManager(user: user, viewController: self)
     }
     
     func setupViewController() {
@@ -231,7 +231,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
            
         }
         
-        profileManager.update(user: user)
+        accountManager.update(user: user)
         accountsCollectionView.reloadData()
     }
     
@@ -421,7 +421,7 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.collectionType {
         case .accounts:
-            return profileManager.numberOfLinkedAccounts()
+            return accountManager.numberOfAccounts()
         case .recentlyAdded:
             return recentlyAddedUsers.count
         }
@@ -433,7 +433,7 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
         case .accounts:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCell", for: indexPath)
             
-            let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
+            let button = accountManager.buttonAt(index: indexPath.row)
             button.tag = 111
             
             if (cell.contentView.viewWithTag(111)) != nil {

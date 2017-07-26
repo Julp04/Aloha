@@ -38,7 +38,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     var user: User!
     let connectionsHeaderTitle = "Common Connections"
     var colorView: GradientView!
-    var profileManager: ProfileManager!
+    var accountManager: OtherUserAccountManager!
     var isBlocked: Bool = false
     
     var profileHeight: CGFloat = 0.0
@@ -148,8 +148,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         accountsCollectionView.dataSource = self
         accountsCollectionView.delegate = self
         
-        self.profileManager = ProfileManager(user: self.user, viewController: self)
-        profileManager.delegate = self
+        self.accountManager = OtherUserAccountManager(user: self.user, viewController: self)
+        accountManager.delegate = self
         
         updateUI()
         listenForUpdates()
@@ -221,9 +221,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
                     }
                 }
             }
-            //Set profileManager again with updated user,to see account buttons
+            //Set accountManager again with updated user,to see account buttons
             DispatchQueue.main.async {
-                self.profileManager.update(user: self.user)
+                self.accountManager.update(user: self.user)
                 self.accountsCollectionView.reloadData()
                 self.updateUI()
                 self.tableView.reloadData()
@@ -529,8 +529,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
 }
 
-extension ProfileViewControllerOtherUser: ProfileManagerDelegate {
-    func profileManagerUpdated() {
+extension ProfileViewControllerOtherUser: AccountManagerDelegate {
+    func accountManagerUpdated() {
         accountsCollectionView.reloadData()
     }
 }
@@ -594,13 +594,13 @@ extension ProfileViewControllerOtherUser: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return profileManager.numberOfLinkedAccounts()
+        return accountManager.numberOfAccounts()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
         
-        let button = profileManager.buttonAtIndexPath(indexPath: indexPath)
+        let button = accountManager.buttonAt(index: indexPath.row)
 //        button.tag = 111
 //        
 //        if (cell.contentView.viewWithTag(111)) != nil {

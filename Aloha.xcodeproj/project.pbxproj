@@ -23,8 +23,6 @@
 		1418C0031EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
 		1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
-		1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
-		1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0251EA67C2F00C5538F /* ProfileManager.swift */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1446683F1EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
@@ -160,7 +158,6 @@
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
-		1418C0251EA67C2F00C5538F /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		144668421EC8AEBB0062FA56 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -299,7 +296,6 @@
 				140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */,
 				1446683E1EC8A7840062FA56 /* Oops.swift */,
 				147417681EAD0D5700A9A1E9 /* TransitionManager.swift */,
-				1418C0251EA67C2F00C5538F /* ProfileManager.swift */,
 				14BF0DF61ED8910000657680 /* ImageDownloader.swift */,
 				1471D9201E5CEC7C00293728 /* BackgroundVideo.swift */,
 				14DE82D71E4D2A5F00453D3C /* AlertUtility.swift */,
@@ -394,22 +390,22 @@
 		B964AEAC1DBA74E800A0162E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				147E1B641F255C3900C4CF8E /* AccountManager.swift */,
-				140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */,
-				14497B401ED35E4900764670 /* FollowersViewController.swift */,
 				1466C63C1ECF78C900C01CF0 /* AccessCameraController.swift */,
+				147E1B641F255C3900C4CF8E /* AccountManager.swift */,
 				14CCB6D91E7C2630004B1C3C /* AccountsViewController.swift */,
 				149D1DDD1E747F8000254601 /* AddProfileInfoViewController.swift */,
 				B95F6A571DCFA87B00EA3577 /* CodeViewController.swift */,
 				B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */,
 				147CB3251EB109C300BDAF5B /* EditProfileInfoViewController.swift */,
 				14855D9B1E64903A00794587 /* EmailViewController.swift */,
+				14497B401ED35E4900764670 /* FollowersViewController.swift */,
+				140306931ED5D99C00D03359 /* FollowRequestsViewController.swift */,
 				B949FA3C1DBA965C0071CBD6 /* LoginViewController.swift */,
 				14B224A21E8AA7D90027CBA8 /* MainController.swift */,
-				144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */,
 				14855D951E64900600794587 /* NameViewController.swift */,
 				1471D91A1E5CE5EC00293728 /* OnboardViewController.swift */,
 				14855D991E64902500794587 /* PasswordViewController.swift */,
+				144BCF701EE4799600E2E4C6 /* PlaceHolderViewController.swift */,
 				14E7A69C1EA7B97700F1BB15 /* ProfileViewControllerCurrentUser.swift */,
 				14E7A69D1EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift */,
 				B92418031DCFAFDF007C0B3B /* SettingsViewController.swift */,
@@ -845,7 +841,6 @@
 				14BF0DF81ED8910000657680 /* ImageDownloader.swift in Sources */,
 				1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */,
 				140306951ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
-				1418C0271EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14EC7A961E74F27300B3C4E8 /* EmailViewController.swift in Sources */,
 				14B224A41E8AA7D90027CBA8 /* MainController.swift in Sources */,
 				14497B421ED35E4900764670 /* FollowersViewController.swift in Sources */,
@@ -908,7 +903,6 @@
 				14BF0DF71ED8910000657680 /* ImageDownloader.swift in Sources */,
 				1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */,
 				140306941ED5D99C00D03359 /* FollowRequestsViewController.swift in Sources */,
-				1418C0261EA67C2F00C5538F /* ProfileManager.swift in Sources */,
 				14855D9C1E64903A00794587 /* EmailViewController.swift in Sources */,
 				B949FA3D1DBA965C0071CBD6 /* LoginViewController.swift in Sources */,
 				14497B411ED35E4900764670 /* FollowersViewController.swift in Sources */,
