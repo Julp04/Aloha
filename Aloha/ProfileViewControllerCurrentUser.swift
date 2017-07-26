@@ -228,18 +228,11 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                     self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
                 }
             }
-           
         }
         
         accountManager.update(user: user)
         accountsCollectionView.reloadData()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        client.removeAllObservers()
-    }
-    
-    
     
     func followersViewTapped() {
         
@@ -446,10 +439,17 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionCell", for: indexPath)
             
             let user = recentlyAddedUsers[indexPath.row]
-            let profileImageView = ProfileImageView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+            let profileImageView = ProfileImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             
             let tmpImg = ProfileImageCreator.create(user.firstName, last: user.lastName)
             profileImageView.image = tmpImg
+            profileImageView.onClick = {
+                let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewControllerOtherUser") as! ProfileViewControllerOtherUser
+                profileViewController.configureViewController(user: user)
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            }
+            
+            
             cell.contentView.addSubview(profileImageView)
             if user.profileImage == nil {
                 client.getProfileImageForUser(user: user, began: {
@@ -459,8 +459,8 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
                         user.profileImage = image
                         profileImageView.image = image
                     default:
+                         user.profileImage = tmpImg
                         break
-                        user.profileImage = tmpImg
                     }
                     DispatchQueue.main.async {
                         cell.contentView.addSubview(profileImageView)
