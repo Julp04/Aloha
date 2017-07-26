@@ -22,6 +22,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: Constants
     let kAccountsHeaderTitle = "Accounts"
+    let kConnectionsHeaderTitle = "Common Connections"
     let kHeaderHeight: CGFloat = 30.0
     let kHeaderFontSize: CGFloat = 13.0
     let kHeaderFontName = "Futura"
@@ -36,7 +37,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     //MARK: Properties
     var client: QnClient = QnClient()
     var user: User!
-    let connectionsHeaderTitle = "Common Connections"
+    
     var colorView: GradientView!
     var accountManager: OtherUserAccountManager!
     var isBlocked: Bool = false
@@ -188,7 +189,8 @@ class ProfileViewControllerOtherUser: UITableViewController {
         case 1:
             headerLabel.text = kAccountsHeaderTitle
         case 2:
-            headerLabel.text = connectionsHeaderTitle
+            //todo: Common connections feature
+            headerLabel.text = ""
         default:
             break
         }
@@ -257,9 +259,6 @@ class ProfileViewControllerOtherUser: UITableViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-//        client.removeAllObservers()
-    }
     
     func updateUI() {
         updateFollowButton()
