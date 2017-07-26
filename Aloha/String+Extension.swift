@@ -47,5 +47,31 @@ extension String {
     public func toPhoneNumber() -> String {
         return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
     }
+    
+    
+    func checkForURL() -> String? {
+        
+        if self.contains("http://") || self.contains("https://") {
+            return self
+        }
+        
+        if let path = Bundle.main.path(forResource: "domains", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let domains = data.components(separatedBy: .newlines)
+                
+                for domain in domains {
+                    if self.lowercased().contains(domain.lowercased()) && !self.contains(" ") {
+                        return "http://" + self
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
+        return nil
+    }
 }
+
 

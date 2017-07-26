@@ -108,6 +108,8 @@
 		14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
 		14EC7AB51E74F27300B3C4E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964AE901DBA74B400A0162E /* Images.xcassets */; };
 		14EC7AB61E74F27300B3C4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE8A1DBA74B400A0162E /* Main.storyboard */; };
+		14F6E4181F2952C00037043E /* domains.txt in Resources */ = {isa = PBXBuildFile; fileRef = 14F6E4171F2952C00037043E /* domains.txt */; };
+		14F6E4191F2952C00037043E /* domains.txt in Resources */ = {isa = PBXBuildFile; fileRef = 14F6E4171F2952C00037043E /* domains.txt */; };
 		14F78E881E8C530E00A3D169 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E871E8C530E00A3D169 /* ProfileImageView.swift */; };
 		14F78E891E8C530E00A3D169 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E871E8C530E00A3D169 /* ProfileImageView.swift */; };
 		456A8E5B94DBD1941F2C5CF2 /* Pods_Aloha_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9816EDE8DA470794141306 /* Pods_Aloha_dev.framework */; };
@@ -193,6 +195,7 @@
 		14E7A69C1EA7B97700F1BB15 /* ProfileViewControllerCurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerCurrentUser.swift; sourceTree = "<group>"; };
 		14E7A69D1EA7B97700F1BB15 /* ProfileViewControllerOtherUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerOtherUser.swift; sourceTree = "<group>"; };
 		14EC7ABE1E74F27300B3C4E8 /* Aloha dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aloha dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14F6E4171F2952C00037043E /* domains.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = domains.txt; sourceTree = "<group>"; };
 		14F78E871E8C530E00A3D169 /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		2AAAB7ED9CA4FEA4C336A6FB /* Pods-AlohaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlohaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlohaTests/Pods-AlohaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4303DAD955828407D55586D3 /* Pods-Aloha dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aloha dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aloha dev/Pods-Aloha dev.debug.xcconfig"; sourceTree = "<group>"; };
@@ -360,6 +363,7 @@
 		B964AEAA1DBA74DE00A0162E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14F6E4171F2952C00037043E /* domains.txt */,
 				B937537F1DD669F8007D50D7 /* ContactManager.swift */,
 				1474176C1EAD171100A9A1E9 /* Scan.swift */,
 				B949FA3F1DBAA55A0071CBD6 /* User.swift */,
@@ -565,6 +569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F6E4191F2952C00037043E /* domains.txt in Resources */,
 				14C5A0AC1EF4A0000054D51D /* GoogleService-Info-DEV.plist in Resources */,
 				14EC7AB21E74F27300B3C4E8 /* LaunchScreen.storyboard in Resources */,
 				1466C63B1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
@@ -577,6 +582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F6E4181F2952C00037043E /* domains.txt in Resources */,
 				B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */,
 				1466C63A1ECF75DB00C01CF0 /* onboard.mp4 in Resources */,
 				B964AE911DBA74B400A0162E /* Images.xcassets in Resources */,

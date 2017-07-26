@@ -184,15 +184,7 @@ extension MainController: ScannerDelegate {
             self.present(navController, animated: true, completion: nil)
             
             
-        }else if qrCode.stringValue.contains("com") {
-            //Todo: Need to test different QRCodes and handle different strings
-            var url = ""
-            if !qrCode.stringValue.contains("http"){
-                url = "http://\(qrCode.stringValue)"
-            }else {
-                url = qrCode.stringValue
-            }
-            
+        }else if let url = qrCode.stringValue.checkForURL() {
             
             let popupvc = PTPopupWebViewController()
             popupvc.popupView.URL(string: url)
