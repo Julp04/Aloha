@@ -16,20 +16,26 @@ import ReachabilitySwift
 
 class AccountManager {
     
-    internal var frame = CGRect()
+    internal var frame: CGRect
     internal var viewController: UIViewController
     internal var buttons = [SwitchButton]()
     
+    var twitterButton: SwitchButton?
+    var contactButton: SwitchButton?
     
-    init(viewController: UIViewController) {
-        
+    init(viewController: UIViewController, frame: CGRect = CGRect()) {
+        self.frame = frame
         self.viewController = viewController
+        
         assignButtons()
     }
     
     internal func assignButtons() {
+        createContactButton()
+        createTwitterButton()
+        
         buttons.removeAll()
-        let tmpButtons = [createTwitterButton(), createContactButton()]
+        let tmpButtons = [twitterButton, contactButton]
         for button in tmpButtons {
             if let button = button {
                 buttons.append(button)
@@ -60,31 +66,31 @@ class AccountManager {
         return button
     }
     
-    func createContactButton() -> SwitchButton? {
+    func createContactButton() {
         
-        let button = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), title: "Add Contacts", description: "Allow Aloha to access your contacts to easily import new connections")
-        let whiteSnow = Snowflake(view: button, particles: [#imageLiteral(resourceName: "message_particle"), #imageLiteral(resourceName: "phone_particle")], color: .white)
-        let greenSnow = Snowflake(view: button, particles: [#imageLiteral(resourceName: "message_particle"), #imageLiteral(resourceName: "phone_particle")], color: .qnGreen)
-        button.layer.addSublayer(greenSnow)
-        button.layer.addSublayer(whiteSnow)
+        contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), title: "Add Contacts", description: "Allow Aloha to access your contacts to easily import new connections")
+        let whiteSnow = Snowflake(view: contactButton!, particles: [#imageLiteral(resourceName: "message_particle"), #imageLiteral(resourceName: "phone_particle")], color: .white)
+        let greenSnow = Snowflake(view: contactButton!, particles: [#imageLiteral(resourceName: "message_particle"), #imageLiteral(resourceName: "phone_particle")], color: .qnGreen)
+        contactButton?.layer.addSublayer(greenSnow)
+        contactButton?.layer.addSublayer(whiteSnow)
         greenSnow.start()
         
 
         switch ContactManager.contactStoreStatus() {
         case .authorized:
-            button.turnOn(animated: false)
-            button.buttonTitle = "Contacts Linked"
+            contactButton?.turnOn(animated: false)
+            contactButton?.buttonTitle = "Contacts Linked"
             greenSnow.stop()
             whiteSnow.start()
         default:
             break
         }
-        button.onClick = {
+        contactButton?.onClick = {
             ContactManager().requestAccessToContacts { accessGranted in
                 if accessGranted {
                     DispatchQueue.main.async {
-                        button.turnOn(animated: true)
-                        button.buttonTitle = "Contacts Linked"
+                        self.contactButton?.turnOn(animated: true)
+                        self.contactButton?.buttonTitle = "Contacts Linked"
                         whiteSnow.start()
                         greenSnow.stop()
                     }
@@ -105,50 +111,36 @@ class AccountManager {
                 }
             }
         }
-        return button
     }
-    func createTwitterButton() -> SwitchButton? {
-        let button = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), title: "Add Twitter Account", description: "Link your Twitter account to instantly follow friends when you connect")
+    func createTwitterButton() {
+        twitterButton = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), title: "Add Twitter Account", description: "Link your Twitter account to instantly follow friends when you connect")
         
-        let blueFlake = Snowflake(view: button, particles: [#imageLiteral(resourceName: "twitter_on")], color: .twitter)
-        let whiteFlake = Snowflake(view: button, particles: [#imageLiteral(resourceName: "twitter_on")], color: .white)
-        button.layer.addSublayer(whiteFlake)
-        button.layer.addSublayer(blueFlake)
+        let blueFlake = Snowflake(view: twitterButton!, particles: [#imageLiteral(resourceName: "twitter_on")], color: .twitter)
+        let whiteFlake = Snowflake(view: twitterButton!, particles: [#imageLiteral(resourceName: "twitter_on")], color: .white)
+        twitterButton?.layer.addSublayer(whiteFlake)
+        twitterButton?.layer.addSublayer(blueFlake)
         blueFlake.start()
         
-        button.onClick = {
+        twitterButton?.onClick = {
             TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
                 if let error = error {
                     RKDropdownAlert.title("Oops!", message: error.localizedDescription, backgroundColor: .qnRed, textColor: .white)
                 }else {
-                    button.turnOn()
-                    button.isEnabled = false
-                    button.animationDidStartClosure = {_ in
+                    self.twitterButton?.turnOn()
+                    self.twitterButton?.isEnabled = false
+                    self.twitterButton?.animationDidStartClosure = {_ in
                         QnClient.sharedInstance.currentUser {user in
-                            button.buttonTitle = user!.twitterAccount!.screenName
+                            self.twitterButton?.buttonTitle = user!.twitterAccount!.screenName
                         }
-                        button.buttonDescription = "You are linked with Twitter"
+                        self.twitterButton?.buttonDescription = "You are linked with Twitter"
                         blueFlake.stop()
                         whiteFlake.start()
                     }
                 }
             })
         }
-        return button
     }
-    func createSnapchatButton() -> SwitchButton? {
-        let button = SwitchButton(frame: frame, offColor: .white, onColor: #colorLiteral(red: 1, green: 0.8761399504, blue: 0, alpha: 1), image: #imageLiteral(resourceName: "snap"), title: "Add Snapchat", description: "Add snapchat username to quickly find friends on snapchat", isOn: false)
-        let whiteFlake = Snowflake(view: button, particles: [#imageLiteral(resourceName: "snap")], color: .white)
-        let yellowFlake = Snowflake(view: button, particles: [#imageLiteral(resourceName: "snap")], color: #colorLiteral(red: 1, green: 0.8761399504, blue: 0, alpha: 1))
-        button.layer.addSublayer(whiteFlake)
-        whiteFlake.start()
-        
-        button.onClick =  {
-            button.switchState()
-        }
-        
-        return button
-    }
+
 }
 
 class CurrentUserAccountManager: AccountManager {
@@ -158,28 +150,32 @@ class CurrentUserAccountManager: AccountManager {
     
     init(user: User, viewController: UIViewController) {
         self.user = user
-        super.init(viewController: viewController)
-        frame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
+        let buttonFrame = CGRect(x: 0.0, y: 0.0, width: 125.0, height: 75.0)
+        super.init(viewController: viewController, frame: buttonFrame)
+      
     }
     
-    override func createTwitterButton() -> SwitchButton? {
-        let button = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
+    override func createTwitterButton() {
+
+        if twitterButton == nil {
+            twitterButton = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Add", isOn: false)
+        }
         
         func turnOn(animated: Bool = true) {
-            button.turnOn(animated: animated)
+            twitterButton?.turnOn(animated: animated)
             self.client.currentUser {user in
                 self.user = user!
-                button.shortText = user!.twitterAccount?.screenName
+                self.twitterButton?.shortText = user!.twitterAccount?.screenName
             }
         }
         
         func turnOff() {
-            button.turnOff()
-            button.shortText = "Add"
+            twitterButton?.turnOff()
+            twitterButton?.shortText = "Add"
         }
         
-        button.onLongPress = {
-            if button.isOn  {
+        twitterButton?.onLongPress = {
+            if self.twitterButton!.isOn  {
                 //Opens profile in Twitter application
                 if let url = URL(string: "twitter://user?screen_name=\(self.user.twitterAccount!.screenName)") {
                     if UIApplication.shared.canOpenURL(url) {
@@ -191,8 +187,8 @@ class CurrentUserAccountManager: AccountManager {
                 }
             }
         }
-        button.onClick = {
-            if !button.isOn {
+        twitterButton?.onClick = {
+            if !self.twitterButton!.isOn {
                 guard Reachability.isConnectedToInternet() else {
                     AlertUtility.showConnectionAlert()
                     return
@@ -233,15 +229,15 @@ class CurrentUserAccountManager: AccountManager {
             turnOn(animated: false)
         }
         
-        return button
     }
-    override func createContactButton() -> SwitchButton? {
-        
-        let button = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Link Contacts", isOn: false)
+    override func createContactButton(){
+        if contactButton == nil {
+            contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Link Contacts", isOn: false)
+        }
         
         func turnOn(animated: Bool = true) {
-            button.turnOn(animated: animated)
-            button.shortText = "Contacts Linked"
+            contactButton?.turnOn(animated: animated)
+            contactButton?.shortText = "Contacts Linked"
         }
         
         switch ContactManager.contactStoreStatus() {
@@ -250,7 +246,7 @@ class CurrentUserAccountManager: AccountManager {
                 turnOn(animated: false)
             }
         default:
-            button.onClick =  {
+            contactButton?.onClick =  {
                 ContactManager().requestAccessToContacts(completion: { (accessGranted) in
                     if accessGranted {
                         turnOn()
@@ -272,7 +268,6 @@ class CurrentUserAccountManager: AccountManager {
             }
             
         }
-        return button
     }
     
     internal func update(user: User) {
@@ -285,19 +280,23 @@ class OtherUserAccountManager: CurrentUserAccountManager {
     
     var delegate: AccountManagerDelegate?
     
-    override func createTwitterButton() -> SwitchButton? {
+    override func createTwitterButton(){
         if let screenName = user.twitterAccount?.screenName {
-            let button = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
-            
-            func turnOn() {
-                //todo: Needs to be on main queue
-                button.turnOn()
-                button.animationDidStartClosure = { _ in
-                    button.shortText = "Following"
-                }
+            if twitterButton == nil {
+                twitterButton = SwitchButton(frame: frame, offColor: .white, onColor: .twitter, image: #imageLiteral(resourceName: "twitter_on"), shortText: "Follow", isOn: false)
             }
             
-            button.onLongPress =  {
+            func turnOn(animated: Bool = true) {
+                twitterButton?.turnOn(animated: animated)
+                twitterButton?.shortText = "Following"
+            }
+            
+            func turnOff(animated: Bool = true) {
+                twitterButton?.turnOff()
+                twitterButton?.shortText = "Follow"
+            }
+            
+            twitterButton?.onLongPress =  {
                 //Opens profile in Twitter application
                 if let url = URL(string: "twitter://user?screen_name=\(screenName)") {
                     if UIApplication.shared.canOpenURL(url) {
@@ -309,72 +308,85 @@ class OtherUserAccountManager: CurrentUserAccountManager {
                 }
             }
             
-            TwitterClient.client.isFollowing(screenName: screenName, completion: { (isFollowing, error) in
-                if isFollowing {
-                    turnOn()
-                }else {
-                    //Current user is not following user, present button to allow them to follow
-                    button.onClick = {
-                        guard Reachability.isConnectedToInternet() else {
-                            AlertUtility.showConnectionAlert()
-                            return
-                        }
-                        
-                        self.client.currentUser(completion: { (user) in
-                            if user!.twitterAccount == nil {
-                                let alert = FCAlertView()
-                                alert.addButton("Link", withActionBlock: {
-                                    guard Reachability.isConnectedToInternet() else {
-                                        AlertUtility.showConnectionAlert()
-                                        return
-                                    }
-                                    TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
-                                        if error != nil {
-                                            print(error!)
-                                        }
-                                    })
-                                })
-                                alert.colorScheme = .twitter
-                                alert.showAlert(inView: self.viewController, withTitle: "Not linked with Twitter!", withSubtitle: "You need to link with Twitter to follow this user!", withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
-                                return
-                            }
-                        })
-                        
-                        TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
-                            if error != nil {
-                                RKDropdownAlert.title("Oops!", message: "We could not handle your request", backgroundColor: .gray, textColor: .white)
+            
+            self.twitterButton?.onClick =  {
+                if self.twitterButton!.isOn {
+                    let alert = FCAlertView()
+                    alert.addButton("Unfollow") {
+                        TwitterClient.client.unFollowUserWith(screenName: screenName, completion: { (error) in
+                            if let error = error {
+                                print(error)
                             }else {
-                                //Follow successful
-                                turnOn()
+                                turnOff()
                             }
                         })
                     }
+                    alert.colorScheme = .twitter
+                    alert.showAlert(inView: self.viewController, withTitle: "Unfollow \(screenName)", withSubtitle: "Do you want to unfollow \(screenName) on Twitter", withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Dismiss", andButtons: nil)
+                }else {
+                    guard Reachability.isConnectedToInternet() else {
+                        AlertUtility.showConnectionAlert()
+                        return
+                    }
+                    
+                    self.client.currentUser(completion: { (user) in
+                        if user!.twitterAccount == nil {
+                            let alert = FCAlertView()
+                            alert.addButton("Link", withActionBlock: {
+                                guard Reachability.isConnectedToInternet() else {
+                                    AlertUtility.showConnectionAlert()
+                                    return
+                                }
+                                TwitterClient.client.linkTwitterIn(viewController: self.viewController, completion: { (error) in
+                                    if error != nil {
+                                        print(error!)
+                                    }
+                                })
+                            })
+                            DispatchQueue.main.async {
+                                alert.colorScheme = .twitter
+                                alert.showAlert(inView: self.viewController, withTitle: "Not linked with Twitter!", withSubtitle: "You need to link with Twitter to follow this user!", withCustomImage: #imageLiteral(resourceName: "twitter_off"), withDoneButtonTitle: "Cancel", andButtons: nil)
+                            }
+                            return
+                        }
+                    })
+                    
+                    TwitterClient.client.followUserWith(screenName: screenName, completion: { (error) in
+                        if error != nil {
+                            RKDropdownAlert.title("Oops!", message: "We could not handle your request", backgroundColor: .gray, textColor: .white)
+                        }else {
+                            //Follow successful
+                            DispatchQueue.main.async {
+                                turnOn()
+                            }
+                        }
+                    })
+                }
+            }
+            
+            TwitterClient.client.isFollowing(screenName: screenName, completion: { (isFollowing, error) in
+                if isFollowing {
+                    DispatchQueue.main.async {
+                        turnOn()
+                    }
                 }
             })
-            
-            return button
-        }else {
-            return nil
         }
-        
     }
-    override func createContactButton() -> SwitchButton? {
-        var contactButton: SwitchButton?
-        
+    override func createContactButton(){
         func turnOn() {
             contactButton?.turnOn()
             contactButton?.animationDidStartClosure = { _ in
-                contactButton?.shortText = "Saved In contacts"
-                contactButton?.isEnabled = false
+                self.contactButton?.shortText = "Saved In contacts"
+                self.contactButton?.isEnabled = false
             }
         }
-        
-        
+
         if ContactManager.contactsAutorized(){
             if ContactManager().contactExists(user: user) {
                 contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Saved In Contacts", isOn: true)
             }else {
-                contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts", isOn: false)
+                
                 contactButton?.onClick =  {
                     ContactManager().addContact(self.user, image: self.user.profileImage, completion: { (success) in
                         if success {
@@ -411,7 +423,6 @@ class OtherUserAccountManager: CurrentUserAccountManager {
                 })
             }
         }
-        return contactButton
     }
     
 }
