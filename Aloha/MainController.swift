@@ -137,7 +137,8 @@ class MainController: PageboyViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-          scanner?.startCaptureSession()
+        scanner?.startCaptureSession()
+        MainController.transitionManager.isEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
