@@ -61,7 +61,7 @@ extension String {
                 let domains = data.components(separatedBy: .newlines)
                 
                 for domain in domains {
-                    if self.lowercased().contains(domain.lowercased()) && !self.contains(" ") {
+                    if self.lowercased().contains("." + domain.lowercased()) && !self.contains(" ") {
                         return "http://" + self
                     }
                 }
