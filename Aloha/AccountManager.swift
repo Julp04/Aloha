@@ -211,11 +211,13 @@ class CurrentUserAccountManager: AccountManager {
                     }
                     
                     TwitterClient.client.unlinkTwitter(completion: { (result) in
-                        switch result {
-                        case .success(_):
-                            turnOff()
-                        case .failure(let error):
-                            AlertUtility.showAlertWith(error.localizedDescription)
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success(_):
+                                turnOff()
+                            case .failure(let error):
+                                AlertUtility.showAlertWith(error.localizedDescription)
+                            }
                         }
                     })
                 })
@@ -226,7 +228,9 @@ class CurrentUserAccountManager: AccountManager {
         
         if (self.user.twitterAccount?.screenName) != nil {
             //User has already linked with Twitter
-            turnOn(animated: false)
+            DispatchQueue.main.async {
+                turnOn(animated: true)
+            }
         }
         
     }
@@ -249,7 +253,9 @@ class CurrentUserAccountManager: AccountManager {
             contactButton?.onClick =  {
                 ContactManager().requestAccessToContacts(completion: { (accessGranted) in
                     if accessGranted {
-                        turnOn()
+                        DispatchQueue.main.async {
+                            turnOn()
+                        }
                     }else {
                         //Show alert that user can turn on access to contacts in settings
                         DispatchQueue.main.async {
