@@ -198,7 +198,9 @@ class CurrentUserAccountManager: AccountManager {
                         if error != nil {
                             RKDropdownAlert.title("Oops!", message: error?.localizedDescription, backgroundColor: .qnRed, textColor: .white)
                         }else {
-                            turnOn()
+                            DispatchQueue.main.async {
+                                turnOn()
+                            }
                         }
                     }
                 })
