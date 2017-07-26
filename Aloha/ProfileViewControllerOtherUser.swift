@@ -258,7 +258,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        client.removeAllObservers()
+//        client.removeAllObservers()
     }
     
     func updateUI() {
