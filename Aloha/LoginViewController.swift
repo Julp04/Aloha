@@ -175,7 +175,7 @@ class LoginViewController: UIViewController {
         
         let ref = FIRDatabase.database().reference()
         let usernamesRef = ref.child("users")
-        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: emailField.text!).observe(.value, with: { snapshot in
+        usernamesRef.queryOrdered(byChild: "username").queryEqual(toValue: emailField.text!).observeSingleEvent(of: .value, with: { snapshot in
             
             guard snapshot.exists() else {
                 self.emailField.errorMessage = "Invalid Username"
@@ -201,7 +201,7 @@ class LoginViewController: UIViewController {
                         self.passwordField.errorMessage = "Invalid Password"
                         print(error!)
                     }else {
-                        let mainVC = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController
+                        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
                         
                         PermissonUtility.isCameraAuthorized(completion: { (success) in
                             if success {
