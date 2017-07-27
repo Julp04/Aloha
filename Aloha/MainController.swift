@@ -21,6 +21,9 @@ class MainController: PageboyViewController {
     let kPinchVelocity = 8.0
     var showQRCodeTip: EasyTipView!
     
+    let profileColorViewColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor, #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor]
+    let connectionColorViewColors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
+    
 
     //MARK: Properties
     var client = QnClient()
@@ -64,10 +67,9 @@ class MainController: PageboyViewController {
         
         showQRCodeTip = EasyTipView(text: "Tap here to share your QR code!")
         
-        
         colorView = GradientView(frame: view.frame)
         view.insertSubview(colorView, at: 0)
-        colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
+        colorView.colors = profileColorViewColors
         colorView.alpha = 0.0
         
         scanner = Scanner(view: view, scanTypes: [.qr])
@@ -275,11 +277,11 @@ extension MainController: PageboyViewControllerDelegate {
     func updateColorViewAlpha(position: CGPoint) {
         switch toFromIndex {
         case (1, 0), (0, 1):
-            colorView.colors = [ #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor, #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1).cgColor,]
+            colorView.colors = profileColorViewColors
             colorView.alpha = 1 - position.x
 //            rightBarButton.alpha = position.x
         case (2, 1), (1, 2):
-            colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
+            colorView.colors = connectionColorViewColors
             colorView.alpha = position.x - 1
         default:
             break
