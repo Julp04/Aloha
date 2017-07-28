@@ -390,11 +390,14 @@ class OtherUserAccountManager: CurrentUserAccountManager {
             }
         }
 
+        if contactButton == nil {
+            contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts", isOn: false)
+        }
+       
         if ContactManager.contactsAutorized(){
             if ContactManager().contactExists(user: user) {
-                contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Saved In Contacts", isOn: true)
+                turnOn()
             }else {
-                
                 contactButton?.onClick =  {
                     ContactManager().addContact(self.user, image: self.user.profileImage, completion: { (success) in
                         if success {
@@ -406,7 +409,6 @@ class OtherUserAccountManager: CurrentUserAccountManager {
                 }
             }
         }else {
-            contactButton = SwitchButton(frame: frame, offColor: .white, onColor: .qnGreen, image: #imageLiteral(resourceName: "contact_logo"), shortText: "Add to contacts", isOn: false)
             contactButton?.onClick = {
                 ContactManager().requestAccessToContacts(completion: { (acessGranted) in
                     if acessGranted {
