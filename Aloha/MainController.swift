@@ -21,7 +21,7 @@ class MainController: PageboyViewController {
     let kPinchVelocity = 8.0
     var showQRCodeTip: EasyTipView!
     
-    let profileColorViewColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor, #colorLiteral(red: 0.123675175, green: 0.9002516866, blue: 0.7746840715, alpha: 1).cgColor]
+    let profileColorViewColors = [UIColor.white.cgColor, #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1).cgColor]
     let connectionColorViewColors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
     
 

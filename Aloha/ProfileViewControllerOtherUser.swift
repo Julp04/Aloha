@@ -206,6 +206,9 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
 //        This will get called if the user you are viewing makes a change to his profile as you are viewing it.
         client.getUpdatedInfoForUser(user: user) { (updatedUser) in
+            DispatchQueue.main.async {
+                self.user = updatedUser
+            }
             self.user = updatedUser
             if let profileImage = self.user.profileImage {
                 DispatchQueue.main.async {
@@ -347,7 +350,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
         let name = "\(user.firstName!) \(user.lastName!)"
         if user.isPrivate {
-            nameLabel.font = UIFont.fontAwesome(ofSize: 17)
+            nameLabel.font = UIFont.fontAwesome(ofSize: 19)
             nameLabel.text = name + " " + String.fontAwesomeIcon(name: .lock)
         }else {
             nameLabel.text = name
@@ -385,7 +388,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     func calculateProfileViewHeight() -> CGFloat
     {
-        let y = statsStackView.frame.origin.y
+        let y = statsStackView.frame.origin.y + 10.0
         return y
     }
     
