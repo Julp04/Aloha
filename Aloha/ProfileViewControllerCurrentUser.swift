@@ -62,6 +62,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     @IBOutlet weak var requestBlipView: UIView!
     @IBOutlet weak var requestsCountLabel: UILabel!
   
+    @IBOutlet var descriptionLabels: [UILabel]!
+    
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var scansLabel: UILabel!
@@ -132,6 +134,10 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        descriptionLabels.forEach { (label) in
+            label.textColor = UIColor.gray
+        }
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         setupViewController()
@@ -180,7 +186,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         imageViewSpinner.isHidden = true
         
-        navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        navigationController?.navigationBar.barTintColor =  UIColor.alohaOrange
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.topItem?.titleView = nil

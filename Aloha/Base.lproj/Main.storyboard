@@ -453,6 +453,12 @@
                         <outlet property="scansLabel" destination="xZp-6O-bLD" id="7G6-bL-hPC"/>
                         <outlet property="scansView" destination="omy-88-Wk3" id="Kri-TC-Qto"/>
                         <outlet property="statsStackView" destination="fKY-OC-teG" id="QFW-Yp-P8M"/>
+                        <outletCollection property="descriptionLabels" destination="6mG-D4-FcH" collectionClass="NSMutableArray" id="qYX-fE-bwx"/>
+                        <outletCollection property="descriptionLabels" destination="o3d-yP-SY5" collectionClass="NSMutableArray" id="yBR-rO-0y3"/>
+                        <outletCollection property="descriptionLabels" destination="1Dy-JQ-3GU" collectionClass="NSMutableArray" id="n3g-8y-nSe"/>
+                        <outletCollection property="descriptionLabels" destination="QV0-ca-c1y" collectionClass="NSMutableArray" id="AaO-AY-G9x"/>
+                        <outletCollection property="descriptionLabels" destination="VGE-ci-xJ7" collectionClass="NSMutableArray" id="2Or-C6-dOo"/>
+                        <outletCollection property="descriptionLabels" destination="xZp-6O-bLD" collectionClass="NSMutableArray" id="Vbq-47-hz6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm5-7I-awE" userLabel="First Responder" sceneMemberID="firstResponder"/>
