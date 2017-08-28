@@ -2464,17 +2464,24 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3B0-us-AFK">
-                                            <rect key="frame" x="76" y="17" width="128" height="42"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U6E-5w-MCR">
+                                            <rect key="frame" x="76" y="17" width="128" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Applseeed" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dJ-eG-QbV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Johnny Applseeed" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dJ-eG-QbV">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="128" id="7km-hj-uaW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Applseeed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-bX-IXq">
-                                                    <rect key="frame" x="0.0" y="23.5" width="128" height="18.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Johnny Applseeed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-bX-IXq">
+                                                    <rect key="frame" x="0.0" y="19.5" width="128" height="18.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="128" id="PzV-v0-AAY"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.49561215749999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2494,15 +2501,12 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="3ME-9X-Anj" firstAttribute="trailing" secondItem="8MS-70-01L" secondAttribute="trailing" id="03O-V6-fB2"/>
-                                        <constraint firstItem="3B0-us-AFK" firstAttribute="centerY" secondItem="tSN-kd-g0r" secondAttribute="centerY" id="5W3-S6-9uG"/>
                                         <constraint firstItem="r8q-as-Gxl" firstAttribute="top" secondItem="tSN-kd-g0r" secondAttribute="topMargin" constant="2" id="8Ge-Y3-Q6l"/>
-                                        <constraint firstItem="3B0-us-AFK" firstAttribute="leading" secondItem="r8q-as-Gxl" secondAttribute="trailing" constant="12" id="C6W-Zt-s3T"/>
                                         <constraint firstAttribute="trailing" secondItem="8MS-70-01L" secondAttribute="trailing" constant="6" id="CZu-zB-QeM"/>
                                         <constraint firstItem="r8q-as-Gxl" firstAttribute="leading" secondItem="tSN-kd-g0r" secondAttribute="leadingMargin" id="KR2-wr-JTi"/>
                                         <constraint firstItem="3ME-9X-Anj" firstAttribute="top" secondItem="8MS-70-01L" secondAttribute="top" id="QYI-6S-uNC"/>
                                         <constraint firstItem="8MS-70-01L" firstAttribute="centerY" secondItem="tSN-kd-g0r" secondAttribute="centerY" id="vkC-7f-j0d"/>
                                         <constraint firstItem="3ME-9X-Anj" firstAttribute="leading" secondItem="8MS-70-01L" secondAttribute="leading" id="yhl-XW-axK"/>
-                                        <constraint firstItem="8MS-70-01L" firstAttribute="leading" secondItem="3B0-us-AFK" secondAttribute="trailing" constant="18.5" id="zyY-C5-iRq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

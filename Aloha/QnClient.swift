@@ -597,19 +597,10 @@ class QnClient {
                 
                 self.ref.child(DatabaseFields.users.rawValue).child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
                     if let user = User(snapshot: snapshot) {
-                        self.getProfileImageForUser(user: user, began: {}, completion: { (result) in
-                            switch result {
-                            case .success(let image):
-                                user.profileImage = image
-                            case .failure(_):
-                                break
-                            }
-                            
                             users.append(user)
                             completion(users)
-                        })
-                    }
-                })
+                        }
+                    })
             }
         })
     }

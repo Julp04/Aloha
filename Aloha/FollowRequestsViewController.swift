@@ -38,12 +38,9 @@ class FollowRequestsViewController: UITableViewController {
         self.followRequests = requests
     }
 
-   
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
 
@@ -108,7 +105,6 @@ class FollowRequestsViewController: UITableViewController {
                 cell.statusButton.backgroundColor = UIColor.qnBlue
                 cell.statusButton.setTitleColor(.white, for: .normal)
                 cell.statusButton.addTarget(self, action: #selector(FollowRequestsViewController.showCancelRequestAlert(sender:)), for: .touchUpInside)
-                
             default:
                 cell.statusButton.isHidden = true
                 cell.acceptButton.isHidden = true
@@ -118,7 +114,6 @@ class FollowRequestsViewController: UITableViewController {
     }
     
     func acceptRequest(sender: UIButton) {
-      
         let index = sender.tag
         let user = followRequests[index]
         QnClient.sharedInstance.acceptFollowRequest(user: user) {_ in 

@@ -67,7 +67,7 @@ class User
             return nil
         }
         
-        self.isPrivate = values[DatabaseFields.isPrivate.rawValue] as! Bool
+        self.isPrivate = values[DatabaseFields.isPrivate.rawValue] as? Bool ?? false
         self.username = values[DatabaseFields.username.rawValue] as! String
         self.firstName = values[DatabaseFields.firstName.rawValue] as! String
         self.lastName = values[DatabaseFields.lastName.rawValue] as! String

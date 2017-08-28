@@ -190,10 +190,11 @@ extension MainController: ScannerDelegate {
             
             let popupvc = PTPopupWebViewController()
             popupvc.popupView.URL(string: url)
+            
             let closeButton = PTPopupWebViewButton(type: .custom).title("Close").foregroundColor(UIColor.qnBlue)
             closeButton.handler({
-                self.scanner.startCaptureSession()
                 popupvc.close()
+                self.scanner.startCaptureSession()
             })
             
             let safariButton = PTPopupWebViewButton(type: .custom).backgroundColor(UIColor.qnBlue).foregroundColor(UIColor.white)

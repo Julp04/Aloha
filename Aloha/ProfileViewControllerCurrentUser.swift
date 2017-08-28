@@ -180,7 +180,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         imageViewSpinner.isHidden = true
         
-        navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.02568417229, green: 0.4915728569, blue: 0.614921093, alpha: 1)
+        navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.topItem?.titleView = nil
@@ -215,9 +215,22 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             let newRequests = followRequests.count
             
             self.followRequests = followRequests
+            
             DispatchQueue.main.async {
                 if newRequests > 0 {
-                    self.followRequestImageView.image = followRequests[0].profileImage
+                   
+                    let firstRequest = followRequests[0]
+                    self.followRequestImageView.image = ProfileImageCreator.create(firstRequest.firstName, last: firstRequest.lastName)
+                    ImageDownloader.downloadImage(url: firstRequest.profileImageURL, completion: { (result) in
+                        switch result {
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                self.followRequestImageView.image = image
+                            }
+                        case .failure(let _):
+                            break
+                        }
+                    })
                     self.requestsCountLabel.text = "\(newRequests)"
                     self.tableView.allowsSelection = true
                 }else {
