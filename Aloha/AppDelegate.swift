@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             checkForCurrentUser()
         }
         
-        let flowerLogo = #imageLiteral(resourceName: "aloha_flower")
+        let flowerLogo = #imageLiteral(resourceName: "aloha_logo")
         let qSize = CGSize(width: 240.0, height: 128.0)
         
         let splashView = RevealingSplashView(iconImage: flowerLogo, iconInitialSize: qSize, backgroundColor: UIColor.main)
