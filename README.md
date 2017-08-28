@@ -12,6 +12,8 @@ Link your Twitter account to instantly follow new connections without ever havin
 ## Create
 Create your profile by including information you want to share with friends. Link with Twitter and Instagram to easily follow new friends right away
 
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_0.gif) ![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_1.gif)
+
 ## Link
 Link different social media accounts to have all your accounts in one place. Share profiles from one app!
 
