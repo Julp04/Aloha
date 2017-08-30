@@ -17,6 +17,8 @@ Create your profile by including information you want to share with friends. Lin
 ## Link
 Link different social media accounts to have all your accounts in one place. Share profiles from one app!
 
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_2.gif)
+
 ## Scan
 Scan users codes to retrieve contact and profile information without the need of an internet connection
 
