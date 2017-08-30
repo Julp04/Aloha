@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRDatabase.database().persistenceEnabled = true
         
+      
 
         if ((Defaults["HasLaunchedOnce"].bool == false || Defaults["HasLaunchedOnce"].bool == nil)) {
             
@@ -88,6 +89,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController
             self.window?.rootViewController = mainVCNav
         }else {
+
+            if let _ = FIRAuth.auth()?.currentUser {
+                QnClient.sharedInstance.signOut()
+            }
+            
             let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OnboardNavController")
             
             self.window!.rootViewController = tutorialVC
