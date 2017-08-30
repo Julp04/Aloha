@@ -133,12 +133,7 @@ class QnClient {
         userRef.observe(.value, with: { (snapshot) in
             if let user = User(snapshot: snapshot) {
                 completion(user)
-            }else {
-                print("User not available")
-                QnClient.sharedInstance.signOut()
-                completion(nil)
             }
-            
         })
     }
     
@@ -696,6 +691,13 @@ class QnClient {
                 completion(.success("success"))
             }
         }
+    }
+    
+    
+    func addTwitter(screenName: String, token: String, tokenSecret: String) {
+        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName":screenName, "token:":token, "tokenSecret": tokenSecret])
+        
+        ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])
     }
 }
 

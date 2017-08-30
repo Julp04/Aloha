@@ -63,20 +63,14 @@ class TwitterClient {
                         completion(error)
                         
                     }else {
-                        let ref = FIRDatabase.database().reference()
-                        ref.keepSynced(true)
-                    
-                        
-                        let currentUser = FIRAuth.auth()!.currentUser!
-    
-                        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName": screenName, "token": token, "tokenSecret": tokenSecret])
-                        ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])
-                        
+                      
+                        QnClient.sharedInstance.addTwitter(screenName: screenName, token: token, tokenSecret: tokenSecret)
                         completion(nil)
                     }
                 })
         },
             failure: { error in
+                completion(error)
                 print(error.description)
         }
         )
@@ -88,7 +82,7 @@ class TwitterClient {
         ref.keepSynced(true)
         let doesUserExistRef = ref.child("accounts").child("twitter").child(screenName)
       
-        let handle = doesUserExistRef.observe(.value, with: { (snapshot) in
+       doesUserExistRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(true)
             }else {
@@ -96,7 +90,6 @@ class TwitterClient {
             }
         })
         
-        doesUserExistRef.removeObserver(withHandle: handle)
     }
     
     func unlinkTwitter(completion: @escaping (Result<Any?>) -> Void)

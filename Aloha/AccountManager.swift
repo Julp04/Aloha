@@ -126,12 +126,13 @@ class AccountManager {
                 if let error = error {
                     RKDropdownAlert.title("Oops!", message: error.localizedDescription, backgroundColor: .qnRed, textColor: .white)
                 }else {
-                    self.twitterButton?.turnOn()
-                    self.twitterButton?.isEnabled = false
-                    self.twitterButton?.animationDidStartClosure = {_ in
-                        QnClient.sharedInstance.currentUser {user in
-                            self.twitterButton?.buttonTitle = user!.twitterAccount!.screenName
-                        }
+                    DispatchQueue.main.async {
+                        self.twitterButton?.turnOn()
+                        self.twitterButton?.isEnabled = false
+                        
+                        QnClient.sharedInstance.currentUser(completion: { (user) in
+                            self.twitterButton?.buttonTitle = user?.twitterAccount?.screenName
+                        })
                         self.twitterButton?.buttonDescription = "You are linked with Twitter"
                         blueFlake.stop()
                         whiteFlake.start()
