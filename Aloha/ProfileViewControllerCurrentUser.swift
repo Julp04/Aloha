@@ -160,6 +160,17 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             DispatchQueue.main.async {
                 self.recentlyAddedUsers = users
                 self.recentlyAddedCollectionView.reloadData()
+                
+                var usernames = [String: [String]]()
+                
+                usernames["username"] = users.map {$0.username}
+                usernames["photoURL"] = users.map {$0.profileImageURL!}
+                usernames["uid"] = users.map {$0.uid}
+
+                let userDefaults = UserDefaults(suiteName: "group.io.sayaloha.aloha")
+                userDefaults!.set(usernames, forKey: "recentlyAdded")
+                
+                userDefaults!.synchronize()
             }
         }
         

@@ -1,6 +1,6 @@
 //
 //  User.swift
-//  QNect
+//  Aloha
 //
 //  Created by Julian Panucci on 11/6/2016
 //  Copyright © 2016 Julian Panucci. All rights reserved.
