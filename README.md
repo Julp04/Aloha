@@ -22,6 +22,31 @@ Link different social media accounts to have all your accounts in one place. Sha
 ## Scan
 Scan users codes to retrieve contact and profile information without the need of an internet connection
 
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_3.gif)
+
 
 ## Connect
-Quickly import information to your contacts and follow them to have most recent info. Follow users immediately on Twitter and other social media
+Quickly import information to your contacts and follow them to have most recent info. 
+
+### Follow on Twitter
+Follow new connections easily without ever having to leave the app
+
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_4.gif)
+
+Long press to view Twitter profile
+
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_5.gif)
+
+
+## Contact Info
+Easily call, facetime, or send a text straight from the app.
+You can also add as a contact for later!
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_6.gif)
+
+## Recenlty Added Connections
+See your recently added connections within your profile screen
+
+![Alt text](https://github.com/Julp04/Aloha/blob/master/Aloha%20Images/aloha_7.gif)
+
+
+
