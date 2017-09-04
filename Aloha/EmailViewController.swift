@@ -104,13 +104,13 @@ class EmailViewController: UIViewController {
                     }
                     
                     FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.userInfo!.password!) {user, error in
-                        
-                        QnClient.sharedInstance.setUserInfo(userInfo: self.userInfo!)
-
                         guard error == nil else {
                             print(error!)
                             return
                         }
+                        
+                         QnClient.sharedInstance.setUserInfo(userInfo: self.userInfo!, user: user!)
+                        
                         self.performSegue(withIdentifier: "ProfileInfo", sender: self.userInfo)
                         self.continueButton.stopLoadingAnimation()
                     }

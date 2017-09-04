@@ -59,7 +59,6 @@ enum FollowingStatus: String {
 class QnClient {
     
     private var ref: FIRDatabaseReference
-    var currentUser = FIRAuth.auth()!.currentUser!
     
     static let sharedInstance = QnClient()
     
@@ -67,8 +66,11 @@ class QnClient {
         ref = FIRDatabase.database().reference()
     }
     
-     func setUserInfo(userInfo: UserInfo)
+    func setUserInfo(userInfo: UserInfo, user: FIRUser)
      {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         let usersRef = ref.child(DatabaseFields.users.rawValue)
         let currentUserRef = usersRef.child(currentUser.uid)
         
@@ -76,12 +78,14 @@ class QnClient {
                               DatabaseFields.firstName.rawValue: userInfo.firstName,
                               DatabaseFields.lastName.rawValue: userInfo.lastName,
                               DatabaseFields.email.rawValue: userInfo.email,
-                              DatabaseFields.uid.rawValue: currentUser.uid])
+                              DatabaseFields.uid.rawValue: user.uid])
         //User will always be public unless changed by user
         currentUserRef.updateChildValues([DatabaseFields.isPrivate.rawValue: false])
     }
     
     func changePrivacySettingsForUser(isPrivate: Bool) {
+        
+      let currentUser = FIRAuth.auth()!.currentUser!
 
         let usersRef = ref.child(DatabaseFields.users.rawValue)
         let currentUserRef = usersRef.child(currentUser.uid)
@@ -91,6 +95,8 @@ class QnClient {
     
     func updateUserInfo(firstName:String, lastName:String, personalEmail:String?, phone:String?, location: String?, birthdate: String?, about: String?)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
         let usersRef = ref.child(DatabaseFields.users.rawValue)
         let currentUserRef = usersRef.child(currentUser.uid)
         
@@ -128,6 +134,9 @@ class QnClient {
 
     func currentUser(completion: @escaping (User?) -> Void)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         let userRef = ref.child(DatabaseFields.users.rawValue).child(currentUser.uid)
         
         userRef.observe(.value, with: { (snapshot) in
@@ -140,6 +149,9 @@ class QnClient {
     
     func setProfileImage(image: UIImage)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileURL = documentsURL.appendingPathComponent(DatabaseFields.profileImage.rawValue)
@@ -167,7 +179,7 @@ class QnClient {
                     // Metadata contains file metadata such as size, content-type, and download URL.
                     
                     let url = metadata!.downloadURL()!.absoluteString
-                    self.ref.child(DatabaseFields.users.rawValue).child(self.currentUser.uid).updateChildValues(["photoURL": url])
+                    self.ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["photoURL": url])
                     
                 }
             }
@@ -179,6 +191,9 @@ class QnClient {
     
     func getProfileImageForUser(user: User, began:(() -> Void), completion:@escaping (Result<UIImage?>) -> Void)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         if currentUser.uid == user.uid {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
@@ -200,7 +215,7 @@ class QnClient {
             ImageDownloader.downloadImage(url: url, completion: { (result) in
                 switch result {
                 case .success(let image):
-                    if user.uid == self.currentUser.uid {
+                    if user.uid == currentUser.uid {
                         self.setProfileImage(image: image!)
                     }
                     completion(.success(image))
@@ -235,6 +250,9 @@ class QnClient {
     }
 
     func getFollowStatusOnce(user: User, completion:@escaping (FollowingStatus) -> Void) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         let followingRef = ref.child("following").child(currentUser.uid).child(user.uid)
         let blockingRef = ref.child("blocking").child(currentUser.uid).child(user.uid)
         
@@ -265,6 +283,9 @@ class QnClient {
     }
     
     func getFollowStatus(user: User, completion: @escaping (FollowingStatus) -> Void) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         let followingRef = ref.child("following").child(currentUser.uid).child(user.uid)
         let blockingRef = ref.child("blocking").child(currentUser.uid).child(user.uid)
         
@@ -295,6 +316,9 @@ class QnClient {
     
     func follow(user: User, completion: @escaping ErrorCompletion)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         let followingRef = ref.child("following").child(currentUser.uid)
         let followersRef = ref.child("followers").child(user.uid)
         
@@ -322,6 +346,8 @@ class QnClient {
 
     func cancelFollow(user: User, completion: @escaping ErrorCompletion)
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         self.ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
         self.ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
         
@@ -330,6 +356,8 @@ class QnClient {
     
     func unfollow(user: User, completion: @escaping ErrorCompletion)
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
         ref.child("followers").child(user.uid).child(currentUser.uid).removeValue()
         completion(nil)
@@ -337,6 +365,8 @@ class QnClient {
     
     func acceptFollowRequest(user: User, completion: @escaping (Error?) -> Void)
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         //Change status to following
         ref.child("following").child(user.uid).child(currentUser.uid).updateChildValues(["following": true, "date": Date().asString()])
         ref.child("followers").child(currentUser.uid).child(user.uid).updateChildValues(["follower": true, "date": Date().asString()])
@@ -345,6 +375,9 @@ class QnClient {
     
     func denyFollowRequest(user: User, completion: @escaping (Error?) -> Void)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         //Do not change following status
         
         //Delete request
@@ -355,6 +388,9 @@ class QnClient {
     
     func block(user: User)
     {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         self.ref.child("blocking").child(currentUser.uid).updateChildValues([user.uid: true])
         
         self.ref.child("following").child(currentUser.uid).child(user.uid).removeValue()
@@ -368,10 +404,15 @@ class QnClient {
     
     func unblock(user: User)
     {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("blocking").child(currentUser.uid).child(user.uid).removeValue()
     }
     
     func isBlockedBy(user: User, completion: @escaping (Bool) -> Void) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("blocking").child(user.uid).child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard snapshot.exists() else {
                 completion(false)
@@ -384,6 +425,9 @@ class QnClient {
     
     //todo: Don't like this name because its not like added but following..
     func getRecentlyAdded(completion: @escaping (([User]) -> Void)) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             var users = [User]()
@@ -443,6 +487,9 @@ class QnClient {
     
     
     func getFollowing(forUser user: User, completion: @escaping (([User]) -> Void))  {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("following").child(user.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
              var users = [User]()
             
@@ -478,6 +525,9 @@ class QnClient {
     }
     
     func getFollowing(completion: @escaping (([User]) -> Void))  {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("following").child(currentUser.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             
             var users = [User]()
@@ -514,6 +564,9 @@ class QnClient {
     }
     
     func getFollowers(forUser user: User, completion: @escaping (([User]) -> Void)) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("followers").child(user.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
 
             var users = [User]()
@@ -547,6 +600,9 @@ class QnClient {
     
     
     func getFollowers(completion: @escaping (([User]) -> Void)) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
             var users = [User]()
             
@@ -578,6 +634,9 @@ class QnClient {
     }
     
     func getFollowRequests(completion: @escaping (([User]) -> Void)) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("followers").child(currentUser.uid).queryOrdered(byChild: "follower").queryEqual(toValue: false).observe(.value, with: { (snapshot) in
             var users = [User]()
             
@@ -604,6 +663,9 @@ class QnClient {
     //MARK: User Stuff
     
     func updatePrivateMode(isPrivate: Bool) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child(DatabaseFields.users.rawValue).child(currentUser.uid).updateChildValues(["isPrivate": isPrivate])
     }
     
@@ -667,6 +729,9 @@ class QnClient {
         }
     }
     func add(scan: Scan) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("scans").child(currentUser.uid).childByAutoId().updateChildValues(["data": scan.data, "date": scan.date.asString()])
     }
     
@@ -695,6 +760,9 @@ class QnClient {
     
     
     func addTwitter(screenName: String, token: String, tokenSecret: String) {
+        
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
         ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName":screenName, "token:":token, "tokenSecret": tokenSecret])
         
         ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])

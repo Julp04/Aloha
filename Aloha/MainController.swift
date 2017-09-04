@@ -103,7 +103,7 @@ class MainController: PageboyViewController {
         profileViewController = profileNavController.viewControllers.first as! ProfileViewControllerCurrentUser
         connectionsViewController = connectionsNavController.viewControllers.first as! ConnectionsViewController
         
-        client.currentUser { (currentUser) in
+        QnClient.sharedInstance.currentUser { (currentUser) in
             
             guard let currentUser = currentUser else {
                 self.client.signOut()
