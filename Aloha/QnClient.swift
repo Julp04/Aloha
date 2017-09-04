@@ -18,10 +18,7 @@ import OAuthSwift
 import ReachabilitySwift
 import Alamofire
 
-public enum Result <T> {
-    case success(T)
-    case failure(Error)
-}
+
 
 enum DatabaseFields: String {
     case username = "username"
@@ -241,8 +238,8 @@ class QnClient {
         })
     }
     
-    func getUpdatedInfoForUserOnce(user: User, completion:@escaping (User) -> Void) {
-        ref.child(DatabaseFields.users.rawValue).child(user.uid).observeSingleEvent(of: .value, with: { snapshot in
+    func getUpdatedInfoForUserOnce(uid: String, completion:@escaping (User) -> Void) {
+        ref.child(DatabaseFields.users.rawValue).child(uid).observeSingleEvent(of: .value, with: { snapshot in
             if let updatedUser = User(snapshot: snapshot) {
                 completion(updatedUser)
             }
