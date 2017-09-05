@@ -763,7 +763,7 @@ class QnClient {
         
         let currentUser = FIRAuth.auth()!.currentUser!
         
-        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName":screenName, "token:":token, "tokenSecret": tokenSecret])
+        ref.child("users").child(currentUser.uid).child("accounts").child("twitter").updateChildValues(["screenName":screenName, "token":token, "tokenSecret": tokenSecret])
         
         ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])
     }
