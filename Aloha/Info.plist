@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -66,7 +66,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your photos to provide with an amazing app experience</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>Allow Aloha to access your contacts to easily import new connections</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photos to provide with an amazing app experience</string>
 	<key>UILaunchStoryboardName</key>
