@@ -54,26 +54,40 @@ platform :ios do
 		workspace: "Aloha.xcworkspace",
 		include_bitcode: true) 
     skip_waiting_for_build_processing
-	# Build your app - more options available
     testflight
     increment_build_number
     pilot
-
     # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
   end
 
-  lane :increment do
+  lane :increment_build do
     increment_build_number
   end
 
   desc "Deploy a new version to the App Store"
   lane :release do
-    # match(type: "appstore")
+    # match(type: "Appstore")
     # snapshot
-    gym(scheme: "Aloha") # Build your app - more options available
+    gym(scheme: "Aloha", 
+		workspace: "Aloha.xcworkspace",
+		include_bitcode: true) 
     deliver(force: true)
     # frameit
+  end
+
+  desc "Increment patch number in version number"
+  lane :patch do
+    increment_version_number(bump_type: "patch")
+  end
+
+  desc "Increment minor number in version number"
+  lane :minor do
+    increment_version_number(bump_type: "minor")
+  end
+
+  desc "Increment major number in version number"
+  lane :major do
+    increment_version_number(bump_type: "major")
   end
 
   # You can define as many lanes as you want

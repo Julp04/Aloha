@@ -1403,7 +1403,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Aloha/Info.plist";
+				INFOPLIST_FILE = Aloha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.sayaloha.aloha;
@@ -1428,7 +1428,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Aloha/Info.plist";
+				INFOPLIST_FILE = Aloha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.sayaloha.aloha;
@@ -1446,7 +1446,7 @@
 			baseConfigurationReference = 2AAAB7ED9CA4FEA4C336A6FB /* Pods-AlohaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QNectTests/Info.plist;
+				INFOPLIST_FILE = AlohaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jrp5502.QNectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1460,7 +1460,7 @@
 			baseConfigurationReference = FED8BE887B58D0397B0FA62B /* Pods-AlohaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QNectTests/Info.plist;
+				INFOPLIST_FILE = AlohaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jrp5502.QNectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

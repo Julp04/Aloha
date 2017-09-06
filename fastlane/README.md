@@ -47,9 +47,9 @@ fastlane ios beta
 Submit a new Beta Build to Apple TestFlight
 
 This will also make sure the profile is up to date
-### ios increment
+### ios increment_build
 ```
-fastlane ios increment
+fastlane ios increment_build
 ```
 
 ### ios release
@@ -57,6 +57,21 @@ fastlane ios increment
 fastlane ios release
 ```
 Deploy a new version to the App Store
+### ios patch
+```
+fastlane ios patch
+```
+Increment patch number in version number
+### ios minor
+```
+fastlane ios minor
+```
+Increment minor number in version number
+### ios major
+```
+fastlane ios major
+```
+Increment major number in version number
 
 ----
 
