@@ -37,6 +37,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     //MARK: Properties
     var client: QnClient = QnClient()
     var user: User!
+    var uid:String?
     
     var colorView: GradientView!
     var accountManager: OtherUserAccountManager!
@@ -97,6 +98,10 @@ class ProfileViewControllerOtherUser: UITableViewController {
         self.user = user
     }
     
+    func configureViewController(uid: String) {
+       self.uid = uid
+    }
+    
     
     fileprivate func setUpViewController() {
         //Setup view controller as if we were viewing someone else's profile
@@ -127,36 +132,74 @@ class ProfileViewControllerOtherUser: UITableViewController {
         super.viewDidLoad()
         
         
-        
-        settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_icon"), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(ProfileViewControllerOtherUser.settingsAction(_:)))
-        navigationItem.setRightBarButton(settingsButton, animated: false)
-        navigationItem.title = user.username
-        navigationItem.titleView?.tintColor = .white
-        
-        navigationController?.delegate = self
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        imageViewSpinner.isHidden = true
-        
-        setUpViewController()
-    
-        colorView = GradientView(frame: tableView.bounds)
-        colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
-        
-        backgroundView = UIView(frame: tableView.bounds)
-        backgroundView.addSubview(colorView)
-        
-        tableView.backgroundView = backgroundView
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorStyle = .none
-        
-        accountsCollectionView.dataSource = self
-        accountsCollectionView.delegate = self
-        
-        self.accountManager = OtherUserAccountManager(user: self.user, viewController: self)
-        accountManager.delegate = self
-        
-        updateUI()
+        if user == nil {
+            QnClient.sharedInstance.getUpdatedInfoForUserOnce(uid: uid!) { (user) in
+                
+                self.user = user
+                DispatchQueue.main.async {
+                    self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_icon"), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(ProfileViewControllerOtherUser.settingsAction(_:)))
+                    self.navigationItem.setRightBarButton(self.settingsButton, animated: false)
+                    self.navigationItem.title = user.username
+                    self.navigationItem.titleView?.tintColor = .white
+                    
+                    self.navigationController?.delegate = self
+                    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+                    
+                    self.imageViewSpinner.isHidden = true
+                    
+                    self.setUpViewController()
+                    
+                    self.colorView = GradientView(frame: self.tableView.bounds)
+                    self.colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
+                    
+                    self.backgroundView = UIView(frame: self.tableView.bounds)
+                    self.backgroundView.addSubview(self.colorView)
+                    
+                    self.tableView.backgroundView = self.backgroundView
+                    self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+                    self.tableView.separatorStyle = .none
+                    
+                    self.accountsCollectionView.dataSource = self
+                    self.accountsCollectionView.delegate = self
+                    
+                    self.accountManager = OtherUserAccountManager(user: self.user, viewController: self)
+                    self.accountManager.delegate = self
+                    
+                    self.updateUI()
+                }
+            }
+            
+        }else {
+            self.settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_icon"), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(ProfileViewControllerOtherUser.settingsAction(_:)))
+            self.navigationItem.setRightBarButton(self.settingsButton, animated: false)
+            self.navigationItem.title = self.user.username
+            self.navigationItem.titleView?.tintColor = .white
+            
+            self.navigationController?.delegate = self
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            
+            self.imageViewSpinner.isHidden = true
+            
+            self.setUpViewController()
+            
+            self.colorView = GradientView(frame: self.tableView.bounds)
+            self.colorView.colors = [#colorLiteral(red: 0.05098039216, green: 0.9607843137, blue: 0.8, alpha: 1).cgColor, #colorLiteral(red: 0.0431372549, green: 0.5764705882, blue: 0.1882352941, alpha: 1).cgColor]
+            
+            self.backgroundView = UIView(frame: self.tableView.bounds)
+            self.backgroundView.addSubview(self.colorView)
+            
+            self.tableView.backgroundView = self.backgroundView
+            self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+            self.tableView.separatorStyle = .none
+            
+            self.accountsCollectionView.dataSource = self
+            self.accountsCollectionView.delegate = self
+            
+            self.accountManager = OtherUserAccountManager(user: self.user, viewController: self)
+            self.accountManager.delegate = self
+            
+            self.updateUI()
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

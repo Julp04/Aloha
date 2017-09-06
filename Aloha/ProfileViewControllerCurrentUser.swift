@@ -55,6 +55,9 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     var recentlyAddedUsers = [User]()
     var client = QnClient()
     
+    var usernames = [String: [Any]]()
+    
+    
    
     //MARK: Outlets
     @IBOutlet weak var followRequestImageView: ProfileImageView!
@@ -160,6 +163,8 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             DispatchQueue.main.async {
                 self.recentlyAddedUsers = users
                 self.recentlyAddedCollectionView.reloadData()
+                
+                
             }
         }
         
@@ -483,6 +488,29 @@ extension ProfileViewControllerCurrentUser: UICollectionViewDataSource {
                          user.profileImage = tmpImg
                         break
                     }
+                    
+                  
+                    
+                    let imageData = UIImagePNGRepresentation(user.profileImage!)
+            
+                    
+                    if self.usernames["username"]?.append(user.username) == nil{
+                       self.usernames["username"] = [user.username]
+                    }
+                    
+                    if self.usernames["imageData"]?.append(imageData!) == nil {
+                        self.usernames["imageData"] = [imageData!]
+                    }
+                    if self.usernames["uid"]?.append(user.uid) == nil {
+                        self.usernames["uid"] = [user.uid]
+                    }
+                    
+                    let userDefaults = UserDefaults(suiteName: "group.io.sayaloha.aloha")
+                    userDefaults!.set(self.usernames, forKey: "recentlyAdded")
+                    
+                    userDefaults!.synchronize()
+                    
+                    
                     DispatchQueue.main.async {
                         cell.contentView.addSubview(profileImageView)
                     }

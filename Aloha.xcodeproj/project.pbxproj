@@ -23,6 +23,16 @@
 		1418C0031EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
 		1418C0221EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
 		1418C0231EA6728800C5538F /* SwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0211EA6728800C5538F /* SwitchButton.swift */; };
+		141BEFCB1F5DE0E200F7C804 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 141BEFCA1F5DE0E200F7C804 /* NotificationCenter.framework */; };
+		141BEFCE1F5DE0E200F7C804 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BEFCD1F5DE0E200F7C804 /* TodayViewController.swift */; };
+		141BEFD11F5DE0E200F7C804 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141BEFCF1F5DE0E200F7C804 /* MainInterface.storyboard */; };
+		141BEFD51F5DE0E200F7C804 /* Aloha Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 141BEFC91F5DE0E200F7C804 /* Aloha Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		141BEFDD1F5DE5F200F7C804 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F78E871E8C530E00A3D169 /* ProfileImageView.swift */; };
+		141BEFDE1F5DE9A000F7C804 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF0DF61ED8910000657680 /* ImageDownloader.swift */; };
+		141BEFE01F5DE9FB00F7C804 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BEFDF1F5DE9FB00F7C804 /* Result.swift */; };
+		141BEFE11F5DE9FB00F7C804 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BEFDF1F5DE9FB00F7C804 /* Result.swift */; };
+		141BEFE21F5DE9FB00F7C804 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BEFDF1F5DE9FB00F7C804 /* Result.swift */; };
+		141BEFE31F5DEA0A00F7C804 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
 		142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142163481E8ED4C600CF6FF4 /* GradientView.swift */; };
 		1446683F1EC8A7840062FA56 /* Oops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446683E1EC8A7840062FA56 /* Oops.swift */; };
@@ -139,6 +149,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		141BEFD31F5DE0E200F7C804 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B964AE7B1DBA74B400A0162E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 141BEFC81F5DE0E200F7C804;
+			remoteInfo = "Aloha Widget";
+		};
 		B964AE9B1DBA74B400A0162E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B964AE7B1DBA74B400A0162E /* Project object */;
@@ -147,6 +164,20 @@
 			remoteInfo = QNect;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		141BEFD91F5DE0E200F7C804 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				141BEFD51F5DE0E200F7C804 /* Aloha Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07D3DB2AAEEF968784A9D881 /* Pods_AlohaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlohaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +191,14 @@
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
+		141BEFC91F5DE0E200F7C804 /* Aloha Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Aloha Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		141BEFCA1F5DE0E200F7C804 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		141BEFCD1F5DE0E200F7C804 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		141BEFD01F5DE0E200F7C804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		141BEFD21F5DE0E200F7C804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		141BEFDB1F5DE53E00F7C804 /* Aloha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aloha.entitlements; sourceTree = "<group>"; };
+		141BEFDC1F5DE56100F7C804 /* Aloha Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Aloha Widget.entitlements"; sourceTree = "<group>"; };
+		141BEFDF1F5DE9FB00F7C804 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = ../Result.swift; sourceTree = "<group>"; };
 		142163481E8ED4C600CF6FF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1446683E1EC8A7840062FA56 /* Oops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oops.swift; sourceTree = "<group>"; };
 		144668421EC8AEBB0062FA56 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -232,6 +271,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		141BEFC61F5DE0E200F7C804 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141BEFCB1F5DE0E200F7C804 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7AAE1E74F27300B3C4E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +308,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141BEFCC1F5DE0E200F7C804 /* Aloha Widget */ = {
+			isa = PBXGroup;
+			children = (
+				141BEFDC1F5DE56100F7C804 /* Aloha Widget.entitlements */,
+				141BEFCD1F5DE0E200F7C804 /* TodayViewController.swift */,
+				141BEFCF1F5DE0E200F7C804 /* MainInterface.storyboard */,
+				141BEFD21F5DE0E200F7C804 /* Info.plist */,
+			);
+			path = "Aloha Widget";
+			sourceTree = "<group>";
+		};
 		148522331EA1537400F0BDC4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +346,7 @@
 				BFAF0FA4662ADFE95B9E2F4B /* Pods_Aloha.framework */,
 				8C9816EDE8DA470794141306 /* Pods_Aloha_dev.framework */,
 				07D3DB2AAEEF968784A9D881 /* Pods_AlohaTests.framework */,
+				141BEFCA1F5DE0E200F7C804 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -295,6 +354,7 @@
 		B949FA3E1DBA9AA80071CBD6 /* Utitilities */ = {
 			isa = PBXGroup;
 			children = (
+				141BEFDF1F5DE9FB00F7C804 /* Result.swift */,
 				14148BDB1ED76A5900B8021D /* PermissonUtility.swift */,
 				140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */,
 				1446683E1EC8A7840062FA56 /* Oops.swift */,
@@ -316,6 +376,7 @@
 			children = (
 				B964AE851DBA74B400A0162E /* Aloha */,
 				B964AE9D1DBA74B400A0162E /* AlohaTests */,
+				141BEFCC1F5DE0E200F7C804 /* Aloha Widget */,
 				B964AE841DBA74B400A0162E /* Products */,
 				A6DCC86F55992F7852DB2F25 /* Frameworks */,
 				C075528983C508AD25572E68 /* Pods */,
@@ -328,6 +389,7 @@
 				B964AE831DBA74B400A0162E /* Aloha.app */,
 				B964AE9A1DBA74B400A0162E /* AlohaTests.xctest */,
 				14EC7ABE1E74F27300B3C4E8 /* Aloha dev.app */,
+				141BEFC91F5DE0E200F7C804 /* Aloha Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,6 +397,7 @@
 		B964AE851DBA74B400A0162E /* Aloha */ = {
 			isa = PBXGroup;
 			children = (
+				141BEFDB1F5DE53E00F7C804 /* Aloha.entitlements */,
 				14CBE9421ECF384200A852EA /* AppDelegate.swift */,
 				B964AE8A1DBA74B400A0162E /* Main.storyboard */,
 				B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */,
@@ -366,8 +429,8 @@
 				14F6E4171F2952C00037043E /* domains.txt */,
 				B937537F1DD669F8007D50D7 /* ContactManager.swift */,
 				1474176C1EAD171100A9A1E9 /* Scan.swift */,
-				B949FA3F1DBAA55A0071CBD6 /* User.swift */,
 				B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */,
+				B949FA3F1DBAA55A0071CBD6 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -447,6 +510,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		141BEFC81F5DE0E200F7C804 /* Aloha Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 141BEFD81F5DE0E200F7C804 /* Build configuration list for PBXNativeTarget "Aloha Widget" */;
+			buildPhases = (
+				141BEFC51F5DE0E200F7C804 /* Sources */,
+				141BEFC61F5DE0E200F7C804 /* Frameworks */,
+				141BEFC71F5DE0E200F7C804 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Aloha Widget";
+			productName = "Aloha Widget";
+			productReference = 141BEFC91F5DE0E200F7C804 /* Aloha Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		14EC7A801E74F27300B3C4E8 /* Aloha dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14EC7ABB1E74F27300B3C4E8 /* Build configuration list for PBXNativeTarget "Aloha dev" */;
@@ -483,10 +563,12 @@
 				1403CAA91E548FF600BDE899 /* Run Script */,
 				141852191E5A103200471E59 /* Todo Warning Script */,
 				14CCB6DF1E7C2C7B004B1C3C /* Sketch Script */,
+				141BEFD91F5DE0E200F7C804 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				141BEFD41F5DE0E200F7C804 /* PBXTargetDependency */,
 			);
 			name = Aloha;
 			productName = QNect;
@@ -520,10 +602,20 @@
 		B964AE7B1DBA74B400A0162E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Julian Panucci";
 				TargetAttributes = {
+					141BEFC81F5DE0E200F7C804 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = DGYJ3R2C9F;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					14EC7A801E74F27300B3C4E8 = {
 						DevelopmentTeam = DGYJ3R2C9F;
 					};
@@ -532,6 +624,11 @@
 						DevelopmentTeam = DGYJ3R2C9F;
 						LastSwiftMigration = 0820;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							com.apple.Push = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 0;
 							};
@@ -560,11 +657,20 @@
 				B964AE821DBA74B400A0162E /* Aloha */,
 				14EC7A801E74F27300B3C4E8 /* Aloha dev */,
 				B964AE991DBA74B400A0162E /* AlohaTests */,
+				141BEFC81F5DE0E200F7C804 /* Aloha Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		141BEFC71F5DE0E200F7C804 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141BEFD11F5DE0E200F7C804 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7AB11E74F27300B3C4E8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -928,6 +1034,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		141BEFC51F5DE0E200F7C804 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141BEFE31F5DEA0A00F7C804 /* Oops.swift in Sources */,
+				141BEFDD1F5DE5F200F7C804 /* ProfileImageView.swift in Sources */,
+				141BEFDE1F5DE9A000F7C804 /* ImageDownloader.swift in Sources */,
+				141BEFE21F5DE9FB00F7C804 /* Result.swift in Sources */,
+				141BEFCE1F5DE0E200F7C804 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EC7A821E74F27300B3C4E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -978,6 +1096,7 @@
 				1421634A1E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				14EC7AA71E74F27300B3C4E8 /* CodeViewController.swift in Sources */,
 				14EC7AA81E74F27300B3C4E8 /* ProfileImageCreator.swift in Sources */,
+				141BEFE11F5DE9FB00F7C804 /* Result.swift in Sources */,
 				14EC7AAA1E74F27300B3C4E8 /* AlertUtility.swift in Sources */,
 				1466C63E1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */,
 				14EC7AAB1E74F27300B3C4E8 /* ConnectionsViewController.swift in Sources */,
@@ -1040,6 +1159,7 @@
 				142163491E8ED4C600CF6FF4 /* GradientView.swift in Sources */,
 				B9570E121DCF9A3A00685718 /* ProfileImageCreator.swift in Sources */,
 				14DE82D81E4D2A5F00453D3C /* AlertUtility.swift in Sources */,
+				141BEFE01F5DE9FB00F7C804 /* Result.swift in Sources */,
 				B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */,
 				1466C63D1ECF78C900C01CF0 /* AccessCameraController.swift in Sources */,
 				14B224A11E8AA4380027CBA8 /* TransparentNavigationBar.swift in Sources */,
@@ -1064,6 +1184,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		141BEFD41F5DE0E200F7C804 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 141BEFC81F5DE0E200F7C804 /* Aloha Widget */;
+			targetProxy = 141BEFD31F5DE0E200F7C804 /* PBXContainerItemProxy */;
+		};
 		B964AE9C1DBA74B400A0162E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B964AE821DBA74B400A0162E /* Aloha */;
@@ -1072,6 +1197,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		141BEFCF1F5DE0E200F7C804 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				141BEFD01F5DE0E200F7C804 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		B964AE8A1DBA74B400A0162E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1091,6 +1224,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		141BEFD61F5DE0E200F7C804 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Aloha Widget/Aloha Widget.entitlements";
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
+				INFOPLIST_FILE = "Aloha Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.sayaloha.aloha.Aloha-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		141BEFD71F5DE0E200F7C804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Aloha Widget/Aloha Widget.entitlements";
+				DEVELOPMENT_TEAM = DGYJ3R2C9F;
+				INFOPLIST_FILE = "Aloha Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.sayaloha.aloha.Aloha-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		14EC7ABC1E74F27300B3C4E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4303DAD955828407D55586D3 /* Pods-Aloha dev.debug.xcconfig */;
@@ -1229,9 +1397,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 47D53F93C796F98D5AD35563 /* Pods-Aloha.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+
+				CODE_SIGN_ENTITLEMENTS = Aloha/Aloha.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
+
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
@@ -1244,6 +1416,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1252,8 +1426,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F57608E22CC33BB7CF0626C /* Pods-Aloha.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Aloha/Aloha.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				ENABLE_BITCODE = YES;
@@ -1265,7 +1441,11 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridge.h";
 				SWIFT_VERSION = 3.0;
+
+				TARGETED_DEVICE_FAMILY = 1;
+
 				VERSIONING_SYSTEM = "apple-generic";
+
 			};
 			name = Release;
 		};
@@ -1300,6 +1480,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		141BEFD81F5DE0E200F7C804 /* Build configuration list for PBXNativeTarget "Aloha Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				141BEFD61F5DE0E200F7C804 /* Debug */,
+				141BEFD71F5DE0E200F7C804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14EC7ABB1E74F27300B3C4E8 /* Build configuration list for PBXNativeTarget "Aloha dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

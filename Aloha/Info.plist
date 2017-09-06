@@ -28,6 +28,14 @@
 				<string>aloha</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>alohaExtension</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>3</string>
@@ -69,6 +77,17 @@
 	<string>Allow Aloha to access your contacts to easily import new connections</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photos to provide with an amazing app experience</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>code_button</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>QR Code</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).openQRCode</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

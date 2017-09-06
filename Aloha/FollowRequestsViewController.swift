@@ -134,7 +134,7 @@ class FollowRequestsViewController: UITableViewController {
         
         let user = followRequests[index]
         
-        QnClient.sharedInstance.getUpdatedInfoForUserOnce(user: user) { (user) in
+        QnClient.sharedInstance.getUpdatedInfoForUserOnce(uid: user.uid) { (user) in
             QnClient.sharedInstance.follow(user: user) { (error) in
                 if error != nil {
                     print(error!)

@@ -101,6 +101,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        print(url)
+        
+        if url.scheme == "alohaExtension" {
+            let uid = url.absoluteString.components(separatedBy: "//")[1]
+            
+            let mainVCNav = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "MainController") as! MainController
+            
+            let profileViewController = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ProfileViewControllerOtherUser") as! ProfileViewControllerOtherUser
+            profileViewController.configureViewController(uid: uid)
+            let navController = UINavigationController(rootViewController: profileViewController)
+            mainVCNav.present(navController, animated: true, completion: nil)
+            self.window?.rootViewController?.present(navController, animated: true, completion: nil)
+            
+           
+            return true
+            
+        }
       
        
         OAuthSwift.handle(url: url)
@@ -109,6 +127,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         return true
     }
+    
+    
+    enum Shortcut: String {
+        case openQRCode = "openQRCode"
+    }
+    
+    func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        
+        var quickActionHandled = false
+        let type = shortcutItem.type.components(separatedBy: ".").last!
+        if let shortcutType = Shortcut.init(rawValue: type) {
+            switch shortcutType {
+            case .openQRCode:
+                let mainViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainController") as! MainController
+                
+                self.window?.rootViewController = mainViewController
+                mainViewController.performSegue(withIdentifier: "CodeSegue", sender: self)
+                
+                quickActionHandled = true
+            }
+        }
+        
+        return quickActionHandled
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        completionHandler(handleQuickAction(shortcutItem: shortcutItem))
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
