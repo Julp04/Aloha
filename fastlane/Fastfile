@@ -53,6 +53,7 @@ platform :ios do
     gym(scheme: "Aloha", 
 		workspace: "Aloha.xcworkspace",
 		include_bitcode: true) 
+    skip_waiting_for_build_processing
 	# Build your app - more options available
     testflight
     increment_build_number
@@ -60,6 +61,10 @@ platform :ios do
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  lane :increment do
+    increment_build_number
   end
 
   desc "Deploy a new version to the App Store"

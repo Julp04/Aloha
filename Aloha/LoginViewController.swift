@@ -111,8 +111,7 @@ class LoginViewController: UIViewController {
         loginButton.highlightedBackgroundColor = .alohaOrange
         loginButton.spinnerColor = .alohaOrange
         
-    
-        
+        loginButton.enable = true
     }
     
     //MARK: User Interaction
@@ -271,8 +270,6 @@ extension LoginViewController: UITextFieldDelegate {
         emailField.errorMessage = ""
         var password = passwordField.text
         var email = emailField.text
-        
-        loginButton.enable = (password?.characters.count)! > 2  ? true : false
         
         if textField == passwordField {
             if string == "" {
