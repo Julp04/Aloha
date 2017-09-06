@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,17 +23,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5N-tB-uMy" customClass="ProfileImageView" customModule="Aloha_Widget" customModuleProvider="target">
-                                <rect key="frame" x="16" y="23.5" width="70" height="70"/>
+                                <rect key="frame" x="16" y="8" width="70" height="70"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.3921568627" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="f8F-Ka-MUr"/>
-                                    <constraint firstAttribute="width" constant="70" id="qbp-BZ-YMv"/>
+                                    <constraint firstAttribute="width" constant="70" id="OaK-eY-Qw0"/>
+                                    <constraint firstAttribute="height" constant="70" id="hqs-bi-cFD"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOT-an-PcT" customClass="ProfileImageView" customModule="Aloha_Widget" customModuleProvider="target">
+                                <rect key="frame" x="125" y="8" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.3921568627" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="5zG-dz-6Ye"/>
+                                    <constraint firstAttribute="height" constant="70" id="bab-qc-hgW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnE-1N-SdQ" customClass="ProfileImageView" customModule="Aloha_Widget" customModuleProvider="target">
+                                <rect key="frame" x="234" y="8" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.3921568627" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="CXC-J6-ZKH"/>
+                                    <constraint firstAttribute="width" constant="70" id="wCb-ez-cH1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfo-4O-C3j">
+                                <rect key="frame" x="16" y="88" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3e-Pw-d18">
+                                <rect key="frame" x="125" y="88" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzJ-zZ-efa">
+                                <rect key="frame" x="234" y="88" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="G5N-tB-uMy" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="YMY-ct-nrX"/>
-                            <constraint firstItem="G5N-tB-uMy" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="h84-xJ-brY"/>
+                            <constraint firstItem="o3e-Pw-d18" firstAttribute="top" secondItem="oOT-an-PcT" secondAttribute="bottom" constant="10" id="384-dN-1iJ"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="o3e-Pw-d18" secondAttribute="bottom" constant="8" symbolic="YES" id="9yg-ch-566"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="G5N-tB-uMy" secondAttribute="leading" id="But-Sd-fro"/>
+                            <constraint firstItem="KzJ-zZ-efa" firstAttribute="top" secondItem="EnE-1N-SdQ" secondAttribute="bottom" constant="10" id="EPW-Ic-QBp"/>
+                            <constraint firstItem="o3e-Pw-d18" firstAttribute="baseline" secondItem="pfo-4O-C3j" secondAttribute="baseline" id="EVC-nO-UDG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KzJ-zZ-efa" secondAttribute="trailing" id="FF5-Lh-WkM"/>
+                            <constraint firstItem="pfo-4O-C3j" firstAttribute="top" secondItem="G5N-tB-uMy" secondAttribute="bottom" constant="10" id="Fka-UR-ETG"/>
+                            <constraint firstItem="pfo-4O-C3j" firstAttribute="trailing" secondItem="G5N-tB-uMy" secondAttribute="trailing" id="GYi-JC-u7b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EnE-1N-SdQ" secondAttribute="trailing" id="HHj-pG-1zS"/>
+                            <constraint firstItem="o3e-Pw-d18" firstAttribute="trailing" secondItem="oOT-an-PcT" secondAttribute="trailing" id="Ieu-Fi-dFd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="pfo-4O-C3j" secondAttribute="leading" id="ImQ-Td-YXB"/>
+                            <constraint firstItem="KzJ-zZ-efa" firstAttribute="leading" secondItem="EnE-1N-SdQ" secondAttribute="leading" id="Ksp-t3-8GT"/>
+                            <constraint firstItem="G5N-tB-uMy" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="ND6-bs-RH8"/>
+                            <constraint firstItem="o3e-Pw-d18" firstAttribute="leading" secondItem="oOT-an-PcT" secondAttribute="leading" id="PSw-Nb-i91"/>
+                            <constraint firstItem="EnE-1N-SdQ" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="mBa-ba-X0h"/>
+                            <constraint firstItem="oOT-an-PcT" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="mPZ-sk-f9M"/>
+                            <constraint firstItem="oOT-an-PcT" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="oGW-Jv-gdE"/>
+                            <constraint firstItem="o3e-Pw-d18" firstAttribute="baseline" secondItem="KzJ-zZ-efa" secondAttribute="baseline" id="t1Z-fN-7C1"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -43,12 +93,17 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="117"/>
                     <connections>
-                        <outlet property="profileImageView" destination="G5N-tB-uMy" id="Q5l-af-a6y"/>
+                        <outlet property="label0" destination="pfo-4O-C3j" id="ttf-CK-xNb"/>
+                        <outlet property="label1" destination="o3e-Pw-d18" id="3yw-BL-JIV"/>
+                        <outlet property="label2" destination="KzJ-zZ-efa" id="SOr-pv-Wuj"/>
+                        <outlet property="profileImageView0" destination="G5N-tB-uMy" id="Ioz-2h-2VM"/>
+                        <outlet property="profileImageView1" destination="oOT-an-PcT" id="FxM-Fx-Igc"/>
+                        <outlet property="profileImageView2" destination="EnE-1N-SdQ" id="gZ5-U1-cA1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.600000000000001" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-133" y="39"/>
         </scene>
     </scenes>
 </document>

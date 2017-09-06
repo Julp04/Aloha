@@ -148,7 +148,8 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             switch sender.state {
             case .began:
                 interactionInProgress = true
-                sourceViewController.performSegue(withIdentifier: segueIdentifier, sender: self)
+                sourceViewController.present(presentedViewController, animated: true, completion: nil)
+//                sourceViewController.performSegue(withIdentifier: segueIdentifier, sender: self)
             case .changed:
                 shouldCompleteTransition =  progress > 0.5
                 update(progress)
