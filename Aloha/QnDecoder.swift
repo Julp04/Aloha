@@ -11,7 +11,8 @@ import AES256CBC
 
 public enum Encyrptor: String {
     
-    case password = "weArePennStatePasswordPanucci123"
+    case password = "********************"
+    //CREATE OWN PASSWORD HERE
     
 }
 
