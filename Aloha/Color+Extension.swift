@@ -90,7 +90,7 @@ extension UIColor {
     
     @nonobjc class var snapchat: UIColor {
         get {
-            return #colorLiteral(red: 0.9551871827, green: 0.9528872575, blue: 0.02465350067, alpha: 1)
+            return #colorLiteral(red: 1, green: 0.9880340695, blue: 0, alpha: 1)
         }
     }
 }
