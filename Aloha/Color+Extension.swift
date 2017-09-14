@@ -21,6 +21,7 @@ extension UIColor {
         }
     }
     
+    
     @nonobjc class var alohaOrange: UIColor {
         get {
             return UIColor(r: 250, g: 100, b: 13, a: 1)
@@ -84,6 +85,12 @@ extension UIColor {
     @nonobjc class var twitter:UIColor{
         get{
             return UIColor(r: 64, g: 153, b: 255, a: 1)
+        }
+    }
+    
+    @nonobjc class var snapchat: UIColor {
+        get {
+            return #colorLiteral(red: 0.9551871827, green: 0.9528872575, blue: 0.02465350067, alpha: 1)
         }
     }
 }
