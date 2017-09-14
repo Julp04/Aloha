@@ -1230,7 +1230,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Aloha Widget/Aloha Widget.entitlements";
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				INFOPLIST_FILE = "Aloha Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sayaloha.aloha.Aloha-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1248,7 +1248,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Aloha Widget/Aloha Widget.entitlements";
 				DEVELOPMENT_TEAM = DGYJ3R2C9F;
 				INFOPLIST_FILE = "Aloha Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.sayaloha.aloha.Aloha-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";

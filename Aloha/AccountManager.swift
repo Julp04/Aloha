@@ -12,9 +12,18 @@ import FCAlertView
 import RKDropdownAlert
 import ReachabilitySwift
 
+protocol AccountsProtocol {
+    var twitterButton: SwitchButton? {get set}
+    var contactButton: SwitchButton? {get set}
+    var snapchatButton: SwitchButton? {get set}
+    
+    
+    func createContactButton()
+    func createTwitterButton()
+    func createSnapchatButton()
+}
 
-
-class AccountManager {
+class AccountManager: AccountsProtocol {
     
     internal var frame: CGRect
     internal var viewController: UIViewController
@@ -22,6 +31,7 @@ class AccountManager {
     
     var twitterButton: SwitchButton?
     var contactButton: SwitchButton?
+    var snapchatButton: SwitchButton?
     
     init(viewController: UIViewController, frame: CGRect = CGRect()) {
         self.frame = frame
@@ -33,9 +43,10 @@ class AccountManager {
     internal func assignButtons() {
         createContactButton()
         createTwitterButton()
+        createSnapchatButton()
         
         buttons.removeAll()
-        let tmpButtons = [twitterButton, contactButton]
+        let tmpButtons = [twitterButton, contactButton, snapchatButton]
         for button in tmpButtons {
             if let button = button {
                 buttons.append(button)
@@ -139,6 +150,55 @@ class AccountManager {
                     }
                 }
             })
+        }
+    }
+    
+    func createSnapchatButton() {
+        
+        let snapColor = #colorLiteral(red: 0.9529411793, green: 0.9141744421, blue: 0.3056259536, alpha: 1)
+        snapchatButton = SwitchButton(frame: frame, offColor: .white, onColor:snapColor , image: #imageLiteral(resourceName: "snap"), title: "Add Snapchat Account", description: "Link your Snapchat to account to easily follow new connections on Snapchat")
+        
+        let whiteFlake  = Snowflake(view: snapchatButton!, particles: [#imageLiteral(resourceName: "snap"): .white])
+        let yellowFlake = Snowflake(view: snapchatButton!, particles: [#imageLiteral(resourceName: "snap"): snapColor])
+        
+        snapchatButton?.layer.addSublayer(whiteFlake)
+        snapchatButton?.layer.addSublayer(yellowFlake)
+        yellowFlake.start()
+        
+        snapchatButton?.onClick = {
+            var hitAdd = 0
+            var snapchatUsername = ""
+            let alert = FCAlertView()
+            
+            alert.addTextField(withPlaceholder: "Username") { (string) in
+                snapchatUsername  = string!
+                
+                if hitAdd == 1 {
+                    if snapchatUsername != "" {
+                        //Add snapchat username
+                        self.snapchatButton?.turnOn()
+                        self.snapchatButton?.isEnabled = false
+                        self.snapchatButton?.buttonTitle = snapchatUsername.lowercased()
+                        
+                        QnClient.sharedInstance.addSnapchat(screenName: snapchatUsername.lowercased())
+                        
+                        self.snapchatButton?.buttonDescription = "You are linked with Snapchat"
+                        yellowFlake.stop()
+                        whiteFlake.start()
+                    }else {
+                        RKDropdownAlert.title("Username cannot be blank", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                    }
+                }
+            }
+            alert.addButton("Cancel", withActionBlock: {
+                hitAdd = 0
+            })
+            alert.doneActionBlock {
+                hitAdd = 1
+            }
+            alert.colorScheme = snapColor
+            alert.showAlert(inView: self.viewController, withTitle: "Snapchat", withSubtitle: "Enter your Snapchat username!", withCustomImage: #imageLiteral(resourceName: "snap"), withDoneButtonTitle: "Add", andButtons: nil)
+
         }
     }
 
@@ -276,6 +336,78 @@ class CurrentUserAccountManager: AccountManager {
                 })
             }
             
+        }
+    }
+    override func createSnapchatButton() {
+        if snapchatButton == nil {
+            snapchatButton =  SwitchButton(frame: frame, offColor: .white, onColor: .snapchat, image: #imageLiteral(resourceName: "snap"), shortText: "Add", isOn: false)
+        }
+        
+        func turnOn(animated: Bool = true) {
+            snapchatButton?.turnOn(animated: animated)
+            self.client.currentUser {user in
+                self.user = user!
+                self.snapchatButton?.shortText = user!.snapchatAccount?.screenName
+            }
+        }
+        
+        func turnOff() {
+            snapchatButton?.turnOff()
+            snapchatButton?.shortText = "Add"
+        }
+        
+        snapchatButton?.onLongPress =  {
+            if twitterButton?.isOn {
+                let url = URL(string: "https://snapchat.com/add/\(self.user.snapchatAccount!.screenName)")!
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+        snapchatButton?.onClick = {
+            if !self.snapchatButton!.isOn {
+                
+                var hitAdd = 0
+                var snapchatUsername = ""
+                let alert = FCAlertView()
+                
+                alert.addTextField(withPlaceholder: "Username") { (string) in
+                    snapchatUsername  = string!
+                    
+                    if hitAdd == 1 {
+                        if snapchatUsername != "" {
+                            //Add snapchat username
+                            
+                            QnClient.sharedInstance.addSnapchat(screenName: snapchatUsername.lowercased())
+                            turnOn()
+                        }else {
+                            RKDropdownAlert.title("Username cannot be blank", backgroundColor: UIColor.qnRed, textColor: UIColor.white)
+                        }
+                    }
+                }
+                alert.addButton("Cancel", withActionBlock: {
+                    hitAdd = 0
+                })
+                alert.doneActionBlock {
+                    hitAdd = 1
+                }
+                alert.colorScheme = .snapchat
+                alert.showAlert(inView: self.viewController, withTitle: "Snapchat", withSubtitle: "Enter your Snapchat username!", withCustomImage: #imageLiteral(resourceName: "snap"), withDoneButtonTitle: "Add", andButtons: nil)
+                
+            }else {
+                let alert = FCAlertView()
+                alert.addButton("Unlink", withActionBlock: {
+                    QnClient.sharedInstance.removeSnapchat()
+                    turnOff()
+                })
+                alert.colorScheme = .snapchat
+                alert.showAlert(inView: self.viewController, withTitle: "Unlink from Snapchat", withSubtitle: nil, withCustomImage: #imageLiteral(resourceName: "snap"), withDoneButtonTitle: "Cancel", andButtons: nil)
+            }
+        }
+        
+        if self.user.snapchatAccount?.screenName != nil {
+            DispatchQueue.main.async {
+                turnOn(animated: true)
+            }
         }
     }
     
@@ -434,6 +566,9 @@ class OtherUserAccountManager: CurrentUserAccountManager {
                 })
             }
         }
+    }
+    override func createSnapchatButton() {
+        
     }
     
 }
