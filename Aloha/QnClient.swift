@@ -764,6 +764,21 @@ class QnClient {
         
         ref.child("accounts").child("twitter").updateChildValues([screenName: "screenName"])
     }
+    
+    
+    
+    func addSnapchat(screenName: String) {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child("users").child(currentUser.uid).child("accounts").child("snapchat").updateChildValues(["screenName": screenName])
+    }
+    
+    func removeSnapchat() {
+        let currentUser = FIRAuth.auth()!.currentUser!
+        
+        ref.child("users").child(currentUser.uid).child("accounts").child("snapchat").removeValue()
+    }
+    
 }
 
 enum ReportType: String {

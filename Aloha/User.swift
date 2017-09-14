@@ -54,6 +54,7 @@ class User
     
     var accounts: [Account]?
     var twitterAccount: Account?
+    var snapchatAccount: Account?
     
     var ref: FIRDatabaseReference?
     var key: String?
@@ -108,6 +109,7 @@ class User
     
     private func setAccounts() {
         self.twitterAccount = accounts?.filter { $0.identifier == . twitter}.first
+        self.snapchatAccount = accounts?.filter { $0.identifier == .snapchat}.first
         
         //Add other accounts 
         
