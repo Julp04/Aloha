@@ -357,7 +357,7 @@ class CurrentUserAccountManager: AccountManager {
         }
         
         snapchatButton?.onLongPress =  {
-            if twitterButton?.isOn {
+            if (self.twitterButton?.isOn)! {
                 let url = URL(string: "https://snapchat.com/add/\(self.user.snapchatAccount!.screenName)")!
                 UIApplication.shared.openURL(url)
             }
