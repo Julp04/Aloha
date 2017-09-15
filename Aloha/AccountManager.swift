@@ -568,7 +568,25 @@ class OtherUserAccountManager: CurrentUserAccountManager {
         }
     }
     override func createSnapchatButton() {
+        if let screenName = user.snapchatAccount?.screenName {
+            if snapchatButton == nil {
+                snapchatButton = SwitchButton(frame: frame, offColor: .white, onColor: .snapchat, image: #imageLiteral(resourceName: "snap"), shortText: screenName, isOn: true)
+            }
         
+            // Do not need turn on/off functions
+            
+            snapchatButton?.onLongPress =  {
+                onClick()
+            }
+            snapchatButton?.onClick = {
+                onClick()
+            }
+            
+            func onClick() {
+                let url = URL(string: "https://snapchat.com/add/\(screenName)")!
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     
 }
