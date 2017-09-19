@@ -26,6 +26,8 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 .DS_Store
+Aloha.ipa
+Aloha.app.*
 
 ### Xcode Patch ###
 *.xcodeproj/*
