@@ -92,6 +92,12 @@ platform :ios do
     increment_version_number(bump_type: "major")
   end
 
+  desc "Set version number"
+  lane :set_version do |number|
+    increment_version_number(version_number: number)
+  end
+
+
   # You can define as many lanes as you want
 
   after_all do |lane|

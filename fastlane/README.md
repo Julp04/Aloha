@@ -72,6 +72,11 @@ Increment minor number in version number
 fastlane ios major
 ```
 Increment major number in version number
+### ios set_version
+```
+fastlane ios set_version
+```
+Set version number
 
 ----
 
