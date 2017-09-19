@@ -358,8 +358,15 @@ class CurrentUserAccountManager: AccountManager {
         
         snapchatButton?.onLongPress =  {
             if (self.snapchatButton?.isOn)! {
-                let url = URL(string: "https://snapchat.com/add/\(self.user.snapchatAccount!.screenName)")!
-                UIApplication.shared.openURL(url)
+            
+                let websiteURL = URL(string: "https://snapchat.com/add/\(self.user.snapchatAccount!.screenName)")!
+                let url = URL(string:"snapchat://add/\(self.user.snapchatAccount!.screenName)")!
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.openURL(url)
+                }else {
+                    UIApplication.shared.openURL(websiteURL)
+                }
+                
             }
         }
         
@@ -583,8 +590,13 @@ class OtherUserAccountManager: CurrentUserAccountManager {
             }
             
             func onClick() {
-                let url = URL(string: "https://snapchat.com/add/\(screenName)")!
-                UIApplication.shared.openURL(url)
+                let websiteURL = URL(string: "https://snapchat.com/add/\(screenName)")!
+                let url = URL(string:"snapchat://add/\(screenName)")!
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.openURL(url)
+                }else {
+                    UIApplication.shared.openURL(websiteURL)
+                }
             }
         }
     }
