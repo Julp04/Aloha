@@ -136,7 +136,7 @@ class EditProfileInfoViewController: UITableViewController {
             case .success(let image):
                 self.profileImageView.image = image
                 self.currentUser.profileImage = image
-            case .failure(let error):
+            case .failure( _):
                 break
             }
         }

@@ -1,5 +1,5 @@
 PODS:
-  - AES256CBC (1.1.1)
+  - AES256CBC (1.3.0)
   - Alamofire (4.4.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
@@ -57,9 +57,9 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
-  - IQKeyboardManagerSwift (4.0.9)
+  - IQKeyboardManagerSwift (5.0.4)
   - JPLoadingButton (0.4.0)
-  - LTMorphingLabel (0.5.0)
+  - LTMorphingLabel (0.5.3)
   - MGCollapsingHeader (1.0.6)
   - OAuthSwift (1.1.1)
   - Pageboy (1.0.3)
@@ -78,7 +78,7 @@ PODS:
     - TwitterCore (>= 2.8)
 
 DEPENDENCIES:
-  - AES256CBC
+  - AES256CBC (= 1.3.0)
   - Alamofire
   - Crashlytics
   - EasyTipView
@@ -91,9 +91,9 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - Firebase/Storage
   - FontAwesome.swift
-  - IQKeyboardManagerSwift
+  - IQKeyboardManagerSwift (= 5.0.4)
   - JPLoadingButton
-  - LTMorphingLabel
+  - LTMorphingLabel (= 0.5.3)
   - MGCollapsingHeader
   - OAuthSwift (~> 1.1.0)
   - Pageboy
@@ -117,7 +117,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
-  AES256CBC: 22b584fbea28b46ab3c52d44213902ab5c6f801f
+  AES256CBC: 707d3d45e88a8caebeac09d155965fcab64bf201
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
@@ -134,9 +134,9 @@ SPEC CHECKSUMS:
   FontAwesome.swift: f4ff5a9199dc3b510eba5bb377e834f159aef358
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
-  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   JPLoadingButton: 8af25b017f2e2cd9e09697a7816ebf40c49b33aa
-  LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
+  LTMorphingLabel: b85b6c1c5d0c4203e22f8d3dca722546f67b8410
   MGCollapsingHeader: 82a52988e0dcdd32558e883ae4df4c9c1a1674b1
   OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
   Pageboy: bbc0d544d9d6be8de8303379700b974c5f03e2fd
@@ -152,6 +152,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 719dcf87f19475331659724887f2133c80a5d7ff
+PODFILE CHECKSUM: aab1263a25c14de8f8752bfb851a350398d6d1d7
 
 COCOAPODS: 1.3.1

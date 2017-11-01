@@ -27,11 +27,11 @@ def allPods
     pod 'RevealingSplashView'
     pod 'RSKImageCropper'
     pod 'JPLoadingButton'
-    pod 'IQKeyboardManagerSwift'
+    pod 'IQKeyboardManagerSwift' , '5.0.4'
     pod 'MGCollapsingHeader'
-    pod 'LTMorphingLabel'
+    pod 'LTMorphingLabel', '0.5.3'
     pod 'Pageboy'
-    pod 'AES256CBC'
+    pod 'AES256CBC', '1.3.0'
     pod 'EasyTipView'
 end
 

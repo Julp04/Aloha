@@ -54,7 +54,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         let container = transitionContext.containerView
         
         let screenUp = CGAffineTransform(translationX: 0, y: -container.frame.height)
-        let screenDown = CGAffineTransform(translationX: 0, y: container.frame.height)
+        _ = CGAffineTransform(translationX: 0, y: container.frame.height)
         
         container.addSubview(fromView)
         container.addSubview(toView)
@@ -139,7 +139,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         
         if sender == gesture {
             let progress = sender.translation(in: view2).y / view2.frame.size.height + 0.1
-            let velocity = sender.velocity(in: view2).y
+            _ = sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
             var percent = offsetY / (view2.bounds.size.height)
@@ -166,7 +166,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         }else {
             
             let progress = sender.translation(in: view2).y / -view2.frame.size.height
-            let velocity = -sender.velocity(in: view2).y
+            _ = -sender.velocity(in: view2).y
             
             let offsetY: CGFloat = sender.translation(in: view2).y
             var percent = offsetY / (view2.bounds.size.height)

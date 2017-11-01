@@ -38,7 +38,7 @@ open class JPLoadingButton : UIButton, UIViewControllerTransitioningDelegate, CA
 
     
     
-   @IBInspectable open var cornerRadius: CGFloat? = 20.0 {
+    open var cornerRadius: CGFloat? = 20.0 {
         didSet {
             layer.cornerRadius = cornerRadius!
         }
@@ -61,7 +61,7 @@ open class JPLoadingButton : UIButton, UIViewControllerTransitioningDelegate, CA
         }
     }
     
-    @IBInspectable open var spinnerWidth:CGFloat? = 1.0 {
+    open var spinnerWidth:CGFloat? = 1.0 {
         didSet {
             self.spinner.lineWidth = spinnerWidth!
         }

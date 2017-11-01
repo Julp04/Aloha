@@ -238,7 +238,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
                             DispatchQueue.main.async {
                                 self.followRequestImageView.image = image
                             }
-                        case .failure(let _):
+                        case .failure( _):
                             break
                         }
                     })

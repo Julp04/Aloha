@@ -485,8 +485,6 @@ class QnClient {
     
     func getFollowing(forUser user: User, completion: @escaping (([User]) -> Void))  {
         
-        let currentUser = FIRAuth.auth()!.currentUser!
-        
         ref.child("following").child(user.uid).queryOrdered(byChild: "following").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
              var users = [User]()
             
@@ -562,7 +560,7 @@ class QnClient {
     
     func getFollowers(forUser user: User, completion: @escaping (([User]) -> Void)) {
         
-        let currentUser = FIRAuth.auth()!.currentUser!
+        _ = FIRAuth.auth()!.currentUser!
         
         ref.child("followers").child(user.uid).queryOrdered(byChild: "follower").queryEqual(toValue: true).observe(.value, with: { (snapshot) in
 
