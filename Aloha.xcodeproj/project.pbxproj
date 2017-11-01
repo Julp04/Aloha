@@ -17,7 +17,6 @@
 		140BCD0C1ECBC37C000FE0E5 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */; };
 		14148BDC1ED76A5900B8021D /* PermissonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14148BDB1ED76A5900B8021D /* PermissonUtility.swift */; };
 		14148BDD1ED76A5900B8021D /* PermissonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14148BDB1ED76A5900B8021D /* PermissonUtility.swift */; };
-		14184CF11EA1AB410068E01C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14184CF01EA1AB410068E01C /* UserTest.swift */; };
 		141852181E55F2E200471E59 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141852171E55F2E200471E59 /* TwitterClient.swift */; };
 		1418C0021EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
 		1418C0031EA6400E00C5538F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418C0011EA6400E00C5538F /* EmptyView.swift */; };
@@ -139,13 +138,11 @@
 		B964AE8C1DBA74B400A0162E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE8A1DBA74B400A0162E /* Main.storyboard */; };
 		B964AE911DBA74B400A0162E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964AE901DBA74B400A0162E /* Images.xcassets */; };
 		B964AE941DBA74B400A0162E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964AE921DBA74B400A0162E /* LaunchScreen.storyboard */; };
-		B964AE9F1DBA74B400A0162E /* StringExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964AE9E1DBA74B400A0162E /* StringExtensionTest.swift */; };
 		B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */; };
 		B9C3A7FE1DD8E5F800CE9D06 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */; };
 		B9C3A8021DD8E67F00CE9D06 /* ConnectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */; };
 		B9C3A8041DD9022E00CE9D06 /* QNectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C3A8031DD9022E00CE9D06 /* QNectAlertView.swift */; };
 		B9F859221DF0BBF600BE09A0 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F859211DF0BBF600BE09A0 /* SphereMenu.swift */; };
-		F7133D181D283A9300A90C4D /* Pods_AlohaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D3DB2AAEEF968784A9D881 /* Pods_AlohaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,13 +152,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 141BEFC81F5DE0E200F7C804;
 			remoteInfo = "Aloha Widget";
-		};
-		B964AE9B1DBA74B400A0162E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B964AE7B1DBA74B400A0162E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B964AE821DBA74B400A0162E;
-			remoteInfo = QNect;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -187,7 +177,6 @@
 		1409E7FB1EFAB4AE0088A297 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		140BCD0A1ECBC37C000FE0E5 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		14148BDB1ED76A5900B8021D /* PermissonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissonUtility.swift; sourceTree = "<group>"; };
-		14184CF01EA1AB410068E01C /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		141852171E55F2E200471E59 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		1418C0011EA6400E00C5538F /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1418C0211EA6728800C5538F /* SwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchButton.swift; sourceTree = "<group>"; };
@@ -258,9 +247,6 @@
 		B964AE901DBA74B400A0162E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B964AE931DBA74B400A0162E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B964AE951DBA74B400A0162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B964AE9A1DBA74B400A0162E /* AlohaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlohaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B964AE9E1DBA74B400A0162E /* StringExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTest.swift; sourceTree = "<group>"; };
-		B964AEA01DBA74B400A0162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C3A7F91DD8DDA400CE9D06 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B9C3A7FD1DD8E5F800CE9D06 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		B9C3A8011DD8E67F00CE9D06 /* ConnectionsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsModel.swift; sourceTree = "<group>"; };
@@ -294,14 +280,6 @@
 			files = (
 				B9C3A7FA1DD8DDA400CE9D06 /* libsqlite3.tbd in Frameworks */,
 				7AED334826EC3F159CA2187F /* Pods_Aloha.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B964AE971DBA74B400A0162E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7133D181D283A9300A90C4D /* Pods_AlohaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				B964AE851DBA74B400A0162E /* Aloha */,
-				B964AE9D1DBA74B400A0162E /* AlohaTests */,
 				141BEFCC1F5DE0E200F7C804 /* Aloha Widget */,
 				B964AE841DBA74B400A0162E /* Products */,
 				A6DCC86F55992F7852DB2F25 /* Frameworks */,
@@ -387,7 +364,6 @@
 			isa = PBXGroup;
 			children = (
 				B964AE831DBA74B400A0162E /* Aloha.app */,
-				B964AE9A1DBA74B400A0162E /* AlohaTests.xctest */,
 				14EC7ABE1E74F27300B3C4E8 /* Aloha dev.app */,
 				141BEFC91F5DE0E200F7C804 /* Aloha Widget.appex */,
 			);
@@ -410,17 +386,6 @@
 				B9EF94731DBA78540091D596 /* SupportingFiles */,
 			);
 			path = Aloha;
-			sourceTree = "<group>";
-		};
-		B964AE9D1DBA74B400A0162E /* AlohaTests */ = {
-			isa = PBXGroup;
-			children = (
-				B964AE9E1DBA74B400A0162E /* StringExtensionTest.swift */,
-				14184CF01EA1AB410068E01C /* UserTest.swift */,
-				B964AEA01DBA74B400A0162E /* Info.plist */,
-			);
-			name = AlohaTests;
-			path = QNectTests;
 			sourceTree = "<group>";
 		};
 		B964AEAA1DBA74DE00A0162E /* Models */ = {
@@ -575,27 +540,6 @@
 			productReference = B964AE831DBA74B400A0162E /* Aloha.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B964AE991DBA74B400A0162E /* AlohaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B964AEA61DBA74B400A0162E /* Build configuration list for PBXNativeTarget "AlohaTests" */;
-			buildPhases = (
-				5C9D9C3785E5575B11545D4E /* [CP] Check Pods Manifest.lock */,
-				B964AE961DBA74B400A0162E /* Sources */,
-				B964AE971DBA74B400A0162E /* Frameworks */,
-				B964AE981DBA74B400A0162E /* Resources */,
-				138A171C63ED3B753D79E6B3 /* [CP] Embed Pods Frameworks */,
-				08153091CB57064FA21998B9 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B964AE9C1DBA74B400A0162E /* PBXTargetDependency */,
-			);
-			name = AlohaTests;
-			productName = QNectTests;
-			productReference = B964AE9A1DBA74B400A0162E /* AlohaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -632,11 +576,6 @@
 							};
 						};
 					};
-					B964AE991DBA74B400A0162E = {
-						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0820;
-						TestTargetID = B964AE821DBA74B400A0162E;
-					};
 				};
 			};
 			buildConfigurationList = B964AE7E1DBA74B400A0162E /* Build configuration list for PBXProject "Aloha" */;
@@ -654,7 +593,6 @@
 			targets = (
 				B964AE821DBA74B400A0162E /* Aloha */,
 				14EC7A801E74F27300B3C4E8 /* Aloha dev */,
-				B964AE991DBA74B400A0162E /* AlohaTests */,
 				141BEFC81F5DE0E200F7C804 /* Aloha Widget */,
 			);
 		};
@@ -695,49 +633,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B964AE981DBA74B400A0162E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08153091CB57064FA21998B9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlohaTests/Pods-AlohaTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		138A171C63ED3B753D79E6B3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AlohaTests/Pods-AlohaTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlohaTests/Pods-AlohaTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1403CAA91E548FF600BDE899 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -927,24 +825,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Aloha-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C9D9C3785E5575B11545D4E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AlohaTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1170,15 +1050,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B964AE961DBA74B400A0162E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				14184CF11EA1AB410068E01C /* UserTest.swift in Sources */,
-				B964AE9F1DBA74B400A0162E /* StringExtensionTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1186,11 +1057,6 @@
 			isa = PBXTargetDependency;
 			target = 141BEFC81F5DE0E200F7C804 /* Aloha Widget */;
 			targetProxy = 141BEFD31F5DE0E200F7C804 /* PBXContainerItemProxy */;
-		};
-		B964AE9C1DBA74B400A0162E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B964AE821DBA74B400A0162E /* Aloha */;
-			targetProxy = B964AE9B1DBA74B400A0162E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1455,34 +1321,6 @@
 			};
 			name = Release;
 		};
-		B964AEA71DBA74B400A0162E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AAAB7ED9CA4FEA4C336A6FB /* Pods-AlohaTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = AlohaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jrp5502.QNectTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aloha.app/Aloha";
-			};
-			name = Debug;
-		};
-		B964AEA81DBA74B400A0162E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FED8BE887B58D0397B0FA62B /* Pods-AlohaTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = AlohaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jrp5502.QNectTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aloha.app/Aloha";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1518,15 +1356,6 @@
 			buildConfigurations = (
 				B964AEA41DBA74B400A0162E /* Debug */,
 				B964AEA51DBA74B400A0162E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B964AEA61DBA74B400A0162E /* Build configuration list for PBXNativeTarget "AlohaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B964AEA71DBA74B400A0162E /* Debug */,
-				B964AEA81DBA74B400A0162E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
