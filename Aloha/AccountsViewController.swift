@@ -87,8 +87,8 @@ class AccountsViewController: UIViewController {
             self.present(mainVC, animated: true, completion: nil)
        
         } else {
-            let cameraMediaType = AVMediaTypeVideo
-            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: cameraMediaType)
+            let cameraMediaType = AVMediaType.video
+            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
             
             switch cameraAuthorizationStatus {
             case .authorized:
@@ -99,7 +99,7 @@ class AccountsViewController: UIViewController {
                
             case .notDetermined, .restricted, .denied:
                 // Prompting user for the permission to use the camera.
-                AVCaptureDevice.requestAccess(forMediaType: cameraMediaType) { granted in
+                AVCaptureDevice.requestAccess(for: cameraMediaType) { granted in
                     if granted {
                         self.isCameraAuthorized()
                     }else {

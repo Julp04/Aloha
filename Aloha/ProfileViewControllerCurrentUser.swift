@@ -193,7 +193,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         
         navigationController?.navigationBar.barTintColor =  UIColor.alohaOrange
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.topItem?.titleView = nil
         navigationController?.navigationBar.topItem?.title = user.username
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
@@ -260,7 +260,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         accountsCollectionView.reloadData()
     }
     
-    func followersViewTapped() {
+    @objc func followersViewTapped() {
         
         let followersController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
         followersController.configureViewController(type: .followers)
@@ -268,14 +268,14 @@ class ProfileViewControllerCurrentUser: UITableViewController {
         self.navigationController?.pushViewController(followersController, animated: true)
     }
     
-    func followingViewTapped() {
+    @objc func followingViewTapped() {
         let followersController = self.storyboard?.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
         followersController.configureViewController(type: .following)
         
         self.navigationController?.pushViewController(followersController, animated: true)
     }
     
-    func scansViewTapped() {
+    @objc func scansViewTapped() {
         
     }
     
@@ -381,7 +381,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
     
     //MARK: Functionality
     
-    func editProfile() {
+    @objc func editProfile() {
         
         let editProfileNavController = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileInfoNavController") as! UINavigationController
         let editProfileInfoViewController = editProfileNavController.viewControllers.first as! EditProfileInfoViewController
@@ -397,7 +397,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .camera
             self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             self.imagePicker.navigationBar.tintColor = UIColor.white
             self.present(self.imagePicker, animated: true, completion: nil)
         }
@@ -406,7 +406,7 @@ class ProfileViewControllerCurrentUser: UITableViewController {
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
             self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             self.imagePicker.navigationBar.tintColor = UIColor.white
             self.present(self.imagePicker, animated: true, completion: nil)
         }

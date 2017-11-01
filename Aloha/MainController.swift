@@ -42,7 +42,7 @@ class MainController: PageboyViewController {
     
     var colorView: GradientView!
     var contactImage:UIImage?
-    let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var contact: User!
@@ -132,7 +132,7 @@ class MainController: PageboyViewController {
     }
     
     
-    func presentCodeController() {
+    @objc func presentCodeController() {
         self.performSegue(withIdentifier: "CodeSegue", sender: self)
         showQRCodeTip.dismiss()
     }
@@ -168,10 +168,10 @@ extension MainController: ScannerDelegate {
             return
         }
         
-        let scan = Scan(data: qrCode.stringValue)
+        let scan = Scan(data: qrCode.stringValue!)
         client.add(scan: scan)
         
-        if let contact = QnDecoder.decodeQRCode(qrCode.stringValue) {
+        if let contact = QnDecoder.decodeQRCode(qrCode.stringValue!) {
             //todo:check if user still exists
             //somepoint later down the road there could be codes out there that are not tied to any accounts, we either do not want to show this account or we do not want to be able to follow it
             
@@ -186,7 +186,7 @@ extension MainController: ScannerDelegate {
             self.present(navController, animated: true, completion: nil)
             
             
-        }else if let url = qrCode.stringValue.checkForURL() {
+        }else if let url = qrCode.stringValue?.checkForURL() {
             
             let popupvc = PTPopupWebViewController()
             popupvc.popupView.URL(string: url)

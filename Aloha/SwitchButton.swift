@@ -327,27 +327,27 @@ class SwitchButton: UIView {
         isOn ? turnOff() : turnOn()
     }
     
-    internal func buttonAction() {
+    @objc internal func buttonAction() {
         if isEnabled {
             onClick()
         }
         unShrink()
     }
     
-    internal func longPress(sender: UILongPressGestureRecognizer) {
+    @objc internal func longPress(sender: UILongPressGestureRecognizer) {
         
         if sender.state == .began {
             onLongPress()
         }
     }
     
-    internal func shrink() {
+    @objc internal func shrink() {
         UIView.animate(withDuration: 0.5) { 
              self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         }
     }
     
-    internal func unShrink() {
+    @objc internal func unShrink() {
         UIView.animate(withDuration: 0.5) { 
             self.transform = CGAffineTransform.identity
         }

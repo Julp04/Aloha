@@ -62,7 +62,7 @@ class BackgroundVideo {
         //add the video to your view ..
         let loginView: UIView = self.viewController!.view//get our view controllers view
         let playerLayer = AVPlayerLayer(player: self.backGroundPlayer)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill // preserve aspect ratio and resize to fill screen
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill // preserve aspect ratio and resize to fill screen
         playerLayer.zPosition = -1 // set it's possition behined anything in our view
         playerLayer.frame = loginView.frame // set our player frame to our view's frame
         loginView.layer.addSublayer(playerLayer)

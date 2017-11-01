@@ -79,7 +79,7 @@ class UsernameViewController: UIViewController{
             termsTextView.setWords(words: "Privacy Policy", forLink: privacyURL, color: .qnBlue, font: UIFont.boldSystemFont(ofSize: 13))
         }
         
-        UITextView.appearance().linkTextAttributes = [NSForegroundColorAttributeName: UIColor.alohaGreen]
+        UITextView.appearance().linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.alohaGreen]
         
     }
     

@@ -15,13 +15,13 @@ class PermissonUtility {
     static func isCameraAuthorized(completion: @escaping (Bool) -> Void) {
         
         if !Platform.isSimulator {
-            let cameraMediaType = AVMediaTypeVideo
-            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: cameraMediaType)
+            let cameraMediaType = AVMediaType.video
+            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
             
             switch cameraAuthorizationStatus {
             case .authorized: completion(true)
             case .notDetermined, .denied, .restricted:
-                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (success) in
+                AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (success) in
                     completion(success)
                 })
             }

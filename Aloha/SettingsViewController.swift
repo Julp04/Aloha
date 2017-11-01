@@ -47,8 +47,8 @@ class SettingsViewController: UITableViewController {
         
         MainController.transitionManager.isEnabled = false
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white,
-                                    NSFontAttributeName : UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
+                                    NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.regular)]
         navigationController?.navigationBar.tintColor = .white
     }
     

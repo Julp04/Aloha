@@ -16,8 +16,8 @@ class AttrTextView: UITextView {
             self.attrString = NSMutableAttributedString(string: text)
             self.textString = NSString(string: text)
             
-            attrString?.addAttribute(NSFontAttributeName, value: self.font!, range: NSRange(location: 0, length: (textString?.length)!))
-            attrString?.addAttribute(NSForegroundColorAttributeName, value: self.textColor ?? .black, range: NSRange(location: 0, length: (textString?.length)!))
+            attrString?.addAttribute(NSAttributedStringKey.font, value: self.font!, range: NSRange(location: 0, length: (textString?.length)!))
+            attrString?.addAttribute(NSAttributedStringKey.foregroundColor, value: self.textColor ?? .black, range: NSRange(location: 0, length: (textString?.length)!))
             self.attributedText = attrString
         }
     }
@@ -25,10 +25,10 @@ class AttrTextView: UITextView {
     public func setWords(words: String, forLink link: String, color: UIColor, font: UIFont) {
         //Words can be separated by either a space or a line break
         let range = textString!.range(of: words)
-        attrString?.addAttribute(NSForegroundColorAttributeName, value: linkColor, range: range)
+        attrString?.addAttribute(NSAttributedStringKey.foregroundColor, value: linkColor, range: range)
 
-        attrString?.addAttribute(NSFontAttributeName, value: font, range: range)
-        attrString?.addAttribute(NSLinkAttributeName, value: URL(string: link)!, range: range)
+        attrString?.addAttribute(NSAttributedStringKey.font, value: font, range: range)
+        attrString?.addAttribute(NSAttributedStringKey.link, value: URL(string: link)!, range: range)
         
         self.attributedText = attrString
     }

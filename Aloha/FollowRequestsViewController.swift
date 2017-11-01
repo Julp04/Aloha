@@ -113,7 +113,7 @@ class FollowRequestsViewController: UITableViewController {
         }
     }
     
-    func acceptRequest(sender: UIButton) {
+    @objc func acceptRequest(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
         QnClient.sharedInstance.acceptFollowRequest(user: user) {_ in 
@@ -121,7 +121,7 @@ class FollowRequestsViewController: UITableViewController {
         }
     }
     
-    func declineRequest(sender: UIButton) {
+    @objc func declineRequest(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
         QnClient.sharedInstance.denyFollowRequest(user: user) {_ in 
@@ -129,7 +129,7 @@ class FollowRequestsViewController: UITableViewController {
         }
     }
     
-    func followUser(sender: UIButton) {
+    @objc func followUser(sender: UIButton) {
         let index = sender.tag
         
         let user = followRequests[index]
@@ -146,7 +146,7 @@ class FollowRequestsViewController: UITableViewController {
         }
     }
     
-    func showUnfollowAlert(sender: UIButton) {
+    @objc func showUnfollowAlert(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
         
@@ -163,7 +163,7 @@ class FollowRequestsViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showCancelRequestAlert(sender: UIButton) {
+    @objc func showCancelRequestAlert(sender: UIButton) {
         let index = sender.tag
         let user = followRequests[index]
         

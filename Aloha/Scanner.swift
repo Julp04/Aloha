@@ -23,13 +23,13 @@ class Scanner: NSObject {
     
     let kPinchVelocity = 8.0
     
-    private let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    private let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     private var captureSession: AVCaptureSession!
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     private var view: UIView
     private var scannerTypes: [ScanningTypes]
-    private var metaDataObjectTypes = [String]()
+    private var metaDataObjectTypes = [AVMetadataObject.ObjectType]()
     var delegate: ScannerDelegate?
     
     var pinchGesture: UIPinchGestureRecognizer!
@@ -57,7 +57,7 @@ class Scanner: NSObject {
         var error:NSError?
         let input:AnyObject!
         do {
-            input = try AVCaptureDeviceInput(device: captureDevice)
+            input = try AVCaptureDeviceInput(device: captureDevice!)
         } catch let error1 as NSError {
             error = error1
             input = nil
@@ -75,12 +75,12 @@ class Scanner: NSObject {
             
             
             for type in scannerTypes {
-                metaDataObjectTypes.append(getScanType(type: type))
+                metaDataObjectTypes.append(AVMetadataObject.ObjectType(rawValue: getScanType(type: type)))
             }
             
             captureMetadataOutput.metadataObjectTypes = metaDataObjectTypes
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.insertSublayer(videoPreviewLayer, at: 0)
@@ -99,7 +99,7 @@ class Scanner: NSObject {
     /// Pinch to zoom
     ///
     /// - Parameter sender: pinch gesture
-    func handlePinch(_ sender: AnyObject) {
+    @objc func handlePinch(_ sender: AnyObject) {
         let pinchVelocityDividerFactor = kPinchVelocity
         
         if (sender.state == UIGestureRecognizerState.changed) {
@@ -129,28 +129,28 @@ class Scanner: NSObject {
     private func getScanType(type: ScanningTypes) -> String {
         switch type {
         case .qr:
-            return AVMetadataObjectTypeQRCode
+            return AVMetadataObject.ObjectType.qr.rawValue
         case .ean8:
-            return AVMetadataObjectTypeEAN8Code
+            return AVMetadataObject.ObjectType.ean8.rawValue
         case .ean13:
-            return AVMetadataObjectTypeEAN13Code
+            return AVMetadataObject.ObjectType.ean13.rawValue
         case .code128:
-            return AVMetadataObjectTypeCode128Code
+            return AVMetadataObject.ObjectType.code128.rawValue
         }
     }
 }
 
 extension Scanner: AVCaptureMetadataOutputObjectsDelegate {
    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if metadataObjects.count > 0 {
             if let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 
                 switch metadataObj.type {
-                case AVMetadataObjectTypeQRCode:
+                case AVMetadataObject.ObjectType.qr:
                     delegate?.scannerDidScan?(qrCode: metadataObj)
-                case AVMetadataObjectTypeCode128Code:
+                case AVMetadataObject.ObjectType.code128:
                     delegate?.code128DidScan?(code: metadataObj)
                 default:
                     break

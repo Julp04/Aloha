@@ -130,7 +130,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         
     }
     
-    func handlePan(_ sender: UIPanGestureRecognizer) {
+    @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         guard isEnabled else {
             return
         }

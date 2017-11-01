@@ -57,7 +57,7 @@ class ConnectionsViewController: UITableViewController {
         tableView.sectionIndexBackgroundColor = .clear
         
         self.navigationController?.navigationBar.barTintColor = .main
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override func viewWillAppear(_ animated: Bool) {

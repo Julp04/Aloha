@@ -51,7 +51,7 @@ class CodeViewController: UIViewController {
         MainController.transitionManager.isEnabled = true
         
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override func viewDidAppear(_ animated: Bool) {

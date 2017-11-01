@@ -155,7 +155,7 @@ class AddProfileInfoViewController: UITableViewController {
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .camera
             self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             self.imagePicker.navigationBar.tintColor = UIColor.white
             self.present(self.imagePicker, animated: true, completion: nil)
         }
@@ -164,7 +164,7 @@ class AddProfileInfoViewController: UITableViewController {
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
             self.imagePicker.navigationBar.barTintColor = UIColor.qnBlue
-            self.imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.imagePicker.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             self.imagePicker.navigationBar.tintColor = UIColor.white
             self.present(self.imagePicker, animated: true, completion: nil)
         }
@@ -185,7 +185,7 @@ class AddProfileInfoViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func datePickerValueChanged(sender: UIDatePicker) {
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
         let date = sender.date
         birthdateField.text = date.asString()
     }

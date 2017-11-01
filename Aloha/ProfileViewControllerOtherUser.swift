@@ -143,7 +143,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
                     self.navigationItem.titleView?.tintColor = .white
                     
                     self.navigationController?.delegate = self
-                    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+                    self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
                     
                     self.imageViewSpinner.isHidden = true
                     
@@ -176,7 +176,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
             self.navigationItem.titleView?.tintColor = .white
             
             self.navigationController?.delegate = self
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             
             self.imageViewSpinner.isHidden = true
             
@@ -376,7 +376,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
     }
     
     
-    func settingsAction(_ sender: Any) {
+    @objc func settingsAction(_ sender: Any) {
         present(settingsAlert, animated: true)
     }
     
@@ -424,7 +424,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         tableView.reloadData()
     }
     
-    func dismissController() {
+    @objc func dismissController() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -463,13 +463,13 @@ class ProfileViewControllerOtherUser: UITableViewController {
     
     //MARK: Functionality
     
-    func follow() {
+    @objc func follow() {
         QnClient.sharedInstance.follow(user: user) { error in
             if let error = error { AlertUtility.showAlertWith(error.localizedDescription)}
         }
     }
     
-    func showCancelRequestAlert() {
+    @objc func showCancelRequestAlert() {
         
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         let cancelRequestAction = UIAlertAction(title: "Cancel follow request", style: .destructive) { (action) in
@@ -483,7 +483,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func messageUser() {
+    @objc func messageUser() {
         if let phoneNumber = user.phone {
             let messageVC = MFMessageComposeViewController()
             
@@ -494,7 +494,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         }
     }
     
-    func callUser() {
+    @objc func callUser() {
         
         guard let phoneNumber = user.phone else {
             return
@@ -504,7 +504,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         UIApplication.shared.openURL(url)
     }
     
-    func faceTimeUser() {
+    @objc func faceTimeUser() {
         if let phoneNumber = self.user.phone {
             let phone = "facetime://\(phoneNumber)"
             let url = URL(string: phone)!
@@ -512,7 +512,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         }
     }
     
-    func emailUser() {
+    @objc func emailUser() {
         if let email = user.personalEmail {
             let emailVC = MFMailComposeViewController()
             emailVC.setToRecipients([email])
@@ -523,7 +523,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         
     }
     
-    func showUnblockAction() {
+    @objc func showUnblockAction() {
         let alert = UIAlertController(title: self.user.username, message: nil, preferredStyle: .actionSheet)
         
         let unblockAction = UIAlertAction(title: "Unblock", style: .destructive) { (action) in
@@ -562,7 +562,7 @@ class ProfileViewControllerOtherUser: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showUnfollowAction() {
+    @objc func showUnfollowAction() {
         let alert = UIAlertController(title: user.username, message: nil, preferredStyle: .actionSheet)
         
         let unfollowAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
